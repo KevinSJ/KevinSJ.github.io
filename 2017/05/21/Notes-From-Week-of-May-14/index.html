@@ -1,0 +1,764 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Notes," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="From this week onward, I will be keeping notes for some of the issues I encountered during work or developing some of my personal works. Here are notes from my development last week: This might be a q">
+<meta name="keywords" content="Notes">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Notes From Week of May 14">
+<meta property="og:url" content="http://kevinsj.github.io/2017/05/21/Notes-From-Week-of-May-14/index.html">
+<meta property="og:site_name" content="Kevin Jiang&#39;s Technical Blog">
+<meta property="og:description" content="From this week onward, I will be keeping notes for some of the issues I encountered during work or developing some of my personal works. Here are notes from my development last week: This might be a q">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-05-22T01:06:06.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Notes From Week of May 14">
+<meta name="twitter:description" content="From this week onward, I will be keeping notes for some of the issues I encountered during work or developing some of my personal works. Here are notes from my development last week: This might be a q">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://kevinsj.github.io/2017/05/21/Notes-From-Week-of-May-14/"/>
+
+
+
+
+
+  <title>Notes From Week of May 14 | Kevin Jiang's Technical Blog</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Kevin Jiang's Technical Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://kevinsj.github.io/2017/05/21/Notes-From-Week-of-May-14/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="KevinSJ">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Notes From Week of May 14</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-21T18:18:11-05:00">
+                2017-05-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/05/21/Notes-From-Week-of-May-14/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/05/21/Notes-From-Week-of-May-14/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>From this week onward, I will be keeping notes for some of the issues I encountered during work or developing some of my personal works.</p>
+<h4 id="Here-are-notes-from-my-development-last-week"><a href="#Here-are-notes-from-my-development-last-week" class="headerlink" title="Here are notes from my development last week:"></a>Here are notes from my development last week:</h4><ul>
+<li><p>This might be a quite simple one, but I found it might be useful for future reference. In the development of TIA, previous developer used to disable the checkbox in a form. The result of this is the value of the disabled checkboxes were not submitted with the form. The previous developer opt to set the checkboxes separately which I don’t believe is an ideal solution. I thereby found another solution as follows:</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=<span class="string">"checkbox"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"readonly"</span> checked=<span class="string">"checked"</span> onclick=<span class="string">"javascript:return false"</span> /&gt;</span><br></pre></td></tr></table></figure>
+<p>  However, this is not enough in my case, I also need to have it gray out to make it looks like disabled. It turned out that this can be solved via simple CSS:</p>
+  <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">input</span><span class="selector-class">.readonly</span> &#123;</span><br><span class="line">    <span class="attribute">opacity </span>: .<span class="number">50</span>;</span><br><span class="line">    <span class="attribute">filter  </span>: <span class="built_in">alpha</span>(opacity=50); <span class="comment">/* IE&lt;9 */</span></span><br><span class="line">    <span class="attribute">cursor  </span>: default;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  Just make sure to give the checkbox proper class name.</p>
+</li>
+<li><p>This week, I was also asked to generate data from InterCAD. What I used to do was to copy the result of the query from database to a MS Excel worksheet and done the work there. This is especially easy when when there are not a lot of data. This time around, there were 16 days worth of data that I need to do statistics on. So, I decided to create a Bash script to do this task. The bash script is listed as follows, it is a pretty easy one and can be improved in the future:</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">COUNTER=1</span><br><span class="line">TYPE=ACCIDENT</span><br><span class="line"><span class="keyword">while</span> [  <span class="variable">$COUNTER</span> -lt 17 ]; <span class="keyword">do</span></span><br><span class="line"> <span class="keyword">if</span> [ <span class="variable">$COUNTER</span> -lt 10 ]</span><br><span class="line"> <span class="keyword">then</span> </span><br><span class="line">     d=<span class="string">'2017-05-0'</span> </span><br><span class="line"> <span class="keyword">else</span></span><br><span class="line">     d=<span class="string">'2017-05-'</span></span><br><span class="line"> <span class="keyword">fi</span></span><br><span class="line"> <span class="built_in">echo</span> <span class="variable">$d</span><span class="variable">$COUNTER</span></span><br><span class="line"> grep <span class="variable">$d</span><span class="variable">$COUNTER</span> a.csv|grep <span class="variable">$TYPE</span>|wc -l</span><br><span class="line"> <span class="built_in">let</span> COUNTER=COUNTER+1 </span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<p>  Basically, this time around, I exported the result of my query into a csv called a.csv and use grep to get what I want. This script can be improved in several ways: </p>
+<ul>
+<li>Use awk instead of simple grep</li>
+<li><p>Have the user input the type and the date from the command line.</p>
+<p>This will be for future improvements.</p>
+</li>
+</ul>
+</li>
+<li><p>For my own project, I have set up a log watcher for the Flexget which I have installed on my Raspberry Pi 3. This log watcher runs 5 minutes after Flexget is ran and attach the error part of the log as an attachment and sent to my email address.</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">SMTP_SERVER=YOUR_EMAIL_SMTP</span><br><span class="line">RECEPIENT=EMAIL_TO_RECEIVE</span><br><span class="line">SENDER=<span class="string">"YOUR_EMAIL_USER_NAME"</span></span><br><span class="line">TEMPLOG=<span class="string">"TEMP_FILE_TO_STORE_ERROR_LOG"</span> <span class="comment">#Will be deleted email is sent</span></span><br><span class="line">DATE=$(date -I)</span><br><span class="line">MESSAGE=$(cat <span class="variable">$HOME</span>/flexget/flexget.log |</span><br><span class="line">grep -v INFO |</span><br><span class="line">grep -v VERBOSE |</span><br><span class="line">grep <span class="variable">$DATE</span>)</span><br><span class="line">CONTENT=<span class="string">"Attached is the error log from today, please check!"</span></span><br><span class="line"><span class="keyword">if</span> [ ! -z <span class="string">"<span class="variable">$MESSAGE</span>"</span> ] </span><br><span class="line"><span class="keyword">then</span>    </span><br><span class="line">    <span class="built_in">printf</span> <span class="string">"<span class="variable">$MESSAGE</span>"</span>|dd of=<span class="variable">$HOME</span>/errorlog</span><br><span class="line">    <span class="built_in">printf</span> <span class="string">"<span class="variable">$CONTENT</span>"</span>|mailx -vr <span class="variable">$SENDER</span> -a <span class="variable">$TEMPLOG</span>  -s <span class="string">"[TRANSMISSION ERROR] Transmission has encountered error"</span> -S smtp=<span class="variable">$SMTP_SERVER</span> -S smtp-use-starttls -S smtp-auth=login -S smtp-auth-user=<span class="variable">$SENDER</span> -S smtp-auth-password=<span class="string">"YOUR_EMAIL_PASSWORD"</span> -S ssl-verify=ignore <span class="variable">$RECEPIENT</span></span><br><span class="line">    rm <span class="variable">$TEMPLOG</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+<p>  This script finds the error from flexget.log and write to TEMPLOG. If there is indeed errors exists in the log. The file will be attached and sent through the SMTP server to the address of your choice.</p>
+</li>
+<li><p>Over the weekend, I also started to learn React. React is a web library developed and used by Facebook. It is similar to Angular JS, but uses more straight rather than the TypeScript used by Angular JS. There were several notes that I would like to write down for future reference:</p>
+<ul>
+<li><p>React are composed of components, however, there were several ways to declare a component in React. </p>
+<ul>
+<li><p>The first way is the way that I would prefer, which is to use the ES6 class declaration, shown as follows:</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;Component&#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">SkiDayCount</span> <span class="keyword">extends</span> <span class="title">Component</span></span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(props)&#123;</span><br><span class="line">        <span class="keyword">super</span>(props);</span><br><span class="line">    &#125;</span><br><span class="line">    render()&#123;</span><br><span class="line">      	<span class="keyword">return</span> (<span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>The second way is cleaner, it is a stateless way of declaring and declares the component as a function, it is shown as follows:</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> SkiDayCount = <span class="function"><span class="params">()</span> =&gt;</span> (<span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>The third way, however, is in the process of deprecation and is not recommended at this point, but it is still shown here:</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> SkiDayCount = React.createClass(&#123;</span><br><span class="line">  	render()&#123;</span><br><span class="line">      <span class="keyword">return</span> (<span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>  This will be deprecated in the future release and put here just for reference only.</p>
+</li>
+</ul>
+</li>
+<li><p>To use the above mentioned newly created component in a page. You can use the following code:</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"><span class="keyword">import</span> &#123; render &#125; <span class="keyword">from</span> <span class="string">'react-dom'</span></span><br><span class="line"><span class="comment">//import the component, assuming it is in a folder called components and the source is called SkiDayCount.js</span></span><br><span class="line"><span class="keyword">import</span> &#123; SkiDayCount &#125; <span class="keyword">from</span> <span class="string">'./components/SkiDayCount'</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">window</span>.React = React</span><br><span class="line"></span><br><span class="line">render(</span><br><span class="line">	&lt;SkiDayCount /&gt;,</span><br><span class="line">	<span class="built_in">document</span>.getElementById(<span class="string">'react-container'</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>These are the notes from last week, I will learn more about React this week and hopefully will come up with more notes for next week.</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Notes/" rel="tag"># Notes</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/12/在树莓派上部署flexget实现自动追番/" rel="next" title="在树莓派上部署flexget实现自动追番">
+                <i class="fa fa-chevron-left"></i> 在树莓派上部署flexget实现自动追番
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/11/06112017-Fun-With-GPG/" rel="prev" title="06112017-Fun-With-GPG">
+                06112017-Fun-With-GPG <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="KevinSJ" />
+          <p class="site-author-name" itemprop="name">KevinSJ</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Here-are-notes-from-my-development-last-week"><span class="nav-number">1.</span> <span class="nav-text">Here are notes from my development last week:</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">KevinSJ</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://kevin-blog-1.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://kevinsj.github.io/2017/05/21/Notes-From-Week-of-May-14/';
+          this.page.identifier = '2017/05/21/Notes-From-Week-of-May-14/';
+          this.page.title = 'Notes From Week of May 14';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://kevin-blog-1.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="https://unpkg.com/live2d-widget@^3.0.5/lib/L2Dwidget.min.js"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script></body>
+</html>

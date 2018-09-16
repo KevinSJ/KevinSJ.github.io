@@ -1,0 +1,722 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Automation, Tasker, Andorid,," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="Why Tasker?This is probably an article that is long overdue to me personally. I have been an Android user since 2011, started with my Nexus S that I bought for use in college. It seems to me, the app">
+<meta name="keywords" content="Automation, Tasker, Andorid,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Automating things on Android with Tasker (I)">
+<meta property="og:url" content="http://kevinsj.github.io/2018/06/24/Automating-things-on-Android-with-Tasker/index.html">
+<meta property="og:site_name" content="Kevin Jiang&#39;s Technical Blog">
+<meta property="og:description" content="Why Tasker?This is probably an article that is long overdue to me personally. I have been an Android user since 2011, started with my Nexus S that I bought for use in college. It seems to me, the app">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-06-25T02:34:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Automating things on Android with Tasker (I)">
+<meta name="twitter:description" content="Why Tasker?This is probably an article that is long overdue to me personally. I have been an Android user since 2011, started with my Nexus S that I bought for use in college. It seems to me, the app">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://kevinsj.github.io/2018/06/24/Automating-things-on-Android-with-Tasker/"/>
+
+
+
+
+
+  <title>Automating things on Android with Tasker (I) | Kevin Jiang's Technical Blog</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Kevin Jiang's Technical Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://kevinsj.github.io/2018/06/24/Automating-things-on-Android-with-Tasker/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="KevinSJ">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Automating things on Android with Tasker (I)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-24T21:30:31-05:00">
+                2018-06-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/06/24/Automating-things-on-Android-with-Tasker/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/06/24/Automating-things-on-Android-with-Tasker/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="Why-Tasker"><a href="#Why-Tasker" class="headerlink" title="Why Tasker?"></a>Why Tasker?</h3><p>This is probably an article that is long overdue to me personally. I have been an Android user since 2011, started with my Nexus S that I bought for use in college. It seems to me, the app Tasker had been very famous in the Andorid community, especially among users who know how to program.<br>For those who have never heard of this app, this is a powerful app that allows you to automate almost anything that you can think of on the Android system.For me,It was not until August of last year when I bought the tasker app that I started to realize how powerful this app is. I am really not a big fan of its old school UI and design so I didn’t start using it until this year. After uisng it for a while, I did come to realize that there is no other apps close to it, if I were to move to iOS, this is probably among one the apps that I will miss.  In this article I will explain how I used takser to automate things for myself, it is some boring stuff, but it did become something that I’m using everyday.</p>
+<h3 id="What-can-you-use-it-for"><a href="#What-can-you-use-it-for" class="headerlink" title="What can you use it for?"></a>What can you use it for?</h3><p>I will list one of the most used Tasks/Profiles that I created and used in this app:</p>
+<h5 id="Turn-off-on-ADB-when-using-certain-apps"><a href="#Turn-off-on-ADB-when-using-certain-apps" class="headerlink" title="Turn off/on ADB when using certain apps."></a>Turn off/on ADB when using certain apps.</h5><p>This is one of the easy ones that I found very useful. It is not uncommon nowadays for some apps to require you to turn off your ADB (Android Debugging Bridge) settings when you are using them, which to me, is quite annoying. So naturally, I created a Tasker profile together with a task to automate this. The trick here is you need to have root access, otherwise you are pretty much out of luck for this particular example. To create such a task, assuming you already have proper root access, go to the TASKS page in the app and click on the add icon, choose a name you like, and then you can create your first task! Think of a task as the things you want Tasker to do for you. In this particular case, my goal is simple: turn off ADB if it was not already off, turn it on if it was off. This way we can have one task that a turns off the ADB when you turns on the app; when you turns the app off, ADB will be switch back to on. </p>
+<p>It is clear that we will need a global variable that holds the  status of the adb status, to do this add an action: click on the button add icon while you are in the “Task Edit” page, and filter based on Shell, you will see a “Run Shell” as a result. Click on it, and in the “Command” input, enter “settings get global adb_enabled” and in “Store Output In” input, choose a global variable name you would like to use to hold the status of the current ADB status, just remember that you need to use all caps for the name for tasker to know it is an global variable. Also remember to check the “Use Root” checkbox. After this step, things will be simple, just add the if and else condition like I mentioned before, set adb_enabled to 0 if it is 1 and set it to 1 if it is 0, and after that don’t forget to set the global variable again. </p>
+<p>TL;DR Here is the XML, that you can directly import to your Tasker if you don’t want to create it yourself:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">TaskerData</span> <span class="attr">sr</span>=<span class="string">""</span> <span class="attr">dvi</span>=<span class="string">"1"</span> <span class="attr">tv</span>=<span class="string">"5.2.bf"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Task</span> <span class="attr">sr</span>=<span class="string">"task3"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">cdate</span>&gt;</span>1526421645228<span class="tag">&lt;/<span class="name">cdate</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">edate</span>&gt;</span>1529892193595<span class="tag">&lt;/<span class="name">edate</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span>&gt;</span>3<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">nme</span>&gt;</span>adb_auto<span class="tag">&lt;/<span class="name">nme</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">pri</span>&gt;</span>1006<span class="tag">&lt;/<span class="name">pri</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Action</span> <span class="attr">sr</span>=<span class="string">"act0"</span> <span class="attr">ve</span>=<span class="string">"7"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">code</span>&gt;</span>123<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg0"</span> <span class="attr">ve</span>=<span class="string">"3"</span>&gt;</span>settings get global adb_enabled<span class="tag">&lt;/<span class="name">Str</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg1"</span> <span class="attr">val</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg2"</span> <span class="attr">val</span>=<span class="string">"1"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg3"</span> <span class="attr">ve</span>=<span class="string">"3"</span>&gt;</span>%ADB_STATUS<span class="tag">&lt;/<span class="name">Str</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg4"</span> <span class="attr">ve</span>=<span class="string">"3"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg5"</span> <span class="attr">ve</span>=<span class="string">"3"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">Action</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Action</span> <span class="attr">sr</span>=<span class="string">"act1"</span> <span class="attr">ve</span>=<span class="string">"7"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">code</span>&gt;</span>37<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">ConditionList</span> <span class="attr">sr</span>=<span class="string">"if"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">Condition</span> <span class="attr">sr</span>=<span class="string">"c0"</span> <span class="attr">ve</span>=<span class="string">"3"</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">lhs</span>&gt;</span>%ADB_STATUS<span class="tag">&lt;/<span class="name">lhs</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">op</span>&gt;</span>0<span class="tag">&lt;/<span class="name">op</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">rhs</span>&gt;</span>1<span class="tag">&lt;/<span class="name">rhs</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">Condition</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">ConditionList</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">Action</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Action</span> <span class="attr">sr</span>=<span class="string">"act2"</span> <span class="attr">ve</span>=<span class="string">"7"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">code</span>&gt;</span>123<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg0"</span> <span class="attr">ve</span>=<span class="string">"3"</span>&gt;</span>settings put global adb_enabled 0<span class="tag">&lt;/<span class="name">Str</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg1"</span> <span class="attr">val</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg2"</span> <span class="attr">val</span>=<span class="string">"1"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg3"</span> <span class="attr">ve</span>=<span class="string">"3"</span>&gt;</span>%ADB_STATUS<span class="tag">&lt;/<span class="name">Str</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg4"</span> <span class="attr">ve</span>=<span class="string">"3"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg5"</span> <span class="attr">ve</span>=<span class="string">"3"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">Action</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Action</span> <span class="attr">sr</span>=<span class="string">"act3"</span> <span class="attr">ve</span>=<span class="string">"7"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">code</span>&gt;</span>43<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">Action</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Action</span> <span class="attr">sr</span>=<span class="string">"act4"</span> <span class="attr">ve</span>=<span class="string">"7"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">code</span>&gt;</span>123<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg0"</span> <span class="attr">ve</span>=<span class="string">"3"</span>&gt;</span>settings put global adb_enabled 1<span class="tag">&lt;/<span class="name">Str</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg1"</span> <span class="attr">val</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg2"</span> <span class="attr">val</span>=<span class="string">"1"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg3"</span> <span class="attr">ve</span>=<span class="string">"3"</span>&gt;</span>%ADB_STATUS<span class="tag">&lt;/<span class="name">Str</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg4"</span> <span class="attr">ve</span>=<span class="string">"3"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg5"</span> <span class="attr">ve</span>=<span class="string">"3"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">Action</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Action</span> <span class="attr">sr</span>=<span class="string">"act5"</span> <span class="attr">ve</span>=<span class="string">"7"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">code</span>&gt;</span>38<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">Action</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Action</span> <span class="attr">sr</span>=<span class="string">"act6"</span> <span class="attr">ve</span>=<span class="string">"7"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">code</span>&gt;</span>123<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg0"</span> <span class="attr">ve</span>=<span class="string">"3"</span>&gt;</span>settings get global adb_enabled<span class="tag">&lt;/<span class="name">Str</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg1"</span> <span class="attr">val</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg2"</span> <span class="attr">val</span>=<span class="string">"1"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg3"</span> <span class="attr">ve</span>=<span class="string">"3"</span>&gt;</span>%ADB_STATUS<span class="tag">&lt;/<span class="name">Str</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg4"</span> <span class="attr">ve</span>=<span class="string">"3"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg5"</span> <span class="attr">ve</span>=<span class="string">"3"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">Action</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">Task</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">TaskerData</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>To import, you need to save the above snippet to XML on your phone. In tasker app,   click and hold the “TASKS” tab header, select import and choose the file </p>
+<p>To run the task based on your predefined conditions, go to “PROFILES” tab, click on add button in the button, choose the application you want, and then, chose the task you imported and you are good to go! Now the app won’t say you can’t use it because you have ADB turned on, Tasker will turned adb off when you are using the app, and turn it on when you are not using it! :)</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Automation-Tasker-Andorid/" rel="tag"># Automation, Tasker, Andorid,</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/24/AutomatingStuffWithGoogleAppScripts/" rel="next" title="Automating Stuff With Google App Scripts">
+                <i class="fa fa-chevron-left"></i> Automating Stuff With Google App Scripts
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="KevinSJ" />
+          <p class="site-author-name" itemprop="name">KevinSJ</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Why-Tasker"><span class="nav-number">1.</span> <span class="nav-text">Why Tasker?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#What-can-you-use-it-for"><span class="nav-number">2.</span> <span class="nav-text">What can you use it for?</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Turn-off-on-ADB-when-using-certain-apps"><span class="nav-number">2.0.1.</span> <span class="nav-text">Turn off/on ADB when using certain apps.</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">KevinSJ</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://kevin-blog-1.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://kevinsj.github.io/2018/06/24/Automating-things-on-Android-with-Tasker/';
+          this.page.identifier = '2018/06/24/Automating-things-on-Android-with-Tasker/';
+          this.page.title = 'Automating things on Android with Tasker (I)';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://kevin-blog-1.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="https://unpkg.com/live2d-widget@^3.0.5/lib/L2Dwidget.min.js"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script></body>
+</html>

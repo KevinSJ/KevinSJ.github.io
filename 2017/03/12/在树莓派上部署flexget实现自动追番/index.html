@@ -1,0 +1,804 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="flexget, raspberrypi, bangumi," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="参考链接： https://gist.github.com/sebleblanc/f5e4a635d0fc8b953df7 缘起今天心血来潮，把之前部署在Github Pages上的Jekyll删掉了，完全换成了Hexo，并进行重做。主要还是想到自己在工作和平常生活中遇到的不少技术坑还是可以值得写下来记录一下。我的目标是每周一篇技术博客吧。这周想要写的就是Flexget。身为一个海外党，在国外追新">
+<meta name="keywords" content="flexget, raspberrypi, bangumi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在树莓派上部署flexget实现自动追番">
+<meta property="og:url" content="http://kevinsj.github.io/2017/03/12/在树莓派上部署flexget实现自动追番/index.html">
+<meta property="og:site_name" content="Kevin Jiang&#39;s Technical Blog">
+<meta property="og:description" content="参考链接： https://gist.github.com/sebleblanc/f5e4a635d0fc8b953df7 缘起今天心血来潮，把之前部署在Github Pages上的Jekyll删掉了，完全换成了Hexo，并进行重做。主要还是想到自己在工作和平常生活中遇到的不少技术坑还是可以值得写下来记录一下。我的目标是每周一篇技术博客吧。这周想要写的就是Flexget。身为一个海外党，在国外追新">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-09-16T22:20:31.178Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在树莓派上部署flexget实现自动追番">
+<meta name="twitter:description" content="参考链接： https://gist.github.com/sebleblanc/f5e4a635d0fc8b953df7 缘起今天心血来潮，把之前部署在Github Pages上的Jekyll删掉了，完全换成了Hexo，并进行重做。主要还是想到自己在工作和平常生活中遇到的不少技术坑还是可以值得写下来记录一下。我的目标是每周一篇技术博客吧。这周想要写的就是Flexget。身为一个海外党，在国外追新">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://kevinsj.github.io/2017/03/12/在树莓派上部署flexget实现自动追番/"/>
+
+
+
+
+
+  <title>在树莓派上部署flexget实现自动追番 | Kevin Jiang's Technical Blog</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Kevin Jiang's Technical Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://kevinsj.github.io/2017/03/12/在树莓派上部署flexget实现自动追番/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="KevinSJ">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">在树莓派上部署flexget实现自动追番</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-12T16:33:06-05:00">
+                2017-03-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/12/在树莓派上部署flexget实现自动追番/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/03/12/在树莓派上部署flexget实现自动追番/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>参考链接：</p>
+<p><a href="https://gist.github.com/sebleblanc/f5e4a635d0fc8b953df7" target="_blank" rel="noopener">https://gist.github.com/sebleblanc/f5e4a635d0fc8b953df7</a></p>
+<h3 id="缘起"><a href="#缘起" class="headerlink" title="缘起"></a>缘起</h3><p>今天心血来潮，把之前部署在Github Pages上的Jekyll删掉了，完全换成了Hexo，并进行重做。主要还是想到自己在工作和平常生活中遇到的不少技术坑还是可以值得写下来记录一下。我的目标是每周一篇技术博客吧。<br>这周想要写的就是Flexget。身为一个海外党，在国外追新番还是比较不方便的：B站倒是能上，但在那上面看新番的时候缓存慢成狗也是蛮无语的。在跟龟速缓冲战斗了半年多之后，我决定转做一个下载党。我最初的想法是用Java自己造个轮子，后来发现<del>自己水平太烂</del>实在太难，就转向了找现成的方案。Google 出来不少自动追番的相关内容。大部分都提到了Flexget这个东西。在看了几篇介绍之后。我就决定使用Flexget来实现自动追番。由于Google上关于Flexget的文章大都是13年的，而Flexget这软件已经更新了很多次了，有些配置文件已经不在适用，为了方便后人折腾，我就决定将我折腾的过程记录下来。</p>
+<h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><p>以下是安装和折腾 Flexget 的前提条件：</p>
+<ol>
+<li>树莓派或任意 Linux 系统的主机。（推荐至少1GB内存，因为 Flexget 的依赖会比较多)</li>
+<li>树莓派或 Linux 主机上已安装有至少一个 BT 下载工具。我自己用的是装在路由器上的Transmission，不想折腾的话，也可以采用这个方案。当然 Flexget 可以和很多下载工具整合，不光是 Transmission ，不过你需要自己查询它的英文文档。</li>
+<li>树莓派或 Linux 主机上已安装有 Python 和 Pip。</li>
+<li>懂一点 YAML。Flexget的配置文件全部是基于 YAML 格式的，这个格式学起来其实也不算复杂，所以懂一点就足够。</li>
+<li>一个提供种子或者磁力链接的 RSS 源。这里我就不列举了，一般看动漫的都会知道哪能找到这样的资源。</li>
+</ol>
+<h3 id="折腾"><a href="#折腾" class="headerlink" title="折腾"></a>折腾</h3><p>这个 Flexget 折腾起来难度不是很大，下面是一个简单的教程</p>
+<ul>
+<li><p><strong>安装</strong></p>
+<ul>
+<li><p>官方的教程强烈推荐将 Flexget 安装到一个独立的 Python 环境中以免它的依赖跟本地依赖冲突。我个人也是这样做的:</p>
+</li>
+<li><p>首先要做的是安装虚拟环境<del>废话</del>。这个只需要此命令即可实现：<code>pip install virtualenv</code></p>
+</li>
+<li><p>安装好 virtualenv 后可以在本地创建一个文件夹作为 Flexget 的独立环境: </p>
+<p><code>mkdir flextget &amp;&amp; cd flexget</code></p>
+</li>
+<li><p>将刚刚建立的 flexget 文件夹转成独立的 Python 环境：<code>virtualenv .</code></p>
+</li>
+<li><p>现在 Flexget 文件夹中就有了一个完整的 Python 环境，我们需要先激活这个环境，然后再开始安装Flexget：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">source bin/activate #激活独立 Python 环境</span><br><span class="line">pip install flexget #安装flexget, 需要一段时间，因为依赖比较多</span><br><span class="line">deactivate #安装完成后，解除对当前独立 Python 环境的激活</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>这个时候，我们已经将 Flexget 安装完成了，但由于现在还没有配置文件，启动 Flexget 时会报错</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/flexget execute #运行Flexget, 会返回 Failed to find configuration file config.yml</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><strong>配置</strong></p>
+<ul>
+<li><p>Flexget 的配置文件采用的 YAML 语言，并且非常灵活，可以做到在一个文件中加载另一个文件。</p>
+</li>
+<li><p>配置文件的核心是  config.yml, 下面是我自己的 config.yml 以及注释：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">templates:</span></span><br><span class="line"><span class="attr">  global:</span></span><br><span class="line"><span class="attr">    transmission:</span></span><br><span class="line"><span class="attr">      host:</span> <span class="number">192.168</span><span class="number">.1</span><span class="number">.1</span></span><br><span class="line"><span class="attr">      port:</span> <span class="number">9091</span></span><br><span class="line"><span class="attr">    clean_transmission:</span></span><br><span class="line"><span class="attr">      host:</span> <span class="number">192.168</span><span class="number">.1</span><span class="number">.1</span></span><br><span class="line"><span class="attr">      port:</span> <span class="number">9091</span></span><br><span class="line"><span class="attr">      finished_for:</span> <span class="number">2</span> <span class="string">days</span></span><br><span class="line"><span class="attr">      enabled:</span> <span class="literal">Yes</span></span><br><span class="line"><span class="attr">    manipulate:</span></span><br><span class="line"><span class="attr">      - description:</span> </span><br><span class="line"><span class="attr">          remove:</span> <span class="literal">yes</span></span><br><span class="line"></span><br><span class="line"><span class="attr">tasks:</span></span><br><span class="line"><span class="attr">  bangumi:</span></span><br><span class="line"><span class="attr">    rss:</span></span><br><span class="line"><span class="attr">      url:</span> <span class="string">'https://example.com/rss.xml'</span> </span><br><span class="line"><span class="attr">    urlfix:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    include:</span> </span><br><span class="line"><span class="bullet">      -</span> <span class="string">regexp.yml</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">notify.yml</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>我的config.yml中包含了以下的部分：</p>
+<ul>
+<li><p>这里要注意的是flexget的config.yml是由一个个对插件的配置组成的。有个比较坑的地方是，配置文件中的缩进必须使用<strong>空格</strong>，同时，缩进必须为2的倍数而不能随机。</p>
+</li>
+<li><p>这个配置文件中使用的transmission插件需要额外的依赖，可使用如下命令安装 (需先按上文的说明进入 flexget 的 Python 环境)：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install transmissionrpc</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>templates 这个部分是模板插件，global 代表这个模板适用于所有 Flexget的下载任务。global 中的具体属性是用于设置 transmission 的。transmission部分中的host和port分别代表transmission所在服务器的IP和端口。clean_transmission插件可以自动清除已完成的transmission任务。这里的finished_for:2 days 意味着flexget会在一个BT下载任务完成两天后将其从tranmission的任务列表中清除。Manipulate 插件部分，我的设置是在匹配正则表达式钱将 RSS 条目中的description部分清除。这样可以能更精确的匹配。</p>
+</li>
+<li><p>template 之后是 tasks 插件的配置。tasks 插件是 flexget 的核心部分，在 flexget 中，每一个 task 代表了一个下载任务，可以使用不同的 RSS 源以及储存位置。上面的配置文件中只有一个名为 bangumi 的任务，这个任务使用了rss，urlfix，以及 include 插件。rss插件部分定义了用于订阅的 rss 文件的地址。urlfix插件可以修复部分无效url。include插件包含了两个配置文件，regexp.yml 是我用于储存新番正则表达式的配置文件，而 notify.yml 的配置文件则是用于flexget自动发送通知邮件。</p>
+</li>
+</ul>
+</li>
+<li><p>regexp.yml 的内容如下：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">regexp:</span></span><br><span class="line"><span class="attr">  accept:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">'.+喵萌茶会字幕组.+南镰仓高校女子自行车社.+\d&#123;1,&#125;.+720p'</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">'.+RH字幕組.+清恋.+\d&#123;1,&#125;.+720p'</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">'.+轻之国度X动漫国.+Urara迷路帖.+\d&#123;1,&#125;.+720p'</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">'.+極影字幕社.+廢天使加百列.+\d&#123;1,&#125;.+720p'</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">'.+澄空学园.+人渣的本心.+第\d&#123;1,&#125;话.+720p'</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">'.+動漫國字幕組.+政宗君的復仇.+\d&#123;1,&#125;.+720P.+繁體'</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">'.+動漫國字幕組.+為美好的世界獻上祝福.+\d&#123;1,&#125;.+720P.+繁體'</span></span><br><span class="line"><span class="attr">  from:</span> <span class="string">title</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>此文件中主要包含了regexp插件的配置，独立出来的目的是方便更新。请注意此文件中第一行中的 regexp 有一定的缩进，这主要是为了符合前文提到的 flexget 的规则。</li>
+<li>accept 部分是 flexget 会接受的正则表达式，from：title 则表示当且仅当 title 匹配正则表达式的时候才会匹配。</li>
+</ul>
+</li>
+<li><p>notify.yml 的内容如下：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">notify:</span>    </span><br><span class="line"><span class="attr">  task:</span></span><br><span class="line"><span class="attr">    via:</span></span><br><span class="line"><span class="attr">      - email:</span></span><br><span class="line"><span class="attr">          from:</span> </span><br><span class="line"><span class="attr">          to:</span> </span><br><span class="line"><span class="attr">          smtp_host:</span> </span><br><span class="line"><span class="attr">          smtp_port:</span> </span><br><span class="line"><span class="attr">          smtp_tls:</span> </span><br><span class="line"><span class="attr">          smtp_username:</span> <span class="string">your_username</span></span><br><span class="line"><span class="attr">          smtp_password:</span> <span class="string">your_password</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>notify 插件同样是按任务分类，在默认的情况下，会在种子匹配被添加到 transmission 的下载里时才会发送一封邮件。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>_运行_</strong></p>
+<ul>
+<li><p>在以上配置完成之后，建议先使用 Flexget 自带的验证功能验证配置文件的格式，毕竟配置文件中坑比较多。可使用如下命令：<code>flexget check</code> 。如果验证有错的话，该功能会具体的指出错误出在哪一行，读者可自行参考错误信息完成对配置文件的更正。</p>
+</li>
+<li><p>验证完配置的格式之后，如果需保证正确，flexget 还提供了一种 test execute 的方式来测试是否真的能从rss文件提取，该运行方式不会将匹配的种子发送到 BT 下载器，也不会发送邮件，但会告诉你如果真的运行命令，会出现的结果，这对于检验 rss 文件的有效性非常有用。运行方式如下:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flexget --test execute</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果以上命令的运行结果和你所想的一样，那么你就可以正式的运行flexget了。只需去掉 –test 部分即可：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flexget execute</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>此命令如果成功运行则意味着我们可以想办法让flexget定期运行，以实现自动追番的目的。我这里采用的是 Linux 自带的 crontab 的方法。</p>
+<ul>
+<li><p>首先，运行 <code>crontab -e</code> , 此命令会在默认修改器中打开crontab文件</p>
+</li>
+<li><p>之后，需要在文件的最后加入一下内容：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">00 8,12,17,19,21 * * * /path/to/flexget/bin/flexget --cron -c /path/to/flexget/config.yml execute</span><br></pre></td></tr></table></figure>
+<p>我目前的配置文件是在每天的8点，12点，17点，19点和21点的时候自动执行flexget任务。由于cron的特殊性，这里必须使用完整的flexget路径并使用 –cron 告诉flexget使用cron模式以及通过 -c 指定配置文件的位置。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/flexget-raspberrypi-bangumi/" rel="tag"># flexget, raspberrypi, bangumi</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/21/Notes-From-Week-of-May-14/" rel="prev" title="Notes From Week of May 14">
+                Notes From Week of May 14 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="KevinSJ" />
+          <p class="site-author-name" itemprop="name">KevinSJ</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#缘起"><span class="nav-number">1.</span> <span class="nav-text">缘起</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#准备"><span class="nav-number">2.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#折腾"><span class="nav-number">3.</span> <span class="nav-text">折腾</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">KevinSJ</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://kevin-blog-1.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://kevinsj.github.io/2017/03/12/在树莓派上部署flexget实现自动追番/';
+          this.page.identifier = '2017/03/12/在树莓派上部署flexget实现自动追番/';
+          this.page.title = '在树莓派上部署flexget实现自动追番';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://kevin-blog-1.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="https://unpkg.com/live2d-widget@^3.0.5/lib/L2Dwidget.min.js"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script></body>
+</html>
