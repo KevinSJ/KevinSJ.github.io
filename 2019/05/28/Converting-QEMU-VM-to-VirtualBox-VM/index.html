@@ -74,7 +74,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="Google App Scripts, Automation,">
+  <meta name="keywords" content="VitualBox, QEMU, VM,">
 
 
 
@@ -90,18 +90,18 @@
 
 
 
-<meta name="description" content="What is Google App Scripts?Before explaining what I did with Google App Scripts, let me explain what is Google App Scripts. It is basically a scripting engine that let you access all kinds of Google A">
-<meta name="keywords" content="Google App Scripts, Automation">
+<meta name="description" content="Recently, I decided to convert my QEMU based virtual machine installed on my Manjaro Linux to the VirtualBox format. The reason behind this is that I would like to be able to use the same VM across di">
+<meta name="keywords" content="VitualBox, QEMU, VM">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Automating Stuff With Google App Scripts">
-<meta property="og:url" content="http://kevinsj.github.io/2018/03/24/AutomatingStuffWithGoogleAppScripts/index.html">
+<meta property="og:title" content="Converting QEMU VM to VirtualBox VM">
+<meta property="og:url" content="http://kevinsj.github.io/2019/05/28/Converting-QEMU-VM-to-VirtualBox-VM/index.html">
 <meta property="og:site_name" content="Kevin Jiang&#39;s Technical Blog">
-<meta property="og:description" content="What is Google App Scripts?Before explaining what I did with Google App Scripts, let me explain what is Google App Scripts. It is basically a scripting engine that let you access all kinds of Google A">
+<meta property="og:description" content="Recently, I decided to convert my QEMU based virtual machine installed on my Manjaro Linux to the VirtualBox format. The reason behind this is that I would like to be able to use the same VM across di">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-24T18:36:34.000Z">
+<meta property="og:updated_time" content="2019-05-29T01:56:28.483Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Automating Stuff With Google App Scripts">
-<meta name="twitter:description" content="What is Google App Scripts?Before explaining what I did with Google App Scripts, let me explain what is Google App Scripts. It is basically a scripting engine that let you access all kinds of Google A">
+<meta name="twitter:title" content="Converting QEMU VM to VirtualBox VM">
+<meta name="twitter:description" content="Recently, I decided to convert my QEMU based virtual machine installed on my Manjaro Linux to the VirtualBox format. The reason behind this is that I would like to be able to use the same VM across di">
 
 
 
@@ -129,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://kevinsj.github.io/2018/03/24/AutomatingStuffWithGoogleAppScripts/">
+  <link rel="canonical" href="http://kevinsj.github.io/2019/05/28/Converting-QEMU-VM-to-VirtualBox-VM/">
 
 
 
 
 
-  <title>Automating Stuff With Google App Scripts | Kevin Jiang's Technical Blog</title>
+  <title>Converting QEMU VM to VirtualBox VM | Kevin Jiang's Technical Blog</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -255,7 +255,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://kevinsj.github.io/2018/03/24/AutomatingStuffWithGoogleAppScripts/">
+    <link itemprop="mainEntityOfPage" href="http://kevinsj.github.io/2019/05/28/Converting-QEMU-VM-to-VirtualBox-VM/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="KevinSJ">
@@ -272,7 +272,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Automating Stuff With Google App Scripts</h1>
+          <h1 class="post-title" itemprop="name headline">Converting QEMU VM to VirtualBox VM</h1>
         
 
         <div class="post-meta">
@@ -284,8 +284,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-24T13:28:59-05:00">
-                03-24-2018
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-28T20:55:20-05:00">
+                05-28-2019
               </time>
             
 
@@ -303,8 +303,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/03/24/AutomatingStuffWithGoogleAppScripts/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/03/24/AutomatingStuffWithGoogleAppScripts/" itemprop="commentCount"></span>
+                <a href="/2019/05/28/Converting-QEMU-VM-to-VirtualBox-VM/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/05/28/Converting-QEMU-VM-to-VirtualBox-VM/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -329,15 +329,24 @@
       
 
       
-        <h4 id="What-is-Google-App-Scripts"><a href="#What-is-Google-App-Scripts" class="headerlink" title="What is Google App Scripts?"></a>What is Google App Scripts?</h4><p>Before explaining what I did with Google App Scripts, let me explain what is Google App Scripts. It is basically a scripting engine that let you access all kinds of Google App features (including Gmail, Google Calendar, Google Docs, etc.). There are other ways to access these features but Google App Script might be the easist way out there. It comes with an online editor (you can work offline as well), and Google can trigger your scripts at certain time based on your need. Oh, forgot to mention, Google App Script uses JavaScript which is one of the most popular languages right now (Sadly, it doesn’t support ES6 syntax as of writing).</p>
-<h4 id="Why-use-Google-App-Scripts"><a href="#Why-use-Google-App-Scripts" class="headerlink" title="Why use Google App Scripts?"></a>Why use Google App Scripts?</h4><p>I have a habbit of archiving my Emails every week on Mondays. It is easy enough to do in the gmail Web interface but I do need to remember to do it. That make me think if I can find a good way to automate this. I would always think of using some kind of API first, but it seems to me that it wouldn’t worth it to spend time to make a app just for the purpose of archiving emails. Then I came across Google App Scripts, which turned out to be exactly what I need to automate this.</p>
-<h4 id="What-I-came-up-with"><a href="#What-I-came-up-with" class="headerlink" title="What I came up with"></a>What I came up with</h4><p>Here is what I came up with to achive the purpose of archiving emails that are one weeks old every Monday at midnight:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">gmailAutoarchive</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> maxDate = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">  <span class="comment">// Archive all threads in inbox whose last message date is older than today.</span></span><br><span class="line">  <span class="keyword">var</span> threads = GmailApp.getInboxThreads();</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i <span class="keyword">in</span> threads)&#123;</span><br><span class="line">    <span class="keyword">var</span> thread = threads[i];</span><br><span class="line">    <span class="keyword">if</span> (thread.getLastMessageDate()&lt;maxDate)&#123;</span><br><span class="line">      thread.moveToArchive();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>You will be able to use this script by putting it into the google script editor located <a href="https://script.google.com" target="_blank" rel="noopener">here</a>.</p>
-<p>To have Google auto run your scripts, you need to add the trigger which can be found under Edit –&gt; Current project’s triggers.</p>
-<h4 id="Variation"><a href="#Variation" class="headerlink" title="Variation"></a>Variation</h4><p>After creating this script, I created another script as a variation to this script that move messages with certain labels to trash.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">gmailAutoRemove</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> maxDate = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">  maxDate.setDate(maxDate.getDate() - <span class="number">30</span>); <span class="comment">// what was the date at that time?</span></span><br><span class="line">  <span class="keyword">var</span> label = [GmailApp.getUserLabelByName(<span class="string">"label1"</span>), GmailApp.getUserLabelByName(<span class="string">"label2"</span>), GmailApp.getUserLabelByName(<span class="string">"label3"</span>)];</span><br><span class="line">  label.forEach(removeByLabel(maxDate));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">removeByLabel</span>(<span class="params">maxDate</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">label</span>)</span>&#123;</span><br><span class="line">   <span class="keyword">var</span> threads = label.getThreads(<span class="number">0</span>, <span class="number">100</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i <span class="keyword">in</span> threads)&#123;</span><br><span class="line">      <span class="keyword">var</span> thread = threads[i];</span><br><span class="line">      <span class="keyword">if</span> (thread.getLastMessageDate() &lt; maxDate)&#123;</span><br><span class="line">        thread.moveToTrash();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<hr>
-
-<p>References: <a href="https://medium.com/@fw3d/auto-archive-emails-in-gmail-after-2-days-1ebf0e076b1c" target="_blank" rel="noopener">Auto archive emails in Gmail after 2 days</a></p>
+        <p>Recently, I decided to convert my QEMU based virtual machine installed on my Manjaro Linux to the VirtualBox format. The reason behind this is that I would like to be able to use the same VM across different host system (specifically Manjaro Linux and Windows 7). It is not a easy  thing to do, so I decided to document it for future references.</p>
+<h3 id="Prerequisite"><a href="#Prerequisite" class="headerlink" title="Prerequisite?"></a>Prerequisite?</h3><ul>
+<li>An existing image created using QEMU (My VM file end with .img,  for example)</li>
+<li>VirtualBox</li>
+</ul>
+<h3 id="How-to"><a href="#How-to" class="headerlink" title="How to?"></a>How to?</h3><p>First thing first, you would need to convert the QEMU image (extension img) to raw format, this can be done by issuing the following command:</p>
+<p><code>qemu-img convert Windows7-compressed.img  -O raw  Windows7.raw</code></p>
+<p>This will generate a raw image. Note that this newly generated file might be a lot larger than the file it based on, this is because the img file allocates space on as-is basis.</p>
+<p>After you get the raw image, it’s time to convert it to VDI format (which is used by VirtualBox). You can do this by running:</p>
+<p><code>VBoxManage convertfromraw Windows7.raw --format vdi  Windows7.vdi</code></p>
+<p>Then, it is recommended to compact the image:</p>
+<p><code>VBoxManage modifyhd Windows7.vdi --compact</code></p>
+<p>So after the previous step, you will have a working VirtualBox image, but if you boot it from VirtualBox, it might not work.</p>
+<h3 id="Gotchas"><a href="#Gotchas" class="headerlink" title="Gotchas!"></a>Gotchas!</h3><p>In my case, what I was trying to convert was a Windows 7 VM, and when I finished the above steps and try to boot the VM, I got a BSOD. My feeling is that there were some default that QEMU used that doesn’t work for a newly created machine in VirtualBox. I tweak the following settings in the newly created VirtualBox VM:</p>
+<ul>
+<li>Delete the auto created SATA controller and change it IDE controller.</li>
+</ul>
+<p>It turned out, after doing that, everything works as expected.</p>
 
       
     </div>
@@ -367,7 +376,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Google-App-Scripts-Automation/" rel="tag"># Google App Scripts, Automation</a>
+            <a href="/tags/VitualBox-QEMU-VM/" rel="tag"># VitualBox, QEMU, VM</a>
           
         </div>
       
@@ -380,8 +389,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/06/11/06112017-Fun-With-GPG/" rel="next" title="06112017-Fun-With-GPG">
-                <i class="fa fa-chevron-left"></i> 06112017-Fun-With-GPG
+              <a href="/2018/06/24/Automating-things-on-Android-with-Tasker/" rel="next" title="Automating things on Android with Tasker (I)">
+                <i class="fa fa-chevron-left"></i> Automating things on Android with Tasker (I)
               </a>
             
           </div>
@@ -389,10 +398,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/06/24/Automating-things-on-Android-with-Tasker/" rel="prev" title="Automating things on Android with Tasker (I)">
-                Automating things on Android with Tasker (I) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -517,7 +522,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#What-is-Google-App-Scripts"><span class="nav-number">1.</span> <span class="nav-text">What is Google App Scripts?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Why-use-Google-App-Scripts"><span class="nav-number">2.</span> <span class="nav-text">Why use Google App Scripts?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#What-I-came-up-with"><span class="nav-number">3.</span> <span class="nav-text">What I came up with</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Variation"><span class="nav-number">4.</span> <span class="nav-text">Variation</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Prerequisite"><span class="nav-number">1.</span> <span class="nav-text">Prerequisite?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#How-to"><span class="nav-number">2.</span> <span class="nav-text">How to?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Gotchas"><span class="nav-number">3.</span> <span class="nav-text">Gotchas!</span></a></li></ol></div>
             
 
           </div>
@@ -667,9 +672,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://kevinsj.github.io/2018/03/24/AutomatingStuffWithGoogleAppScripts/';
-          this.page.identifier = '2018/03/24/AutomatingStuffWithGoogleAppScripts/';
-          this.page.title = 'Automating Stuff With Google App Scripts';
+          this.page.url = 'http://kevinsj.github.io/2019/05/28/Converting-QEMU-VM-to-VirtualBox-VM/';
+          this.page.identifier = '2019/05/28/Converting-QEMU-VM-to-VirtualBox-VM/';
+          this.page.title = 'Converting QEMU VM to VirtualBox VM';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://kevin-blog-1.disqus.com/embed.js';
