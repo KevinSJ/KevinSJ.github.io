@@ -6,7 +6,7 @@
   <link href="http://kevinsj.github.io/atom.xml" rel="self"/>
   
   <link href="http://kevinsj.github.io/"/>
-  <updated>2020-09-14T10:01:46.470Z</updated>
+  <updated>2020-11-15T01:47:13.004Z</updated>
   <id>http://kevinsj.github.io/</id>
   
   <author>
@@ -17,11 +17,38 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Practice With Vim (I)</title>
+    <link href="http://kevinsj.github.io/2020/11/15/practice-with-vim-I/"/>
+    <id>http://kevinsj.github.io/2020/11/15/practice-with-vim-I/</id>
+    <published>2020-11-15T00:54:30.000Z</published>
+    <updated>2020-11-15T01:47:13.004Z</updated>
+    
+    <content type="html"><![CDATA[<p>What would be the easiest way to remove all but one word from the end of each line in Vim?</p><p>Today, I found a challenge on vimgolf and thought it might be interesting to share my solutions.</p><p>Here is the original file</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">abcd 1 erfg 7721231</span><br><span class="line">acd 2 erfgasd 324321</span><br><span class="line">acd 3 erfgsdasd 23432</span><br><span class="line">abcd 5 erfgdsad 123556</span><br></pre></td></tr></table></figure><p>Here is the desired result:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">7721231</span><br><span class="line">324321</span><br><span class="line">23432</span><br><span class="line">123556</span><br></pre></td></tr></table></figure><p>The challenge is quite straightforward, delete all but the last characters in the file. I found several ways to tackle this challenge, so let me show you all:</p><h4 id="Take-1-Use-macro-only"><a href="#Take-1-Use-macro-only" class="headerlink" title="Take 1: Use macro only"></a>Take 1: Use macro only</h4><p>Record a macro, and play it back, so the keystrokes would be</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">qa $bd0j q 4@a &lt;cr&gt;</span><br><span class="line"></span><br><span class="line">qa starts recording macro to register a</span><br><span class="line">$ move cursor to the end of the line</span><br><span class="line">d0 means *d*elete to the beginning of the line</span><br><span class="line">j move cursor down</span><br><span class="line">q finish macro</span><br><span class="line">4@a repeat the macro in register a 4 times</span><br></pre></td></tr></table></figure><h4 id="Take-2-Use-regex-and-norm"><a href="#Take-2-Use-regex-and-norm" class="headerlink" title="Take 2: Use regex and %norm"></a>Take 2: Use regex and %norm</h4><p>It’s quite obvious that all we want to keep from the original files are the numbers. So the regex would be simple to come up with, like something as simple as <code>/\d\+$&lt;cr&gt;</code> will do. Once you type this into vim, all the numbers at the end of the line will be highlighted. Next you can do: </p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">:%norm dn &lt;cr&gt;</span><br><span class="line"></span><br><span class="line">% means applying to the whole file,</span><br><span class="line">norm means in execute following command in normal mode</span><br><span class="line">dn means *d*elete to *n*ext match</span><br></pre></td></tr></table></figure><h4 id="Take-3-No-regex-pure-norm"><a href="#Take-3-No-regex-pure-norm" class="headerlink" title="Take 3: No regex pure %norm"></a>Take 3: No regex pure %norm</h4><p>This is the fastest way I can come up with, still, not as fast as the top answers on Vimgolf but it is decent in my opinion. Being slightly different from the option above, it is still using <code>%norm</code> though:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">%norm $bd0 &lt;cr&gt;  </span><br><span class="line"></span><br><span class="line">% means applying to the whole file,</span><br><span class="line">$ move cursor to the end of the line</span><br><span class="line">d0 means *d*elete to the beginning of the line</span><br></pre></td></tr></table></figure><hr><h3 id="Takeaways"><a href="#Takeaways" class="headerlink" title="Takeaways:"></a>Takeaways:</h3><ul><li><code>norm</code> is a quite powerful, and can be used to achieve complex stuff that can be otherwise achieved through a macro.</li><li><code>d</code> the delete command is useful in many unexpected ways, besides <code>dn</code> and <code>d0</code> command mentioned above which deletes to the next match and deletes to the beginning of the line respectively. An additional useful variation of <code>d</code> command is <code>d4/x</code> where <code>4/x</code> meaning 4th occurrence of x.</li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;What would be the easiest way to remove all but one word from the end of each line in Vim?&lt;/p&gt;
+&lt;p&gt;Today, I found a challenge on vimgolf a</summary>
+      
+    
+    
+    
+    
+    <category term="Notes" scheme="http://kevinsj.github.io/tags/Notes/"/>
+    
+    <category term="Vim" scheme="http://kevinsj.github.io/tags/Vim/"/>
+    
+    <category term="Practice" scheme="http://kevinsj.github.io/tags/Practice/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Pitfall of jsonencode in Terraform</title>
     <link href="http://kevinsj.github.io/2020/09/14/pitfall-of-jsonencode-in-terraform/"/>
     <id>http://kevinsj.github.io/2020/09/14/pitfall-of-jsonencode-in-terraform/</id>
     <published>2020-09-14T09:39:11.000Z</published>
-    <updated>2020-09-14T10:01:46.470Z</updated>
+    <updated>2020-09-14T10:00:03.082Z</updated>
     
     <content type="html"><![CDATA[<p>This week, I was tasked with creating basic infrastructure for one of our newwebsites.  We use Fastly for our CDN and New Relic as a log aggregation tool, most of our infrastructure is setup using Terraform, which is a popular infrastructure as code (IaC) platform. Terraform supports Fastly through a custom plugin, which also has the capability of New Relic. We need to customize the format of New Relic so that we can find the logs easily in New Relic. As expected, the plugin actually provide a pretty straight forward to accomplish this – what you need to do is to come up with a proper json string that align with the format that Fastly provided in their document. This seemingly straightforward task ended up took me some time to debug.</p><p>In terraform, you can create objects, and an object can be converted to string by using jsonencode function. This is where the pitfall comes in: Fastly’s formatting document said they have a option called “%&gt;s” which represents the final status of the fastly request. From my perspective, it would definitely be helpful if we can include this when we send the log to Fastly. So I added this to my formatting object, and then jsonencode the object. To my suprise, I get an error saying that Fastly failed to parse the formatting option I created, which is quite strange. I then started to debug, I export TF_LOG=”DEBUG”, which asked Terraform to give me all the debug logs. To my suprise, I found that the “%&gt;s” was jsonencode to “%\u003es” by terraform, and thus causing the error.  <strong>How come “&gt;” sign is encoded in Terraform? It turned out it’s for backward compatibility with ealier edition of Terraform.</strong> And according to their documentation </p><blockquote><p>When encoding strings, this function escapes some characters using Unicode escape sequences: replacing &lt;, &gt;, &amp;, U+2028, and U+2029 with \u003c, \u003e, \u0026, \u2028, and \u2029. This is to preserve compatibility with Terraform 0.11 behavior. </p></blockquote><p>they encode much more characters <strong>for you</strong> without you realizing it. I really hope they can provide a way to opt-out of this feature or make this an opt-in, it will make things way easier for developers.</p>]]></content>
     
