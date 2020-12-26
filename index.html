@@ -156,6 +156,98 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en,zh-Hans,default">
+    <link itemprop="mainEntityOfPage" href="http://kevinsj.github.io/2020/11/26/Solving-practical-problems-with-Jq-2020-11-26/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="KevinSJ">
+      <meta itemprop="description" content="A blog about all things tech.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/26/Solving-practical-problems-with-Jq-2020-11-26/" class="post-title-link" itemprop="url">Solving practical problems with jq 2020-11-26</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 11-26-2020 21:37:32" itemprop="dateCreated datePublished" datetime="2020-11-26T21:37:32+13:00">11-26-2020</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 12-26-2020 22:48:58" itemprop="dateModified" datetime="2020-12-26T22:48:58+13:00">12-26-2020</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>As a developer, you will sometimes face weird problems, it is important to come up with reliable and repeatable ways to solve this problems, so when such problems come up again, you would be able to find a solution easier. As for myself, one of the tools that I found most useful on Unix-like system is jq, which is a tool to process json files. Let me demonstrate how I use this tool to solve some problems I encountered during work.</p>
+<h3 id="Problem-Convert-a-JSON-file-to-CSV"><a href="#Problem-Convert-a-JSON-file-to-CSV" class="headerlink" title="Problem: Convert a JSON file to CSV"></a>Problem: Convert a JSON file to CSV</h3><p>Example JSON</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;title&quot;</span>: <span class="string">&quot;This is a song&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;artist&quot;</span>: <span class="string">&quot;This is an artist&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;album&quot;</span>: <span class="string">&quot;This is an album&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;year&quot;</span>: <span class="number">1989</span></span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;title&quot;</span>: <span class="string">&quot;This is a song&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;artist&quot;</span>: <span class="string">&quot;This is an artist&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;album&quot;</span>: <span class="string">&quot;This is an album&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;year&quot;</span>: <span class="number">1989</span></span><br><span class="line">&#125;,&#123;</span><br><span class="line">  <span class="attr">&quot;title&quot;</span>: <span class="string">&quot;This is a song&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;artist&quot;</span>: <span class="string">&quot;This is an artist&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;album&quot;</span>: <span class="string">&quot;This is an album&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;year&quot;</span>: <span class="number">1989</span></span><br><span class="line">&#125;,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>JQ code to generate csv:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jq -r <span class="string">&#x27;(.[0] | keys_unsorted) as $keys | ([$keys] + map([.[ $keys[] ]])) [] | @csv&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>Resulting CSV:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&quot;title&quot;,&quot;artist&quot;,&quot;album&quot;,&quot;year&quot;</span><br><span class="line">&quot;This is a song&quot;,&quot;This is an artist&quot;,&quot;This is an album&quot;,1989</span><br><span class="line">&quot;This is a song&quot;,&quot;This is an artist&quot;,&quot;This is an album&quot;,1989</span><br><span class="line">&quot;This is a song&quot;,&quot;This is an artist&quot;,&quot;This is an album&quot;,1989</span><br></pre></td></tr></table></figure>
+
+<h3 id="Problem-Aggregate-JSON-object"><a href="#Problem-Aggregate-JSON-object" class="headerlink" title="Problem: Aggregate JSON object."></a>Problem: Aggregate JSON object.</h3><p>Example JSON:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="attr">&quot;A&quot;</span>:[&#123;<span class="attr">&quot;Name&quot;</span>: <span class="string">&quot;A1&quot;</span>&#125;,&#123;<span class="attr">&quot;Name&quot;</span>: <span class="string">&quot;A2&quot;</span>&#125;],</span><br><span class="line">    <span class="attr">&quot;B&quot;</span>:[&#123;<span class="attr">&quot;Name&quot;</span>: <span class="string">&quot;B1&quot;</span>&#125;,&#123;<span class="attr">&quot;Name&quot;</span>: <span class="string">&quot;B2&quot;</span>&#125;],</span><br><span class="line">    <span class="attr">&quot;C&quot;</span>:[&#123;<span class="attr">&quot;Name&quot;</span>: <span class="string">&quot;C&quot;</span>&#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>The goal is to produce something like below:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="attr">&quot;A&quot;</span>:[<span class="string">&quot;A1&quot;</span>,<span class="string">&quot;A2&quot;</span>],<span class="attr">&quot;B&quot;</span>:[<span class="string">&quot;B1&quot;</span>,<span class="string">&quot;B2&quot;</span>],<span class="attr">&quot;C&quot;</span>:[<span class="string">&quot;C&quot;</span>]&#125;</span><br></pre></td></tr></table></figure>
+
+<p>It transform the object and aggregate (or compress?) them by “Name” property, I know this can be easily done with JavaScript, but jq and bash seems like more widely used and will come in handy when JavaScript is not available.</p>
+<p>The jq code I came up with is as follows:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jq <span class="string">&#x27;[keys_unsorted[] as $k|&#123;($k): [.[$k][]|.Name]&#125;]|add&#x27;</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>References:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://stackoverflow.com/a/32967407">https://stackoverflow.com/a/32967407</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en,zh-Hans,default">
     <link itemprop="mainEntityOfPage" href="http://kevinsj.github.io/2020/11/15/practice-with-vim-I/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -187,7 +279,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 11-16-2020 21:09:37" itemprop="dateModified" datetime="2020-11-16T21:09:37+13:00">11-16-2020</time>
+                <time title="Modified: 12-26-2020 22:48:58" itemprop="dateModified" datetime="2020-12-26T22:48:58+13:00">12-26-2020</time>
               </span>
 
           
@@ -1055,14 +1147,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">17</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
