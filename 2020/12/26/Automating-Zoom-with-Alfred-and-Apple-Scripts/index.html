@@ -31,8 +31,10 @@
 <meta property="og:description" content="Like it or not, 2020 has been a year where video conference are used a lot. For me, most of the meetings happens in Zoom. Finding the link to the meeting in the calendar and then clicking on it to joi">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://kevinsj.github.io/2020/12/26/Automating-Zoom-with-Alfred-and-Apple-Scripts/automator-1.png">
+<meta property="og:image" content="http://kevinsj.github.io/2020/12/26/Automating-Zoom-with-Alfred-and-Apple-Scripts/calendar-1.png">
+<meta property="og:image" content="http://kevinsj.github.io/2020/12/26/Automating-Zoom-with-Alfred-and-Apple-Scripts/calendar-2.png">
 <meta property="article:published_time" content="2020-12-26T09:55:59.000Z">
-<meta property="article:modified_time" content="2020-12-26T11:36:29.084Z">
+<meta property="article:modified_time" content="2020-12-27T23:41:46.283Z">
 <meta property="article:author" content="KevinSJ">
 <meta property="article:tag" content="Automation">
 <meta property="article:tag" content="Zoom">
@@ -195,7 +197,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 12-27-2020 00:36:29" itemprop="dateModified" datetime="2020-12-27T00:36:29+13:00">12-27-2020</time>
+                <time title="Modified: 12-28-2020 12:41:46" itemprop="dateModified" datetime="2020-12-28T12:41:46+13:00">12-28-2020</time>
               </span>
 
           
@@ -218,8 +220,31 @@
 <h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution:"></a>Solution:</h3><p>Assume you have already installed the Alfred App, you will need to go to <a target="_blank" rel="noopener" href="https://github.com/zerowidth/zoom-calendar.alfredworkflow">this</a> Github Repo, follow the instructions given and install the Alfred workflow.</p>
 <p>Once the workflow has been installed, we need to do some tweaking. Add an external trigger to this workflow and give it an id of ‘Automator’</p>
 <p>Now, open up Automator, choose the Calendar Alarm workflow as shown in the screenshot below:<br><img src="/2020/12/26/Automating-Zoom-with-Alfred-and-Apple-Scripts/automator-1.png"></p>
-<p>Copy the following code and paste to the calendar alarm.</p>
+<p>Copy and paste the following code to the calendar alarm:</p>
 <script src="https://gist.github.com/KevinSJ/bd11057c5d6f0fddc7abb38bdf7844b3.js"></script>
+
+<p>Now comes tricky part. You would first need to export your calendar from the cloud, export from Google Calendar Website or whatever calendar you are using. </p>
+<p>Then open up your Calendar app, and create a new local calendar, give it whatever name you want, in my case, I simply named it Automator. At this point, you can import the ical file exported from above.</p>
+<p>These two steps are necessary if you want to use the automation for most of your events. If there are only a few events that you would like to add the automation on, you can just use the copy function in the Calendar app and paste to the local calendar. In any case, a new local calendar is necessary otherwise the alarm trigger would not work.</p>
+<p>Once you completed setting up your local calendars, you can start adding the file trigger which will help you open up the Zoom. To do this, you need to modify the event of your choice and then change the alert settings, change it to custom and choose ‘Open file’ option, and then change the dropdown from ‘Calendar’ to ‘Other…’.</p>
+<p><img src="/2020/12/26/Automating-Zoom-with-Alfred-and-Apple-Scripts/calendar-1.png"></p>
+<p>Normally, the file you created with the Calendar alarm will be saved to <code>~/Library/Workflows/Applications/Calendar</code> so go ahead to find that folder and choose that file.</p>
+<p><img src="/2020/12/26/Automating-Zoom-with-Alfred-and-Apple-Scripts/calendar-2.png"></p>
+<p>At this point, you will have a working version of the calendar automation for this event, if you want it on more events, you will need to repeat the steps of changing alerts for each of the other events.</p>
+<h3 id="Future-improvements-amp-Alternatives"><a href="#Future-improvements-amp-Alternatives" class="headerlink" title="Future improvements &amp; Alternatives"></a>Future improvements &amp; Alternatives</h3><p>I have to admit the solution I described above is not perfect, and it requires some steps to setup, still once I set it up, everything works fine for me, and I would never need to remember to join a Zoom meeting because of this automation.</p>
+<p>Some future improvement and/or caveats that I found about this method is that: </p>
+<ul>
+<li>The events must have the zoom link somewhere (either description or location) for this automation to work.</li>
+<li>If there were two back-to-back meetings, the automation will fail, this is because the previous meeting hasn’t finished yet, and the given Alfred workflow will still list it at the top. I haven’t found a good solution to this.</li>
+</ul>
+<p>There are several alternative ways I can think of:</p>
+<ul>
+<li><p>Use Zoom itself, if you are logged into Zoom and allow them to access your calendar, they will provide a join button in their app to allow you to join the meeting without more button clicks.</p>
+</li>
+<li><p>Bookmark the Zoom url schemes and click on it. This is basically how the workflow works behind the scene: converting the url from http to zoom url scheme and then open it. I won’t go in depth on how to create a bookmark and convert the links to url schemes, but Zoom provide a great doc on their schemes <a target="_blank" rel="noopener" href="https://marketplace.zoomgov.com/docs/guides/guides/client-url-schemes">here</a>.</p>
+</li>
+</ul>
+
     </div>
 
     
@@ -319,7 +344,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Problem-Statement-Automatically-join-a-Zoom-call-for-a-meeting-scheduled-in-calendar-without-user-interaction-on-MacOS-X"><span class="nav-number">1.</span> <span class="nav-text">Problem Statement: Automatically join a Zoom call for a meeting scheduled in calendar without user interaction (on MacOS X).</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Prerequisite"><span class="nav-number">2.</span> <span class="nav-text">Prerequisite:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution"><span class="nav-number">3.</span> <span class="nav-text">Solution:</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Problem-Statement-Automatically-join-a-Zoom-call-for-a-meeting-scheduled-in-calendar-without-user-interaction-on-MacOS-X"><span class="nav-number">1.</span> <span class="nav-text">Problem Statement: Automatically join a Zoom call for a meeting scheduled in calendar without user interaction (on MacOS X).</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Prerequisite"><span class="nav-number">2.</span> <span class="nav-text">Prerequisite:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution"><span class="nav-number">3.</span> <span class="nav-text">Solution:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Future-improvements-amp-Alternatives"><span class="nav-number">4.</span> <span class="nav-text">Future improvements &amp; Alternatives</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -340,7 +365,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-count">22</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

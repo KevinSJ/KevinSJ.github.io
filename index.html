@@ -187,7 +187,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 12-27-2020 00:36:29" itemprop="dateModified" datetime="2020-12-27T00:36:29+13:00">12-27-2020</time>
+                <time title="Modified: 12-28-2020 12:41:46" itemprop="dateModified" datetime="2020-12-28T12:41:46+13:00">12-28-2020</time>
               </span>
 
           
@@ -210,8 +210,31 @@
 <h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution:"></a>Solution:</h3><p>Assume you have already installed the Alfred App, you will need to go to <a target="_blank" rel="noopener" href="https://github.com/zerowidth/zoom-calendar.alfredworkflow">this</a> Github Repo, follow the instructions given and install the Alfred workflow.</p>
 <p>Once the workflow has been installed, we need to do some tweaking. Add an external trigger to this workflow and give it an id of ‘Automator’</p>
 <p>Now, open up Automator, choose the Calendar Alarm workflow as shown in the screenshot below:<br><img src="/2020/12/26/Automating-Zoom-with-Alfred-and-Apple-Scripts/automator-1.png"></p>
-<p>Copy the following code and paste to the calendar alarm.</p>
+<p>Copy and paste the following code to the calendar alarm:</p>
 <script src="https://gist.github.com/KevinSJ/bd11057c5d6f0fddc7abb38bdf7844b3.js"></script>
+
+<p>Now comes tricky part. You would first need to export your calendar from the cloud, export from Google Calendar Website or whatever calendar you are using. </p>
+<p>Then open up your Calendar app, and create a new local calendar, give it whatever name you want, in my case, I simply named it Automator. At this point, you can import the ical file exported from above.</p>
+<p>These two steps are necessary if you want to use the automation for most of your events. If there are only a few events that you would like to add the automation on, you can just use the copy function in the Calendar app and paste to the local calendar. In any case, a new local calendar is necessary otherwise the alarm trigger would not work.</p>
+<p>Once you completed setting up your local calendars, you can start adding the file trigger which will help you open up the Zoom. To do this, you need to modify the event of your choice and then change the alert settings, change it to custom and choose ‘Open file’ option, and then change the dropdown from ‘Calendar’ to ‘Other…’.</p>
+<p><img src="/2020/12/26/Automating-Zoom-with-Alfred-and-Apple-Scripts/calendar-1.png"></p>
+<p>Normally, the file you created with the Calendar alarm will be saved to <code>~/Library/Workflows/Applications/Calendar</code> so go ahead to find that folder and choose that file.</p>
+<p><img src="/2020/12/26/Automating-Zoom-with-Alfred-and-Apple-Scripts/calendar-2.png"></p>
+<p>At this point, you will have a working version of the calendar automation for this event, if you want it on more events, you will need to repeat the steps of changing alerts for each of the other events.</p>
+<h3 id="Future-improvements-amp-Alternatives"><a href="#Future-improvements-amp-Alternatives" class="headerlink" title="Future improvements &amp; Alternatives"></a>Future improvements &amp; Alternatives</h3><p>I have to admit the solution I described above is not perfect, and it requires some steps to setup, still once I set it up, everything works fine for me, and I would never need to remember to join a Zoom meeting because of this automation.</p>
+<p>Some future improvement and/or caveats that I found about this method is that: </p>
+<ul>
+<li>The events must have the zoom link somewhere (either description or location) for this automation to work.</li>
+<li>If there were two back-to-back meetings, the automation will fail, this is because the previous meeting hasn’t finished yet, and the given Alfred workflow will still list it at the top. I haven’t found a good solution to this.</li>
+</ul>
+<p>There are several alternative ways I can think of:</p>
+<ul>
+<li><p>Use Zoom itself, if you are logged into Zoom and allow them to access your calendar, they will provide a join button in their app to allow you to join the meeting without more button clicks.</p>
+</li>
+<li><p>Bookmark the Zoom url schemes and click on it. This is basically how the workflow works behind the scene: converting the url from http to zoom url scheme and then open it. I won’t go in depth on how to create a bookmark and convert the links to url schemes, but Zoom provide a great doc on their schemes <a target="_blank" rel="noopener" href="https://marketplace.zoomgov.com/docs/guides/guides/client-url-schemes">here</a>.</p>
+</li>
+</ul>
+
       
     </div>
 
@@ -488,7 +511,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 09-12-2020 14:21:41" itemprop="dateModified" datetime="2020-09-12T14:21:41+12:00">09-12-2020</time>
+                <time title="Modified: 12-27-2020 00:45:47" itemprop="dateModified" datetime="2020-12-27T00:45:47+13:00">12-27-2020</time>
               </span>
 
           
@@ -703,7 +726,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2018/03/24/AutomatingStuffWithGoogleAppScripts/" class="post-title-link" itemprop="url">Automating Stuff With Google App Scripts</a>
+            <a href="/2018/03/24/AutomatingStuffWithGoogleAppScripts/" class="post-title-link" itemprop="url">Automating Gmail Archive With Google App Scripts</a>
         </h2>
 
         <div class="post-meta">
@@ -720,7 +743,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 09-12-2020 14:24:15" itemprop="dateModified" datetime="2020-09-12T14:24:15+12:00">09-12-2020</time>
+                <time title="Modified: 12-27-2020 00:48:21" itemprop="dateModified" datetime="2020-12-27T00:48:21+13:00">12-27-2020</time>
               </span>
 
           
@@ -735,14 +758,13 @@
 
       
           <h4 id="What-is-Google-App-Scripts"><a href="#What-is-Google-App-Scripts" class="headerlink" title="What is Google App Scripts?"></a>What is Google App Scripts?</h4><p>Before explaining what I did with Google App Scripts, let me explain what is Google App Scripts. It is basically a scripting engine that let you access all kinds of Google App features (including Gmail, Google Calendar, Google Docs, etc.). There are other ways to access these features but Google App Script might be the easist way out there. It comes with an online editor (you can work offline as well), and Google can trigger your scripts at certain time based on your need. Oh, forgot to mention, Google App Script uses JavaScript which is one of the most popular languages right now (Sadly, it doesn’t support ES6 syntax as of writing).</p>
-<h4 id="Why-use-Google-App-Scripts"><a href="#Why-use-Google-App-Scripts" class="headerlink" title="Why use Google App Scripts?"></a>Why use Google App Scripts?</h4><p>I have a habbit of archiving my Emails every week on Mondays. It is easy enough to do in the gmail Web interface but I do need to remember to do it. That make me think if I can find a good way to automate this. I would always think of using some kind of API first, but it seems to me that it wouldn’t worth it to spend time to make a app just for the purpose of archiving emails. Then I came across Google App Scripts, which turned out to be exactly what I need to automate this.</p>
-<h4 id="What-I-came-up-with"><a href="#What-I-came-up-with" class="headerlink" title="What I came up with"></a>What I came up with</h4><p>Here is what I came up with to achive the purpose of archiving emails that are one weeks old every Monday at midnight:</p>
+<h4 id="Why-use-Google-App-Scripts"><a href="#Why-use-Google-App-Scripts" class="headerlink" title="Why use Google App Scripts?"></a>Why use Google App Scripts?</h4><p>I have a habit of archiving my Emails every week on Mondays. It is easy enough to do in the gmail Web interface but I do need to remember to do it. That make me think if I can find a good way to automate this. I would always think of using some kind of API first, but it seems to me that it wouldn’t worth it to spend time to make a app just for the purpose of archiving emails. Then I came across Google App Scripts, which turned out to be exactly what I need to automate this.</p>
+<h4 id="What-I-came-up-with"><a href="#What-I-came-up-with" class="headerlink" title="What I came up with"></a>What I came up with</h4><p>Here is what I came up with to archive emails that are one-week-old every Monday at midnight:</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">gmailAutoarchive</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> maxDate = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">  <span class="comment">// Archive all threads in inbox whose last message date is older than today.</span></span><br><span class="line">  <span class="keyword">var</span> threads = GmailApp.getInboxThreads();</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i <span class="keyword">in</span> threads)&#123;</span><br><span class="line">    <span class="keyword">var</span> thread = threads[i];</span><br><span class="line">    <span class="keyword">if</span> (thread.getLastMessageDate()&lt;maxDate)&#123;</span><br><span class="line">      thread.moveToArchive();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>You will be able to use this script by putting it into the google script editor located <a target="_blank" rel="noopener" href="https://script.google.com/">here</a>.</p>
 <p>To have Google auto run your scripts, you need to add the trigger which can be found under Edit –&gt; Current project’s triggers.</p>
 <h4 id="Variation"><a href="#Variation" class="headerlink" title="Variation"></a>Variation</h4><p>After creating this script, I created another script as a variation to this script that move messages with certain labels to trash.</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">gmailAutoRemove</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> maxDate = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">  maxDate.setDate(maxDate.getDate() - <span class="number">30</span>); <span class="comment">// what was the date at that time?</span></span><br><span class="line">  <span class="keyword">var</span> label = [GmailApp.getUserLabelByName(<span class="string">&quot;label1&quot;</span>), GmailApp.getUserLabelByName(<span class="string">&quot;label2&quot;</span>), GmailApp.getUserLabelByName(<span class="string">&quot;label3&quot;</span>)];</span><br><span class="line">  label.forEach(removeByLabel(maxDate));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">removeByLabel</span>(<span class="params">maxDate</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">label</span>)</span>&#123;</span><br><span class="line">   <span class="keyword">var</span> threads = label.getThreads(<span class="number">0</span>, <span class="number">100</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i <span class="keyword">in</span> threads)&#123;</span><br><span class="line">      <span class="keyword">var</span> thread = threads[i];</span><br><span class="line">      <span class="keyword">if</span> (thread.getLastMessageDate() &lt; maxDate)&#123;</span><br><span class="line">        thread.moveToTrash();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <hr>
 
 <p>References: <a target="_blank" rel="noopener" href="https://medium.com/@fw3d/auto-archive-emails-in-gmail-after-2-days-1ebf0e076b1c">Auto archive emails in Gmail after 2 days</a></p>
@@ -1058,7 +1080,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-count">22</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
