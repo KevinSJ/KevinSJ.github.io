@@ -3,10 +3,10 @@ Allow: /
 Allow: /archives/
 Allow: /tags/
 
-Disallow: /vendors/
-Disallow: /js/
-Disallow: /css/
-Disallow: /lib/
-Disallow: /live2dw/
+Allow: /vendors/
+Allow: /js/
+Allow: /css/
+Allow: /lib/
+Allow: /live2dw/
 
 Sitemap: https://kevinsj.github.io/sitemap.xml
