@@ -6,7 +6,7 @@
   <link href="http://kevinsj.github.io/atom.xml" rel="self"/>
   
   <link href="http://kevinsj.github.io/"/>
-  <updated>2020-12-31T10:19:29.506Z</updated>
+  <updated>2021-01-24T01:38:32.310Z</updated>
   <id>http://kevinsj.github.io/</id>
   
   <author>
@@ -17,11 +17,44 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Upgrade openwrt on Linksys WRT1200AC with extroot</title>
+    <link href="http://kevinsj.github.io/2021/01/24/Upgrade-openwrt-on-Linksys-WRT1200AC-with-extroot/"/>
+    <id>http://kevinsj.github.io/2021/01/24/Upgrade-openwrt-on-Linksys-WRT1200AC-with-extroot/</id>
+    <published>2021-01-24T01:29:55.000Z</published>
+    <updated>2021-01-24T01:38:32.310Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="Notes"><a href="#Notes" class="headerlink" title="Notes:"></a>Notes:</h3><ul><li>WRT1200AC (this router) contains 2 partitions</li><li>Flashing the firmware through the Luci interface actually flashes the new firmware to the inactive partition</li></ul><h3 id="Steps"><a href="#Steps" class="headerlink" title="Steps:"></a>Steps:</h3><ul><li>Download the bin file needed to upgrade the package</li><li>Create a list of all the installed packages on current version using <code>opkg list-installed | cut -f 1 -d &#39; &#39; &gt; /root/installed_packages.txt</code></li><li>Choose one of the following methods to flash:<ul><li>Flash the file from the Luci interface<br>OR</li><li>Download the file to the /tmp and then flash using sysupgrade /tmp/*.bin</li></ul></li><li>After the flash and reboot, you will be in the partition that you wasn’t on before the flash, it will have all of your previous configs, but the extroot will not be there.</li><li>Hopefully, you will already have internet access at this point, if not, go ahead and setup internet.</li><li>Once your internet is up, you will need to run some commands to install packages needed to setup:<ul><li>First, install packages that are necessary to setup extroot:<br><code>opkg update &amp;&amp; opkg install block-mount kmod-fs-ext4 kmod-usb-storage e2fsprogs kmod-usb-ohci kmod-usb-uhci fdisk</code></li><li>In my case I use f2fs for my extroot, which means I need extra packages, like mkf2fs to format the flash.</li><li>Now, format the device you plan to use for extroot, in my case, I ran <code>mkf2fs /dev/sda1</code> cause the sda2 was used as swap.</li><li>At this point, copy the overlay to the newly formatted drive<br>  <code>mkdir -p /tmp/introot    mkdir -p /tmp/extroot    mount --bind / /tmp/introot    mount /dev/sda1 /tmp/extroot    tar -C /tmp/introot -cvf - . | tar -C /tmp/extroot -xf -    umount /tmp/introot    umount /tmp/extroot</code></li><li>Regenerate fstab using <code>block detect &gt; /etc/config/fstab;</code></li><li>Reboot</li><li>You should have a working Openwrt with extroot now. Change opkg/distfeeds.conf to the corresponding upgraded version.</li><li>Now run <code>opkg upgrade $(opkg list-upgradable | awk &#39;($1 !~ &quot;^kmod|Multiple&quot;) &#123;print $1&#125;&#39;)</code> to keep base packages up-to-date.</li><li>And install all your backed up packages using <code>cat /root/installed_packages.txt|xargs opkg install</code></li></ul></li></ul><p>Because I don’t use dnsmasq, this means once the steps above finishes, I will need to do some extra post installation steps</p><h3 id="Post-installation-More-as-a-personal-note"><a href="#Post-installation-More-as-a-personal-note" class="headerlink" title="Post installation (More as a personal note):"></a>Post installation (More as a personal note):</h3><ul><li>Remove odhcpd-ipv6only package and install odhcpd, this will ensure IPv4 dhcp functionality, otherwise, there will only be ipv6 addresses allocated.</li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;Notes&quot;&gt;&lt;a href=&quot;#Notes&quot; class=&quot;headerlink&quot; title=&quot;Notes:&quot;&gt;&lt;/a&gt;Notes:&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;WRT1200AC (this router) contains 2 partitions&lt;/li&gt;</summary>
+      
+    
+    
+    
+    
+    <category term="Notes" scheme="http://kevinsj.github.io/tags/Notes/"/>
+    
+    <category term="Openwrt" scheme="http://kevinsj.github.io/tags/Openwrt/"/>
+    
+    <category term="Upgrade" scheme="http://kevinsj.github.io/tags/Upgrade/"/>
+    
+    <category term="Linksys" scheme="http://kevinsj.github.io/tags/Linksys/"/>
+    
+    <category term="WRT1200AC" scheme="http://kevinsj.github.io/tags/WRT1200AC/"/>
+    
+    <category term="Linux" scheme="http://kevinsj.github.io/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Automating Zoom with Alfred and Apple Scripts</title>
     <link href="http://kevinsj.github.io/2020/12/26/Automating-Zoom-with-Alfred-and-Apple-Scripts/"/>
     <id>http://kevinsj.github.io/2020/12/26/Automating-Zoom-with-Alfred-and-Apple-Scripts/</id>
     <published>2020-12-26T09:55:59.000Z</published>
-    <updated>2020-12-31T10:19:29.506Z</updated>
+    <updated>2020-12-27T23:33:14.975Z</updated>
     
     <content type="html"><![CDATA[<p>Like it or not, 2020 has been a year where video conference are used a lot. For me, most of the meetings happens in Zoom. Finding the link to the meeting in the calendar and then clicking on it to join the meeting had gradually become a new norm and something I really don’t like (the fact that after clicking on the Zoom link brings up your browser instead of Zoom itself, and prompting you to click again to open Zoom is really a pain). As someone who would like to automate things as much as possible, I did eventually find a solution that works for me albeit several third party tools are required.</p><h3 id="Problem-Statement-Automatically-join-a-Zoom-call-for-a-meeting-scheduled-in-calendar-without-user-interaction-on-MacOS-X"><a href="#Problem-Statement-Automatically-join-a-Zoom-call-for-a-meeting-scheduled-in-calendar-without-user-interaction-on-MacOS-X" class="headerlink" title="Problem Statement: Automatically join a Zoom call for a meeting scheduled in calendar without user interaction (on MacOS X)."></a>Problem Statement: Automatically join a Zoom call for a meeting scheduled in calendar without user interaction (on MacOS X).</h3><h3 id="Prerequisite"><a href="#Prerequisite" class="headerlink" title="Prerequisite:"></a>Prerequisite:</h3><ul><li><a href="https://www.alfredapp.com/">Alfred</a><br>  (Unclear if you need to be a paid user to create custom workflows, the author is a paid user)</li><li><a href="https://github.com/zerowidth/zoom-calendar.alfredworkflow">zoom-calendar.alfredworkflow</a><br>  (Yep, I found this alfred workflow by chance and based my work and this blog on this workflow, it is very handy and I would really like thank the author for creating this.)</li><li>Automator<br>  (The builtin automation app in MacOS from Apple)</li></ul><h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution:"></a>Solution:</h3><p>Assume you have already installed the Alfred App, you will need to go to <a href="https://github.com/zerowidth/zoom-calendar.alfredworkflow">this</a> Github Repo, follow the instructions given and install the Alfred workflow.</p><p>Once the workflow has been installed, we need to do some tweaking. Add an external trigger to this workflow and give it an id of ‘Automator’</p><p>Now, open up Automator, choose the Calendar Alarm workflow as shown in the screenshot below:<br><img src="/2020/12/26/Automating-Zoom-with-Alfred-and-Apple-Scripts/automator-1.png"></p><p>Copy and paste the following code to the calendar alarm:</p><script src="https://gist.github.com/KevinSJ/bd11057c5d6f0fddc7abb38bdf7844b3.js"></script><p>Now comes tricky part. You would first need to export your calendar from the cloud, export from Google Calendar Website or whatever calendar you are using. </p><p>Then open up your Calendar app, and create a new local calendar, give it whatever name you want, in my case, I simply named it Automator. At this point, you can import the ical file exported from above.</p><p>These two steps are necessary if you want to use the automation for most of your events. If there are only a few events that you would like to add the automation on, you can just use the copy function in the Calendar app and paste to the local calendar. In any case, a new local calendar is necessary otherwise the alarm trigger would not work.</p><p>Once you completed setting up your local calendars, you can start adding the file trigger which will help you open up the Zoom. To do this, you need to modify the event of your choice and then change the alert settings, change it to custom and choose ‘Open file’ option, and then change the dropdown from ‘Calendar’ to ‘Other…’.</p><p><img src="/2020/12/26/Automating-Zoom-with-Alfred-and-Apple-Scripts/calendar-1.png"></p><p>Normally, the file you created with the Calendar alarm will be saved to <code>~/Library/Workflows/Applications/Calendar</code> so go ahead to find that folder and choose that file.</p><p><img src="/2020/12/26/Automating-Zoom-with-Alfred-and-Apple-Scripts/calendar-2.png"></p><p>At this point, you will have a working version of the calendar automation for this event, if you want it on more events, you will need to repeat the steps of changing alerts for each of the other events.</p><h3 id="Future-improvements-amp-Alternatives"><a href="#Future-improvements-amp-Alternatives" class="headerlink" title="Future improvements &amp; Alternatives"></a>Future improvements &amp; Alternatives</h3><p>I have to admit the solution I described above is not perfect, and it requires some steps to setup, still once I set it up, everything works fine for me, and I would never need to remember to join a Zoom meeting because of this automation.</p><p>Some future improvement and/or caveats that I found about this method is that: </p><ul><li>The events must have the zoom link somewhere (either description or location) for this automation to work.</li><li>If there were two back-to-back meetings, the automation will fail, this is because the previous meeting hasn’t finished yet, and the given Alfred workflow will still list it at the top. I haven’t found a good solution to this.</li></ul><p>There are several alternative ways I can think of:</p><ul><li><p>Use Zoom itself, if you are logged into Zoom and allow them to access your calendar, they will provide a join button in their app to allow you to join the meeting without more button clicks.</p></li><li><p>Bookmark the Zoom url schemes and click on it. This is basically how the workflow works behind the scene: converting the url from http to zoom url scheme and then open it. I won’t go in depth on how to create a bookmark and convert the links to url schemes, but Zoom provide a great doc on their schemes <a href="https://marketplace.zoomgov.com/docs/guides/guides/client-url-schemes">here</a>.</p></li></ul>]]></content>
     
