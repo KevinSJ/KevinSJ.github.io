@@ -23,25 +23,23 @@
     var CONFIG = {"hostname":"kevinsj.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Notes: WRT1200AC (this router) contains 2 partitions Flashing the firmware through the Luci interface actually flashes the new firmware to the inactive partition  Steps: Download the bin file needed t">
+  <meta name="description" content="Recently, I started to build an application with Go, it is a quite simple application that does something very basic and then sends an notification to a telegram bot. It’s quite obvious to me this kin">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Upgrade openwrt on Linksys WRT1200AC with extroot">
-<meta property="og:url" content="http://kevinsj.github.io/2021/01/24/Upgrade-openwrt-on-Linksys-WRT1200AC-with-extroot/index.html">
+<meta property="og:title" content="Lessons Learnt On Deploying GO Lambda Application on AWS - Part I">
+<meta property="og:url" content="http://kevinsj.github.io/2021/01/24/Lessons-Learnt-On-Deploying-GO-Lambda-Application-on-AWS/index.html">
 <meta property="og:site_name" content="Kevin Jiang&#39;s Technical Blog">
-<meta property="og:description" content="Notes: WRT1200AC (this router) contains 2 partitions Flashing the firmware through the Luci interface actually flashes the new firmware to the inactive partition  Steps: Download the bin file needed t">
+<meta property="og:description" content="Recently, I started to build an application with Go, it is a quite simple application that does something very basic and then sends an notification to a telegram bot. It’s quite obvious to me this kin">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-01-24T01:29:55.000Z">
-<meta property="article:modified_time" content="2021-01-24T01:35:30.042Z">
+<meta property="article:published_time" content="2021-01-24T06:06:00.000Z">
+<meta property="article:modified_time" content="2021-01-29T21:44:36.155Z">
 <meta property="article:author" content="KevinSJ">
-<meta property="article:tag" content="Notes">
-<meta property="article:tag" content="Openwrt">
-<meta property="article:tag" content="Upgrade">
-<meta property="article:tag" content="Linksys">
-<meta property="article:tag" content="WRT1200AC">
-<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Lambda">
+<meta property="article:tag" content="AWS">
+<meta property="article:tag" content="Go">
+<meta property="article:tag" content="Deployment">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://kevinsj.github.io/2021/01/24/Upgrade-openwrt-on-Linksys-WRT1200AC-with-extroot/">
+<link rel="canonical" href="http://kevinsj.github.io/2021/01/24/Lessons-Learnt-On-Deploying-GO-Lambda-Application-on-AWS/">
 
 
 <script id="page-configurations">
@@ -54,7 +52,7 @@
   };
 </script>
 
-  <title>Upgrade openwrt on Linksys WRT1200AC with extroot | Kevin Jiang's Technical Blog</title>
+  <title>Lessons Learnt On Deploying GO Lambda Application on AWS - Part I | Kevin Jiang's Technical Blog</title>
   
 
 
@@ -165,7 +163,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://kevinsj.github.io/2021/01/24/Upgrade-openwrt-on-Linksys-WRT1200AC-with-extroot/">
+    <link itemprop="mainEntityOfPage" href="http://kevinsj.github.io/2021/01/24/Lessons-Learnt-On-Deploying-GO-Lambda-Application-on-AWS/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -178,7 +176,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Upgrade openwrt on Linksys WRT1200AC with extroot
+          Lessons Learnt On Deploying GO Lambda Application on AWS - Part I
         </h1>
 
         <div class="post-meta">
@@ -187,10 +185,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 01-24-2021 14:29:55 / Modified: 14:35:30" itemprop="dateCreated datePublished" datetime="2021-01-24T14:29:55+13:00">01-24-2021</time>
+              <time title="Created: 01-24-2021 19:06:00" itemprop="dateCreated datePublished" datetime="2021-01-24T19:06:00+13:00">01-24-2021</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 01-30-2021 10:44:36" itemprop="dateModified" datetime="2021-01-30T10:44:36+13:00">01-30-2021</time>
+              </span>
 
           
 
@@ -203,37 +207,20 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="Notes"><a href="#Notes" class="headerlink" title="Notes:"></a>Notes:</h3><ul>
-<li>WRT1200AC (this router) contains 2 partitions</li>
-<li>Flashing the firmware through the Luci interface actually flashes the new firmware to the inactive partition</li>
-</ul>
-<h3 id="Steps"><a href="#Steps" class="headerlink" title="Steps:"></a>Steps:</h3><ul>
-<li>Download the bin file needed to upgrade the package</li>
-<li>Create a list of all the installed packages on current version using <code>opkg list-installed | cut -f 1 -d &#39; &#39; &gt; /root/installed_packages.txt</code></li>
-<li>Choose one of the following methods to flash:<ul>
-<li>Flash the file from the Luci interface<br>OR</li>
-<li>Download the file to the /tmp and then flash using sysupgrade /tmp/*.bin</li>
-</ul>
-</li>
-<li>After the flash and reboot, you will be in the partition that you wasn’t on before the flash, it will have all of your previous configs, but the extroot will not be there.</li>
-<li>Hopefully, you will already have internet access at this point, if not, go ahead and setup internet.</li>
-<li>Once your internet is up, you will need to run some commands to install packages needed to setup:<ul>
-<li>First, install packages that are necessary to setup extroot:<br><code>opkg update &amp;&amp; opkg install block-mount kmod-fs-ext4 kmod-usb-storage e2fsprogs kmod-usb-ohci kmod-usb-uhci fdisk</code></li>
-<li>In my case I use f2fs for my extroot, which means I need extra packages, like mkf2fs to format the flash.</li>
-<li>Now, format the device you plan to use for extroot, in my case, I ran <code>mkf2fs /dev/sda1</code> cause the sda2 was used as swap.</li>
-<li>At this point, copy the overlay to the newly formatted drive<br>  <code>mkdir -p /tmp/introot    mkdir -p /tmp/extroot    mount --bind / /tmp/introot    mount /dev/sda1 /tmp/extroot    tar -C /tmp/introot -cvf - . | tar -C /tmp/extroot -xf -    umount /tmp/introot    umount /tmp/extroot</code></li>
-<li>Regenerate fstab using <code>block detect &gt; /etc/config/fstab;</code></li>
-<li>Reboot</li>
-<li>You should have a working Openwrt with extroot now. Change opkg/distfeeds.conf to the corresponding upgraded version.</li>
-<li>Now run <code>opkg upgrade $(opkg list-upgradable | awk &#39;($1 !~ &quot;^kmod|Multiple&quot;) &#123;print $1&#125;&#39;)</code> to keep base packages up-to-date.</li>
-<li>And install all your backed up packages using <code>cat /root/installed_packages.txt|xargs opkg install</code></li>
-</ul>
-</li>
-</ul>
-<p>Because I don’t use dnsmasq, this means once the steps above finishes, I will need to do some extra post installation steps</p>
-<h3 id="Post-installation-More-as-a-personal-note"><a href="#Post-installation-More-as-a-personal-note" class="headerlink" title="Post installation (More as a personal note):"></a>Post installation (More as a personal note):</h3><ul>
-<li>Remove odhcpd-ipv6only package and install odhcpd, this will ensure IPv4 dhcp functionality, otherwise, there will only be ipv6 addresses allocated.</li>
-</ul>
+        <p>Recently, I started to build an application with Go, it is a quite simple application that does something very basic and then sends an notification to a telegram bot. It’s quite obvious to me this kind of application is quite suitable to run as Lambda, and that’s where I decided to deploy my application to once it is working well locally. It turned out that I had to solve several issues I encountered. Here I share how I solved those issues, so you don’t have to scratch your head when encounter them.</p>
+<h3 id="Attempt-1-Deploy-the-application-through-the-web-interface"><a href="#Attempt-1-Deploy-the-application-through-the-web-interface" class="headerlink" title="Attempt 1: Deploy the application through the web interface."></a>Attempt 1: Deploy the application through the web interface.</h3><p>For my first attempt on deploying the application, my goal is to make things as simple as possible.<br>Therefore, I chose to use the web interface. From the web interface, there’s an option to upload zip file and that’s where I began.</p>
+<h5 id="Problem-Compile-GO-in-an-static-way"><a href="#Problem-Compile-GO-in-an-static-way" class="headerlink" title="Problem: Compile GO in an static way"></a>Problem: Compile GO in an static way</h5><p>This problem happens quite often from what I see on the internet. The main issue with here is that, some of the libraries in GO uses a feature called <a target="_blank" rel="noopener" href="https://golang.org/cmd/cgo/">CGO</a> which means using C code in GO, and when this feature is in use, GO compiler will try to create dynamic binary.</p>
+<p>To solve this problem, it is often as simple as compiled the code to a statically linked binary. Do note that, some of the code that’s compiling use GCC was not working, this is because often times the GLIBC library is higher than the ones used in AWS lambda environment, at least that was the case for me (I am on an Linux laptop with Manjaro Linux).</p>
+<p>I was able to find something called <a target="_blank" rel="noopener" href="https://www.musl-libc.org/intro.html">musl-gcc</a> and then used it in my compilation </p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">build:</span></span><br><span class="line">	CC=<span class="string">&quot;musl-gcc&quot;</span> go build --ldflags &#x27;-linkmode external -extldflags <span class="string">&quot;-static&quot;</span>&#x27; ./main.go</span><br></pre></td></tr></table></figure>
+<p>This proves to be working fine, once I complied the binary, zip and upload it to lambda through the interface, everything seems to be working.</p>
+<h3 id="Attempt-2-Deploy-the-application-through-AWS-SAM"><a href="#Attempt-2-Deploy-the-application-through-AWS-SAM" class="headerlink" title="Attempt 2: Deploy the application through AWS SAM"></a>Attempt 2: Deploy the application through AWS SAM</h3><p>Often, it is not efficient to manually upload the code using a zip file through every time, that’s why I started to thinking about introducing <a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/what-is-sam.html">SAM</a> as a tool to simplified the process of deployment. This was when I encountered the second issue.</p>
+<h4 id="Problem-Asking-SAM-to-compile-the-GO-program-in-an-static-way"><a href="#Problem-Asking-SAM-to-compile-the-GO-program-in-an-static-way" class="headerlink" title="Problem: Asking SAM to compile the GO program in an static way."></a>Problem: Asking SAM to compile the GO program in an static way.</h4><p>As the line above says, SAM always compiled the code in a dynamic way which is why the binary fails to work again even locally using the command <code>sam invoke local</code>.</p>
+<p>Now it’s the time to tell SAM I don’t want dynamically linked binaries. As a matter of fact, none of the article available online has a direct answer to my question, fortunately, I did find an AWS documentation on <a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/building-custom-runtimes.html">using custom runtime</a>. Based on this article, a GO program that wants to utilize static linking can have the following template:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">Resources:</span></span><br><span class="line">  <span class="attr">HelloGOFunction:</span></span><br><span class="line">    <span class="attr">Type:</span> <span class="string">AWS::Serverless::Function</span></span><br><span class="line">    <span class="attr">Properties:</span></span><br><span class="line">      <span class="attr">FunctionName:</span> <span class="string">HelloGO</span></span><br><span class="line">      <span class="attr">Handler:</span> <span class="string">main</span></span><br><span class="line">      <span class="attr">Runtime:</span> <span class="string">go1.x</span></span><br><span class="line">      <span class="attr">MemorySize:</span> <span class="number">512</span></span><br><span class="line">      <span class="attr">CodeUri:</span> <span class="string">.</span></span><br><span class="line">    <span class="attr">Metadata:</span></span><br><span class="line">      <span class="attr">BuildMethod:</span> <span class="string">makefile</span></span><br></pre></td></tr></table></figure>
+<p>And in the MakeFile, the following corresponding entries need to be added:</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">build-HelloGOFunction:</span></span><br><span class="line">  CC=<span class="string">&quot;musl-gcc&quot;</span> go build --ldflags &#x27;-linkmode external -extldflags <span class="string">&quot;-static&quot;</span>&#x27; ./main.go</span><br><span class="line">  cp ./main <span class="variable">$(ARTIFACTS_DIR)</span></span><br></pre></td></tr></table></figure>
+<p>Doing so will make sure compiled binary are statically linked and works on lambda when bundle and uploaded.</p>
 
     </div>
 
@@ -249,7 +236,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link: </strong>
-    <a href="http://kevinsj.github.io/2021/01/24/Upgrade-openwrt-on-Linksys-WRT1200AC-with-extroot/" title="Upgrade openwrt on Linksys WRT1200AC with extroot">http://kevinsj.github.io/2021/01/24/Upgrade-openwrt-on-Linksys-WRT1200AC-with-extroot/</a>
+    <a href="http://kevinsj.github.io/2021/01/24/Lessons-Learnt-On-Deploying-GO-Lambda-Application-on-AWS/" title="Lessons Learnt On Deploying GO Lambda Application on AWS - Part I">http://kevinsj.github.io/2021/01/24/Lessons-Learnt-On-Deploying-GO-Lambda-Application-on-AWS/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
@@ -260,12 +247,10 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Notes/" rel="tag"># Notes</a>
-              <a href="/tags/Openwrt/" rel="tag"># Openwrt</a>
-              <a href="/tags/Upgrade/" rel="tag"># Upgrade</a>
-              <a href="/tags/Linksys/" rel="tag"># Linksys</a>
-              <a href="/tags/WRT1200AC/" rel="tag"># WRT1200AC</a>
-              <a href="/tags/Linux/" rel="tag"># Linux</a>
+              <a href="/tags/Lambda/" rel="tag"># Lambda</a>
+              <a href="/tags/AWS/" rel="tag"># AWS</a>
+              <a href="/tags/Go/" rel="tag"># Go</a>
+              <a href="/tags/Deployment/" rel="tag"># Deployment</a>
           </div>
 
         
@@ -274,13 +259,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/12/26/Automating-Zoom-with-Alfred-and-Apple-Scripts/" rel="prev" title="Automating Zoom with Alfred and Apple Scripts">
-      <i class="fa fa-chevron-left"></i> Automating Zoom with Alfred and Apple Scripts
+    <a href="/2021/01/24/Upgrade-openwrt-on-Linksys-WRT1200AC-with-extroot/" rel="prev" title="Upgrade openwrt on Linksys WRT1200AC with extroot">
+      <i class="fa fa-chevron-left"></i> Upgrade openwrt on Linksys WRT1200AC with extroot
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/01/24/Lessons-Learnt-On-Deploying-GO-Lambda-Application-on-AWS/" rel="next" title="Lessons Learnt On Deploying GO Lambda Application on AWS - Part I">
-      Lessons Learnt On Deploying GO Lambda Application on AWS - Part I <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -339,7 +321,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Notes"><span class="nav-number">1.</span> <span class="nav-text">Notes:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Steps"><span class="nav-number">2.</span> <span class="nav-text">Steps:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Post-installation-More-as-a-personal-note"><span class="nav-number">3.</span> <span class="nav-text">Post installation (More as a personal note):</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Attempt-1-Deploy-the-application-through-the-web-interface"><span class="nav-number">1.</span> <span class="nav-text">Attempt 1: Deploy the application through the web interface.</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Problem-Compile-GO-in-an-static-way"><span class="nav-number">1.0.1.</span> <span class="nav-text">Problem: Compile GO in an static way</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Attempt-2-Deploy-the-application-through-AWS-SAM"><span class="nav-number">2.</span> <span class="nav-text">Attempt 2: Deploy the application through AWS SAM</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Problem-Asking-SAM-to-compile-the-GO-program-in-an-static-way"><span class="nav-number">2.1.</span> <span class="nav-text">Problem: Asking SAM to compile the GO program in an static way.</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
