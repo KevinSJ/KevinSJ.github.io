@@ -155,6 +155,96 @@
       
   
   
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://kevinsj.github.io/2021/02/27/Terraform-version-constraint-and-debugging/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="KevinSJ">
+      <meta itemprop="description" content="A blog about all things tech.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/02/27/Terraform-version-constraint-and-debugging/" class="post-title-link" itemprop="url">Terraform, Version Constraint and Debugging</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 02-28-2021 10:08:59 / Modified: 13:08:32" itemprop="dateCreated datePublished" datetime="2021-02-28T10:08:59+13:00">02-28-2021</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>This week I encountered some issues with Terraform (and, well, Kubernetes) again. This time, the problem was way more interesting than I thought.</p>
+<h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h3><p>When deploying to Kubernetes, I got <code>dial tcp 127.0.0.1:80: connect: connection refused, connection reset error.</code></p>
+<p>The more specific error message I got is </p>
+<blockquote>
+<p>Error: Get “<a target="_blank" rel="noopener" href="http://localhost/apis/apps/v1/namespaces/default/deployments/xxx&quot;">http://localhost/apis/apps/v1/namespaces/default/deployments/xxx&quot;</a>: dial tcp 127.0.0.1:80: connect: connection refused</p>
+</blockquote>
+<p>As this error happened in our deployment pipeline (we use Terraform to deploy stuff to Kubernetes), my natural thought was that this can be solved easily with a retry. So I retried the deployment right away, and it still failed. </p>
+<p>When I finally stopped what I was working on and start to examine the message carefully, I realized it is quite strange: how come the pipeline (or the Kubectl for that matter) trying to connect to localhost when it is meant to connect to a Kubernetes cluster located somewhere else? </p>
+<p>As you will see from my solution, this message was <strong>not</strong> helpful at all and in some sense quite misleading to someone who is trying to debug.</p>
+<p>After comparing the log from a previous successful deployment and the said failed deployment. I realized the issue was with the Kubernetes provider for Terraform: while in the successful build, the <code>terraform init</code> command yield something like <code>Installing hashicorp/kubernetes v1.13.3...</code>, in the failed build the same command yield something like <code>Installing hashicorp/kubernetes v2.0.2...</code>. </p>
+<p>It is quite obvious that this issue was caused by breaking changes in the Terraform provider. According to their <a target="_blank" rel="noopener" href="https://github.com/hashicorp/terraform-provider-kubernetes/blob/master/CHANGELOG.md#200-january-21-2021">changelog</a>, there were several breaking changes in the 2.0.0 version, among them were these two:</p>
+<blockquote>
+<p>Remove load_config_file attribute from provider block (#1052)<br>Remove default of ~/.kube/config for config_path (#1052)</p>
+</blockquote>
+<p>In our deployment Terraform, we set <code>load_config_file</code> to <code>true</code> to load the <code>kube_config</code> file from the default config_path of <code>~/.kube/config</code>. Due to the breaking changes quoted above, neither the <code>load_config_file</code> nor the default config_path existed any more, and when Kubernetes can not find these two files, it will try to connect to the 127.0.0.1 (aka localhost) as a fallback which caused the connection refused error.</p>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p>There are two kind of solutions to this issue: </p>
+<ul>
+<li>Updating the Terraform code so it is compatible with the 2.0.0 version of the Kubernetes provider<br>OR</li>
+<li>Downgrade to the last working version of the Kubernetes provider and keep the existing Terraform code</li>
+</ul>
+<p>Due to the urgency of getting the pipeline and deployment back online, I chose the downgrading route. Essentially, I’m adding the version constraint to the Kubernetes provider that was previously missing:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">kubernetes &#x3D; &#123;</span><br><span class="line">  source  &#x3D; &quot;registry.terraform.io&#x2F;hashicorp&#x2F;kubernetes&quot;</span><br><span class="line">  version &#x3D; &quot;~&gt; 1.0&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Adding in the version constraint means that Terraform will only increase the <strong><em>rightmost</em></strong> version number, therefore it will not be able to upgrade to version 2.0.0 automatically and can avoid this specific problem that was caused by breaking changes.</p>
+<h3 id="Takeaways"><a href="#Takeaways" class="headerlink" title="Takeaways"></a>Takeaways</h3><p>On debugging:</p>
+<ul>
+<li>Generally speaking, if you found your Terraform changed behavior without you making any changes, you could be making the same mistake as I did: not specifying the version constraint for the provider. You can find some clues in your <code>terraform init</code> command, for example, by comparing if the same provider version was used on the two builds where one was successful, the other failed.</li>
+<li>Personally, I was never familiar enough with Kubernetes to know that the default behavior of Kubectl is to use 127.0.0.1 when there’s no config file present. Now that I came across this gotcha, I do realize this kind of behavior was not that uncommon per se: Knex which is the library we used for node.js also have similar behavior, and I will keep this in mind if I encounter something similar in the future.</li>
+</ul>
+<p>On Terraform:</p>
+<ul>
+<li>When there’s no version constraint specified, Terraform will always use the latest provider version. Therefore, it is important to specify the version constraint. It is recommended by Terraform to always use a specific version when using third party modules. For more information on specifying the version constraint, read the <a target="_blank" rel="noopener" href="https://www.terraform.io/docs/language/expressions/version-constraints.html">documentation</a> from their website.</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en,zh-Hans,default">
     <link itemprop="mainEntityOfPage" href="http://kevinsj.github.io/2021/01/24/Lessons-Learnt-On-Deploying-GO-Lambda-Application-on-AWS/">
 
@@ -187,7 +277,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 01-30-2021 10:44:36" itemprop="dateModified" datetime="2021-01-30T10:44:36+13:00">01-30-2021</time>
+                <time title="Modified: 01-30-2021 10:43:09" itemprop="dateModified" datetime="2021-01-30T10:43:09+13:00">01-30-2021</time>
               </span>
 
           
@@ -875,81 +965,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en,zh-Hans,default">
-    <link itemprop="mainEntityOfPage" href="http://kevinsj.github.io/2018/03/24/AutomatingStuffWithGoogleAppScripts/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="KevinSJ">
-      <meta itemprop="description" content="A blog about all things tech.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/03/24/AutomatingStuffWithGoogleAppScripts/" class="post-title-link" itemprop="url">Automating Gmail Archive With Google App Scripts</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 03-24-2018 13:28:59" itemprop="dateCreated datePublished" datetime="2018-03-24T13:28:59+13:00">03-24-2018</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 12-27-2020 00:48:21" itemprop="dateModified" datetime="2020-12-27T00:48:21+13:00">12-27-2020</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="What-is-Google-App-Scripts"><a href="#What-is-Google-App-Scripts" class="headerlink" title="What is Google App Scripts?"></a>What is Google App Scripts?</h4><p>Before explaining what I did with Google App Scripts, let me explain what is Google App Scripts. It is basically a scripting engine that let you access all kinds of Google App features (including Gmail, Google Calendar, Google Docs, etc.). There are other ways to access these features but Google App Script might be the easist way out there. It comes with an online editor (you can work offline as well), and Google can trigger your scripts at certain time based on your need. Oh, forgot to mention, Google App Script uses JavaScript which is one of the most popular languages right now (Sadly, it doesn’t support ES6 syntax as of writing).</p>
-<h4 id="Why-use-Google-App-Scripts"><a href="#Why-use-Google-App-Scripts" class="headerlink" title="Why use Google App Scripts?"></a>Why use Google App Scripts?</h4><p>I have a habit of archiving my Emails every week on Mondays. It is easy enough to do in the gmail Web interface but I do need to remember to do it. That make me think if I can find a good way to automate this. I would always think of using some kind of API first, but it seems to me that it wouldn’t worth it to spend time to make a app just for the purpose of archiving emails. Then I came across Google App Scripts, which turned out to be exactly what I need to automate this.</p>
-<h4 id="What-I-came-up-with"><a href="#What-I-came-up-with" class="headerlink" title="What I came up with"></a>What I came up with</h4><p>Here is what I came up with to archive emails that are one-week-old every Monday at midnight:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">gmailAutoarchive</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> maxDate = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">  <span class="comment">// Archive all threads in inbox whose last message date is older than today.</span></span><br><span class="line">  <span class="keyword">var</span> threads = GmailApp.getInboxThreads();</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i <span class="keyword">in</span> threads)&#123;</span><br><span class="line">    <span class="keyword">var</span> thread = threads[i];</span><br><span class="line">    <span class="keyword">if</span> (thread.getLastMessageDate()&lt;maxDate)&#123;</span><br><span class="line">      thread.moveToArchive();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>You will be able to use this script by putting it into the google script editor located <a target="_blank" rel="noopener" href="https://script.google.com/">here</a>.</p>
-<p>To have Google auto run your scripts, you need to add the trigger which can be found under Edit –&gt; Current project’s triggers.</p>
-<h4 id="Variation"><a href="#Variation" class="headerlink" title="Variation"></a>Variation</h4><p>After creating this script, I created another script as a variation to this script that move messages with certain labels to trash.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">gmailAutoRemove</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> maxDate = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">  maxDate.setDate(maxDate.getDate() - <span class="number">30</span>); <span class="comment">// what was the date at that time?</span></span><br><span class="line">  <span class="keyword">var</span> label = [GmailApp.getUserLabelByName(<span class="string">&quot;label1&quot;</span>), GmailApp.getUserLabelByName(<span class="string">&quot;label2&quot;</span>), GmailApp.getUserLabelByName(<span class="string">&quot;label3&quot;</span>)];</span><br><span class="line">  label.forEach(removeByLabel(maxDate));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">removeByLabel</span>(<span class="params">maxDate</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">label</span>)</span>&#123;</span><br><span class="line">   <span class="keyword">var</span> threads = label.getThreads(<span class="number">0</span>, <span class="number">100</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i <span class="keyword">in</span> threads)&#123;</span><br><span class="line">      <span class="keyword">var</span> thread = threads[i];</span><br><span class="line">      <span class="keyword">if</span> (thread.getLastMessageDate() &lt; maxDate)&#123;</span><br><span class="line">        thread.moveToTrash();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-
-<p>References: <a target="_blank" rel="noopener" href="https://medium.com/@fw3d/auto-archive-emails-in-gmail-after-2-days-1ebf0e076b1c">Auto archive emails in Gmail after 2 days</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1019,14 +1034,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-count">14</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-count">34</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
