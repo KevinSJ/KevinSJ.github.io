@@ -156,6 +156,102 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en,zh-Hans,default">
+    <link itemprop="mainEntityOfPage" href="http://kevinsj.github.io/2021/05/09/Postgres-JavaScript-and-sorting/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="KevinSJ">
+      <meta itemprop="description" content="A blog about all things tech.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/09/Postgres-JavaScript-and-sorting/" class="post-title-link" itemprop="url">Postgres, JavaScript and sorting</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 05-09-2021 13:00:12 / Modified: 13:12:18" itemprop="dateCreated datePublished" datetime="2021-05-09T13:00:12+12:00">05-09-2021</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>This week, while setting up local project for work, I encountered some weired issue during the unit test and this has something to do with postgres and its default settings under Windows and other OS.</p>
+<h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h3><p>As an example, consider the following array: <code>[ &#39;D&#39;, &#39;d&#39;, &#39;a&#39;, &#39;A&#39;, &#39;c&#39;, &#39;b&#39;, &#39;CD&#39;, &#39;Capacitor&#39; ]</code></p>
+<p>Sorting this in JavaScript results in case sensitive result, where upper case always come first: </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; [ <span class="string">&#x27;D&#x27;</span>, <span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;A&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;CD&#x27;</span>, <span class="string">&#x27;Capacitor&#x27;</span> ].sort()</span><br><span class="line">[ <span class="string">&quot;A&quot;</span>, <span class="string">&quot;CD&quot;</span>, <span class="string">&quot;Capacitor&quot;</span>, <span class="string">&quot;D&quot;</span>, <span class="string">&quot;a&quot;</span>, <span class="string">&quot;b&quot;</span>, <span class="string">&quot;c&quot;</span>, <span class="string">&quot;d&quot;</span> ]</span><br></pre></td></tr></table></figure>
+<p>Sorting this in Postgres SQL with default installation will yield a case insensitive sorting where upper and lower case are mixed:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> regexp_split_to_table(<span class="string">&#x27;D d a A c b CD Capacitor&#x27;</span>, <span class="string">&#x27; &#x27;</span>) <span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"> regexp_split_to_table </span><br><span class="line"><span class="comment">-----------------------</span></span><br><span class="line"> a</span><br><span class="line"> A</span><br><span class="line"> b</span><br><span class="line"> c</span><br><span class="line"> Capacitor</span><br><span class="line"> CD</span><br><span class="line"> d</span><br><span class="line"> D</span><br></pre></td></tr></table></figure>
+
+<p>The goal here is to make sorting consistent, so we can either fix the Postgres side or fix the JavaScript side.</p>
+<h3 id="Investigation"><a href="#Investigation" class="headerlink" title="Investigation"></a>Investigation</h3><p>Looking carefully at each of these results, it is not difficult to realize that the sorting in JavaScript is based on ASCII, i.e. character <code>A</code> has an ASCII code of 32 where as <code>a</code> has ASCII code of 97, so <code>A</code> comes first. This <strong>IS NOT</strong> the proper way to do string sorting in JavaScript.</p>
+<p>For the result that Postgres gave, it is a bit more complex. Postgres uses <code>LC_COLLATE</code> to determine the sort order of the array.This variable comes from the system and different OS have different implementation, when using locale <code>C</code> or <code>POSIX</code>, strings are sorted according to their ASCII value, any other locales will result in a case insensitive result.</p>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p>Here comes the solution part, as mentioned earlier, we can either fix the JavaScript or fix the Postgres, so I’ll present the solutions separately.</p>
+<p>There are several ways to make the sorting case insensitive in JavaScript: </p>
+<ul>
+<li><p><code>[ &#39;D&#39;, &#39;d&#39;, &#39;a&#39;, &#39;A&#39;, &#39;c&#39;, &#39;b&#39;, &#39;CD&#39;, &#39;Capacitor&#39; ].sort((a,b) =&gt; a.localeCompare(b))</code><br>This uses localeCompare from string prototype which have some performance implication on larger array.</p>
+</li>
+<li><p><code>[ &#39;D&#39;, &#39;d&#39;, &#39;a&#39;, &#39;A&#39;, &#39;c&#39;, &#39;b&#39;, &#39;CD&#39;, &#39;Capacitor&#39; ].sort(new Intl.Collator(&#39;en_us&#39;).compare)</code><br>This is the recommended by MDN to sort larger arrays.</p>
+</li>
+</ul>
+<p>For Postgres, the first thing that needs to be noted is that Postgres recommends against using locales if it can be avoided, from their documentation: </p>
+<blockquote>
+<p>The drawback of using locales other than C or POSIX in PostgreSQL is its performance impact. It slows character handling and prevents ordinary indexes from being used by LIKE. For this reason use locales only if you actually need them. </p>
+</blockquote>
+<p>The one-off way to fix the sorting is by specifiying the <code>LC_COLLATE</code> value when creating the database, for example: </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> DATABASE db </span><br><span class="line">    <span class="keyword">WITH</span> TEMPLATE <span class="operator">=</span> template0 </span><br><span class="line">    ENCODING <span class="operator">=</span> <span class="string">&#x27;UTF8&#x27;</span> </span><br><span class="line">    LC_COLLATE <span class="operator">=</span> <span class="string">&#x27;C&#x27;</span> </span><br><span class="line">    LC_CTYPE <span class="operator">=</span> <span class="string">&#x27;C&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<p>The created database (db in this case) will use <code>C</code> as <code>LC_COLLATE</code> overriding the default <code>LC_COLLATE</code> value from the OS. With the new database created, you easily verify it will sort in a case sensitive way by the ASCII value once you connect to the database and run the query presented previously.</p>
+<p>This one-off way is good enough only if you care about creating such database once. Imaging next time you create a new database, you will still have to manually override the <code>LC_COLLATE</code> value. So the way to go is to modify the template database, because <code>LC_COLLATE</code> can’t be changed once the database has been created, we will have to create a new database and set it as template. </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">--- Unset template1 as template before dropping</span></span><br><span class="line">UPDATE pg_database </span><br><span class="line">    <span class="keyword">SET</span> datistemplate<span class="operator">=</span><span class="string">&#x27;false&#x27;</span> </span><br><span class="line">    <span class="keyword">WHERE</span> datname<span class="operator">=</span><span class="string">&#x27;template1&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">--- Create a new database that uses C as locale</span></span><br><span class="line"><span class="keyword">CREATE</span> DATABASE template1 </span><br><span class="line">    IS_TEMPLATE <span class="literal">true</span> </span><br><span class="line">    ENCODING <span class="operator">=</span> <span class="string">&#x27;UTF8&#x27;</span> </span><br><span class="line">    LC_COLLATE <span class="operator">=</span> <span class="string">&#x27;C&#x27;</span> </span><br><span class="line">    LC_CTYPE <span class="operator">=</span> <span class="string">&#x27;C&#x27;</span> </span><br><span class="line">    CONNECTION LIMIT <span class="operator">=</span> <span class="number">-1</span> </span><br><span class="line">    TEMPLATE template0;</span><br><span class="line"></span><br><span class="line"><span class="comment">--- Create a new databse now should have C as locale.</span></span><br><span class="line"><span class="keyword">CREATE</span> DATABASE db3;</span><br><span class="line"></span><br><span class="line"><span class="comment">--- Should return C </span></span><br><span class="line"><span class="keyword">SHOW</span> lc_collate;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>Another way to do this, is to initialize the database cluster with C locale as below: </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chown -R postgres:postgres /var/lib/postgres/</span><br><span class="line">su - postgres -c &quot;initdb --locale C -D &#x27;/var/lib/postgres/data&#x27;&quot;</span><br></pre></td></tr></table></figure>
+<p>this will create template database with C locale.</p>
+<h3 id="Takeaways"><a href="#Takeaways" class="headerlink" title="Takeaways"></a>Takeaways</h3><p>String sorting with the default method in JavaScript and most other languages is merely a comparsion based on the ASCII code, this results in upper case letters always comes first.</p>
+<p>String sorting in PostgreSQL depends on the <code>LC_COLLATE</code> setting of the table which depends on the setting of the operating system, default sorting will yield results that mixes upper case and lower case, in other words, sorting is <strong>not</strong> case sensitive. There are many ways to get case sensitive sorting, but the most reliable way should be specifiying the <code>LC_COLLATE</code> when creating the database.</p>
+<h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://www.postgresql.org/docs/13/locale.html">https://www.postgresql.org/docs/13/locale.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare</a></li>
+<li><a target="_blank" rel="noopener" href="https://dba.stackexchange.com/questions/106964/why-is-my-postgresql-order-by-case-insensitive">Stackexchange question</a></li>
+<li><a target="_blank" rel="noopener" href="https://wiki.postgresql.org/wiki/FAQ#Why_do_my_strings_sort_incorrectly.3F">Postgres FAQ</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en,zh-Hans,default">
     <link itemprop="mainEntityOfPage" href="http://kevinsj.github.io/2021/04/17/Android-ADB-and-user-management/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -181,7 +277,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 04-17-2021 16:24:17 / Modified: 17:27:48" itemprop="dateCreated datePublished" datetime="2021-04-17T16:24:17+12:00">04-17-2021</time>
+              <time title="Created: 04-17-2021 16:24:17 / Modified: 17:26:25" itemprop="dateCreated datePublished" datetime="2021-04-17T16:24:17+12:00">04-17-2021</time>
             </span>
 
           
@@ -894,88 +990,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en,zh-Hans,default">
-    <link itemprop="mainEntityOfPage" href="http://kevinsj.github.io/2019/05/28/Converting-QEMU-VM-to-VirtualBox-VM/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="KevinSJ">
-      <meta itemprop="description" content="A blog about all things tech.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/05/28/Converting-QEMU-VM-to-VirtualBox-VM/" class="post-title-link" itemprop="url">Converting QEMU VM to VirtualBox VM</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 05-28-2019 20:55:20" itemprop="dateCreated datePublished" datetime="2019-05-28T20:55:20+12:00">05-28-2019</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 09-12-2020 14:27:57" itemprop="dateModified" datetime="2020-09-12T14:27:57+12:00">09-12-2020</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Recently, I decided to convert my QEMU based virtual machine installed on my Manjaro Linux to the VirtualBox format. The reason behind this is that I would like to be able to use the same VM across different host system (specifically Manjaro Linux and Windows 7). It is not a easy  thing to do, so I decided to document it for future references.</p>
-<h3 id="Prerequisite"><a href="#Prerequisite" class="headerlink" title="Prerequisite?"></a>Prerequisite?</h3><ul>
-<li>An existing image created using QEMU (My VM file end with .img,  for example)</li>
-<li>VirtualBox</li>
-</ul>
-<h3 id="How-to"><a href="#How-to" class="headerlink" title="How to?"></a>How to?</h3><p>First thing first, you would need to convert the QEMU image (extension img) to raw format, this can be done by issuing the following command:</p>
-<p><code>qemu-img convert Windows7-compressed.img  -O raw  Windows7.raw</code></p>
-<p>This will generate a raw image. Note that this newly generated file might be a lot larger than the file it based on, this is because the img file allocates space on as-is basis.</p>
-<p>After you get the raw image, it’s time to convert it to VDI format (which is used by VirtualBox). You can do this by running:</p>
-<p><code>VBoxManage convertfromraw Windows7.raw --format vdi  Windows7.vdi</code></p>
-<p>Then, it is recommended to compact the image:</p>
-<p><code>VBoxManage modifyhd Windows7.vdi --compact</code></p>
-<p>So after the previous step, you will have a working VirtualBox image, but if you boot it from VirtualBox, it might not work.</p>
-<h3 id="Gotchas"><a href="#Gotchas" class="headerlink" title="Gotchas!"></a>Gotchas!</h3><p>In my case, what I was trying to convert was a Windows 7 VM, and when I finished the above steps and try to boot the VM, I got a BSOD. My feeling is that there were some default that QEMU used that doesn’t work for a newly created machine in VirtualBox. I tweak the following settings in the newly created VirtualBox VM:</p>
-<ul>
-<li>Delete the auto created SATA controller and change it IDE controller.</li>
-</ul>
-<p>It turned out, after doing that, everything works as expected.</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1045,14 +1059,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-count">16</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-count">38</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
