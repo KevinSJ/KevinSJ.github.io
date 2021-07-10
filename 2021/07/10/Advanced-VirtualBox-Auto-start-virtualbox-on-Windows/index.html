@@ -23,25 +23,22 @@
     var CONFIG = {"hostname":"kevinsj.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Notes: WRT1200AC (this router) contains 2 partitions Flashing the firmware through the Luci interface actually flashes the new firmware to the inactive partition  Steps: Download the bin file needed t">
+  <meta name="description" content="I’ve always considered myself to be an advanced computer user, but I’m not a Windows person, at least not when I’m coding. So when I got a Windows 10 laptop as a daily work machine, I’m beyond disappo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Upgrade openwrt on Linksys WRT1200AC with extroot">
-<meta property="og:url" content="http://kevinsj.github.io/2021/01/24/Upgrade-openwrt-on-Linksys-WRT1200AC-with-extroot/index.html">
+<meta property="og:title" content="Advanced VirtualBox: Auto start virtual machine on Windows">
+<meta property="og:url" content="http://kevinsj.github.io/2021/07/10/Advanced-VirtualBox-Auto-start-virtualbox-on-Windows/index.html">
 <meta property="og:site_name" content="Kevin Jiang&#39;s Technical Blog">
-<meta property="og:description" content="Notes: WRT1200AC (this router) contains 2 partitions Flashing the firmware through the Luci interface actually flashes the new firmware to the inactive partition  Steps: Download the bin file needed t">
+<meta property="og:description" content="I’ve always considered myself to be an advanced computer user, but I’m not a Windows person, at least not when I’m coding. So when I got a Windows 10 laptop as a daily work machine, I’m beyond disappo">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-01-24T01:29:55.000Z">
-<meta property="article:modified_time" content="2021-01-24T01:35:30.042Z">
+<meta property="article:published_time" content="2021-07-10T00:18:14.000Z">
+<meta property="article:modified_time" content="2021-07-10T03:36:08.012Z">
 <meta property="article:author" content="KevinSJ">
-<meta property="article:tag" content="Notes">
-<meta property="article:tag" content="Openwrt">
-<meta property="article:tag" content="Upgrade">
-<meta property="article:tag" content="Linksys">
-<meta property="article:tag" content="WRT1200AC">
-<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Automation">
+<meta property="article:tag" content="virtualbox">
+<meta property="article:tag" content="Windows">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://kevinsj.github.io/2021/01/24/Upgrade-openwrt-on-Linksys-WRT1200AC-with-extroot/">
+<link rel="canonical" href="http://kevinsj.github.io/2021/07/10/Advanced-VirtualBox-Auto-start-virtualbox-on-Windows/">
 
 
 <script id="page-configurations">
@@ -54,7 +51,7 @@
   };
 </script>
 
-  <title>Upgrade openwrt on Linksys WRT1200AC with extroot | Kevin Jiang's Technical Blog</title>
+  <title>Advanced VirtualBox: Auto start virtual machine on Windows | Kevin Jiang's Technical Blog</title>
   
 
 
@@ -165,7 +162,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://kevinsj.github.io/2021/01/24/Upgrade-openwrt-on-Linksys-WRT1200AC-with-extroot/">
+    <link itemprop="mainEntityOfPage" href="http://kevinsj.github.io/2021/07/10/Advanced-VirtualBox-Auto-start-virtualbox-on-Windows/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -178,7 +175,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Upgrade openwrt on Linksys WRT1200AC with extroot
+          Advanced VirtualBox: Auto start virtual machine on Windows
         </h1>
 
         <div class="post-meta">
@@ -189,7 +186,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 01-24-2021 14:29:55 / Modified: 14:35:30" itemprop="dateCreated datePublished" datetime="2021-01-24T14:29:55+13:00">01-24-2021</time>
+              <time title="Created: 07-10-2021 12:18:14 / Modified: 15:36:08" itemprop="dateCreated datePublished" datetime="2021-07-10T12:18:14+12:00">07-10-2021</time>
             </span>
 
           
@@ -203,37 +200,45 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="Notes"><a href="#Notes" class="headerlink" title="Notes:"></a>Notes:</h3><ul>
-<li>WRT1200AC (this router) contains 2 partitions</li>
-<li>Flashing the firmware through the Luci interface actually flashes the new firmware to the inactive partition</li>
-</ul>
-<h3 id="Steps"><a href="#Steps" class="headerlink" title="Steps:"></a>Steps:</h3><ul>
-<li>Download the bin file needed to upgrade the package</li>
-<li>Create a list of all the installed packages on current version using <code>opkg list-installed | cut -f 1 -d &#39; &#39; &gt; /root/installed_packages.txt</code></li>
-<li>Choose one of the following methods to flash:<ul>
-<li>Flash the file from the Luci interface<br>OR</li>
-<li>Download the file to the /tmp and then flash using sysupgrade /tmp/*.bin</li>
+        <p>I’ve always considered myself to be an advanced computer user, but I’m not a Windows person, at least not when I’m coding. So when I got a Windows 10 laptop as a daily work machine, I’m beyond disappointed. Luckily, there’s always a way around – VirtualBox it is. The laptop I got was powerful enough that I was able to allocate 16GB of memory as well as 3 cores of the host machine to the virtual machine.</p>
+<p>Once I had my vm setup, I always use Windows Terminal and SSH into the machine for development. One day, it occurs to me I can (and should) automate all of this. </p>
+<h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h3><p>Automatically start the selected VirtualBox virtual machine in <strong>headless</strong> mode (this can save a bit of resources), wait for the machine to boot, and then SSH into the VM using Windows Terminal with selected port forwarding on the host and virtual machine.</p>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p>This is not something that can be achieved in one go, therefore I’m going to breakdown by components: </p>
+<ul>
+<li>Virtual machine – Assuming Systemd based Linux distro<ul>
+<li>We need to disable the graphical login interface for the VM. To achieve this, we can do <code>systemctl set-default multi-user.target </code>. If we need to revert back to graphical login, we can do <code>systemctl set-default graphical.target</code>. The multi-user.target and graphical.target are equivalent to what was traditionally known as run levels in SystemV.</li>
+<li>We also need to setup the necessary SSH access from the Windows 10 host machine to the virtual machine. I won’t cover that here. Only thing to keep in mind is to open the necessary ports.</li>
 </ul>
 </li>
-<li>After the flash and reboot, you will be in the partition that you wasn’t on before the flash, it will have all of your previous configs, but the extroot will not be there.</li>
-<li>Hopefully, you will already have internet access at this point, if not, go ahead and setup internet.</li>
-<li>Once your internet is up, you will need to run some commands to install packages needed to setup:<ul>
-<li>First, install packages that are necessary to setup extroot:<br><code>opkg update &amp;&amp; opkg install block-mount kmod-fs-ext4 kmod-usb-storage e2fsprogs kmod-usb-ohci kmod-usb-uhci fdisk</code></li>
-<li>In my case I use f2fs for my extroot, which means I need extra packages, like mkf2fs to format the flash.</li>
-<li>Now, format the device you plan to use for extroot, in my case, I ran <code>mkf2fs /dev/sda1</code> cause the sda2 was used as swap.</li>
-<li>At this point, copy the overlay to the newly formatted drive<br>  <code>mkdir -p /tmp/introot    mkdir -p /tmp/extroot    mount --bind / /tmp/introot    mount /dev/sda1 /tmp/extroot    tar -C /tmp/introot -cvf - . | tar -C /tmp/extroot -xf -    umount /tmp/introot    umount /tmp/extroot</code></li>
-<li>Regenerate fstab using <code>block detect &gt; /etc/config/fstab;</code></li>
-<li>Reboot</li>
-<li>You should have a working Openwrt with extroot now. Change opkg/distfeeds.conf to the corresponding upgraded version.</li>
-<li>Now run <code>opkg upgrade $(opkg list-upgradable | awk &#39;($1 !~ &quot;^kmod|Multiple&quot;) &#123;print $1&#125;&#39;)</code> to keep base packages up-to-date.</li>
-<li>And install all your backed up packages using <code>cat /root/installed_packages.txt|xargs opkg install</code></li>
+<li>Host machine – need to setup batch script, Windows Terminal profile and Window startup <ul>
+<li>Batch script<ul>
+<li>What we need to achieve in the batch script is start the machine and wait for it to boot. Fortunately, virtualbox installation comes with something that can achieve this, it is called VBoxmanage.exe and is in the VirtualBox installation folder</li>
+<li>To start the virtual machine, the command will be <code>&quot;C:\Program Files\VirtualBox\VboxManage.exe&quot; startvm [VM name] --type headless</code>. Change the command with your VM name, the <code>--type headless</code> means that no GUI of the virtual machine will be started at all.</li>
+<li>Next step is to wait for the machine to start up, the command for this will be <code>&quot;C:\Program Files\VirtualBox\VboxManage.exe&quot; wait &quot;[VM name]&quot; &quot;/VirtualBox/GuestInfo/OS/NoLoggedInUsers&quot;</code></li>
+<li>Last step for the batch script will be <code>wt</code>, which represents windows terminal.</li>
+<li>To put it together, the batch script will be <figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line">&quot;C:\Program Files\VirtualBox\VboxManage.exe&quot; startvm [VM name] --<span class="built_in">type</span> headless</span><br><span class="line">&quot;C:\Program Files\VirtualBox\VboxManage.exe&quot; wait &quot;[VM name]&quot; &quot;/VirtualBox/GuestInfo/OS/NoLoggedInUsers&quot;</span><br><span class="line">wt</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>Windows terminal profile<ul>
+<li>Create a profile in Windows terminal, this can be done from either the UI or the json setting file.</li>
+<li>Here, I will present the profile I use personally: <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;bellStyle&quot;</span>: <span class="string">&quot;visual&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;colorScheme&quot;</span>: <span class="string">&quot;Tango Dark&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;commandline&quot;</span>: <span class="string">&quot;ssh -R 5432:localhost:5432 -L 8080:[::1]:8080 -L 3000:[::1]:3000 -t username@vm_ip_address &quot;</span>exec zsh -l<span class="string">&quot;&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;VM&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;scrollbarState&quot;</span>: <span class="string">&quot;hidden&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>It is obvious the commandline part is a bit bloated cause I was trying to do a bit too much in one go. Actually, it is a lot cleaner to put the command in a batch file and this line can be replaced by the path to that specific batch file as well.</li>
+</ul>
+</li>
+<li>Windows Auto Start<ul>
+<li>Press Windows+R and type <code>shell:startup</code>, this will bring up a folder called “StartUp” where you can put a bunch of things that you want to auto start when Windows starts.</li>
+<li>Drag the Batch script created into this folder to create a shortcut.</li>
 </ul>
 </li>
 </ul>
-<p>Because I don’t use dnsmasq, this means once the steps above finishes, I will need to do some extra post installation steps</p>
-<h3 id="Post-installation-More-as-a-personal-note"><a href="#Post-installation-More-as-a-personal-note" class="headerlink" title="Post installation (More as a personal note):"></a>Post installation (More as a personal note):</h3><ul>
-<li>Remove odhcpd-ipv6only package and install odhcpd, this will ensure IPv4 dhcp functionality, otherwise, there will only be ipv6 addresses allocated.</li>
+</li>
 </ul>
+<p>After these setup, Windows will now start the virtual machine every time you start your computer.</p>
+<h3 id="Bonus-shutdown-VM-in-one-click"><a href="#Bonus-shutdown-VM-in-one-click" class="headerlink" title="Bonus: shutdown VM in one click"></a>Bonus: shutdown VM in one click</h3><p>The same aforementioned VboxManage.exe can be used to poweroff the virtual machine as well. You can achieve that by creating a batch file with the following content: </p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line">&quot;C:\Program Files\Oracle\VirtualBox\VBoxManage.exe&quot; controlvm DEV_MACHINE poweroff</span><br></pre></td></tr></table></figure>
+
+<p>You can also halt or save the state of the VM rather than poweroff. More information on this can be found in the virtualbox manual.</p>
+<h3 id="Further-readings"><a href="#Further-readings" class="headerlink" title="Further readings"></a>Further readings</h3><p><a target="_blank" rel="noopener" href="https://www.virtualbox.org/manual/ch08.html">VirualBox manual on VboxManage</a><br><a target="_blank" rel="noopener" href="https://www.freedesktop.org/software/systemd/man/systemd.special.html">Systemd manual on special units</a></p>
 
     </div>
 
@@ -249,7 +254,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link: </strong>
-    <a href="http://kevinsj.github.io/2021/01/24/Upgrade-openwrt-on-Linksys-WRT1200AC-with-extroot/" title="Upgrade openwrt on Linksys WRT1200AC with extroot">http://kevinsj.github.io/2021/01/24/Upgrade-openwrt-on-Linksys-WRT1200AC-with-extroot/</a>
+    <a href="http://kevinsj.github.io/2021/07/10/Advanced-VirtualBox-Auto-start-virtualbox-on-Windows/" title="Advanced VirtualBox: Auto start virtual machine on Windows">http://kevinsj.github.io/2021/07/10/Advanced-VirtualBox-Auto-start-virtualbox-on-Windows/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
@@ -260,12 +265,9 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Notes/" rel="tag"># Notes</a>
-              <a href="/tags/Openwrt/" rel="tag"># Openwrt</a>
-              <a href="/tags/Upgrade/" rel="tag"># Upgrade</a>
-              <a href="/tags/Linksys/" rel="tag"># Linksys</a>
-              <a href="/tags/WRT1200AC/" rel="tag"># WRT1200AC</a>
-              <a href="/tags/Linux/" rel="tag"># Linux</a>
+              <a href="/tags/Automation/" rel="tag"># Automation</a>
+              <a href="/tags/virtualbox/" rel="tag"># virtualbox</a>
+              <a href="/tags/Windows/" rel="tag"># Windows</a>
           </div>
 
         
@@ -274,13 +276,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/12/26/Automating-Zoom-with-Alfred-and-Apple-Scripts/" rel="prev" title="Automating Zoom with Alfred and Apple Scripts">
-      <i class="fa fa-chevron-left"></i> Automating Zoom with Alfred and Apple Scripts
+    <a href="/2021/06/30/IELTS-exam-and-experience/" rel="prev" title="IELTS exam and experience">
+      <i class="fa fa-chevron-left"></i> IELTS exam and experience
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/01/24/Lessons-Learnt-On-Deploying-GO-Lambda-Application-on-AWS/" rel="next" title="Lessons Learnt On Deploying GO Lambda Application on AWS - Part I">
-      Lessons Learnt On Deploying GO Lambda Application on AWS - Part I <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -339,7 +338,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Notes"><span class="nav-number">1.</span> <span class="nav-text">Notes:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Steps"><span class="nav-number">2.</span> <span class="nav-text">Steps:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Post-installation-More-as-a-personal-note"><span class="nav-number">3.</span> <span class="nav-text">Post installation (More as a personal note):</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Problem"><span class="nav-number">1.</span> <span class="nav-text">Problem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution"><span class="nav-number">2.</span> <span class="nav-text">Solution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bonus-shutdown-VM-in-one-click"><span class="nav-number">3.</span> <span class="nav-text">Bonus: shutdown VM in one click</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Further-readings"><span class="nav-number">4.</span> <span class="nav-text">Further readings</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
