@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.3.0">
+<meta name="generator" content="Hexo 5.4.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -155,8 +155,8 @@
       
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://kevinsj.github.io/2021/02/28/Terraform-version-constraint-and-debugging/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en,zh-Hans,default">
+    <link itemprop="mainEntityOfPage" href="http://kevinsj.github.io/2022/03/06/hide-phone-number-when-making-calls/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -170,7 +170,617 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/02/28/Terraform-version-constraint-and-debugging/" class="post-title-link" itemprop="url">Terraform, Version Constraint and Debugging</a>
+            <a href="/2022/03/06/hide-phone-number-when-making-calls/" class="post-title-link" itemprop="url">Hide Phone Number when making calls</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 03-06-2022 17:43:57 / Modified: 18:05:39" itemprop="dateCreated datePublished" datetime="2022-03-06T17:43:57+13:00">03-06-2022</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>⚠ Hiding phone numbers may not be legal in some places, and even if you hide your number, you mobile operator <strong>WILL</strong> (of course) see your number. Use the method described in this article at your own risk!</p>
+<p>In Android/iOS, there is a way to hide your phone numbers on outgoing phone calls.</p>
+<ul>
+<li> For most Android phones, this setting is somewhere under <strong>Call Settings</strong> -&gt; <strong>Additional settings</strong> in the phone app. </li>
+<li> In most countries, it is by law that the mobile network operator provide an option to hide your number. if you choose the <strong>Hide number</strong> options, you number will always be hidden. <em><strong>This is a setting at the operator level, meaning even people who have your info in their contacts will not be able to identify who you are.</strong></em></li>
+<li> To most people, you would not want to hide your mobile number when calling someone you know. But you <strong>do</strong> want to do so, if you are calling someone you are not familiar with, a business for example.</li>
+<li>Luckily, there is a way to hide your phone numbers temporarily, if you wish to do so. It differs by country though:<ul>
+<li> In the U.S, if you want to hide your number, you can add <code>*67</code> before the number you are calling.</li>
+<li>In New Zealand, you can use<ul>
+<li> when <code>*31#</code> is added to the number you are trying to call, you number will be shown, disregarding the setting.</li>
+<li> when <code>#31#</code> is added to the number you are trying to call, you number will be hidden, disregarding the setting</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en,zh-Hans,default">
+    <link itemprop="mainEntityOfPage" href="http://kevinsj.github.io/2021/12/02/Fixing-issue-on-Xorg-and-VNC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="KevinSJ">
+      <meta itemprop="description" content="A blog about all things tech.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/12/02/Fixing-issue-on-Xorg-and-VNC/" class="post-title-link" itemprop="url">Fixing issue on Xorg and VNC</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 12-02-2021 22:48:35" itemprop="dateCreated datePublished" datetime="2021-12-02T22:48:35+13:00">12-02-2021</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 03-06-2022 18:05:39" itemprop="dateModified" datetime="2022-03-06T18:05:39+13:00">03-06-2022</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Yesterday morning, when I woke up, I faced a serious issue on my laptop which has Manjaro Linux installed – the X server can not be started.</p>
+<h3 id="Locating-the-problem"><a href="#Locating-the-problem" class="headerlink" title="Locating the problem"></a>Locating the problem</h3><p>It took me some time to get my head around and locate the root cause. The first thing I tried is obviously force reboot several times, it turned out this did not help at all! Reboot will not solve everything.™<br>The next thing I tried was the fallback initramfs mode. I don’t really understand what it does, but tried it anyway. And unfortunately, that does not work either.<br>At this point,the only option left for me to try is recovery mode. And it turned out to be working correctly. As root user in the recovery mode, I issued the following command <code>systemctl set-default multi-user.target</code>, this makes the tty the default target rather than the graphical interface. Another reboot, and I got into the terminal.<br>Once in terminal, I immediately tried <code>startx</code>, this failed due to some wired permission issue, and with <code>sudo startx</code>, the command failed as well. Looking at the Xorg log, I noticed that the start process stops at: <code>(II) Initializing extension VNC</code></p>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p>The obvious solution at this point is to uninstall the VNC module that is causing the issue, so <code>sudo pacman --remove --recursive tigervnc</code> was the way to go. And it did fix the issue. So what I had to do was reset it back to graphical interface start with <code>systemctl set-default graphical.target</code>.</p>
+<h3 id="Findings-and-thoughts"><a href="#Findings-and-thoughts" class="headerlink" title="Findings and thoughts"></a>Findings and thoughts</h3><p>By doing some more research online, I have found that this issue was actually solved by TigerVNC as can be seen from <a target="_blank" rel="noopener" href="https://github.com/TigerVNC/tigervnc/issues/1373">this</a> closed issue. The issue that most likely to have happened here is that Arch Linux package builder did not provide the up-to-date build for the package which resulted in the package does not included the updated dependencies from the X server.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en,zh-Hans,default">
+    <link itemprop="mainEntityOfPage" href="http://kevinsj.github.io/2021/08/14/OpenType-Font-and-Font-Family/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="KevinSJ">
+      <meta itemprop="description" content="A blog about all things tech.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/08/14/OpenType-Font-and-Font-Family/" class="post-title-link" itemprop="url">OpenType Font and Font Family</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 08-14-2021 13:31:56" itemprop="dateCreated datePublished" datetime="2021-08-14T13:31:56+12:00">08-14-2021</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 11-20-2021 14:20:58" itemprop="dateModified" datetime="2021-11-20T14:20:58+13:00">11-20-2021</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="TL-DR"><a href="#TL-DR" class="headerlink" title="TL;DR"></a>TL;DR</h3><p>Font family name (Name Id 1 in name table of the font) in a OpenType font file should not be used as the font-family property in CSS if the font is not one of regular, italic, bold, and bold italic style. Instead, the Typographic Family Name or Preferred Font Family (Name ID 16 in name table of the font) should be used if including them in CSS.</p>
+<h3 id="Background-and-Problem"><a href="#Background-and-Problem" class="headerlink" title="Background and Problem"></a>Background and Problem</h3><p>Recently, I was tasked to investigate an interesting problem found in our custom font implementation. Font is something I have no prior knowledge about and this investigation really helped me learn a lot more about font and by writing it down, I hope I can help developers who may face similar problems.</p>
+<p>Our system allows user to upload any font as long as they have the permission to use the font commercially. Recently, we realized that some of the fonts uploaded by user were not displayed correctly. More specifically the <code>font-family</code> attribute of these said fonts were incorrectly extracted.</p>
+<p>As an example, an user uploaded a font called <code>fontA-SemiBold</code>, the extracted font-family name from the font was <code>fontA-SemiBold</code> whereas the correct name of for the font-family should be <code>fontA</code>. And in this case. The incorrect font name resulted in incorrect rendering in the front-end as the CSS rendering is suppose to have the correct font-family name.</p>
+<h3 id="Investigation"><a href="#Investigation" class="headerlink" title="Investigation"></a>Investigation</h3><p>After looking at several of the uploaded fonts and going through the code, I decided it is necessary to create a small POC using the library we chose in our application. I was able to reproduce the issue that we face with the user uploaded font – the library yield an incorrect font-family name. This leads me to think whether the problem lies within the library itself. So I immediately used another font I found online. To my surprise, this time the library was able to extract the correct font-family.</p>
+<p>Having done the POC, and finished this small experiment, I’m a bit at lost. <strong>How come the library sometimes work and sometimes failed to work?</strong></p>
+<p><strong>Later, I realized this is because the font I chose happen to be <code>Roboto-Bold</code>.</strong></p>
+<h3 id="Findings-and-learnings"><a href="#Findings-and-learnings" class="headerlink" title="Findings and learnings"></a>Findings and learnings</h3><p>To dig deeper into this, I went through the OpenType font specification on Microsoft website. The relevant part for the documentation is the <code>name</code> table for a font, so I read through all of it and here’s what I found and learnt: </p>
+<ul>
+<li>A font file contains a <em><strong>name</strong></em> table that stores the information about the font, this might include license for the font, font family name, urls etc. The library we used use this specific table to extract information about a font.</li>
+<li>A font family name (name ID 1 in the name table) for a font can only be shared among at most four basic styles of font faces – they are regular, italic, bold, and bold italic. That is why the library returns the correct font family name for the <code>Roboto-Bold</code> I chose. </li>
+<li>For styles that fall outside of these four styles, such as Semi-Bold or Black, they are treated as a separate font family and will have a separate font family name. For example, the font family name for <code>Roboto-Black</code> will be <code>Roboto-Black</code> rather than <code>Roboto</code>. </li>
+<li>A Typographic Family Name (or Preferred Family) – Name Id 16 in the name table has no constraints in the number of font faces, but is only present when the font face falls outside of the basic four styles.</li>
+<li>In CSS, the <code>font-family</code> property is expected to be the shared font name. For example, if using <code>Roboto-Black</code> font in CSS, the font-family property should be <code>Roboto</code> rather than <code>Roboto-Black</code></li>
+<li>The difference between the font family name definition between CSS and the OpenType means that it is best to always use the <em><strong>Typographic Family Name</strong></em> if it presents rather than the <em><strong>Font Family name</strong></em> if the HTML/CSS is generated on the fly.</li>
+</ul>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p>As we have a better understanding on the font family specification now, we need to find ways to retrieve it from the font table. </p>
+<p>Fontkit was the library of choice and therefore I will only discuss how to get the correct font family name in fontkit. Unfortunately, fontkit does not have a direct way of accessing the Typographic Family Name. Through reading its source code, I found the way to go is to use an undocumented API – <code>font.getName(&#39;preferredName&#39;)</code>, note that the <code>preferredName</code> is the same as Typographic Family Name, and it corresponds to name ID 16 in the font name table.</p>
+<h3 id="Bonus-Using-fonttools-to-dump-and-inspect-font-tables"><a href="#Bonus-Using-fonttools-to-dump-and-inspect-font-tables" class="headerlink" title="Bonus: Using fonttools to dump and inspect font tables"></a>Bonus: Using fonttools to dump and inspect font tables</h3><p>Out of curiosity, and to verify Microsoft’s documentation I found a tool called fonttools which can be used to dump tables in a ttf/otf file to ttx format. This format is essentially an XML, you can open it with any text editor and inspect the content.</p>
+<p>Installation of this tool can be done through pip: <code>pip install --user fonttools</code></p>
+<p>Once installation’s finished, you can dump all the tables for a font file using <code>ttx &lt;fontfileName&gt;</code>. Note that this will result in an very large XML – roughly 120k lines. </p>
+<p>As we are only interested in the name table, the following command can be used to dump that table only: <code>ttx -t name &lt;fontFileName&gt;</code></p>
+<p>Here’s an example of the dump: </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ttFont</span> <span class="attr">sfntVersion</span>=<span class="string">&quot;\x00\x01\x00\x00&quot;</span> <span class="attr">ttLibVersion</span>=<span class="string">&quot;4.26&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">namerecord</span> <span class="attr">nameID</span>=<span class="string">&quot;0&quot;</span> <span class="attr">platformID</span>=<span class="string">&quot;3&quot;</span> <span class="attr">platEncID</span>=<span class="string">&quot;1&quot;</span> <span class="attr">langID</span>=<span class="string">&quot;0x409&quot;</span>&gt;</span></span><br><span class="line">      Copyright 2011 Google Inc. All Rights Reserved.</span><br><span class="line">    <span class="tag">&lt;/<span class="name">namerecord</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">namerecord</span> <span class="attr">nameID</span>=<span class="string">&quot;1&quot;</span> <span class="attr">platformID</span>=<span class="string">&quot;3&quot;</span> <span class="attr">platEncID</span>=<span class="string">&quot;1&quot;</span> <span class="attr">langID</span>=<span class="string">&quot;0x409&quot;</span>&gt;</span></span><br><span class="line">      Roboto Black</span><br><span class="line">    <span class="tag">&lt;/<span class="name">namerecord</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">namerecord</span> <span class="attr">nameID</span>=<span class="string">&quot;2&quot;</span> <span class="attr">platformID</span>=<span class="string">&quot;3&quot;</span> <span class="attr">platEncID</span>=<span class="string">&quot;1&quot;</span> <span class="attr">langID</span>=<span class="string">&quot;0x409&quot;</span>&gt;</span></span><br><span class="line">      Regular</span><br><span class="line">    <span class="tag">&lt;/<span class="name">namerecord</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">namerecord</span> <span class="attr">nameID</span>=<span class="string">&quot;3&quot;</span> <span class="attr">platformID</span>=<span class="string">&quot;3&quot;</span> <span class="attr">platEncID</span>=<span class="string">&quot;1&quot;</span> <span class="attr">langID</span>=<span class="string">&quot;0x409&quot;</span>&gt;</span></span><br><span class="line">      Roboto Black</span><br><span class="line">    <span class="tag">&lt;/<span class="name">namerecord</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">namerecord</span> <span class="attr">nameID</span>=<span class="string">&quot;4&quot;</span> <span class="attr">platformID</span>=<span class="string">&quot;3&quot;</span> <span class="attr">platEncID</span>=<span class="string">&quot;1&quot;</span> <span class="attr">langID</span>=<span class="string">&quot;0x409&quot;</span>&gt;</span></span><br><span class="line">      Roboto Black</span><br><span class="line">    <span class="tag">&lt;/<span class="name">namerecord</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">namerecord</span> <span class="attr">nameID</span>=<span class="string">&quot;5&quot;</span> <span class="attr">platformID</span>=<span class="string">&quot;3&quot;</span> <span class="attr">platEncID</span>=<span class="string">&quot;1&quot;</span> <span class="attr">langID</span>=<span class="string">&quot;0x409&quot;</span>&gt;</span></span><br><span class="line">      Version 2.137; 2017</span><br><span class="line">    <span class="tag">&lt;/<span class="name">namerecord</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">namerecord</span> <span class="attr">nameID</span>=<span class="string">&quot;6&quot;</span> <span class="attr">platformID</span>=<span class="string">&quot;3&quot;</span> <span class="attr">platEncID</span>=<span class="string">&quot;1&quot;</span> <span class="attr">langID</span>=<span class="string">&quot;0x409&quot;</span>&gt;</span></span><br><span class="line">      Roboto-Black</span><br><span class="line">    <span class="tag">&lt;/<span class="name">namerecord</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">namerecord</span> <span class="attr">nameID</span>=<span class="string">&quot;7&quot;</span> <span class="attr">platformID</span>=<span class="string">&quot;3&quot;</span> <span class="attr">platEncID</span>=<span class="string">&quot;1&quot;</span> <span class="attr">langID</span>=<span class="string">&quot;0x409&quot;</span>&gt;</span></span><br><span class="line">      Roboto is a trademark of Google.</span><br><span class="line">    <span class="tag">&lt;/<span class="name">namerecord</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">namerecord</span> <span class="attr">nameID</span>=<span class="string">&quot;9&quot;</span> <span class="attr">platformID</span>=<span class="string">&quot;3&quot;</span> <span class="attr">platEncID</span>=<span class="string">&quot;1&quot;</span> <span class="attr">langID</span>=<span class="string">&quot;0x409&quot;</span>&gt;</span></span><br><span class="line">      Google</span><br><span class="line">    <span class="tag">&lt;/<span class="name">namerecord</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">namerecord</span> <span class="attr">nameID</span>=<span class="string">&quot;11&quot;</span> <span class="attr">platformID</span>=<span class="string">&quot;3&quot;</span> <span class="attr">platEncID</span>=<span class="string">&quot;1&quot;</span> <span class="attr">langID</span>=<span class="string">&quot;0x409&quot;</span>&gt;</span></span><br><span class="line">      Google.com</span><br><span class="line">    <span class="tag">&lt;/<span class="name">namerecord</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">namerecord</span> <span class="attr">nameID</span>=<span class="string">&quot;12&quot;</span> <span class="attr">platformID</span>=<span class="string">&quot;3&quot;</span> <span class="attr">platEncID</span>=<span class="string">&quot;1&quot;</span> <span class="attr">langID</span>=<span class="string">&quot;0x409&quot;</span>&gt;</span></span><br><span class="line">      Christian Robertson</span><br><span class="line">    <span class="tag">&lt;/<span class="name">namerecord</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">namerecord</span> <span class="attr">nameID</span>=<span class="string">&quot;13&quot;</span> <span class="attr">platformID</span>=<span class="string">&quot;3&quot;</span> <span class="attr">platEncID</span>=<span class="string">&quot;1&quot;</span> <span class="attr">langID</span>=<span class="string">&quot;0x409&quot;</span>&gt;</span></span><br><span class="line">      Licensed under the Apache License, Version 2.0</span><br><span class="line">    <span class="tag">&lt;/<span class="name">namerecord</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">namerecord</span> <span class="attr">nameID</span>=<span class="string">&quot;14&quot;</span> <span class="attr">platformID</span>=<span class="string">&quot;3&quot;</span> <span class="attr">platEncID</span>=<span class="string">&quot;1&quot;</span> <span class="attr">langID</span>=<span class="string">&quot;0x409&quot;</span>&gt;</span></span><br><span class="line">      http://www.apache.org/licenses/LICENSE-2.0</span><br><span class="line">    <span class="tag">&lt;/<span class="name">namerecord</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">namerecord</span> <span class="attr">nameID</span>=<span class="string">&quot;16&quot;</span> <span class="attr">platformID</span>=<span class="string">&quot;3&quot;</span> <span class="attr">platEncID</span>=<span class="string">&quot;1&quot;</span> <span class="attr">langID</span>=<span class="string">&quot;0x409&quot;</span>&gt;</span></span><br><span class="line">      Roboto</span><br><span class="line">    <span class="tag">&lt;/<span class="name">namerecord</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">namerecord</span> <span class="attr">nameID</span>=<span class="string">&quot;17&quot;</span> <span class="attr">platformID</span>=<span class="string">&quot;3&quot;</span> <span class="attr">platEncID</span>=<span class="string">&quot;1&quot;</span> <span class="attr">langID</span>=<span class="string">&quot;0x409&quot;</span>&gt;</span></span><br><span class="line">      Black</span><br><span class="line">    <span class="tag">&lt;/<span class="name">namerecord</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">ttFont</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="References-and-further-readings"><a href="#References-and-further-readings" class="headerlink" title="References and further readings"></a>References and further readings</h3><p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/typography/opentype/spec/name">https://docs.microsoft.com/en-us/typography/opentype/spec/name</a><br><a target="_blank" rel="noopener" href="https://github.com/foliojs/fontkit">https://github.com/foliojs/fontkit</a><br><a target="_blank" rel="noopener" href="https://github.com/fonttools/fonttools">https://github.com/fonttools/fonttools</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en,zh-Hans,default">
+    <link itemprop="mainEntityOfPage" href="http://kevinsj.github.io/2021/07/10/Advanced-VirtualBox-Auto-start-virtualbox-on-Windows/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="KevinSJ">
+      <meta itemprop="description" content="A blog about all things tech.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/07/10/Advanced-VirtualBox-Auto-start-virtualbox-on-Windows/" class="post-title-link" itemprop="url">Advanced VirtualBox: Auto start virtual machine on Windows</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 07-10-2021 12:18:14" itemprop="dateCreated datePublished" datetime="2021-07-10T12:18:14+12:00">07-10-2021</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 08-08-2021 16:00:15" itemprop="dateModified" datetime="2021-08-08T16:00:15+12:00">08-08-2021</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>I’ve always considered myself to be an advanced computer user, but I’m not a Windows person, at least not when I’m coding. So when I got a Windows 10 laptop as a daily work machine, I’m beyond disappointed. Luckily, there’s always a way around – VirtualBox it is. The laptop I got was powerful enough that I was able to allocate 16GB of memory as well as 3 cores of the host machine to the virtual machine.</p>
+<p>Once I had my vm setup, I always use Windows Terminal and SSH into the machine for development. One day, it occurs to me I can (and should) automate all of this. </p>
+<h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h3><p>Automatically start the selected VirtualBox virtual machine in <strong>headless</strong> mode (this can save a bit of resources), wait for the machine to boot, and then SSH into the VM using Windows Terminal with selected port forwarding on the host and virtual machine.</p>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p>This is not something that can be achieved in one go, therefore I’m going to breakdown by components: </p>
+<ul>
+<li>Virtual machine – Assuming Systemd based Linux distro<ul>
+<li>We need to disable the graphical login interface for the VM. To achieve this, we can do <code>systemctl set-default multi-user.target </code>. If we need to revert back to graphical login, we can do <code>systemctl set-default graphical.target</code>. The multi-user.target and graphical.target are equivalent to what was traditionally known as run levels in SystemV.</li>
+<li>We also need to setup the necessary SSH access from the Windows 10 host machine to the virtual machine. I won’t cover that here. Only thing to keep in mind is to open the necessary ports.</li>
+</ul>
+</li>
+<li>Host machine – need to setup batch script, Windows Terminal profile and Window startup <ul>
+<li>Batch script<ul>
+<li>What we need to achieve in the batch script is start the machine and wait for it to boot. Fortunately, virtualbox installation comes with something that can achieve this, it is called VBoxmanage.exe and is in the VirtualBox installation folder</li>
+<li>To start the virtual machine, the command will be <code>&quot;C:\Program Files\VirtualBox\VboxManage.exe&quot; startvm [VM name] --type headless</code>. Change the command with your VM name, the <code>--type headless</code> means that no GUI of the virtual machine will be started at all.</li>
+<li>Next step is to wait for the machine to start up, the command for this will be <code>&quot;C:\Program Files\VirtualBox\VboxManage.exe&quot; wait &quot;[VM name]&quot; &quot;/VirtualBox/GuestInfo/OS/NoLoggedInUsers&quot;</code></li>
+<li>Last step for the batch script will be <code>wt</code>, which represents windows terminal.</li>
+<li>To put it together, the batch script will be <figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line">&quot;C:\Program Files\VirtualBox\VboxManage.exe&quot; startvm [VM name] --<span class="built_in">type</span> headless</span><br><span class="line">&quot;C:\Program Files\VirtualBox\VboxManage.exe&quot; wait &quot;[VM name]&quot; &quot;/VirtualBox/GuestInfo/OS/NoLoggedInUsers&quot;</span><br><span class="line">wt</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>Windows terminal profile<ul>
+<li>Create a profile in Windows terminal, this can be done from either the UI or the json setting file.</li>
+<li>Here, I will present the profile I use personally: <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;bellStyle&quot;</span>: <span class="string">&quot;visual&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;colorScheme&quot;</span>: <span class="string">&quot;Tango Dark&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;commandline&quot;</span>: <span class="string">&quot;ssh -R 5432:localhost:5432 -L 8080:[::1]:8080 -L 3000:[::1]:3000 -t username@vm_ip_address &quot;</span>exec zsh -l<span class="string">&quot;&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;VM&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;scrollbarState&quot;</span>: <span class="string">&quot;hidden&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>It is obvious the commandline part is a bit bloated cause I was trying to do a bit too much in one go. Actually, it is a lot cleaner to put the command in a batch file and this line can be replaced by the path to that specific batch file as well.</li>
+</ul>
+</li>
+<li>Windows Auto Start<ul>
+<li>Press Windows+R and type <code>shell:startup</code>, this will bring up a folder called “StartUp” where you can put a bunch of things that you want to auto start when Windows starts.</li>
+<li>Drag the Batch script created into this folder to create a shortcut.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>After these setup, Windows will now start the virtual machine every time you start your computer.</p>
+<h3 id="Bonus-shutdown-VM-in-one-click"><a href="#Bonus-shutdown-VM-in-one-click" class="headerlink" title="Bonus: shutdown VM in one click"></a>Bonus: shutdown VM in one click</h3><p>The same aforementioned VboxManage.exe can be used to poweroff the virtual machine as well. You can achieve that by creating a batch file with the following content: </p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line">&quot;C:\Program Files\Oracle\VirtualBox\VBoxManage.exe&quot; controlvm DEV_MACHINE poweroff</span><br></pre></td></tr></table></figure>
+
+<p>You can also halt or save the state of the VM rather than poweroff. More information on this can be found in the virtualbox manual.</p>
+<h3 id="Further-readings"><a href="#Further-readings" class="headerlink" title="Further readings"></a>Further readings</h3><p><a target="_blank" rel="noopener" href="https://www.virtualbox.org/manual/ch08.html">VirualBox manual on VboxManage</a><br><a target="_blank" rel="noopener" href="https://www.freedesktop.org/software/systemd/man/systemd.special.html">Systemd manual on special units</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en,zh-Hans,default">
+    <link itemprop="mainEntityOfPage" href="http://kevinsj.github.io/2021/06/30/IELTS-exam-and-experience/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="KevinSJ">
+      <meta itemprop="description" content="A blog about all things tech.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/06/30/IELTS-exam-and-experience/" class="post-title-link" itemprop="url">IELTS exam and experience</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 06-30-2021 21:13:50" itemprop="dateCreated datePublished" datetime="2021-06-30T21:13:50+12:00">06-30-2021</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 07-10-2021 12:15:14" itemprop="dateModified" datetime="2021-07-10T12:15:14+12:00">07-10-2021</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Though this is technically a tech blog where I usually put my thoughts and learnings regarding technologies, I still would like to share some of my experience with taking the IELTS exam which is about a month ago. </p>
+<p><strong>Please note that the author is in no way affiliate with the websites and/or services mentioned below, use of these software and/or services is at the sole discretion of the reader</strong></p>
+<h3 id="Why-I-choose-to-take-IELTS"><a href="#Why-I-choose-to-take-IELTS" class="headerlink" title="Why I choose to take IELTS"></a>Why I choose to take IELTS</h3><p>To be honest, my current status does not require me to take the IELTS exam. Though after some consideration, I have decided to take the exam and see if I can benefit from extra immigration points by taking the IELTS exam. My goal is reaching 8 in listening and 7 in all other sections. I made the decision to take the exam on the night of May 22nd, 2021. I took the exam on June 13th, 2021. The preparation time is around 21 days.</p>
+<h3 id="Preparation"><a href="#Preparation" class="headerlink" title="Preparation"></a>Preparation</h3><p>I have a day job, so my preparation time on working days was quite limited. I usually get home at around 6pm. My dinner and routine exercise finishes at 8pm. So my preparation for IELTS starts at 8:15pm to 8:30pm. </p>
+<p>The list of tools and/or books I used are listed below: </p>
+<ul>
+<li><p>Road to IELTS<br>  This is an comprehensive tool that can be used to prepare for both the academic and the general training version of the exam. It was offered for free at my local public library. I’m very greatful to my local library for offering such an invaluable service, it helped me quite a lot.<br>  As for using this tool, different people may have different ideas. I used this mainly as a training tool to familiarize myself with the listening and reading part on computer-based IELTS exam. In this system, there are 10 mock exams for each part of the IELTS exam which is what I used most for listening and reading. I alternate between Reading and Listening on each working day, spending around 1 to 1.5 hours on this.<br>  There are mini practice sections for each parts as well, this was mainly to educate test takers on different kind of formats for the listening and speaking test. As this is not my first time taking the IELTS exam, I skip most of them. But I can see how they are helpful for those who are taking IELTS for the first time.<br>  The difficulty level on the mock exams are actually a bit higher than the actual exam, it could be because the mocked test delivery system is not smart enough and misses out correct answer sometimes. As a reference, I usually get around 33 correct in the Listening section, which translates to about 6.5. I got 9 in the actual IELTS exam for the listening. For the reading part, I usually get around 32 correct which is also 6.5, while in my actual IELTS test, I got 8.5.<br>  For writing and speaking, it is also practical to use the mocked exams, the only caveate is that no one will grade thsoe. I would suggest at least read through the sample exam essays provided, and try to follow the structure and learn some good words from the essay. For speaking, I don’t feel like you can improve your speaking skills in a short time, but the mock exams offered is still helpful.</p>
+</li>
+<li><p>Writing 9<br>  This is a paid service that’s offered at 12 USD per month. I found it quite helpful, cause you can actually mock a writing exam with it. I did around 3 to 4 essays on it and get around 6.5 each. The thing I like about this tool is that it can spot your spelling mistakes among other things.</p>
+</li>
+<li><p>Simon’s writing course<br>  This is one of the courses that I definitely recommend watching. This course had helped me a lot in achieving the score of 7 on writing. To summarize on what I had learnt from this course: IELTS writing is not only about good use of words, but also about organizing the structure of the essay logically. I do think the latter what I used to ignore. In my first IELTS exam taken at 2011 (at that time, I took the Acacdemic version) I only got 5.5 in IELTS writing, and 10 years later, I got 7 for the general training version.</p>
+</li>
+<li><p>IELTS Band 9 Vocab Secrets by Caambridge Consultants<br>  This book contains loads of good examples about usage of good words in either reading and writing. I highly recommend reading through the whole book at least once and practice using the word examples given in the book.</p>
+</li>
+</ul>
+<h3 id="Exam-tips"><a href="#Exam-tips" class="headerlink" title="Exam tips"></a>Exam tips</h3><p>For me, this is my first time taking the computer-based IELTS exam. I would like to share some tips that I think other candidates may find useful: </p>
+<ul>
+<li>Listening<ul>
+<li>From my experience on taking both the mocked and the actual exam, Computer-based listening test is a bit more difficult than paper-based ones. There are several reasons for this: <ul>
+<li>In computer based exam, you will not be given time to transfer your answers from the exam paper to the answer sheet. Instead, you will only be given 2 minutes to check for all the answers at the end of the listening test. This means that you may not have enough time to check for some easily identifiable mistakes like typos, singular/plural forms or tense problems. So when you practice, keep this in mind, and try to avoid them as much as possible.</li>
+<li>You will have to type and listen and the same time in computer based exam. I guess this is quite obvious, it might not be a big problem but keep in mind that in the IELTS exam, you are under considerable stress, for non-native speakers, it may be a bit difficult.</li>
+</ul>
+</li>
+<li>Highlighting is important in listening test. For me, this is how I achieved Band 9 in listening – I highlight things I think are important. In computer based exams, highlighting will help you focus on the keywords and in my experience, I feel more confident when I highlight things.</li>
+</ul>
+</li>
+<li>Reading: <ul>
+<li>Highlighting, again. Highlighting is also important in reading. I’m glad that the testing system provides a way to highlight in reading, it is really helpful and mimics the paper exam well.</li>
+<li>Try to use the color settings to avoid eye strain. The computer delivered IELTS exam have settings to change the background color of the exam. To me, this is really helpful. I changed the background color from white to a bit more yellowish. This causes less eye strain and helped me focus on the exam better.</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en,zh-Hans,default">
+    <link itemprop="mainEntityOfPage" href="http://kevinsj.github.io/2021/05/09/Postgres-JavaScript-and-sorting/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="KevinSJ">
+      <meta itemprop="description" content="A blog about all things tech.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/09/Postgres-JavaScript-and-sorting/" class="post-title-link" itemprop="url">Postgres, JavaScript and sorting</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 05-09-2021 13:00:12 / Modified: 13:07:18" itemprop="dateCreated datePublished" datetime="2021-05-09T13:00:12+12:00">05-09-2021</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>This week, while setting up local project for work, I encountered some weired issue during the unit test and this has something to do with postgres and its default settings under Windows and other OS.</p>
+<h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h3><p>As an example, consider the following array: <code>[ &#39;D&#39;, &#39;d&#39;, &#39;a&#39;, &#39;A&#39;, &#39;c&#39;, &#39;b&#39;, &#39;CD&#39;, &#39;Capacitor&#39; ]</code></p>
+<p>Sorting this in JavaScript results in case sensitive result, where upper case always come first: </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; [ <span class="string">&#x27;D&#x27;</span>, <span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;A&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;CD&#x27;</span>, <span class="string">&#x27;Capacitor&#x27;</span> ].sort()</span><br><span class="line">[ <span class="string">&quot;A&quot;</span>, <span class="string">&quot;CD&quot;</span>, <span class="string">&quot;Capacitor&quot;</span>, <span class="string">&quot;D&quot;</span>, <span class="string">&quot;a&quot;</span>, <span class="string">&quot;b&quot;</span>, <span class="string">&quot;c&quot;</span>, <span class="string">&quot;d&quot;</span> ]</span><br></pre></td></tr></table></figure>
+<p>Sorting this in Postgres SQL with default installation will yield a case insensitive sorting where upper and lower case are mixed:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> regexp_split_to_table(<span class="string">&#x27;D d a A c b CD Capacitor&#x27;</span>, <span class="string">&#x27; &#x27;</span>) <span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"> regexp_split_to_table </span><br><span class="line"><span class="comment">-----------------------</span></span><br><span class="line"> a</span><br><span class="line"> A</span><br><span class="line"> b</span><br><span class="line"> c</span><br><span class="line"> Capacitor</span><br><span class="line"> CD</span><br><span class="line"> d</span><br><span class="line"> D</span><br></pre></td></tr></table></figure>
+
+<p>The goal here is to make sorting consistent, so we can either fix the Postgres side or fix the JavaScript side.</p>
+<h3 id="Investigation"><a href="#Investigation" class="headerlink" title="Investigation"></a>Investigation</h3><p>Looking carefully at each of these results, it is not difficult to realize that the sorting in JavaScript is based on ASCII, i.e. character <code>A</code> has an ASCII code of 32 where as <code>a</code> has ASCII code of 97, so <code>A</code> comes first. This <strong>IS NOT</strong> the proper way to do string sorting in JavaScript.</p>
+<p>For the result that Postgres gave, it is a bit more complex. Postgres uses <code>LC_COLLATE</code> to determine the sort order of the array.This variable comes from the system and different OS have different implementation, when using locale <code>C</code> or <code>POSIX</code>, strings are sorted according to their ASCII value, any other locales will result in a case insensitive result.</p>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p>Here comes the solution part, as mentioned earlier, we can either fix the JavaScript or fix the Postgres, so I’ll present the solutions separately.</p>
+<p>There are several ways to make the sorting case insensitive in JavaScript: </p>
+<ul>
+<li><p><code>[ &#39;D&#39;, &#39;d&#39;, &#39;a&#39;, &#39;A&#39;, &#39;c&#39;, &#39;b&#39;, &#39;CD&#39;, &#39;Capacitor&#39; ].sort((a,b) =&gt; a.localeCompare(b))</code><br>This uses localeCompare from string prototype which have some performance implication on larger array.</p>
+</li>
+<li><p><code>[ &#39;D&#39;, &#39;d&#39;, &#39;a&#39;, &#39;A&#39;, &#39;c&#39;, &#39;b&#39;, &#39;CD&#39;, &#39;Capacitor&#39; ].sort(new Intl.Collator(&#39;en_us&#39;).compare)</code><br>This is the recommended by MDN to sort larger arrays.</p>
+</li>
+</ul>
+<p>For Postgres, the first thing that needs to be noted is that Postgres recommends against using locales if it can be avoided, from their documentation: </p>
+<blockquote>
+<p>The drawback of using locales other than C or POSIX in PostgreSQL is its performance impact. It slows character handling and prevents ordinary indexes from being used by LIKE. For this reason use locales only if you actually need them. </p>
+</blockquote>
+<p>The one-off way to fix the sorting is by specifiying the <code>LC_COLLATE</code> value when creating the database, for example: </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> DATABASE db </span><br><span class="line">    <span class="keyword">WITH</span> TEMPLATE <span class="operator">=</span> template0 </span><br><span class="line">    ENCODING <span class="operator">=</span> <span class="string">&#x27;UTF8&#x27;</span> </span><br><span class="line">    LC_COLLATE <span class="operator">=</span> <span class="string">&#x27;C&#x27;</span> </span><br><span class="line">    LC_CTYPE <span class="operator">=</span> <span class="string">&#x27;C&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<p>The created database (db in this case) will use <code>C</code> as <code>LC_COLLATE</code> overriding the default <code>LC_COLLATE</code> value from the OS. With the new database created, you easily verify it will sort in a case sensitive way by the ASCII value once you connect to the database and run the query presented previously.</p>
+<p>This one-off way is good enough only if you care about creating such database once. Imaging next time you create a new database, you will still have to manually override the <code>LC_COLLATE</code> value. So the way to go is to modify the template database, because <code>LC_COLLATE</code> can’t be changed once the database has been created, we will have to create a new database and set it as template. </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">--- Unset template1 as template before dropping</span></span><br><span class="line">UPDATE pg_database </span><br><span class="line">    <span class="keyword">SET</span> datistemplate<span class="operator">=</span><span class="string">&#x27;false&#x27;</span> </span><br><span class="line">    <span class="keyword">WHERE</span> datname<span class="operator">=</span><span class="string">&#x27;template1&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">--- Create a new database that uses C as locale</span></span><br><span class="line"><span class="keyword">CREATE</span> DATABASE template1 </span><br><span class="line">    IS_TEMPLATE <span class="literal">true</span> </span><br><span class="line">    ENCODING <span class="operator">=</span> <span class="string">&#x27;UTF8&#x27;</span> </span><br><span class="line">    LC_COLLATE <span class="operator">=</span> <span class="string">&#x27;C&#x27;</span> </span><br><span class="line">    LC_CTYPE <span class="operator">=</span> <span class="string">&#x27;C&#x27;</span> </span><br><span class="line">    CONNECTION LIMIT <span class="operator">=</span> <span class="number">-1</span> </span><br><span class="line">    TEMPLATE template0;</span><br><span class="line"></span><br><span class="line"><span class="comment">--- Create a new databse now should have C as locale.</span></span><br><span class="line"><span class="keyword">CREATE</span> DATABASE db3;</span><br><span class="line"></span><br><span class="line"><span class="comment">--- Should return C </span></span><br><span class="line"><span class="keyword">SHOW</span> lc_collate;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>Another way to do this, is to initialize the database cluster with C locale as below: </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chown -R postgres:postgres /var/lib/postgres/</span><br><span class="line">su - postgres -c &quot;initdb --locale C -D &#x27;/var/lib/postgres/data&#x27;&quot;</span><br></pre></td></tr></table></figure>
+<p>this will create template database with C locale.</p>
+<h3 id="Takeaways"><a href="#Takeaways" class="headerlink" title="Takeaways"></a>Takeaways</h3><p>String sorting with the default method in JavaScript and most other languages is merely a comparsion based on the ASCII code, this results in upper case letters always comes first.</p>
+<p>String sorting in PostgreSQL depends on the <code>LC_COLLATE</code> setting of the table which depends on the setting of the operating system, default sorting will yield results that mixes upper case and lower case, in other words, sorting is <strong>not</strong> case sensitive. There are many ways to get case sensitive sorting, but the most reliable way should be specifiying the <code>LC_COLLATE</code> when creating the database.</p>
+<h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://www.postgresql.org/docs/13/locale.html">https://www.postgresql.org/docs/13/locale.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare</a></li>
+<li><a target="_blank" rel="noopener" href="https://dba.stackexchange.com/questions/106964/why-is-my-postgresql-order-by-case-insensitive">Stackexchange question</a></li>
+<li><a target="_blank" rel="noopener" href="https://wiki.postgresql.org/wiki/FAQ#Why_do_my_strings_sort_incorrectly.3F">Postgres FAQ</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en,zh-Hans,default">
+    <link itemprop="mainEntityOfPage" href="http://kevinsj.github.io/2021/04/17/Android-ADB-and-user-management/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="KevinSJ">
+      <meta itemprop="description" content="A blog about all things tech.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/17/Android-ADB-and-user-management/" class="post-title-link" itemprop="url">Android ADB and user management</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 04-17-2021 16:24:17 / Modified: 17:26:25" itemprop="dateCreated datePublished" datetime="2021-04-17T16:24:17+12:00">04-17-2021</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>⚠ This article requires Rooted Android phones, please follow the instructions with caution.</p>
+<h3 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h3><p>Since Android 5, the Android system have added the capability of multi-user, the aim is most likely to make sharing devices easier between different users in the family. Later on, Google added again something called profile, this allows enterprise to manage devices their employers use. In this article, I am going to explore some other possibilities enabled by multiuser/profile functionality. More specifically I’m going to focus on the restricted user profile. </p>
+<h3 id="Problem-to-Solve"><a href="#Problem-to-Solve" class="headerlink" title="Problem to Solve"></a>Problem to Solve</h3><p>There are several problems I’m aiming to solve with the restricted profile: </p>
+<ul>
+<li>I want to focus on things that actually matter rather than spending too much time on my phone, I would like my phone to be without any apps that can disturb or distract me when I want to focus. But I don’t want to uninstall certain apps, as they are necessary in order to keep in touch with my family and friends.</li>
+<li>I want to install certain apps that can track me into a separate space, a space where it is impossible for them to track me using the microphone, camera, or location.</li>
+</ul>
+<h3 id="Solutions"><a href="#Solutions" class="headerlink" title="Solutions"></a>Solutions</h3><p>Well, as an Android user that also owns an iOS device, I have to say Apple have done a good job in many of the things I mentioned above. For example, my first problem can be solved in the iOS setting natively. Android does have something similar called digital wellbeing, but since it is from Google, I’m not that comfortable installing it on to my phone. </p>
+<p>Anyway, I feel like the restricted profile is still a good solution to my problem on Android.</p>
+<h3 id="How-to"><a href="#How-to" class="headerlink" title="How to?"></a>How to?</h3><p>So in Android shell, there’s something called pm. This command can be used to create a new user.<br>Here is part of the help doc that I’m interested in:</p>
+<p><code>create-user [--profileOf USER_ID] [--managed] [--restricted] [--ephemeral] [--guest] USER_NAME         Create a new user with the given USER_NAME, printing the new user identifier of the user.</code></p>
+<p>That is, command <code>pm create-user</code> can be used to create user on your Android phone. Assuming you have access to Android adb, issuing<br><code>adb shell pm create-user --restricted test</code> will create a user named test with restricted profile, the command will show the userid of the newly created user, will be referenced as <code>$userId</code> in the following.</p>
+<p>Once the user has been created, you can manage the list of the users it will have access to in the settings, this is in Settings/Multi-user. </p>
+<p>To me, I want impose more restrictions on the user, there is indeed a way to do so:</p>
+<p><code>adb shell su -c &#39;pm set-user-restriction --user USER_ID no_install_apps 1&#39;</code> – this will disallow install apps for the newly created profile, in this case <strong>no_install_apps</strong> is the name of the restriction, while the ** 1** immidiately follow is a boolean representing whether the restriction is enabled. (This command assumes you use Magsik as su)</p>
+<p>You can find a list of restrictions available from Google’s official <a target="_blank" rel="noopener" href="https://developer.android.com/reference/android/os/UserManager#constants_1">document</a>. Take note of the <code>Constant Value</code> in the document, that’s the restriction value you need to use.</p>
+<p>If you want to see what restriction you’ve added, you can issue <code>adb shell dumpsys user</code>, this command will dump all the users on the current device and the restrictions if any.</p>
+<p>To switch to a different user, you can use <code>am switch-user USER_ID</code> or do so from the UI.</p>
+<p>The easiest way to delete an user is through the settings menu. Though you can also do so through the command: <code>pm remove-user USER_ID</code></p>
+<h3 id="Caveat"><a href="#Caveat" class="headerlink" title="Caveat"></a>Caveat</h3><p>There are several issues that need to be taken into consideration when using a restricted profile: </p>
+<ol>
+<li>You will not have access to any of the files in the primary account, this is a big issue if you have social media apps installed on this account and want to upload image from the primary account.</li>
+<li>You will not have Google account access or root access. Most people will be okay with this, but it is a bit troublesome at times.</li>
+<li>Remember to switch the profile back, when you no longer need to be in the restricted one. For example, if you leave your restricted profile on overnight, you will not have an alarm clock if you don’t set it up correctly.</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://kevinsj.github.io/2021/02/27/Terraform-version-constraint-and-debugging/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="KevinSJ">
+      <meta itemprop="description" content="A blog about all things tech.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/02/27/Terraform-version-constraint-and-debugging/" class="post-title-link" itemprop="url">Terraform, Version Constraint and Debugging</a>
         </h2>
 
         <div class="post-meta">
@@ -217,7 +827,8 @@
 </ul>
 <p>Due to the urgency of getting the pipeline and deployment back online, I chose the downgrading route. Essentially, I’m adding the version constraint to the Kubernetes provider that was previously missing:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">kubernetes &#x3D; &#123;</span><br><span class="line">  source  &#x3D; &quot;registry.terraform.io&#x2F;hashicorp&#x2F;kubernetes&quot;</span><br><span class="line">  version &#x3D; &quot;~&gt; 1.0&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Adding in the version constraint means that Terraform will only increase the <strong><em>rightmost</em></strong> version number, therefore it will not be able to upgrade to version 2.0.0 automatically and can avoid this specific problem that was caused by breaking changes.</p>
+
+<p>Adding in the version constraint means that Terraform will only increase the <em><strong>rightmost</strong></em> version number, therefore it will not be able to upgrade to version 2.0.0 automatically and can avoid this specific problem that was caused by breaking changes.</p>
 <h3 id="Takeaways"><a href="#Takeaways" class="headerlink" title="Takeaways"></a>Takeaways</h3><p>On debugging:</p>
 <ul>
 <li>Generally speaking, if you found your Terraform changed behavior without you making any changes, you could be making the same mistake as I did: not specifying the version constraint for the provider. You can find some clues in your <code>terraform init</code> command, for example, by comparing if the same provider version was used on the two builds where one was successful, the other failed.</li>
@@ -347,10 +958,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 01-24-2021 14:29:55 / Modified: 14:35:30" itemprop="dateCreated datePublished" datetime="2021-01-24T14:29:55+13:00">01-24-2021</time>
+              <time title="Created: 01-24-2021 14:29:55" itemprop="dateCreated datePublished" datetime="2021-01-24T14:29:55+13:00">01-24-2021</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 03-06-2022 18:05:39" itemprop="dateModified" datetime="2022-03-06T18:05:39+13:00">03-06-2022</time>
+              </span>
 
           
 
@@ -381,7 +998,7 @@
 <li>First, install packages that are necessary to setup extroot:<br><code>opkg update &amp;&amp; opkg install block-mount kmod-fs-ext4 kmod-usb-storage e2fsprogs kmod-usb-ohci kmod-usb-uhci fdisk</code></li>
 <li>In my case I use f2fs for my extroot, which means I need extra packages, like mkf2fs to format the flash.</li>
 <li>Now, format the device you plan to use for extroot, in my case, I ran <code>mkf2fs /dev/sda1</code> cause the sda2 was used as swap.</li>
-<li>At this point, copy the overlay to the newly formatted drive<br>  <code>mkdir -p /tmp/introot    mkdir -p /tmp/extroot    mount --bind / /tmp/introot    mount /dev/sda1 /tmp/extroot    tar -C /tmp/introot -cvf - . | tar -C /tmp/extroot -xf -    umount /tmp/introot    umount /tmp/extroot</code></li>
+<li>At this point, copy the overlay to the newly formatted drive<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /tmp/introot</span><br><span class="line">mkdir -p /tmp/extroot</span><br><span class="line">mount --<span class="built_in">bind</span> / /tmp/introot</span><br><span class="line">mount /dev/sda1 /tmp/extroot</span><br><span class="line">tar -C /tmp/introot -cvf - . | tar -C /tmp/extroot -xf -</span><br><span class="line">umount /tmp/introot</span><br><span class="line">umount /tmp/extroot</span><br></pre></td></tr></table></figure></li>
 <li>Regenerate fstab using <code>block detect &gt; /etc/config/fstab;</code></li>
 <li>Reboot</li>
 <li>You should have a working Openwrt with extroot now. Change opkg/distfeeds.conf to the corresponding upgraded version.</li>
@@ -394,562 +1011,19 @@
 <h3 id="Post-installation-More-as-a-personal-note"><a href="#Post-installation-More-as-a-personal-note" class="headerlink" title="Post installation (More as a personal note):"></a>Post installation (More as a personal note):</h3><ul>
 <li>Remove odhcpd-ipv6only package and install odhcpd, this will ensure IPv4 dhcp functionality, otherwise, there will only be ipv6 addresses allocated.</li>
 </ul>
+<h3 id="November-2021-Update-Updating-to-Openwrt-21-02"><a href="#November-2021-Update-Updating-to-Openwrt-21-02" class="headerlink" title="November 2021 Update: Updating to Openwrt 21.02"></a>November 2021 Update: Updating to Openwrt 21.02</h3><p>I upgraded Openwrt version 21.02 branch in September of this year. It wasn’t as easy as I had thought, but I had the problem solved after all. In release 21.02, Openwrt introduced what’s called <a target="_blank" rel="noopener" href="https://www.kernel.org/doc/html/latest/networking/dsa/dsa.html">DSA</a> or Distributed Switch Architecture for this WRT1200AC device. To be honest, it is counter-intuitive to setup but it seems to be a more standard way when compared to the previous configuration.</p>
+<p>The part that I have problem with is mostly the VLAN tagging. My network ISP requires tagged VLAN to be able to use the network, so for Openwrt, I will have to tag the WAN port with the VLAN id. I was able to get around it with the following block: </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">config device</span><br><span class="line">        option name &#39;wan&#39;</span><br><span class="line">        option macaddr &#39;&lt;MAC_ADDRESS&gt;&#39;</span><br><span class="line">config interface &#39;wan&#39;</span><br><span class="line">        option device &#39;wan.10&#39;</span><br><span class="line">        option proto &#39;pppoe&#39;</span><br><span class="line">        option username &#39;&lt;PPPOE_USERNAME&gt;&#39;</span><br><span class="line">        option ipv6 &#39;1&#39;</span><br><span class="line">        option peerdns &#39;0&#39;</span><br><span class="line">        option password &#39;&lt;PPPOE_PASSWORD&gt;&#39;</span><br><span class="line">        list dns &#39;127.0.0.1&#39;</span><br><span class="line">config interface &#39;wan6&#39;</span><br><span class="line">        option proto &#39;dhcpv6&#39;</span><br><span class="line">        option reqaddress &#39;try&#39;</span><br><span class="line">        option reqprefix &#39;auto&#39;</span><br><span class="line">        option peerdns &#39;0&#39;</span><br><span class="line">        list dns &#39;::1&#39;</span><br><span class="line">        option device &#39;@wan</span><br></pre></td></tr></table></figure>
 
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en,zh-Hans,default">
-    <link itemprop="mainEntityOfPage" href="http://kevinsj.github.io/2020/12/26/Automating-Zoom-with-Alfred-and-Apple-Scripts/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="KevinSJ">
-      <meta itemprop="description" content="A blog about all things tech.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/12/26/Automating-Zoom-with-Alfred-and-Apple-Scripts/" class="post-title-link" itemprop="url">Automating Zoom with Alfred and Apple Scripts</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 12-26-2020 22:55:59" itemprop="dateCreated datePublished" datetime="2020-12-26T22:55:59+13:00">12-26-2020</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 12-28-2020 12:33:14" itemprop="dateModified" datetime="2020-12-28T12:33:14+13:00">12-28-2020</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Like it or not, 2020 has been a year where video conference are used a lot. For me, most of the meetings happens in Zoom. Finding the link to the meeting in the calendar and then clicking on it to join the meeting had gradually become a new norm and something I really don’t like (the fact that after clicking on the Zoom link brings up your browser instead of Zoom itself, and prompting you to click again to open Zoom is really a pain). As someone who would like to automate things as much as possible, I did eventually find a solution that works for me albeit several third party tools are required.</p>
-<h3 id="Problem-Statement-Automatically-join-a-Zoom-call-for-a-meeting-scheduled-in-calendar-without-user-interaction-on-MacOS-X"><a href="#Problem-Statement-Automatically-join-a-Zoom-call-for-a-meeting-scheduled-in-calendar-without-user-interaction-on-MacOS-X" class="headerlink" title="Problem Statement: Automatically join a Zoom call for a meeting scheduled in calendar without user interaction (on MacOS X)."></a>Problem Statement: Automatically join a Zoom call for a meeting scheduled in calendar without user interaction (on MacOS X).</h3><h3 id="Prerequisite"><a href="#Prerequisite" class="headerlink" title="Prerequisite:"></a>Prerequisite:</h3><ul>
-<li><a target="_blank" rel="noopener" href="https://www.alfredapp.com/">Alfred</a><br>  (Unclear if you need to be a paid user to create custom workflows, the author is a paid user)</li>
-<li><a target="_blank" rel="noopener" href="https://github.com/zerowidth/zoom-calendar.alfredworkflow">zoom-calendar.alfredworkflow</a><br>  (Yep, I found this alfred workflow by chance and based my work and this blog on this workflow, it is very handy and I would really like thank the author for creating this.)</li>
-<li>Automator<br>  (The builtin automation app in MacOS from Apple)</li>
-</ul>
-<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution:"></a>Solution:</h3><p>Assume you have already installed the Alfred App, you will need to go to <a target="_blank" rel="noopener" href="https://github.com/zerowidth/zoom-calendar.alfredworkflow">this</a> Github Repo, follow the instructions given and install the Alfred workflow.</p>
-<p>Once the workflow has been installed, we need to do some tweaking. Add an external trigger to this workflow and give it an id of ‘Automator’</p>
-<p>Now, open up Automator, choose the Calendar Alarm workflow as shown in the screenshot below:<br><img src="/2020/12/26/Automating-Zoom-with-Alfred-and-Apple-Scripts/automator-1.png"></p>
-<p>Copy and paste the following code to the calendar alarm:</p>
-<script src="https://gist.github.com/KevinSJ/bd11057c5d6f0fddc7abb38bdf7844b3.js"></script>
-
-<p>Now comes tricky part. You would first need to export your calendar from the cloud, export from Google Calendar Website or whatever calendar you are using. </p>
-<p>Then open up your Calendar app, and create a new local calendar, give it whatever name you want, in my case, I simply named it Automator. At this point, you can import the ical file exported from above.</p>
-<p>These two steps are necessary if you want to use the automation for most of your events. If there are only a few events that you would like to add the automation on, you can just use the copy function in the Calendar app and paste to the local calendar. In any case, a new local calendar is necessary otherwise the alarm trigger would not work.</p>
-<p>Once you completed setting up your local calendars, you can start adding the file trigger which will help you open up the Zoom. To do this, you need to modify the event of your choice and then change the alert settings, change it to custom and choose ‘Open file’ option, and then change the dropdown from ‘Calendar’ to ‘Other…’.</p>
-<p><img src="/2020/12/26/Automating-Zoom-with-Alfred-and-Apple-Scripts/calendar-1.png"></p>
-<p>Normally, the file you created with the Calendar alarm will be saved to <code>~/Library/Workflows/Applications/Calendar</code> so go ahead to find that folder and choose that file.</p>
-<p><img src="/2020/12/26/Automating-Zoom-with-Alfred-and-Apple-Scripts/calendar-2.png"></p>
-<p>At this point, you will have a working version of the calendar automation for this event, if you want it on more events, you will need to repeat the steps of changing alerts for each of the other events.</p>
-<h3 id="Future-improvements-amp-Alternatives"><a href="#Future-improvements-amp-Alternatives" class="headerlink" title="Future improvements &amp; Alternatives"></a>Future improvements &amp; Alternatives</h3><p>I have to admit the solution I described above is not perfect, and it requires some steps to setup, still once I set it up, everything works fine for me, and I would never need to remember to join a Zoom meeting because of this automation.</p>
-<p>Some future improvement and/or caveats that I found about this method is that: </p>
-<ul>
-<li>The events must have the zoom link somewhere (either description or location) for this automation to work.</li>
-<li>If there were two back-to-back meetings, the automation will fail, this is because the previous meeting hasn’t finished yet, and the given Alfred workflow will still list it at the top. I haven’t found a good solution to this.</li>
-</ul>
-<p>There are several alternative ways I can think of:</p>
-<ul>
-<li><p>Use Zoom itself, if you are logged into Zoom and allow them to access your calendar, they will provide a join button in their app to allow you to join the meeting without more button clicks.</p>
-</li>
-<li><p>Bookmark the Zoom url schemes and click on it. This is basically how the workflow works behind the scene: converting the url from http to zoom url scheme and then open it. I won’t go in depth on how to create a bookmark and convert the links to url schemes, but Zoom provide a great doc on their schemes <a target="_blank" rel="noopener" href="https://marketplace.zoomgov.com/docs/guides/guides/client-url-schemes">here</a>.</p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en,zh-Hans,default">
-    <link itemprop="mainEntityOfPage" href="http://kevinsj.github.io/2020/11/26/Solving-practical-problems-with-Jq-2020-11-26/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="KevinSJ">
-      <meta itemprop="description" content="A blog about all things tech.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/11/26/Solving-practical-problems-with-Jq-2020-11-26/" class="post-title-link" itemprop="url">Solving practical problems with jq</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 11-26-2020 21:37:32" itemprop="dateCreated datePublished" datetime="2020-11-26T21:37:32+13:00">11-26-2020</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 12-26-2020 22:54:36" itemprop="dateModified" datetime="2020-12-26T22:54:36+13:00">12-26-2020</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>As a developer, you will sometimes face weird problems, it is important to come up with reliable and repeatable ways to solve this problems, so when such problems come up again, you would be able to find a solution easier. As for myself, one of the tools that I found most useful on Unix-like system is jq, which is a tool to process json files. Let me demonstrate how I use this tool to solve some problems I encountered during work.</p>
-<h3 id="Problem-Convert-a-JSON-file-to-CSV"><a href="#Problem-Convert-a-JSON-file-to-CSV" class="headerlink" title="Problem: Convert a JSON file to CSV"></a>Problem: Convert a JSON file to CSV</h3><p>Example JSON</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">&quot;title&quot;</span>: <span class="string">&quot;This is a song&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;artist&quot;</span>: <span class="string">&quot;This is an artist&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;album&quot;</span>: <span class="string">&quot;This is an album&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;year&quot;</span>: <span class="number">1989</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">&quot;title&quot;</span>: <span class="string">&quot;This is a song&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;artist&quot;</span>: <span class="string">&quot;This is an artist&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;album&quot;</span>: <span class="string">&quot;This is an album&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;year&quot;</span>: <span class="number">1989</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">&quot;title&quot;</span>: <span class="string">&quot;This is a song&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;artist&quot;</span>: <span class="string">&quot;This is an artist&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;album&quot;</span>: <span class="string">&quot;This is an album&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;year&quot;</span>: <span class="number">1989</span></span><br><span class="line">  &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-<p>JQ code to generate csv:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jq -r <span class="string">&#x27;(.[0] | keys_unsorted) as $keys | ([$keys] + map([.[ $keys[] ]])) [] | @csv&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>Resulting CSV:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&quot;title&quot;,&quot;artist&quot;,&quot;album&quot;,&quot;year&quot;</span><br><span class="line">&quot;This is a song&quot;,&quot;This is an artist&quot;,&quot;This is an album&quot;,1989</span><br><span class="line">&quot;This is a song&quot;,&quot;This is an artist&quot;,&quot;This is an album&quot;,1989</span><br><span class="line">&quot;This is a song&quot;,&quot;This is an artist&quot;,&quot;This is an album&quot;,1989</span><br></pre></td></tr></table></figure>
-<h3 id="Problem-Aggregate-JSON-object"><a href="#Problem-Aggregate-JSON-object" class="headerlink" title="Problem: Aggregate JSON object."></a>Problem: Aggregate JSON object.</h3><p>Example JSON:</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;A&quot;</span>: [&#123; <span class="attr">&quot;Name&quot;</span>: <span class="string">&quot;A1&quot;</span> &#125;, &#123; <span class="attr">&quot;Name&quot;</span>: <span class="string">&quot;A2&quot;</span> &#125;],</span><br><span class="line">  <span class="attr">&quot;B&quot;</span>: [&#123; <span class="attr">&quot;Name&quot;</span>: <span class="string">&quot;B1&quot;</span> &#125;, &#123; <span class="attr">&quot;Name&quot;</span>: <span class="string">&quot;B2&quot;</span> &#125;],</span><br><span class="line">  <span class="attr">&quot;C&quot;</span>: [&#123; <span class="attr">&quot;Name&quot;</span>: <span class="string">&quot;C&quot;</span> &#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>The goal is to produce something like below:</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="attr">&quot;A&quot;</span>: [<span class="string">&quot;A1&quot;</span>, <span class="string">&quot;A2&quot;</span>], <span class="attr">&quot;B&quot;</span>: [<span class="string">&quot;B1&quot;</span>, <span class="string">&quot;B2&quot;</span>], <span class="attr">&quot;C&quot;</span>: [<span class="string">&quot;C&quot;</span>] &#125;</span><br></pre></td></tr></table></figure>
-<p>It transform the object and aggregate (or compress?) them by “Name” property, I know this can be easily done with JavaScript, but jq and bash seems like more widely used and will come in handy when JavaScript is not available.</p>
-<p>The jq code I came up with is as follows:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jq <span class="string">&#x27;[keys_unsorted[] as $k|&#123;($k): [.[$k][]|.Name]&#125;]|add&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>References:</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://stackoverflow.com/a/32967407">https://stackoverflow.com/a/32967407</a></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en,zh-Hans,default">
-    <link itemprop="mainEntityOfPage" href="http://kevinsj.github.io/2020/11/15/practice-with-vim-I/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="KevinSJ">
-      <meta itemprop="description" content="A blog about all things tech.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/11/15/practice-with-vim-I/" class="post-title-link" itemprop="url">Practice With Vim (I)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 11-15-2020 13:54:30 / Modified: 14:45:47" itemprop="dateCreated datePublished" datetime="2020-11-15T13:54:30+13:00">11-15-2020</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>What would be the easiest way to remove all but one word from the end of each line in Vim?</p>
-<p>Today, I found a challenge on vimgolf and thought it might be interesting to share my solutions.</p>
-<p>Here is the original file</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">abcd 1 erfg 7721231</span><br><span class="line">acd 2 erfgasd 324321</span><br><span class="line">acd 3 erfgsdasd 23432</span><br><span class="line">abcd 5 erfgdsad 123556</span><br></pre></td></tr></table></figure>
-
-<p>Here is the desired result:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">7721231</span><br><span class="line">324321</span><br><span class="line">23432</span><br><span class="line">123556</span><br></pre></td></tr></table></figure>
-
-<p>The challenge is quite straightforward, delete all but the last characters in the file. I found several ways to tackle this challenge, so let me show you all:</p>
-<h4 id="Take-1-Use-macro-only"><a href="#Take-1-Use-macro-only" class="headerlink" title="Take 1: Use macro only"></a>Take 1: Use macro only</h4><p>Record a macro, and play it back, so the keystrokes would be</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">qa $bd0j q 4@a &lt;cr&gt;</span><br><span class="line"></span><br><span class="line">qa starts recording macro to register a</span><br><span class="line">$ move cursor to the end of the line</span><br><span class="line">d0 means *d*elete to the beginning of the line</span><br><span class="line">j move cursor down</span><br><span class="line">q finish macro</span><br><span class="line">4@a repeat the macro in register a 4 times</span><br></pre></td></tr></table></figure>
-
-<h4 id="Take-2-Use-regex-and-norm"><a href="#Take-2-Use-regex-and-norm" class="headerlink" title="Take 2: Use regex and %norm"></a>Take 2: Use regex and %norm</h4><p>It’s quite obvious that all we want to keep from the original files are the numbers. So the regex would be simple to come up with, like something as simple as <code>/\d\+$&lt;cr&gt;</code> will do. Once you type this into vim, all the numbers at the end of the line will be highlighted. Next you can do: </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">:%norm dn &lt;cr&gt;</span><br><span class="line"></span><br><span class="line">% means applying to the whole file,</span><br><span class="line">norm means in execute following command in normal mode</span><br><span class="line">dn means *d*elete to *n*ext match</span><br></pre></td></tr></table></figure>
-
-<h4 id="Take-3-No-regex-pure-norm"><a href="#Take-3-No-regex-pure-norm" class="headerlink" title="Take 3: No regex pure %norm"></a>Take 3: No regex pure %norm</h4><p>This is the fastest way I can come up with, still, not as fast as the top answers on Vimgolf but it is decent in my opinion. Being slightly different from the option above, it is still using <code>%norm</code> though:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">%norm $bd0 &lt;cr&gt;  </span><br><span class="line"></span><br><span class="line">% means applying to the whole file,</span><br><span class="line">$ move cursor to the end of the line</span><br><span class="line">d0 means *d*elete to the beginning of the line</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="Takeaways"><a href="#Takeaways" class="headerlink" title="Takeaways:"></a>Takeaways:</h3><ul>
-<li><code>norm</code> is a quite powerful, and can be used to achieve complex stuff that can be otherwise achieved through a macro.</li>
-<li><code>d</code> the delete command is useful in many unexpected ways, besides <code>dn</code> and <code>d0</code> command mentioned above which deletes to the next match and deletes to the beginning of the line respectively. An additional useful variation of <code>d</code> command is <code>d4/x</code> where <code>4/x</code> meaning 4th occurrence of x.</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://kevinsj.github.io/2020/09/14/pitfall-of-jsonencode-in-terraform/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="KevinSJ">
-      <meta itemprop="description" content="A blog about all things tech.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/09/14/pitfall-of-jsonencode-in-terraform/" class="post-title-link" itemprop="url">Pitfall of jsonencode in Terraform</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 09-14-2020 21:39:11 / Modified: 22:00:03" itemprop="dateCreated datePublished" datetime="2020-09-14T21:39:11+12:00">09-14-2020</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>This week, I was tasked with creating basic infrastructure for one of our newwebsites.  We use Fastly for our CDN and New Relic as a log aggregation tool, most of our infrastructure is setup using Terraform, which is a popular infrastructure as code (IaC) platform. Terraform supports Fastly through a custom plugin, which also has the capability of New Relic. We need to customize the format of New Relic so that we can find the logs easily in New Relic. As expected, the plugin actually provide a pretty straight forward to accomplish this – what you need to do is to come up with a proper json string that align with the format that Fastly provided in their document. This seemingly straightforward task ended up took me some time to debug.</p>
-<p>In terraform, you can create objects, and an object can be converted to string by using jsonencode function. This is where the pitfall comes in: Fastly’s formatting document said they have a option called “%&gt;s” which represents the final status of the fastly request. From my perspective, it would definitely be helpful if we can include this when we send the log to Fastly. So I added this to my formatting object, and then jsonencode the object. To my suprise, I get an error saying that Fastly failed to parse the formatting option I created, which is quite strange. I then started to debug, I export TF_LOG=”DEBUG”, which asked Terraform to give me all the debug logs. To my suprise, I found that the “%&gt;s” was jsonencode to “%\u003es” by terraform, and thus causing the error.  <strong>How come “&gt;” sign is encoded in Terraform? It turned out it’s for backward compatibility with ealier edition of Terraform.</strong> And according to their documentation </p>
+<p>It actually is quite straightforward once you get the idea of configuration. For example, in the above shared config, a <code>device</code> is a layer 2 in the networking stack while an <code>interface</code> is at layer 3. Here is Openwrt wiki’s explanation: </p>
 <blockquote>
-<p>When encoding strings, this function escapes some characters using Unicode escape sequences: replacing &lt;, &gt;, &amp;, U+2028, and U+2029 with \u003c, \u003e, \u0026, \u2028, and \u2029. This is to preserve compatibility with Terraform 0.11 behavior. </p>
+<p>Devices are physical connections that convey bits/frames to other computers. They operate at layer 2 in the protocol stack, have a MAC address along with several other configurable parameters.<br>Network devices identify and configure hardware components of the device: individual Ethernet switch ports, wireless radios, USB networking devices, VLANs, or virtual ethernets.<br>Alternatively, bridge devices group several network devices together so they can be treated as a single entity. A bridge device functions like a separate unmanaged (hardware) switch, forwarding traffic between member ports as needed at the hardware level to maintain performance. Each physical port can be a member of only a single bridge device.<br>Interfaces route IP packets and operate at layer 3 in the protocol stack. An interface is associated with a single device that sends/receives its packets. Interfaces get their IP address parameters by the choice of protocol: Static, DHCP, PPP, 6in4, Wireguard, OpenVPN, etc.</p>
 </blockquote>
-<p>they encode much more characters <strong>for you</strong> without you realizing it. I really hope they can provide a way to opt-out of this feature or make this an opt-in, it will make things way easier for developers.</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en,zh-Hans,default">
-    <link itemprop="mainEntityOfPage" href="http://kevinsj.github.io/2019/10/12/Automating-Android-data-saver-with-tasker/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="KevinSJ">
-      <meta itemprop="description" content="A blog about all things tech.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/12/Automating-Android-data-saver-with-tasker/" class="post-title-link" itemprop="url">Automating Android data saver with tasker</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 10-12-2019 19:34:42" itemprop="dateCreated datePublished" datetime="2019-10-12T19:34:42+13:00">10-12-2019</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 12-27-2020 00:45:47" itemprop="dateModified" datetime="2020-12-27T00:45:47+13:00">12-27-2020</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Recently, I have been eager to get the data saver on Android to work automatically for me. My goal is to have Tasker automatically enable the built-in data saver when my data is low. Before I came up with this idea, I have search the web to see if there is any solutions exist already so I don’t have to reinventing the wheel. Unfortunately, I couldn’t find anything on this topic so I have to create my own solution. Upon 1 week of testing, things to work as I expected so I decided to share in this article how I did it.</p>
-<h2 id="Prerequisite"><a href="#Prerequisite" class="headerlink" title="Prerequisite"></a>Prerequisite</h2><ul>
-<li>An rooted Android phone – Unfortunately, the solution I came up with only works on rooted Android phone, I’m running Android 9.0.</li>
-<li>A way to get to know you current data usage – Some carriers allow you to get you data usage through SMS, some might only allow you to use USSD to get data usage. I am only covering the case of using SMS here (my case).</li>
-</ul>
-<h2 id="How-to"><a href="#How-to" class="headerlink" title="How-to"></a>How-to</h2><p>The data saver in Android is basically something that limits all the background data usage. After some digging on the Internet, I found that you can turn the data saver on with the following command <code>cmd netpolicy set restrict-background true</code> (requires root). Then it is pretty easy to have the data saver turned on automatically when the data is low. My way of doing this is as follows:</p>
+<hr>
+<p>References: </p>
 <ul>
-<li>Set a global variable as threshold for triggering the data saver.</li>
-<li>Send an SMS to my carrier every morning at 8 AM, parsing the SMS to get my remaining data.</li>
-<li>If my data remaining is lower than the threshold then turn on the data saver whenever mobile data is in use. This is done by using the run shell action and run the command mentioned above. </li>
-<li>Turn data saver off automatically when I am connected to WiFi (Not necessary but add it just in case).</li>
+<li><a target="_blank" rel="noopener" href="https://openwrt.org/docs/guide-user/network/dsa/dsa-mini-tutorial">https://openwrt.org/docs/guide-user/network/dsa/dsa-mini-tutorial</a></li>
 </ul>
-<p>It is quite easy to do this when you carrier allows you to query data usage using SMS, with USSD however, things is not that easy and unfortunately, I haven’t figure out a way yet.</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en,zh-Hans,default">
-    <link itemprop="mainEntityOfPage" href="http://kevinsj.github.io/2019/05/28/Converting-QEMU-VM-to-VirtualBox-VM/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="KevinSJ">
-      <meta itemprop="description" content="A blog about all things tech.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/05/28/Converting-QEMU-VM-to-VirtualBox-VM/" class="post-title-link" itemprop="url">Converting QEMU VM to VirtualBox VM</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 05-28-2019 20:55:20" itemprop="dateCreated datePublished" datetime="2019-05-28T20:55:20+12:00">05-28-2019</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 09-12-2020 14:27:57" itemprop="dateModified" datetime="2020-09-12T14:27:57+12:00">09-12-2020</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Recently, I decided to convert my QEMU based virtual machine installed on my Manjaro Linux to the VirtualBox format. The reason behind this is that I would like to be able to use the same VM across different host system (specifically Manjaro Linux and Windows 7). It is not a easy  thing to do, so I decided to document it for future references.</p>
-<h3 id="Prerequisite"><a href="#Prerequisite" class="headerlink" title="Prerequisite?"></a>Prerequisite?</h3><ul>
-<li>An existing image created using QEMU (My VM file end with .img,  for example)</li>
-<li>VirtualBox</li>
-</ul>
-<h3 id="How-to"><a href="#How-to" class="headerlink" title="How to?"></a>How to?</h3><p>First thing first, you would need to convert the QEMU image (extension img) to raw format, this can be done by issuing the following command:</p>
-<p><code>qemu-img convert Windows7-compressed.img  -O raw  Windows7.raw</code></p>
-<p>This will generate a raw image. Note that this newly generated file might be a lot larger than the file it based on, this is because the img file allocates space on as-is basis.</p>
-<p>After you get the raw image, it’s time to convert it to VDI format (which is used by VirtualBox). You can do this by running:</p>
-<p><code>VBoxManage convertfromraw Windows7.raw --format vdi  Windows7.vdi</code></p>
-<p>Then, it is recommended to compact the image:</p>
-<p><code>VBoxManage modifyhd Windows7.vdi --compact</code></p>
-<p>So after the previous step, you will have a working VirtualBox image, but if you boot it from VirtualBox, it might not work.</p>
-<h3 id="Gotchas"><a href="#Gotchas" class="headerlink" title="Gotchas!"></a>Gotchas!</h3><p>In my case, what I was trying to convert was a Windows 7 VM, and when I finished the above steps and try to boot the VM, I got a BSOD. My feeling is that there were some default that QEMU used that doesn’t work for a newly created machine in VirtualBox. I tweak the following settings in the newly created VirtualBox VM:</p>
-<ul>
-<li>Delete the auto created SATA controller and change it IDE controller.</li>
-</ul>
-<p>It turned out, after doing that, everything works as expected.</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en,zh-Hans,default">
-    <link itemprop="mainEntityOfPage" href="http://kevinsj.github.io/2018/06/24/Automating-things-on-Android-with-Tasker/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="KevinSJ">
-      <meta itemprop="description" content="A blog about all things tech.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/06/24/Automating-things-on-Android-with-Tasker/" class="post-title-link" itemprop="url">Automating things on Android with Tasker (I)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 06-24-2018 21:30:31" itemprop="dateCreated datePublished" datetime="2018-06-24T21:30:31+12:00">06-24-2018</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 09-12-2020 14:25:30" itemprop="dateModified" datetime="2020-09-12T14:25:30+12:00">09-12-2020</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="Why-Tasker"><a href="#Why-Tasker" class="headerlink" title="Why Tasker?"></a>Why Tasker?</h3><p>This is probably an article that is long overdue to me personally. I have been an Android user since 2011, started with my Nexus S that I bought for use in college. It seems to me, the app Tasker had been very famous in the Andorid community, especially among users who know how to program.<br>For those who have never heard of this app, this is a powerful app that allows you to automate almost anything that you can think of on the Android system.For me,It was not until August of last year when I bought the tasker app that I started to realize how powerful this app is. I am really not a big fan of its old school UI and design so I didn’t start using it until this year. After uisng it for a while, I did come to realize that there is no other apps close to it, if I were to move to iOS, this is probably among one the apps that I will miss.  In this article I will explain how I used takser to automate things for myself, it is some boring stuff, but it did become something that I’m using everyday.</p>
-<h3 id="What-can-you-use-it-for"><a href="#What-can-you-use-it-for" class="headerlink" title="What can you use it for?"></a>What can you use it for?</h3><p>I will list one of the most used Tasks/Profiles that I created and used in this app:</p>
-<h5 id="Turn-off-on-ADB-when-using-certain-apps"><a href="#Turn-off-on-ADB-when-using-certain-apps" class="headerlink" title="Turn off/on ADB when using certain apps."></a>Turn off/on ADB when using certain apps.</h5><p>This is one of the easy ones that I found very useful. It is not uncommon nowadays for some apps to require you to turn off your ADB (Android Debugging Bridge) settings when you are using them, which to me, is quite annoying. So naturally, I created a Tasker profile together with a task to automate this. The trick here is you need to have root access, otherwise you are pretty much out of luck for this particular example. To create such a task, assuming you already have proper root access, go to the TASKS page in the app and click on the add icon, choose a name you like, and then you can create your first task! Think of a task as the things you want Tasker to do for you. In this particular case, my goal is simple: turn off ADB if it was not already off, turn it on if it was off. This way we can have one task that a turns off the ADB when you turns on the app; when you turns the app off, ADB will be switch back to on. </p>
-<p>It is clear that we will need a global variable that holds the  status of the adb status, to do this add an action: click on the button add icon while you are in the “Task Edit” page, and filter based on Shell, you will see a “Run Shell” as a result. Click on it, and in the “Command” input, enter “settings get global adb_enabled” and in “Store Output In” input, choose a global variable name you would like to use to hold the status of the current ADB status, just remember that you need to use all caps for the name for tasker to know it is an global variable. Also remember to check the “Use Root” checkbox. After this step, things will be simple, just add the if and else condition like I mentioned before, set adb_enabled to 0 if it is 1 and set it to 1 if it is 0, and after that don’t forget to set the global variable again. </p>
-<p>TL;DR Here is the XML, that you can directly import to your Tasker if you don’t want to create it yourself:</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">TaskerData</span> <span class="attr">sr</span>=<span class="string">&quot;&quot;</span> <span class="attr">dvi</span>=<span class="string">&quot;1&quot;</span> <span class="attr">tv</span>=<span class="string">&quot;5.2.bf&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Task</span> <span class="attr">sr</span>=<span class="string">&quot;task3&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">cdate</span>&gt;</span>1526421645228<span class="tag">&lt;/<span class="name">cdate</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">edate</span>&gt;</span>1529892193595<span class="tag">&lt;/<span class="name">edate</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span>&gt;</span>3<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">nme</span>&gt;</span>adb_auto<span class="tag">&lt;/<span class="name">nme</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">pri</span>&gt;</span>1006<span class="tag">&lt;/<span class="name">pri</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Action</span> <span class="attr">sr</span>=<span class="string">&quot;act0&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;7&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">code</span>&gt;</span>123<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">&quot;arg0&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;3&quot;</span>&gt;</span>settings get global adb_enabled<span class="tag">&lt;/<span class="name">Str</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">&quot;arg1&quot;</span> <span class="attr">val</span>=<span class="string">&quot;0&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">&quot;arg2&quot;</span> <span class="attr">val</span>=<span class="string">&quot;1&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">&quot;arg3&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;3&quot;</span>&gt;</span>%ADB_STATUS<span class="tag">&lt;/<span class="name">Str</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">&quot;arg4&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;3&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">&quot;arg5&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;3&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">Action</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Action</span> <span class="attr">sr</span>=<span class="string">&quot;act1&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;7&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">code</span>&gt;</span>37<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">ConditionList</span> <span class="attr">sr</span>=<span class="string">&quot;if&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">Condition</span> <span class="attr">sr</span>=<span class="string">&quot;c0&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;3&quot;</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">lhs</span>&gt;</span>%ADB_STATUS<span class="tag">&lt;/<span class="name">lhs</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">op</span>&gt;</span>0<span class="tag">&lt;/<span class="name">op</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">rhs</span>&gt;</span>1<span class="tag">&lt;/<span class="name">rhs</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">Condition</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">ConditionList</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">Action</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Action</span> <span class="attr">sr</span>=<span class="string">&quot;act2&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;7&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">code</span>&gt;</span>123<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">&quot;arg0&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;3&quot;</span>&gt;</span>settings put global adb_enabled 0<span class="tag">&lt;/<span class="name">Str</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">&quot;arg1&quot;</span> <span class="attr">val</span>=<span class="string">&quot;0&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">&quot;arg2&quot;</span> <span class="attr">val</span>=<span class="string">&quot;1&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">&quot;arg3&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;3&quot;</span>&gt;</span>%ADB_STATUS<span class="tag">&lt;/<span class="name">Str</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">&quot;arg4&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;3&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">&quot;arg5&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;3&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">Action</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Action</span> <span class="attr">sr</span>=<span class="string">&quot;act3&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;7&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">code</span>&gt;</span>43<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">Action</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Action</span> <span class="attr">sr</span>=<span class="string">&quot;act4&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;7&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">code</span>&gt;</span>123<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">&quot;arg0&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;3&quot;</span>&gt;</span>settings put global adb_enabled 1<span class="tag">&lt;/<span class="name">Str</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">&quot;arg1&quot;</span> <span class="attr">val</span>=<span class="string">&quot;0&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">&quot;arg2&quot;</span> <span class="attr">val</span>=<span class="string">&quot;1&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">&quot;arg3&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;3&quot;</span>&gt;</span>%ADB_STATUS<span class="tag">&lt;/<span class="name">Str</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">&quot;arg4&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;3&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">&quot;arg5&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;3&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">Action</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Action</span> <span class="attr">sr</span>=<span class="string">&quot;act5&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;7&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">code</span>&gt;</span>38<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">Action</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Action</span> <span class="attr">sr</span>=<span class="string">&quot;act6&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;7&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">code</span>&gt;</span>123<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">&quot;arg0&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;3&quot;</span>&gt;</span>settings get global adb_enabled<span class="tag">&lt;/<span class="name">Str</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">&quot;arg1&quot;</span> <span class="attr">val</span>=<span class="string">&quot;0&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">&quot;arg2&quot;</span> <span class="attr">val</span>=<span class="string">&quot;1&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">&quot;arg3&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;3&quot;</span>&gt;</span>%ADB_STATUS<span class="tag">&lt;/<span class="name">Str</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">&quot;arg4&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;3&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">&quot;arg5&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;3&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">Action</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">Task</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">TaskerData</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>To import, you need to save the above snippet to XML on your phone. In tasker app,   click and hold the “TASKS” tab header, select import and choose the file </p>
-<p>To run the task based on your predefined conditions, go to “PROFILES” tab, click on add button in the button, choose the application you want, and then, chose the task you imported and you are good to go! Now the app won’t say you can’t use it because you have ADB turned on, Tasker will turned adb off when you are using the app, and turn it on when you are not using it! :)</p>
 
       
     </div>
@@ -968,7 +1042,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1034,14 +1108,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">21</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">34</span>
+        <span class="site-state-item-count">51</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -1049,6 +1123,9 @@
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
         <a href="https://github.com/kevinsj" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;kevinsj" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/kevsj" title="LinkedIn → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;kevsj" rel="noopener" target="_blank"><i class="fab fa-linkedin fa-fw"></i>LinkedIn</a>
       </span>
   </div>
   <div class="cc-license motion-element" itemprop="license">
@@ -1076,7 +1153,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

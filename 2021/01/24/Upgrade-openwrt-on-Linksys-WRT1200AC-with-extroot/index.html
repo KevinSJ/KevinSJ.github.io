@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.3.0">
+<meta name="generator" content="Hexo 5.4.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -31,7 +31,7 @@
 <meta property="og:description" content="Notes: WRT1200AC (this router) contains 2 partitions Flashing the firmware through the Luci interface actually flashes the new firmware to the inactive partition  Steps: Download the bin file needed t">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-01-24T01:29:55.000Z">
-<meta property="article:modified_time" content="2021-01-24T01:35:30.042Z">
+<meta property="article:modified_time" content="2022-03-06T05:05:39.622Z">
 <meta property="article:author" content="KevinSJ">
 <meta property="article:tag" content="Notes">
 <meta property="article:tag" content="Openwrt">
@@ -187,10 +187,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 01-24-2021 14:29:55 / Modified: 14:35:30" itemprop="dateCreated datePublished" datetime="2021-01-24T14:29:55+13:00">01-24-2021</time>
+              <time title="Created: 01-24-2021 14:29:55" itemprop="dateCreated datePublished" datetime="2021-01-24T14:29:55+13:00">01-24-2021</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 03-06-2022 18:05:39" itemprop="dateModified" datetime="2022-03-06T18:05:39+13:00">03-06-2022</time>
+              </span>
 
           
 
@@ -221,7 +227,7 @@
 <li>First, install packages that are necessary to setup extroot:<br><code>opkg update &amp;&amp; opkg install block-mount kmod-fs-ext4 kmod-usb-storage e2fsprogs kmod-usb-ohci kmod-usb-uhci fdisk</code></li>
 <li>In my case I use f2fs for my extroot, which means I need extra packages, like mkf2fs to format the flash.</li>
 <li>Now, format the device you plan to use for extroot, in my case, I ran <code>mkf2fs /dev/sda1</code> cause the sda2 was used as swap.</li>
-<li>At this point, copy the overlay to the newly formatted drive<br>  <code>mkdir -p /tmp/introot    mkdir -p /tmp/extroot    mount --bind / /tmp/introot    mount /dev/sda1 /tmp/extroot    tar -C /tmp/introot -cvf - . | tar -C /tmp/extroot -xf -    umount /tmp/introot    umount /tmp/extroot</code></li>
+<li>At this point, copy the overlay to the newly formatted drive<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /tmp/introot</span><br><span class="line">mkdir -p /tmp/extroot</span><br><span class="line">mount --<span class="built_in">bind</span> / /tmp/introot</span><br><span class="line">mount /dev/sda1 /tmp/extroot</span><br><span class="line">tar -C /tmp/introot -cvf - . | tar -C /tmp/extroot -xf -</span><br><span class="line">umount /tmp/introot</span><br><span class="line">umount /tmp/extroot</span><br></pre></td></tr></table></figure></li>
 <li>Regenerate fstab using <code>block detect &gt; /etc/config/fstab;</code></li>
 <li>Reboot</li>
 <li>You should have a working Openwrt with extroot now. Change opkg/distfeeds.conf to the corresponding upgraded version.</li>
@@ -233,6 +239,19 @@
 <p>Because I don’t use dnsmasq, this means once the steps above finishes, I will need to do some extra post installation steps</p>
 <h3 id="Post-installation-More-as-a-personal-note"><a href="#Post-installation-More-as-a-personal-note" class="headerlink" title="Post installation (More as a personal note):"></a>Post installation (More as a personal note):</h3><ul>
 <li>Remove odhcpd-ipv6only package and install odhcpd, this will ensure IPv4 dhcp functionality, otherwise, there will only be ipv6 addresses allocated.</li>
+</ul>
+<h3 id="November-2021-Update-Updating-to-Openwrt-21-02"><a href="#November-2021-Update-Updating-to-Openwrt-21-02" class="headerlink" title="November 2021 Update: Updating to Openwrt 21.02"></a>November 2021 Update: Updating to Openwrt 21.02</h3><p>I upgraded Openwrt version 21.02 branch in September of this year. It wasn’t as easy as I had thought, but I had the problem solved after all. In release 21.02, Openwrt introduced what’s called <a target="_blank" rel="noopener" href="https://www.kernel.org/doc/html/latest/networking/dsa/dsa.html">DSA</a> or Distributed Switch Architecture for this WRT1200AC device. To be honest, it is counter-intuitive to setup but it seems to be a more standard way when compared to the previous configuration.</p>
+<p>The part that I have problem with is mostly the VLAN tagging. My network ISP requires tagged VLAN to be able to use the network, so for Openwrt, I will have to tag the WAN port with the VLAN id. I was able to get around it with the following block: </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">config device</span><br><span class="line">        option name &#39;wan&#39;</span><br><span class="line">        option macaddr &#39;&lt;MAC_ADDRESS&gt;&#39;</span><br><span class="line">config interface &#39;wan&#39;</span><br><span class="line">        option device &#39;wan.10&#39;</span><br><span class="line">        option proto &#39;pppoe&#39;</span><br><span class="line">        option username &#39;&lt;PPPOE_USERNAME&gt;&#39;</span><br><span class="line">        option ipv6 &#39;1&#39;</span><br><span class="line">        option peerdns &#39;0&#39;</span><br><span class="line">        option password &#39;&lt;PPPOE_PASSWORD&gt;&#39;</span><br><span class="line">        list dns &#39;127.0.0.1&#39;</span><br><span class="line">config interface &#39;wan6&#39;</span><br><span class="line">        option proto &#39;dhcpv6&#39;</span><br><span class="line">        option reqaddress &#39;try&#39;</span><br><span class="line">        option reqprefix &#39;auto&#39;</span><br><span class="line">        option peerdns &#39;0&#39;</span><br><span class="line">        list dns &#39;::1&#39;</span><br><span class="line">        option device &#39;@wan</span><br></pre></td></tr></table></figure>
+
+<p>It actually is quite straightforward once you get the idea of configuration. For example, in the above shared config, a <code>device</code> is a layer 2 in the networking stack while an <code>interface</code> is at layer 3. Here is Openwrt wiki’s explanation: </p>
+<blockquote>
+<p>Devices are physical connections that convey bits/frames to other computers. They operate at layer 2 in the protocol stack, have a MAC address along with several other configurable parameters.<br>Network devices identify and configure hardware components of the device: individual Ethernet switch ports, wireless radios, USB networking devices, VLANs, or virtual ethernets.<br>Alternatively, bridge devices group several network devices together so they can be treated as a single entity. A bridge device functions like a separate unmanaged (hardware) switch, forwarding traffic between member ports as needed at the hardware level to maintain performance. Each physical port can be a member of only a single bridge device.<br>Interfaces route IP packets and operate at layer 3 in the protocol stack. An interface is associated with a single device that sends/receives its packets. Interfaces get their IP address parameters by the choice of protocol: Static, DHCP, PPP, 6in4, Wireguard, OpenVPN, etc.</p>
+</blockquote>
+<hr>
+<p>References: </p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://openwrt.org/docs/guide-user/network/dsa/dsa-mini-tutorial">https://openwrt.org/docs/guide-user/network/dsa/dsa-mini-tutorial</a></li>
 </ul>
 
     </div>
@@ -339,7 +358,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Notes"><span class="nav-number">1.</span> <span class="nav-text">Notes:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Steps"><span class="nav-number">2.</span> <span class="nav-text">Steps:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Post-installation-More-as-a-personal-note"><span class="nav-number">3.</span> <span class="nav-text">Post installation (More as a personal note):</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Notes"><span class="nav-number">1.</span> <span class="nav-text">Notes:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Steps"><span class="nav-number">2.</span> <span class="nav-text">Steps:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Post-installation-More-as-a-personal-note"><span class="nav-number">3.</span> <span class="nav-text">Post installation (More as a personal note):</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#November-2021-Update-Updating-to-Openwrt-21-02"><span class="nav-number">4.</span> <span class="nav-text">November 2021 Update: Updating to Openwrt 21.02</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -353,14 +372,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">21</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">34</span>
+        <span class="site-state-item-count">51</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -368,6 +387,9 @@
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
         <a href="https://github.com/kevinsj" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;kevinsj" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/kevsj" title="LinkedIn → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;kevsj" rel="noopener" target="_blank"><i class="fab fa-linkedin fa-fw"></i>LinkedIn</a>
       </span>
   </div>
   <div class="cc-license motion-element" itemprop="license">
@@ -395,7 +417,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
