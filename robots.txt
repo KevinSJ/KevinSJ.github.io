@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+Allow: /archives/
+Allow: /tags/
+
+Allow: /vendors/
+Allow: /js/
+Allow: /css/
+Allow: /lib/
+Allow: /live2dw/
+
+Sitemap: https://kevinsj.github.io/sitemap.xml

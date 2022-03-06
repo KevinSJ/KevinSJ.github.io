@@ -1,336 +1,788 @@
-<!doctype html>
-
-
-
-  
-
-
-<html class="theme-next pisces use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.8.0">
+<!DOCTYPE html>
+<html lang="en,zh-Hans,default">
+<head>
   <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="google-site-verification" content="9g-E_K0GEppNWOItj0YYJV_1UbSLdVFrKOhHSPLkJcM">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"kevinsj.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
 
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
-
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
-
-
-  <meta name="keywords" content="Hexo, NexT">
-
-
-
-
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
-
-
-
-
-
-
+  <meta name="description" content="A blog about all things tech.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Kevin Jiang&#39;s Technical Blog">
 <meta property="og:url" content="http://kevinsj.github.io/index.html">
 <meta property="og:site_name" content="Kevin Jiang&#39;s Technical Blog">
-<meta property="og:locale" content="zh-Hans">
+<meta property="og:description" content="A blog about all things tech.">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="KevinSJ">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Kevin Jiang&#39;s Technical Blog">
+
+<link rel="canonical" href="http://kevinsj.github.io/">
 
 
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Pisces',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'en'
   };
 </script>
 
-
-
-  <link rel="canonical" href="http://kevinsj.github.io/">
-
-
-
-
-
   <title>Kevin Jiang's Technical Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Kevin Jiang's Technical Blog" type="application/atom+xml">
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left 
-   page-home 
- ">
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Kevin Jiang's Technical Blog</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
-      
-        <p class="site-subtitle"></p>
-      
   </div>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Kevin Jiang's Technical Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
   </div>
 </div>
 
+
+
+
 <nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
+  <ul id="menu" class="main-menu menu">
         <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            首页
-          </a>
-        </li>
-      
-        
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
         <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            归档
-          </a>
-        </li>
-      
-        
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
         <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            标签
-          </a>
-        </li>
-      
 
-      
-    </ul>
-  
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
 
-  
+  </li>
+  </ul>
 </nav>
 
 
 
- </div>
+
+</div>
     </header>
 
-    <main id="main" class="main">
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
       <div class="main-inner">
         <div class="content-wrap">
-          <div id="content" class="content">
+          
+
+          <div class="content index posts-expand">
             
-  <section id="posts" class="posts-expand">
-    
       
-
-  
-
   
   
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://kevinsj.github.io/2019/10/13/Automating-Android-data-saver-with-tasker/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://kevinsj.github.io/2021/02/28/Terraform-version-constraint-and-debugging/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="KevinSJ">
-      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="KevinSJ">
+      <meta itemprop="description" content="A blog about all things tech.">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Kevin Jiang's Technical Blog">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/10/13/Automating-Android-data-saver-with-tasker/" itemprop="url">Automating Android data saver with tasker</a></h1>
-        
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/02/28/Terraform-version-constraint-and-debugging/" class="post-title-link" itemprop="url">Terraform, Version Constraint and Debugging</a>
+        </h2>
 
         <div class="post-meta">
-          <span class="post-time">
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
+                <i class="far fa-calendar"></i>
               </span>
+              <span class="post-meta-item-text">Posted on</span>
               
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-12T19:34:42-05:00">
-                10-12-2019
-              </time>
-            
 
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/10/13/Automating-Android-data-saver-with-tasker/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/13/Automating-Android-data-saver-with-tasker/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
+              <time title="Created: 02-28-2021 10:08:59 / Modified: 13:03:30" itemprop="dateCreated datePublished" datetime="2021-02-28T10:08:59+13:00">02-28-2021</time>
+            </span>
 
           
 
         </div>
       </header>
-    
 
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
-      
+          <p>This week I encountered some issues with Terraform (and, well, Kubernetes) again. This time, the problem was way more interesting than I thought.</p>
+<h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h3><p>When deploying to Kubernetes, I got <code>dial tcp 127.0.0.1:80: connect: connection refused, connection reset error.</code></p>
+<p>The more specific error message I got is </p>
+<blockquote>
+<p>Error: Get “<a target="_blank" rel="noopener" href="http://localhost/apis/apps/v1/namespaces/default/deployments/xxx&quot;">http://localhost/apis/apps/v1/namespaces/default/deployments/xxx&quot;</a>: dial tcp 127.0.0.1:80: connect: connection refused</p>
+</blockquote>
+<p>As this error happened in our deployment pipeline (we use Terraform to deploy stuff to Kubernetes), my natural thought was that this can be solved easily with a retry. So I retried the deployment right away, and it still failed. </p>
+<p>When I finally stopped what I was working on and start to examine the message carefully, I realized it is quite strange: how come the pipeline (or the Kubectl for that matter) trying to connect to localhost when it is meant to connect to a Kubernetes cluster located somewhere else? </p>
+<p>As you will see from my solution, this message was <strong>not</strong> helpful at all and in some sense quite misleading to someone who is trying to debug.</p>
+<p>After comparing the log from a previous successful deployment and the said failed deployment. I realized the issue was with the Kubernetes provider for Terraform: while in the successful build, the <code>terraform init</code> command yield something like <code>Installing hashicorp/kubernetes v1.13.3...</code>, in the failed build the same command yield something like <code>Installing hashicorp/kubernetes v2.0.2...</code>. </p>
+<p>It is quite obvious that this issue was caused by breaking changes in the Terraform provider. According to their <a target="_blank" rel="noopener" href="https://github.com/hashicorp/terraform-provider-kubernetes/blob/master/CHANGELOG.md#200-january-21-2021">changelog</a>, there were several breaking changes in the 2.0.0 version, among them were these two:</p>
+<blockquote>
+<p>Remove load_config_file attribute from provider block (#1052)<br>Remove default of ~/.kube/config for config_path (#1052)</p>
+</blockquote>
+<p>In our deployment Terraform, we set <code>load_config_file</code> to <code>true</code> to load the <code>kube_config</code> file from the default config_path of <code>~/.kube/config</code>. Due to the breaking changes quoted above, neither the <code>load_config_file</code> nor the default config_path existed any more, and when Kubernetes can not find these two files, it will try to connect to the 127.0.0.1 (aka localhost) as a fallback which caused the connection refused error.</p>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p>There are two kind of solutions to this issue: </p>
+<ul>
+<li>Updating the Terraform code so it is compatible with the 2.0.0 version of the Kubernetes provider<br>OR</li>
+<li>Downgrade to the last working version of the Kubernetes provider and keep the existing Terraform code</li>
+</ul>
+<p>Due to the urgency of getting the pipeline and deployment back online, I chose the downgrading route. Essentially, I’m adding the version constraint to the Kubernetes provider that was previously missing:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">kubernetes &#x3D; &#123;</span><br><span class="line">  source  &#x3D; &quot;registry.terraform.io&#x2F;hashicorp&#x2F;kubernetes&quot;</span><br><span class="line">  version &#x3D; &quot;~&gt; 1.0&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Adding in the version constraint means that Terraform will only increase the <strong><em>rightmost</em></strong> version number, therefore it will not be able to upgrade to version 2.0.0 automatically and can avoid this specific problem that was caused by breaking changes.</p>
+<h3 id="Takeaways"><a href="#Takeaways" class="headerlink" title="Takeaways"></a>Takeaways</h3><p>On debugging:</p>
+<ul>
+<li>Generally speaking, if you found your Terraform changed behavior without you making any changes, you could be making the same mistake as I did: not specifying the version constraint for the provider. You can find some clues in your <code>terraform init</code> command, for example, by comparing if the same provider version was used on the two builds where one was successful, the other failed.</li>
+<li>Personally, I was never familiar enough with Kubernetes to know that the default behavior of Kubectl is to use 127.0.0.1 when there’s no config file present. Now that I came across this gotcha, I do realize this kind of behavior was not that uncommon per se: Knex which is the library we used for node.js also have similar behavior, and I will keep this in mind if I encounter something similar in the future.</li>
+</ul>
+<p>On Terraform:</p>
+<ul>
+<li>When there’s no version constraint specified, Terraform will always use the latest provider version. Therefore, it is important to specify the version constraint. It is recommended by Terraform to always use a specific version when using third party modules. For more information on specifying the version constraint, read the <a target="_blank" rel="noopener" href="https://www.terraform.io/docs/language/expressions/version-constraints.html">documentation</a> from their website.</li>
+</ul>
 
       
-        
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en,zh-Hans,default">
+    <link itemprop="mainEntityOfPage" href="http://kevinsj.github.io/2021/01/24/Lessons-Learnt-On-Deploying-GO-Lambda-Application-on-AWS/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="KevinSJ">
+      <meta itemprop="description" content="A blog about all things tech.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
           
-            <p>Recently, I have been eager to get the data saver on Android to work automatically for me. The goal I like to reach is to have Tasker automatically enable the built-in data saver when my data is low. Before I came up with this idea, I have search the web to see if there is any solutions exist already so I don’t have to reinventing the wheel. Unfortunately, I couldn’t find anything on this topic so I have to create my own solution. Upon 1 week of testing, things to work as I expected so I decided to share in this article how I did it.</p>
+            <a href="/2021/01/24/Lessons-Learnt-On-Deploying-GO-Lambda-Application-on-AWS/" class="post-title-link" itemprop="url">Lessons Learnt On Deploying GO Lambda Application on AWS - Part I</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 01-24-2021 19:06:00" itemprop="dateCreated datePublished" datetime="2021-01-24T19:06:00+13:00">01-24-2021</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 01-30-2021 10:43:09" itemprop="dateModified" datetime="2021-01-30T10:43:09+13:00">01-30-2021</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Recently, I started to build an application with Go, it is a quite simple application that does something very basic and then sends an notification to a telegram bot. It’s quite obvious to me this kind of application is quite suitable to run as Lambda, and that’s where I decided to deploy my application to once it is working well locally. It turned out that I had to solve several issues I encountered. Here I share how I solved those issues, so you don’t have to scratch your head when encounter them.</p>
+<h3 id="Attempt-1-Deploy-the-application-through-the-web-interface"><a href="#Attempt-1-Deploy-the-application-through-the-web-interface" class="headerlink" title="Attempt 1: Deploy the application through the web interface."></a>Attempt 1: Deploy the application through the web interface.</h3><p>For my first attempt on deploying the application, my goal is to make things as simple as possible.<br>Therefore, I chose to use the web interface. From the web interface, there’s an option to upload zip file and that’s where I began.</p>
+<h5 id="Problem-Compile-GO-in-an-static-way"><a href="#Problem-Compile-GO-in-an-static-way" class="headerlink" title="Problem: Compile GO in an static way"></a>Problem: Compile GO in an static way</h5><p>This problem happens quite often from what I see on the internet. The main issue with here is that, some of the libraries in GO uses a feature called <a target="_blank" rel="noopener" href="https://golang.org/cmd/cgo/">CGO</a> which means using C code in GO, and when this feature is in use, GO compiler will try to create dynamic binary.</p>
+<p>To solve this problem, it is often as simple as compiled the code to a statically linked binary. Do note that, some of the code that’s compiling use GCC was not working, this is because often times the GLIBC library is higher than the ones used in AWS lambda environment, at least that was the case for me (I am on an Linux laptop with Manjaro Linux).</p>
+<p>I was able to find something called <a target="_blank" rel="noopener" href="https://www.musl-libc.org/intro.html">musl-gcc</a> and then used it in my compilation </p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">build:</span></span><br><span class="line">	CC=<span class="string">&quot;musl-gcc&quot;</span> go build --ldflags &#x27;-linkmode external -extldflags <span class="string">&quot;-static&quot;</span>&#x27; ./main.go</span><br></pre></td></tr></table></figure>
+<p>This proves to be working fine, once I complied the binary, zip and upload it to lambda through the interface, everything seems to be working.</p>
+<h3 id="Attempt-2-Deploy-the-application-through-AWS-SAM"><a href="#Attempt-2-Deploy-the-application-through-AWS-SAM" class="headerlink" title="Attempt 2: Deploy the application through AWS SAM"></a>Attempt 2: Deploy the application through AWS SAM</h3><p>Often, it is not efficient to manually upload the code using a zip file through every time, that’s why I started to thinking about introducing <a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/what-is-sam.html">SAM</a> as a tool to simplified the process of deployment. This was when I encountered the second issue.</p>
+<h4 id="Problem-Asking-SAM-to-compile-the-GO-program-in-an-static-way"><a href="#Problem-Asking-SAM-to-compile-the-GO-program-in-an-static-way" class="headerlink" title="Problem: Asking SAM to compile the GO program in an static way."></a>Problem: Asking SAM to compile the GO program in an static way.</h4><p>As the line above says, SAM always compiled the code in a dynamic way which is why the binary fails to work again even locally using the command <code>sam invoke local</code>.</p>
+<p>Now it’s the time to tell SAM I don’t want dynamically linked binaries. As a matter of fact, none of the article available online has a direct answer to my question, fortunately, I did find an AWS documentation on <a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/building-custom-runtimes.html">using custom runtime</a>. Based on this article, a GO program that wants to utilize static linking can have the following template:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">Resources:</span></span><br><span class="line">  <span class="attr">HelloGOFunction:</span></span><br><span class="line">    <span class="attr">Type:</span> <span class="string">AWS::Serverless::Function</span></span><br><span class="line">    <span class="attr">Properties:</span></span><br><span class="line">      <span class="attr">FunctionName:</span> <span class="string">HelloGO</span></span><br><span class="line">      <span class="attr">Handler:</span> <span class="string">main</span></span><br><span class="line">      <span class="attr">Runtime:</span> <span class="string">go1.x</span></span><br><span class="line">      <span class="attr">MemorySize:</span> <span class="number">512</span></span><br><span class="line">      <span class="attr">CodeUri:</span> <span class="string">.</span></span><br><span class="line">    <span class="attr">Metadata:</span></span><br><span class="line">      <span class="attr">BuildMethod:</span> <span class="string">makefile</span></span><br></pre></td></tr></table></figure>
+<p>And in the MakeFile, the following corresponding entries need to be added:</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">build-HelloGOFunction:</span></span><br><span class="line">  CC=<span class="string">&quot;musl-gcc&quot;</span> go build --ldflags &#x27;-linkmode external -extldflags <span class="string">&quot;-static&quot;</span>&#x27; ./main.go</span><br><span class="line">  cp ./main <span class="variable">$(ARTIFACTS_DIR)</span></span><br></pre></td></tr></table></figure>
+<p>Doing so will make sure compiled binary are statically linked and works on lambda when bundle and uploaded.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en,zh-Hans,default">
+    <link itemprop="mainEntityOfPage" href="http://kevinsj.github.io/2021/01/24/Upgrade-openwrt-on-Linksys-WRT1200AC-with-extroot/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="KevinSJ">
+      <meta itemprop="description" content="A blog about all things tech.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/24/Upgrade-openwrt-on-Linksys-WRT1200AC-with-extroot/" class="post-title-link" itemprop="url">Upgrade openwrt on Linksys WRT1200AC with extroot</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 01-24-2021 14:29:55 / Modified: 14:35:30" itemprop="dateCreated datePublished" datetime="2021-01-24T14:29:55+13:00">01-24-2021</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="Notes"><a href="#Notes" class="headerlink" title="Notes:"></a>Notes:</h3><ul>
+<li>WRT1200AC (this router) contains 2 partitions</li>
+<li>Flashing the firmware through the Luci interface actually flashes the new firmware to the inactive partition</li>
+</ul>
+<h3 id="Steps"><a href="#Steps" class="headerlink" title="Steps:"></a>Steps:</h3><ul>
+<li>Download the bin file needed to upgrade the package</li>
+<li>Create a list of all the installed packages on current version using <code>opkg list-installed | cut -f 1 -d &#39; &#39; &gt; /root/installed_packages.txt</code></li>
+<li>Choose one of the following methods to flash:<ul>
+<li>Flash the file from the Luci interface<br>OR</li>
+<li>Download the file to the /tmp and then flash using sysupgrade /tmp/*.bin</li>
+</ul>
+</li>
+<li>After the flash and reboot, you will be in the partition that you wasn’t on before the flash, it will have all of your previous configs, but the extroot will not be there.</li>
+<li>Hopefully, you will already have internet access at this point, if not, go ahead and setup internet.</li>
+<li>Once your internet is up, you will need to run some commands to install packages needed to setup:<ul>
+<li>First, install packages that are necessary to setup extroot:<br><code>opkg update &amp;&amp; opkg install block-mount kmod-fs-ext4 kmod-usb-storage e2fsprogs kmod-usb-ohci kmod-usb-uhci fdisk</code></li>
+<li>In my case I use f2fs for my extroot, which means I need extra packages, like mkf2fs to format the flash.</li>
+<li>Now, format the device you plan to use for extroot, in my case, I ran <code>mkf2fs /dev/sda1</code> cause the sda2 was used as swap.</li>
+<li>At this point, copy the overlay to the newly formatted drive<br>  <code>mkdir -p /tmp/introot    mkdir -p /tmp/extroot    mount --bind / /tmp/introot    mount /dev/sda1 /tmp/extroot    tar -C /tmp/introot -cvf - . | tar -C /tmp/extroot -xf -    umount /tmp/introot    umount /tmp/extroot</code></li>
+<li>Regenerate fstab using <code>block detect &gt; /etc/config/fstab;</code></li>
+<li>Reboot</li>
+<li>You should have a working Openwrt with extroot now. Change opkg/distfeeds.conf to the corresponding upgraded version.</li>
+<li>Now run <code>opkg upgrade $(opkg list-upgradable | awk &#39;($1 !~ &quot;^kmod|Multiple&quot;) &#123;print $1&#125;&#39;)</code> to keep base packages up-to-date.</li>
+<li>And install all your backed up packages using <code>cat /root/installed_packages.txt|xargs opkg install</code></li>
+</ul>
+</li>
+</ul>
+<p>Because I don’t use dnsmasq, this means once the steps above finishes, I will need to do some extra post installation steps</p>
+<h3 id="Post-installation-More-as-a-personal-note"><a href="#Post-installation-More-as-a-personal-note" class="headerlink" title="Post installation (More as a personal note):"></a>Post installation (More as a personal note):</h3><ul>
+<li>Remove odhcpd-ipv6only package and install odhcpd, this will ensure IPv4 dhcp functionality, otherwise, there will only be ipv6 addresses allocated.</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en,zh-Hans,default">
+    <link itemprop="mainEntityOfPage" href="http://kevinsj.github.io/2020/12/26/Automating-Zoom-with-Alfred-and-Apple-Scripts/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="KevinSJ">
+      <meta itemprop="description" content="A blog about all things tech.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/12/26/Automating-Zoom-with-Alfred-and-Apple-Scripts/" class="post-title-link" itemprop="url">Automating Zoom with Alfred and Apple Scripts</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 12-26-2020 22:55:59" itemprop="dateCreated datePublished" datetime="2020-12-26T22:55:59+13:00">12-26-2020</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 12-28-2020 12:33:14" itemprop="dateModified" datetime="2020-12-28T12:33:14+13:00">12-28-2020</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Like it or not, 2020 has been a year where video conference are used a lot. For me, most of the meetings happens in Zoom. Finding the link to the meeting in the calendar and then clicking on it to join the meeting had gradually become a new norm and something I really don’t like (the fact that after clicking on the Zoom link brings up your browser instead of Zoom itself, and prompting you to click again to open Zoom is really a pain). As someone who would like to automate things as much as possible, I did eventually find a solution that works for me albeit several third party tools are required.</p>
+<h3 id="Problem-Statement-Automatically-join-a-Zoom-call-for-a-meeting-scheduled-in-calendar-without-user-interaction-on-MacOS-X"><a href="#Problem-Statement-Automatically-join-a-Zoom-call-for-a-meeting-scheduled-in-calendar-without-user-interaction-on-MacOS-X" class="headerlink" title="Problem Statement: Automatically join a Zoom call for a meeting scheduled in calendar without user interaction (on MacOS X)."></a>Problem Statement: Automatically join a Zoom call for a meeting scheduled in calendar without user interaction (on MacOS X).</h3><h3 id="Prerequisite"><a href="#Prerequisite" class="headerlink" title="Prerequisite:"></a>Prerequisite:</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://www.alfredapp.com/">Alfred</a><br>  (Unclear if you need to be a paid user to create custom workflows, the author is a paid user)</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/zerowidth/zoom-calendar.alfredworkflow">zoom-calendar.alfredworkflow</a><br>  (Yep, I found this alfred workflow by chance and based my work and this blog on this workflow, it is very handy and I would really like thank the author for creating this.)</li>
+<li>Automator<br>  (The builtin automation app in MacOS from Apple)</li>
+</ul>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution:"></a>Solution:</h3><p>Assume you have already installed the Alfred App, you will need to go to <a target="_blank" rel="noopener" href="https://github.com/zerowidth/zoom-calendar.alfredworkflow">this</a> Github Repo, follow the instructions given and install the Alfred workflow.</p>
+<p>Once the workflow has been installed, we need to do some tweaking. Add an external trigger to this workflow and give it an id of ‘Automator’</p>
+<p>Now, open up Automator, choose the Calendar Alarm workflow as shown in the screenshot below:<br><img src="/2020/12/26/Automating-Zoom-with-Alfred-and-Apple-Scripts/automator-1.png"></p>
+<p>Copy and paste the following code to the calendar alarm:</p>
+<script src="https://gist.github.com/KevinSJ/bd11057c5d6f0fddc7abb38bdf7844b3.js"></script>
+
+<p>Now comes tricky part. You would first need to export your calendar from the cloud, export from Google Calendar Website or whatever calendar you are using. </p>
+<p>Then open up your Calendar app, and create a new local calendar, give it whatever name you want, in my case, I simply named it Automator. At this point, you can import the ical file exported from above.</p>
+<p>These two steps are necessary if you want to use the automation for most of your events. If there are only a few events that you would like to add the automation on, you can just use the copy function in the Calendar app and paste to the local calendar. In any case, a new local calendar is necessary otherwise the alarm trigger would not work.</p>
+<p>Once you completed setting up your local calendars, you can start adding the file trigger which will help you open up the Zoom. To do this, you need to modify the event of your choice and then change the alert settings, change it to custom and choose ‘Open file’ option, and then change the dropdown from ‘Calendar’ to ‘Other…’.</p>
+<p><img src="/2020/12/26/Automating-Zoom-with-Alfred-and-Apple-Scripts/calendar-1.png"></p>
+<p>Normally, the file you created with the Calendar alarm will be saved to <code>~/Library/Workflows/Applications/Calendar</code> so go ahead to find that folder and choose that file.</p>
+<p><img src="/2020/12/26/Automating-Zoom-with-Alfred-and-Apple-Scripts/calendar-2.png"></p>
+<p>At this point, you will have a working version of the calendar automation for this event, if you want it on more events, you will need to repeat the steps of changing alerts for each of the other events.</p>
+<h3 id="Future-improvements-amp-Alternatives"><a href="#Future-improvements-amp-Alternatives" class="headerlink" title="Future improvements &amp; Alternatives"></a>Future improvements &amp; Alternatives</h3><p>I have to admit the solution I described above is not perfect, and it requires some steps to setup, still once I set it up, everything works fine for me, and I would never need to remember to join a Zoom meeting because of this automation.</p>
+<p>Some future improvement and/or caveats that I found about this method is that: </p>
+<ul>
+<li>The events must have the zoom link somewhere (either description or location) for this automation to work.</li>
+<li>If there were two back-to-back meetings, the automation will fail, this is because the previous meeting hasn’t finished yet, and the given Alfred workflow will still list it at the top. I haven’t found a good solution to this.</li>
+</ul>
+<p>There are several alternative ways I can think of:</p>
+<ul>
+<li><p>Use Zoom itself, if you are logged into Zoom and allow them to access your calendar, they will provide a join button in their app to allow you to join the meeting without more button clicks.</p>
+</li>
+<li><p>Bookmark the Zoom url schemes and click on it. This is basically how the workflow works behind the scene: converting the url from http to zoom url scheme and then open it. I won’t go in depth on how to create a bookmark and convert the links to url schemes, but Zoom provide a great doc on their schemes <a target="_blank" rel="noopener" href="https://marketplace.zoomgov.com/docs/guides/guides/client-url-schemes">here</a>.</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en,zh-Hans,default">
+    <link itemprop="mainEntityOfPage" href="http://kevinsj.github.io/2020/11/26/Solving-practical-problems-with-Jq-2020-11-26/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="KevinSJ">
+      <meta itemprop="description" content="A blog about all things tech.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/26/Solving-practical-problems-with-Jq-2020-11-26/" class="post-title-link" itemprop="url">Solving practical problems with jq</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 11-26-2020 21:37:32" itemprop="dateCreated datePublished" datetime="2020-11-26T21:37:32+13:00">11-26-2020</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 12-26-2020 22:54:36" itemprop="dateModified" datetime="2020-12-26T22:54:36+13:00">12-26-2020</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>As a developer, you will sometimes face weird problems, it is important to come up with reliable and repeatable ways to solve this problems, so when such problems come up again, you would be able to find a solution easier. As for myself, one of the tools that I found most useful on Unix-like system is jq, which is a tool to process json files. Let me demonstrate how I use this tool to solve some problems I encountered during work.</p>
+<h3 id="Problem-Convert-a-JSON-file-to-CSV"><a href="#Problem-Convert-a-JSON-file-to-CSV" class="headerlink" title="Problem: Convert a JSON file to CSV"></a>Problem: Convert a JSON file to CSV</h3><p>Example JSON</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">&quot;title&quot;</span>: <span class="string">&quot;This is a song&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;artist&quot;</span>: <span class="string">&quot;This is an artist&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;album&quot;</span>: <span class="string">&quot;This is an album&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;year&quot;</span>: <span class="number">1989</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">&quot;title&quot;</span>: <span class="string">&quot;This is a song&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;artist&quot;</span>: <span class="string">&quot;This is an artist&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;album&quot;</span>: <span class="string">&quot;This is an album&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;year&quot;</span>: <span class="number">1989</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">&quot;title&quot;</span>: <span class="string">&quot;This is a song&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;artist&quot;</span>: <span class="string">&quot;This is an artist&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;album&quot;</span>: <span class="string">&quot;This is an album&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;year&quot;</span>: <span class="number">1989</span></span><br><span class="line">  &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>JQ code to generate csv:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jq -r <span class="string">&#x27;(.[0] | keys_unsorted) as $keys | ([$keys] + map([.[ $keys[] ]])) [] | @csv&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>Resulting CSV:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&quot;title&quot;,&quot;artist&quot;,&quot;album&quot;,&quot;year&quot;</span><br><span class="line">&quot;This is a song&quot;,&quot;This is an artist&quot;,&quot;This is an album&quot;,1989</span><br><span class="line">&quot;This is a song&quot;,&quot;This is an artist&quot;,&quot;This is an album&quot;,1989</span><br><span class="line">&quot;This is a song&quot;,&quot;This is an artist&quot;,&quot;This is an album&quot;,1989</span><br></pre></td></tr></table></figure>
+<h3 id="Problem-Aggregate-JSON-object"><a href="#Problem-Aggregate-JSON-object" class="headerlink" title="Problem: Aggregate JSON object."></a>Problem: Aggregate JSON object.</h3><p>Example JSON:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;A&quot;</span>: [&#123; <span class="attr">&quot;Name&quot;</span>: <span class="string">&quot;A1&quot;</span> &#125;, &#123; <span class="attr">&quot;Name&quot;</span>: <span class="string">&quot;A2&quot;</span> &#125;],</span><br><span class="line">  <span class="attr">&quot;B&quot;</span>: [&#123; <span class="attr">&quot;Name&quot;</span>: <span class="string">&quot;B1&quot;</span> &#125;, &#123; <span class="attr">&quot;Name&quot;</span>: <span class="string">&quot;B2&quot;</span> &#125;],</span><br><span class="line">  <span class="attr">&quot;C&quot;</span>: [&#123; <span class="attr">&quot;Name&quot;</span>: <span class="string">&quot;C&quot;</span> &#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>The goal is to produce something like below:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="attr">&quot;A&quot;</span>: [<span class="string">&quot;A1&quot;</span>, <span class="string">&quot;A2&quot;</span>], <span class="attr">&quot;B&quot;</span>: [<span class="string">&quot;B1&quot;</span>, <span class="string">&quot;B2&quot;</span>], <span class="attr">&quot;C&quot;</span>: [<span class="string">&quot;C&quot;</span>] &#125;</span><br></pre></td></tr></table></figure>
+<p>It transform the object and aggregate (or compress?) them by “Name” property, I know this can be easily done with JavaScript, but jq and bash seems like more widely used and will come in handy when JavaScript is not available.</p>
+<p>The jq code I came up with is as follows:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jq <span class="string">&#x27;[keys_unsorted[] as $k|&#123;($k): [.[$k][]|.Name]&#125;]|add&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>References:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://stackoverflow.com/a/32967407">https://stackoverflow.com/a/32967407</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en,zh-Hans,default">
+    <link itemprop="mainEntityOfPage" href="http://kevinsj.github.io/2020/11/15/practice-with-vim-I/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="KevinSJ">
+      <meta itemprop="description" content="A blog about all things tech.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/15/practice-with-vim-I/" class="post-title-link" itemprop="url">Practice With Vim (I)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 11-15-2020 13:54:30 / Modified: 14:45:47" itemprop="dateCreated datePublished" datetime="2020-11-15T13:54:30+13:00">11-15-2020</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>What would be the easiest way to remove all but one word from the end of each line in Vim?</p>
+<p>Today, I found a challenge on vimgolf and thought it might be interesting to share my solutions.</p>
+<p>Here is the original file</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">abcd 1 erfg 7721231</span><br><span class="line">acd 2 erfgasd 324321</span><br><span class="line">acd 3 erfgsdasd 23432</span><br><span class="line">abcd 5 erfgdsad 123556</span><br></pre></td></tr></table></figure>
+
+<p>Here is the desired result:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">7721231</span><br><span class="line">324321</span><br><span class="line">23432</span><br><span class="line">123556</span><br></pre></td></tr></table></figure>
+
+<p>The challenge is quite straightforward, delete all but the last characters in the file. I found several ways to tackle this challenge, so let me show you all:</p>
+<h4 id="Take-1-Use-macro-only"><a href="#Take-1-Use-macro-only" class="headerlink" title="Take 1: Use macro only"></a>Take 1: Use macro only</h4><p>Record a macro, and play it back, so the keystrokes would be</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">qa $bd0j q 4@a &lt;cr&gt;</span><br><span class="line"></span><br><span class="line">qa starts recording macro to register a</span><br><span class="line">$ move cursor to the end of the line</span><br><span class="line">d0 means *d*elete to the beginning of the line</span><br><span class="line">j move cursor down</span><br><span class="line">q finish macro</span><br><span class="line">4@a repeat the macro in register a 4 times</span><br></pre></td></tr></table></figure>
+
+<h4 id="Take-2-Use-regex-and-norm"><a href="#Take-2-Use-regex-and-norm" class="headerlink" title="Take 2: Use regex and %norm"></a>Take 2: Use regex and %norm</h4><p>It’s quite obvious that all we want to keep from the original files are the numbers. So the regex would be simple to come up with, like something as simple as <code>/\d\+$&lt;cr&gt;</code> will do. Once you type this into vim, all the numbers at the end of the line will be highlighted. Next you can do: </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">:%norm dn &lt;cr&gt;</span><br><span class="line"></span><br><span class="line">% means applying to the whole file,</span><br><span class="line">norm means in execute following command in normal mode</span><br><span class="line">dn means *d*elete to *n*ext match</span><br></pre></td></tr></table></figure>
+
+<h4 id="Take-3-No-regex-pure-norm"><a href="#Take-3-No-regex-pure-norm" class="headerlink" title="Take 3: No regex pure %norm"></a>Take 3: No regex pure %norm</h4><p>This is the fastest way I can come up with, still, not as fast as the top answers on Vimgolf but it is decent in my opinion. Being slightly different from the option above, it is still using <code>%norm</code> though:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">%norm $bd0 &lt;cr&gt;  </span><br><span class="line"></span><br><span class="line">% means applying to the whole file,</span><br><span class="line">$ move cursor to the end of the line</span><br><span class="line">d0 means *d*elete to the beginning of the line</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="Takeaways"><a href="#Takeaways" class="headerlink" title="Takeaways:"></a>Takeaways:</h3><ul>
+<li><code>norm</code> is a quite powerful, and can be used to achieve complex stuff that can be otherwise achieved through a macro.</li>
+<li><code>d</code> the delete command is useful in many unexpected ways, besides <code>dn</code> and <code>d0</code> command mentioned above which deletes to the next match and deletes to the beginning of the line respectively. An additional useful variation of <code>d</code> command is <code>d4/x</code> where <code>4/x</code> meaning 4th occurrence of x.</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://kevinsj.github.io/2020/09/14/pitfall-of-jsonencode-in-terraform/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="KevinSJ">
+      <meta itemprop="description" content="A blog about all things tech.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/14/pitfall-of-jsonencode-in-terraform/" class="post-title-link" itemprop="url">Pitfall of jsonencode in Terraform</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 09-14-2020 21:39:11 / Modified: 22:00:03" itemprop="dateCreated datePublished" datetime="2020-09-14T21:39:11+12:00">09-14-2020</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>This week, I was tasked with creating basic infrastructure for one of our newwebsites.  We use Fastly for our CDN and New Relic as a log aggregation tool, most of our infrastructure is setup using Terraform, which is a popular infrastructure as code (IaC) platform. Terraform supports Fastly through a custom plugin, which also has the capability of New Relic. We need to customize the format of New Relic so that we can find the logs easily in New Relic. As expected, the plugin actually provide a pretty straight forward to accomplish this – what you need to do is to come up with a proper json string that align with the format that Fastly provided in their document. This seemingly straightforward task ended up took me some time to debug.</p>
+<p>In terraform, you can create objects, and an object can be converted to string by using jsonencode function. This is where the pitfall comes in: Fastly’s formatting document said they have a option called “%&gt;s” which represents the final status of the fastly request. From my perspective, it would definitely be helpful if we can include this when we send the log to Fastly. So I added this to my formatting object, and then jsonencode the object. To my suprise, I get an error saying that Fastly failed to parse the formatting option I created, which is quite strange. I then started to debug, I export TF_LOG=”DEBUG”, which asked Terraform to give me all the debug logs. To my suprise, I found that the “%&gt;s” was jsonencode to “%\u003es” by terraform, and thus causing the error.  <strong>How come “&gt;” sign is encoded in Terraform? It turned out it’s for backward compatibility with ealier edition of Terraform.</strong> And according to their documentation </p>
+<blockquote>
+<p>When encoding strings, this function escapes some characters using Unicode escape sequences: replacing &lt;, &gt;, &amp;, U+2028, and U+2029 with \u003c, \u003e, \u0026, \u2028, and \u2029. This is to preserve compatibility with Terraform 0.11 behavior. </p>
+</blockquote>
+<p>they encode much more characters <strong>for you</strong> without you realizing it. I really hope they can provide a way to opt-out of this feature or make this an opt-in, it will make things way easier for developers.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en,zh-Hans,default">
+    <link itemprop="mainEntityOfPage" href="http://kevinsj.github.io/2019/10/12/Automating-Android-data-saver-with-tasker/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="KevinSJ">
+      <meta itemprop="description" content="A blog about all things tech.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/10/12/Automating-Android-data-saver-with-tasker/" class="post-title-link" itemprop="url">Automating Android data saver with tasker</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 10-12-2019 19:34:42" itemprop="dateCreated datePublished" datetime="2019-10-12T19:34:42+13:00">10-12-2019</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 12-27-2020 00:45:47" itemprop="dateModified" datetime="2020-12-27T00:45:47+13:00">12-27-2020</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Recently, I have been eager to get the data saver on Android to work automatically for me. My goal is to have Tasker automatically enable the built-in data saver when my data is low. Before I came up with this idea, I have search the web to see if there is any solutions exist already so I don’t have to reinventing the wheel. Unfortunately, I couldn’t find anything on this topic so I have to create my own solution. Upon 1 week of testing, things to work as I expected so I decided to share in this article how I did it.</p>
 <h2 id="Prerequisite"><a href="#Prerequisite" class="headerlink" title="Prerequisite"></a>Prerequisite</h2><ul>
 <li>An rooted Android phone – Unfortunately, the solution I came up with only works on rooted Android phone, I’m running Android 9.0.</li>
 <li>A way to get to know you current data usage – Some carriers allow you to get you data usage through SMS, some might only allow you to use USSD to get data usage. I am only covering the case of using SMS here (my case).</li>
@@ -344,127 +796,70 @@
 </ul>
 <p>It is quite easy to do this when you carrier allows you to query data usage using SMS, with USSD however, things is not that easy and unfortunately, I haven’t figure out a way yet.</p>
 
-          
-        
       
     </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
 
     
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
-
-  
-
   
   
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://kevinsj.github.io/2019/05/29/Converting-QEMU-VM-to-VirtualBox-VM/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en,zh-Hans,default">
+    <link itemprop="mainEntityOfPage" href="http://kevinsj.github.io/2019/05/28/Converting-QEMU-VM-to-VirtualBox-VM/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="KevinSJ">
-      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="KevinSJ">
+      <meta itemprop="description" content="A blog about all things tech.">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Kevin Jiang's Technical Blog">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/05/29/Converting-QEMU-VM-to-VirtualBox-VM/" itemprop="url">Converting QEMU VM to VirtualBox VM</a></h1>
-        
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/05/28/Converting-QEMU-VM-to-VirtualBox-VM/" class="post-title-link" itemprop="url">Converting QEMU VM to VirtualBox VM</a>
+        </h2>
 
         <div class="post-meta">
-          <span class="post-time">
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
+                <i class="far fa-calendar"></i>
               </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-28T20:55:20-05:00">
-                05-28-2019
-              </time>
-            
+              <span class="post-meta-item-text">Posted on</span>
 
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
+              <time title="Created: 05-28-2019 20:55:20" itemprop="dateCreated datePublished" datetime="2019-05-28T20:55:20+12:00">05-28-2019</time>
+            </span>
+              <span class="post-meta-item">
                 <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
+                  <i class="far fa-calendar-check"></i>
                 </span>
-                <a href="/2019/05/29/Converting-QEMU-VM-to-VirtualBox-VM/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/05/29/Converting-QEMU-VM-to-VirtualBox-VM/" itemprop="commentCount"></span>
-                </a>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 09-12-2020 14:27:57" itemprop="dateModified" datetime="2020-09-12T14:27:57+12:00">09-12-2020</time>
               </span>
-            
-          
-
-          
-          
-
-          
-
-          
 
           
 
         </div>
       </header>
-    
 
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
-          
-            <p>Recently, I decided to convert my QEMU based virtual machine installed on my Manjaro Linux to the VirtualBox format. The reason behind this is that I would like to be able to use the same VM across different host system (specifically Manjaro Linux and Windows 7). It is not a easy  thing to do, so I decided to document it for future references.</p>
+          <p>Recently, I decided to convert my QEMU based virtual machine installed on my Manjaro Linux to the VirtualBox format. The reason behind this is that I would like to be able to use the same VM across different host system (specifically Manjaro Linux and Windows 7). It is not a easy  thing to do, so I decided to document it for future references.</p>
 <h3 id="Prerequisite"><a href="#Prerequisite" class="headerlink" title="Prerequisite?"></a>Prerequisite?</h3><ul>
 <li>An existing image created using QEMU (My VM file end with .img,  for example)</li>
 <li>VirtualBox</li>
@@ -483,1071 +878,240 @@
 </ul>
 <p>It turned out, after doing that, everything works as expected.</p>
 
-          
-        
       
     </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
 
     
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
-
-  
-
   
   
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://kevinsj.github.io/2018/06/25/Automating-things-on-Android-with-Tasker/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en,zh-Hans,default">
+    <link itemprop="mainEntityOfPage" href="http://kevinsj.github.io/2018/06/24/Automating-things-on-Android-with-Tasker/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="KevinSJ">
-      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="KevinSJ">
+      <meta itemprop="description" content="A blog about all things tech.">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Kevin Jiang's Technical Blog">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/25/Automating-things-on-Android-with-Tasker/" itemprop="url">Automating things on Android with Tasker (I)</a></h1>
-        
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/06/24/Automating-things-on-Android-with-Tasker/" class="post-title-link" itemprop="url">Automating things on Android with Tasker (I)</a>
+        </h2>
 
         <div class="post-meta">
-          <span class="post-time">
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
+                <i class="far fa-calendar"></i>
               </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-24T21:30:31-05:00">
-                06-24-2018
-              </time>
-            
+              <span class="post-meta-item-text">Posted on</span>
 
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
+              <time title="Created: 06-24-2018 21:30:31" itemprop="dateCreated datePublished" datetime="2018-06-24T21:30:31+12:00">06-24-2018</time>
+            </span>
+              <span class="post-meta-item">
                 <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
+                  <i class="far fa-calendar-check"></i>
                 </span>
-                <a href="/2018/06/25/Automating-things-on-Android-with-Tasker/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/06/25/Automating-things-on-Android-with-Tasker/" itemprop="commentCount"></span>
-                </a>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 09-12-2020 14:25:30" itemprop="dateModified" datetime="2020-09-12T14:25:30+12:00">09-12-2020</time>
               </span>
-            
-          
-
-          
-          
-
-          
-
-          
 
           
 
         </div>
       </header>
-    
 
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
-          
-            <h3 id="Why-Tasker"><a href="#Why-Tasker" class="headerlink" title="Why Tasker?"></a>Why Tasker?</h3><p>This is probably an article that is long overdue to me personally. I have been an Android user since 2011, started with my Nexus S that I bought for use in college. It seems to me, the app Tasker had been very famous in the Andorid community, especially among users who know how to program.<br>For those who have never heard of this app, this is a powerful app that allows you to automate almost anything that you can think of on the Android system.For me,It was not until August of last year when I bought the tasker app that I started to realize how powerful this app is. I am really not a big fan of its old school UI and design so I didn’t start using it until this year. After uisng it for a while, I did come to realize that there is no other apps close to it, if I were to move to iOS, this is probably among one the apps that I will miss.  In this article I will explain how I used takser to automate things for myself, it is some boring stuff, but it did become something that I’m using everyday.</p>
+          <h3 id="Why-Tasker"><a href="#Why-Tasker" class="headerlink" title="Why Tasker?"></a>Why Tasker?</h3><p>This is probably an article that is long overdue to me personally. I have been an Android user since 2011, started with my Nexus S that I bought for use in college. It seems to me, the app Tasker had been very famous in the Andorid community, especially among users who know how to program.<br>For those who have never heard of this app, this is a powerful app that allows you to automate almost anything that you can think of on the Android system.For me,It was not until August of last year when I bought the tasker app that I started to realize how powerful this app is. I am really not a big fan of its old school UI and design so I didn’t start using it until this year. After uisng it for a while, I did come to realize that there is no other apps close to it, if I were to move to iOS, this is probably among one the apps that I will miss.  In this article I will explain how I used takser to automate things for myself, it is some boring stuff, but it did become something that I’m using everyday.</p>
 <h3 id="What-can-you-use-it-for"><a href="#What-can-you-use-it-for" class="headerlink" title="What can you use it for?"></a>What can you use it for?</h3><p>I will list one of the most used Tasks/Profiles that I created and used in this app:</p>
 <h5 id="Turn-off-on-ADB-when-using-certain-apps"><a href="#Turn-off-on-ADB-when-using-certain-apps" class="headerlink" title="Turn off/on ADB when using certain apps."></a>Turn off/on ADB when using certain apps.</h5><p>This is one of the easy ones that I found very useful. It is not uncommon nowadays for some apps to require you to turn off your ADB (Android Debugging Bridge) settings when you are using them, which to me, is quite annoying. So naturally, I created a Tasker profile together with a task to automate this. The trick here is you need to have root access, otherwise you are pretty much out of luck for this particular example. To create such a task, assuming you already have proper root access, go to the TASKS page in the app and click on the add icon, choose a name you like, and then you can create your first task! Think of a task as the things you want Tasker to do for you. In this particular case, my goal is simple: turn off ADB if it was not already off, turn it on if it was off. This way we can have one task that a turns off the ADB when you turns on the app; when you turns the app off, ADB will be switch back to on. </p>
 <p>It is clear that we will need a global variable that holds the  status of the adb status, to do this add an action: click on the button add icon while you are in the “Task Edit” page, and filter based on Shell, you will see a “Run Shell” as a result. Click on it, and in the “Command” input, enter “settings get global adb_enabled” and in “Store Output In” input, choose a global variable name you would like to use to hold the status of the current ADB status, just remember that you need to use all caps for the name for tasker to know it is an global variable. Also remember to check the “Use Root” checkbox. After this step, things will be simple, just add the if and else condition like I mentioned before, set adb_enabled to 0 if it is 1 and set it to 1 if it is 0, and after that don’t forget to set the global variable again. </p>
 <p>TL;DR Here is the XML, that you can directly import to your Tasker if you don’t want to create it yourself:</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">TaskerData</span> <span class="attr">sr</span>=<span class="string">""</span> <span class="attr">dvi</span>=<span class="string">"1"</span> <span class="attr">tv</span>=<span class="string">"5.2.bf"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Task</span> <span class="attr">sr</span>=<span class="string">"task3"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">cdate</span>&gt;</span>1526421645228<span class="tag">&lt;/<span class="name">cdate</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">edate</span>&gt;</span>1529892193595<span class="tag">&lt;/<span class="name">edate</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span>&gt;</span>3<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">nme</span>&gt;</span>adb_auto<span class="tag">&lt;/<span class="name">nme</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">pri</span>&gt;</span>1006<span class="tag">&lt;/<span class="name">pri</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Action</span> <span class="attr">sr</span>=<span class="string">"act0"</span> <span class="attr">ve</span>=<span class="string">"7"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">code</span>&gt;</span>123<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg0"</span> <span class="attr">ve</span>=<span class="string">"3"</span>&gt;</span>settings get global adb_enabled<span class="tag">&lt;/<span class="name">Str</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg1"</span> <span class="attr">val</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg2"</span> <span class="attr">val</span>=<span class="string">"1"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg3"</span> <span class="attr">ve</span>=<span class="string">"3"</span>&gt;</span>%ADB_STATUS<span class="tag">&lt;/<span class="name">Str</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg4"</span> <span class="attr">ve</span>=<span class="string">"3"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg5"</span> <span class="attr">ve</span>=<span class="string">"3"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">Action</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Action</span> <span class="attr">sr</span>=<span class="string">"act1"</span> <span class="attr">ve</span>=<span class="string">"7"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">code</span>&gt;</span>37<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">ConditionList</span> <span class="attr">sr</span>=<span class="string">"if"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">Condition</span> <span class="attr">sr</span>=<span class="string">"c0"</span> <span class="attr">ve</span>=<span class="string">"3"</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">lhs</span>&gt;</span>%ADB_STATUS<span class="tag">&lt;/<span class="name">lhs</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">op</span>&gt;</span>0<span class="tag">&lt;/<span class="name">op</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">rhs</span>&gt;</span>1<span class="tag">&lt;/<span class="name">rhs</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">Condition</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">ConditionList</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">Action</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Action</span> <span class="attr">sr</span>=<span class="string">"act2"</span> <span class="attr">ve</span>=<span class="string">"7"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">code</span>&gt;</span>123<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg0"</span> <span class="attr">ve</span>=<span class="string">"3"</span>&gt;</span>settings put global adb_enabled 0<span class="tag">&lt;/<span class="name">Str</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg1"</span> <span class="attr">val</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg2"</span> <span class="attr">val</span>=<span class="string">"1"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg3"</span> <span class="attr">ve</span>=<span class="string">"3"</span>&gt;</span>%ADB_STATUS<span class="tag">&lt;/<span class="name">Str</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg4"</span> <span class="attr">ve</span>=<span class="string">"3"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg5"</span> <span class="attr">ve</span>=<span class="string">"3"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">Action</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Action</span> <span class="attr">sr</span>=<span class="string">"act3"</span> <span class="attr">ve</span>=<span class="string">"7"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">code</span>&gt;</span>43<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">Action</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Action</span> <span class="attr">sr</span>=<span class="string">"act4"</span> <span class="attr">ve</span>=<span class="string">"7"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">code</span>&gt;</span>123<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg0"</span> <span class="attr">ve</span>=<span class="string">"3"</span>&gt;</span>settings put global adb_enabled 1<span class="tag">&lt;/<span class="name">Str</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg1"</span> <span class="attr">val</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg2"</span> <span class="attr">val</span>=<span class="string">"1"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg3"</span> <span class="attr">ve</span>=<span class="string">"3"</span>&gt;</span>%ADB_STATUS<span class="tag">&lt;/<span class="name">Str</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg4"</span> <span class="attr">ve</span>=<span class="string">"3"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg5"</span> <span class="attr">ve</span>=<span class="string">"3"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">Action</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Action</span> <span class="attr">sr</span>=<span class="string">"act5"</span> <span class="attr">ve</span>=<span class="string">"7"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">code</span>&gt;</span>38<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">Action</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Action</span> <span class="attr">sr</span>=<span class="string">"act6"</span> <span class="attr">ve</span>=<span class="string">"7"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">code</span>&gt;</span>123<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg0"</span> <span class="attr">ve</span>=<span class="string">"3"</span>&gt;</span>settings get global adb_enabled<span class="tag">&lt;/<span class="name">Str</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg1"</span> <span class="attr">val</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">"arg2"</span> <span class="attr">val</span>=<span class="string">"1"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg3"</span> <span class="attr">ve</span>=<span class="string">"3"</span>&gt;</span>%ADB_STATUS<span class="tag">&lt;/<span class="name">Str</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg4"</span> <span class="attr">ve</span>=<span class="string">"3"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">"arg5"</span> <span class="attr">ve</span>=<span class="string">"3"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">Action</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">Task</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">TaskerData</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">TaskerData</span> <span class="attr">sr</span>=<span class="string">&quot;&quot;</span> <span class="attr">dvi</span>=<span class="string">&quot;1&quot;</span> <span class="attr">tv</span>=<span class="string">&quot;5.2.bf&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Task</span> <span class="attr">sr</span>=<span class="string">&quot;task3&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">cdate</span>&gt;</span>1526421645228<span class="tag">&lt;/<span class="name">cdate</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">edate</span>&gt;</span>1529892193595<span class="tag">&lt;/<span class="name">edate</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span>&gt;</span>3<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">nme</span>&gt;</span>adb_auto<span class="tag">&lt;/<span class="name">nme</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">pri</span>&gt;</span>1006<span class="tag">&lt;/<span class="name">pri</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Action</span> <span class="attr">sr</span>=<span class="string">&quot;act0&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;7&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">code</span>&gt;</span>123<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">&quot;arg0&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;3&quot;</span>&gt;</span>settings get global adb_enabled<span class="tag">&lt;/<span class="name">Str</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">&quot;arg1&quot;</span> <span class="attr">val</span>=<span class="string">&quot;0&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">&quot;arg2&quot;</span> <span class="attr">val</span>=<span class="string">&quot;1&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">&quot;arg3&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;3&quot;</span>&gt;</span>%ADB_STATUS<span class="tag">&lt;/<span class="name">Str</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">&quot;arg4&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;3&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">&quot;arg5&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;3&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">Action</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Action</span> <span class="attr">sr</span>=<span class="string">&quot;act1&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;7&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">code</span>&gt;</span>37<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">ConditionList</span> <span class="attr">sr</span>=<span class="string">&quot;if&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">Condition</span> <span class="attr">sr</span>=<span class="string">&quot;c0&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;3&quot;</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">lhs</span>&gt;</span>%ADB_STATUS<span class="tag">&lt;/<span class="name">lhs</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">op</span>&gt;</span>0<span class="tag">&lt;/<span class="name">op</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">rhs</span>&gt;</span>1<span class="tag">&lt;/<span class="name">rhs</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">Condition</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">ConditionList</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">Action</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Action</span> <span class="attr">sr</span>=<span class="string">&quot;act2&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;7&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">code</span>&gt;</span>123<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">&quot;arg0&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;3&quot;</span>&gt;</span>settings put global adb_enabled 0<span class="tag">&lt;/<span class="name">Str</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">&quot;arg1&quot;</span> <span class="attr">val</span>=<span class="string">&quot;0&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">&quot;arg2&quot;</span> <span class="attr">val</span>=<span class="string">&quot;1&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">&quot;arg3&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;3&quot;</span>&gt;</span>%ADB_STATUS<span class="tag">&lt;/<span class="name">Str</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">&quot;arg4&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;3&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">&quot;arg5&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;3&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">Action</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Action</span> <span class="attr">sr</span>=<span class="string">&quot;act3&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;7&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">code</span>&gt;</span>43<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">Action</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Action</span> <span class="attr">sr</span>=<span class="string">&quot;act4&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;7&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">code</span>&gt;</span>123<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">&quot;arg0&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;3&quot;</span>&gt;</span>settings put global adb_enabled 1<span class="tag">&lt;/<span class="name">Str</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">&quot;arg1&quot;</span> <span class="attr">val</span>=<span class="string">&quot;0&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">&quot;arg2&quot;</span> <span class="attr">val</span>=<span class="string">&quot;1&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">&quot;arg3&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;3&quot;</span>&gt;</span>%ADB_STATUS<span class="tag">&lt;/<span class="name">Str</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">&quot;arg4&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;3&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">&quot;arg5&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;3&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">Action</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Action</span> <span class="attr">sr</span>=<span class="string">&quot;act5&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;7&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">code</span>&gt;</span>38<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">Action</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Action</span> <span class="attr">sr</span>=<span class="string">&quot;act6&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;7&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">code</span>&gt;</span>123<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">&quot;arg0&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;3&quot;</span>&gt;</span>settings get global adb_enabled<span class="tag">&lt;/<span class="name">Str</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">&quot;arg1&quot;</span> <span class="attr">val</span>=<span class="string">&quot;0&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">&quot;arg2&quot;</span> <span class="attr">val</span>=<span class="string">&quot;1&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">&quot;arg3&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;3&quot;</span>&gt;</span>%ADB_STATUS<span class="tag">&lt;/<span class="name">Str</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">&quot;arg4&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;3&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">&quot;arg5&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;3&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">Action</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">Task</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">TaskerData</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
 <p>To import, you need to save the above snippet to XML on your phone. In tasker app,   click and hold the “TASKS” tab header, select import and choose the file </p>
 <p>To run the task based on your predefined conditions, go to “PROFILES” tab, click on add button in the button, choose the application you want, and then, chose the task you imported and you are good to go! Now the app won’t say you can’t use it because you have ADB turned on, Tasker will turned adb off when you are using the app, and turn it on when you are not using it! :)</p>
 
-          
-        
       
     </div>
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
+    
+    
+    
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
+      </footer>
   </article>
-
-
-    
-      
-
-  
-
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://kevinsj.github.io/2018/03/25/AutomatingStuffWithGoogleAppScripts/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="KevinSJ">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/25/AutomatingStuffWithGoogleAppScripts/" itemprop="url">Automating Stuff With Google App Scripts</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-24T13:28:59-05:00">
-                03-24-2018
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/03/25/AutomatingStuffWithGoogleAppScripts/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/03/25/AutomatingStuffWithGoogleAppScripts/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="What-is-Google-App-Scripts"><a href="#What-is-Google-App-Scripts" class="headerlink" title="What is Google App Scripts?"></a>What is Google App Scripts?</h4><p>Before explaining what I did with Google App Scripts, let me explain what is Google App Scripts. It is basically a scripting engine that let you access all kinds of Google App features (including Gmail, Google Calendar, Google Docs, etc.). There are other ways to access these features but Google App Script might be the easist way out there. It comes with an online editor (you can work offline as well), and Google can trigger your scripts at certain time based on your need. Oh, forgot to mention, Google App Script uses JavaScript which is one of the most popular languages right now (Sadly, it doesn’t support ES6 syntax as of writing).</p>
-<h4 id="Why-use-Google-App-Scripts"><a href="#Why-use-Google-App-Scripts" class="headerlink" title="Why use Google App Scripts?"></a>Why use Google App Scripts?</h4><p>I have a habbit of archiving my Emails every week on Mondays. It is easy enough to do in the gmail Web interface but I do need to remember to do it. That make me think if I can find a good way to automate this. I would always think of using some kind of API first, but it seems to me that it wouldn’t worth it to spend time to make a app just for the purpose of archiving emails. Then I came across Google App Scripts, which turned out to be exactly what I need to automate this.</p>
-<h4 id="What-I-came-up-with"><a href="#What-I-came-up-with" class="headerlink" title="What I came up with"></a>What I came up with</h4><p>Here is what I came up with to achive the purpose of archiving emails that are one weeks old every Monday at midnight:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">gmailAutoarchive</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> maxDate = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">  <span class="comment">// Archive all threads in inbox whose last message date is older than today.</span></span><br><span class="line">  <span class="keyword">var</span> threads = GmailApp.getInboxThreads();</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i <span class="keyword">in</span> threads)&#123;</span><br><span class="line">    <span class="keyword">var</span> thread = threads[i];</span><br><span class="line">    <span class="keyword">if</span> (thread.getLastMessageDate()&lt;maxDate)&#123;</span><br><span class="line">      thread.moveToArchive();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>You will be able to use this script by putting it into the google script editor located <a href="https://script.google.com" target="_blank" rel="noopener">here</a>.</p>
-<p>To have Google auto run your scripts, you need to add the trigger which can be found under Edit –&gt; Current project’s triggers.</p>
-<h4 id="Variation"><a href="#Variation" class="headerlink" title="Variation"></a>Variation</h4><p>After creating this script, I created another script as a variation to this script that move messages with certain labels to trash.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">gmailAutoRemove</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> maxDate = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">  maxDate.setDate(maxDate.getDate() - <span class="number">30</span>); <span class="comment">// what was the date at that time?</span></span><br><span class="line">  <span class="keyword">var</span> label = [GmailApp.getUserLabelByName(<span class="string">"label1"</span>), GmailApp.getUserLabelByName(<span class="string">"label2"</span>), GmailApp.getUserLabelByName(<span class="string">"label3"</span>)];</span><br><span class="line">  label.forEach(removeByLabel(maxDate));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">removeByLabel</span>(<span class="params">maxDate</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">label</span>)</span>&#123;</span><br><span class="line">   <span class="keyword">var</span> threads = label.getThreads(<span class="number">0</span>, <span class="number">100</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i <span class="keyword">in</span> threads)&#123;</span><br><span class="line">      <span class="keyword">var</span> thread = threads[i];</span><br><span class="line">      <span class="keyword">if</span> (thread.getLastMessageDate() &lt; maxDate)&#123;</span><br><span class="line">        thread.moveToTrash();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<hr>
-
-<p>References: <a href="https://medium.com/@fw3d/auto-archive-emails-in-gmail-after-2-days-1ebf0e076b1c" target="_blank" rel="noopener">Auto archive emails in Gmail after 2 days</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
 
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://kevinsj.github.io/2017/06/12/06112017-Fun-With-GPG/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="KevinSJ">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/06/12/06112017-Fun-With-GPG/" itemprop="url">06112017-Fun-With-GPG</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-11T16:33:06-05:00">
-                06-11-2017
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/06/12/06112017-Fun-With-GPG/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/06/12/06112017-Fun-With-GPG/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="Fun-with-GPG"><a href="#Fun-with-GPG" class="headerlink" title="Fun with GPG"></a>Fun with GPG</h4><p>This week, I was having making some great progress in understanding how GPG works either locally or through email. The original intention to do all this was because I would like my router to send me notification whenever the tranmission finish download the torrent. This may be simple as it sounds and it had been working correctly for me for several months since I create the initial script. </p>
-<p>This week, however, I decided to do something special. I would like the router to sign/encrypt the message it sends to me. I am not sure why I need that, but anyways, I did get to learn a lot through the process.</p>
-<p>Here is my original script, it simply uses the mailx program that installed on the router and sends the email through SMTP. Looks quite simple, it pretty much is the same as the script I have shown in the previous post:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/sh</span><br><span class="line"></span><br><span class="line">SMTP_SERVER=YOUR_EMAIL_SMTP</span><br><span class="line">MESSAGE="Hello!\n\n \tThis is a notification from transmission, $TR_TORRENT_NAME has been completed on $TR_TIME_LOCALTIME\n\n Thanks!"</span><br><span class="line">SENDER="YOUR_EMAIL_USER_NAME"</span><br><span class="line">RECEPIENT="EMAIL_TO_RECEIVE"</span><br><span class="line"></span><br><span class="line">printf "$MESSAGE"|mailx -vr $SENDER -s "[Transmission] Torrent Has Been Downloaded" -S smtp=$SMTP_SERVER -S smtp-use-starttls -S smtp-auth=login -S smtp-auth-user=$SENDER -S smtp-auth-password="YOUR_EMAIL_PASSWORD" -S ssl-verify=ignore $RECEPIENT</span><br></pre></td></tr></table></figure>
-<p> A little more explanation here, there are two variables preset by Transmission. \$TR_TORRENT_NAME, is the name of the torrent that has just been finished. \$TR_TIME_LOCALTIME is the time when the download was finished. There were several other environment variables set by transmission also. Here is a list of them<a href="https://trac.transmissionbt.com/wiki/Scripts" target="_blank" rel="noopener">^1</a><br>Note: The meaning of this variable are not explicitly documented in the wiki, and I guess the meaning based on my understanding.</p>
-<table>
-<thead>
-<tr>
-<th>Env Variable Name</th>
-<th>Meaning</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>TR_APP_VERSION</td>
-<td>The version of the transmission app.</td>
-</tr>
-<tr>
-<td>TR_TIME_LOCALTIME</td>
-<td>The time when the current torrent has been downloaded.</td>
-</tr>
-<tr>
-<td>TR_TORRENT_DIR</td>
-<td>The directory that the content of the torrent was downloaded to.</td>
-</tr>
-<tr>
-<td>TR_TORRENT_HASH</td>
-<td>The hash value of the torrent.</td>
-</tr>
-<tr>
-<td>TR_TORRENT_ID</td>
-<td>The ID  of this torrent (in the download list for transmission bookeeping?).</td>
-</tr>
-<tr>
-<td>TR_TORRENT_NAME</td>
-<td>The name of the torrent.</td>
-</tr>
-</tbody>
-</table>
-<p>So my initial thought was that adding the GPG encryption or signing is as easy as adding a new pipeline that redirects the output to GPG. However, it turned out to be much more difficult than that. When the script is called by transmission, it doesn’t set the environment variable required by GPG and because of this GPG would failed to find the private key used to sign/encrypt the message and therefore failed to encrypt. After setting the environmental variable in the scripts the GPG encryption works correctly. Here is the working script with encryption and signing. </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/sh</span><br><span class="line"></span><br><span class="line">SMTP_SERVER=YOUR_EMAIL_SMTP</span><br><span class="line">MESSAGE="Hello!\n\n \tThis is a notification from transmission, $TR_TORRENT_NAME has been completed on $TR_TIME_LOCALTIME\n\n Thanks!"</span><br><span class="line">SENDER="YOUR_EMAIL_USER_NAME"</span><br><span class="line">RECEPIENT="EMAIL_TO_RECEIVE"</span><br><span class="line">HOME="YOUR HOME DIRECTORY"</span><br><span class="line">GPGHOME="YOUR .gpg DIRECTORY"</span><br><span class="line">export HOME=$HOME</span><br><span class="line">export GPGHOME=$GPGHOME</span><br><span class="line"></span><br><span class="line">printf "$MESSAGE"|gpg --sign --encrypt --passphrase "your pass phrase" --batch --armor --encrypt  -r recipient_pubkey_id |mailx -vr $SENDER -s "[Transmission] Torrent Has Been Downloaded" -S smtp=$SMTP_SERVER -S smtp-use-starttls -S smtp-auth=login -S smtp-auth-user=$SENDER -S smtp-auth-password="YOUR_EMAIL_PASSWORD" -S ssl-verify=ignore $RECEPIENT</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://kevinsj.github.io/2017/05/22/Notes-From-Week-of-May-14/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="KevinSJ">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/22/Notes-From-Week-of-May-14/" itemprop="url">Notes From Week of May 14</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-21T18:18:11-05:00">
-                05-21-2017
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/05/22/Notes-From-Week-of-May-14/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/05/22/Notes-From-Week-of-May-14/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>From this week onward, I will be keeping notes for some of the issues I encountered during work or developing some of my personal works.</p>
-<h4 id="Here-are-notes-from-my-development-last-week"><a href="#Here-are-notes-from-my-development-last-week" class="headerlink" title="Here are notes from my development last week:"></a>Here are notes from my development last week:</h4><ul>
-<li><p>This might be a quite simple one, but I found it might be useful for future reference. In the development of TIA, previous developer used to disable the checkbox in a form. The result of this is the value of the disabled checkboxes were not submitted with the form. The previous developer opt to set the checkboxes separately which I don’t believe is an ideal solution. I thereby found another solution as follows:</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=<span class="string">"checkbox"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"readonly"</span> checked=<span class="string">"checked"</span> onclick=<span class="string">"javascript:return false"</span> /&gt;</span><br></pre></td></tr></table></figure>
-<p>  However, this is not enough in my case, I also need to have it gray out to make it looks like disabled. It turned out that this can be solved via simple CSS:</p>
-  <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">input</span><span class="selector-class">.readonly</span> &#123;</span><br><span class="line">    <span class="attribute">opacity </span>: .<span class="number">50</span>;</span><br><span class="line">    <span class="attribute">filter  </span>: <span class="built_in">alpha</span>(opacity=50); <span class="comment">/* IE&lt;9 */</span></span><br><span class="line">    <span class="attribute">cursor  </span>: default;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>  Just make sure to give the checkbox proper class name.</p>
-</li>
-<li><p>This week, I was also asked to generate data from InterCAD. What I used to do was to copy the result of the query from database to a MS Excel worksheet and done the work there. This is especially easy when when there are not a lot of data. This time around, there were 16 days worth of data that I need to do statistics on. So, I decided to create a Bash script to do this task. The bash script is listed as follows, it is a pretty easy one and can be improved in the future:</p>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">COUNTER=1</span><br><span class="line">TYPE=ACCIDENT</span><br><span class="line"><span class="keyword">while</span> [  <span class="variable">$COUNTER</span> -lt 17 ]; <span class="keyword">do</span></span><br><span class="line"> <span class="keyword">if</span> [ <span class="variable">$COUNTER</span> -lt 10 ]</span><br><span class="line"> <span class="keyword">then</span> </span><br><span class="line">     d=<span class="string">'2017-05-0'</span> </span><br><span class="line"> <span class="keyword">else</span></span><br><span class="line">     d=<span class="string">'2017-05-'</span></span><br><span class="line"> <span class="keyword">fi</span></span><br><span class="line"> <span class="built_in">echo</span> <span class="variable">$d</span><span class="variable">$COUNTER</span></span><br><span class="line"> grep <span class="variable">$d</span><span class="variable">$COUNTER</span> a.csv|grep <span class="variable">$TYPE</span>|wc -l</span><br><span class="line"> <span class="built_in">let</span> COUNTER=COUNTER+1 </span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
-<p>  Basically, this time around, I exported the result of my query into a csv called a.csv and use grep to get what I want. This script can be improved in several ways: </p>
-<ul>
-<li>Use awk instead of simple grep</li>
-<li><p>Have the user input the type and the date from the command line.</p>
-<p>This will be for future improvements.</p>
-</li>
-</ul>
-</li>
-<li><p>For my own project, I have set up a log watcher for the Flexget which I have installed on my Raspberry Pi 3. This log watcher runs 5 minutes after Flexget is ran and attach the error part of the log as an attachment and sent to my email address.</p>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">SMTP_SERVER=YOUR_EMAIL_SMTP</span><br><span class="line">RECEPIENT=EMAIL_TO_RECEIVE</span><br><span class="line">SENDER=<span class="string">"YOUR_EMAIL_USER_NAME"</span></span><br><span class="line">TEMPLOG=<span class="string">"TEMP_FILE_TO_STORE_ERROR_LOG"</span> <span class="comment">#Will be deleted email is sent</span></span><br><span class="line">DATE=$(date -I)</span><br><span class="line">MESSAGE=$(cat <span class="variable">$HOME</span>/flexget/flexget.log |</span><br><span class="line">grep -v INFO |</span><br><span class="line">grep -v VERBOSE |</span><br><span class="line">grep <span class="variable">$DATE</span>)</span><br><span class="line">CONTENT=<span class="string">"Attached is the error log from today, please check!"</span></span><br><span class="line"><span class="keyword">if</span> [ ! -z <span class="string">"<span class="variable">$MESSAGE</span>"</span> ] </span><br><span class="line"><span class="keyword">then</span>    </span><br><span class="line">    <span class="built_in">printf</span> <span class="string">"<span class="variable">$MESSAGE</span>"</span>|dd of=<span class="variable">$HOME</span>/errorlog</span><br><span class="line">    <span class="built_in">printf</span> <span class="string">"<span class="variable">$CONTENT</span>"</span>|mailx -vr <span class="variable">$SENDER</span> -a <span class="variable">$TEMPLOG</span>  -s <span class="string">"[TRANSMISSION ERROR] Transmission has encountered error"</span> -S smtp=<span class="variable">$SMTP_SERVER</span> -S smtp-use-starttls -S smtp-auth=login -S smtp-auth-user=<span class="variable">$SENDER</span> -S smtp-auth-password=<span class="string">"YOUR_EMAIL_PASSWORD"</span> -S ssl-verify=ignore <span class="variable">$RECEPIENT</span></span><br><span class="line">    rm <span class="variable">$TEMPLOG</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
-<p>  This script finds the error from flexget.log and write to TEMPLOG. If there is indeed errors exists in the log. The file will be attached and sent through the SMTP server to the address of your choice.</p>
-</li>
-<li><p>Over the weekend, I also started to learn React. React is a web library developed and used by Facebook. It is similar to Angular JS, but uses more straight rather than the TypeScript used by Angular JS. There were several notes that I would like to write down for future reference:</p>
-<ul>
-<li><p>React are composed of components, however, there were several ways to declare a component in React. </p>
-<ul>
-<li><p>The first way is the way that I would prefer, which is to use the ES6 class declaration, shown as follows:</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;Component&#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">SkiDayCount</span> <span class="keyword">extends</span> <span class="title">Component</span></span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(props)&#123;</span><br><span class="line">        <span class="keyword">super</span>(props);</span><br><span class="line">    &#125;</span><br><span class="line">    render()&#123;</span><br><span class="line">      	<span class="keyword">return</span> (<span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>The second way is cleaner, it is a stateless way of declaring and declares the component as a function, it is shown as follows:</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> SkiDayCount = <span class="function"><span class="params">()</span> =&gt;</span> (<span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>The third way, however, is in the process of deprecation and is not recommended at this point, but it is still shown here:</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> SkiDayCount = React.createClass(&#123;</span><br><span class="line">  	render()&#123;</span><br><span class="line">      <span class="keyword">return</span> (<span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>  This will be deprecated in the future release and put here just for reference only.</p>
-</li>
-</ul>
-</li>
-<li><p>To use the above mentioned newly created component in a page. You can use the following code:</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"><span class="keyword">import</span> &#123; render &#125; <span class="keyword">from</span> <span class="string">'react-dom'</span></span><br><span class="line"><span class="comment">//import the component, assuming it is in a folder called components and the source is called SkiDayCount.js</span></span><br><span class="line"><span class="keyword">import</span> &#123; SkiDayCount &#125; <span class="keyword">from</span> <span class="string">'./components/SkiDayCount'</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">window</span>.React = React</span><br><span class="line"></span><br><span class="line">render(</span><br><span class="line">	&lt;SkiDayCount /&gt;,</span><br><span class="line">	<span class="built_in">document</span>.getElementById(<span class="string">'react-container'</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>These are the notes from last week, I will learn more about React this week and hopefully will come up with more notes for next week.</p>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://kevinsj.github.io/2017/03/13/在树莓派上部署flexget实现自动追番/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="KevinSJ">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/13/在树莓派上部署flexget实现自动追番/" itemprop="url">在树莓派上部署flexget实现自动追番</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-12T17:33:06-05:00">
-                03-12-2017
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/03/13/在树莓派上部署flexget实现自动追番/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/03/13/在树莓派上部署flexget实现自动追番/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>参考链接：</p>
-<p><a href="https://gist.github.com/sebleblanc/f5e4a635d0fc8b953df7" target="_blank" rel="noopener">https://gist.github.com/sebleblanc/f5e4a635d0fc8b953df7</a></p>
-<h3 id="缘起"><a href="#缘起" class="headerlink" title="缘起"></a>缘起</h3><p>今天心血来潮，把之前部署在Github Pages上的Jekyll删掉了，完全换成了Hexo，并进行重做。主要还是想到自己在工作和平常生活中遇到的不少技术坑还是可以值得写下来记录一下。我的目标是每周一篇技术博客吧。<br>这周想要写的就是Flexget。身为一个海外党，在国外追新番还是比较不方便的：B站倒是能上，但在那上面看新番的时候缓存慢成狗也是蛮无语的。在跟龟速缓冲战斗了半年多之后，我决定转做一个下载党。我最初的想法是用Java自己造个轮子，后来发现<del>自己水平太烂</del>实在太难，就转向了找现成的方案。Google 出来不少自动追番的相关内容。大部分都提到了Flexget这个东西。在看了几篇介绍之后。我就决定使用Flexget来实现自动追番。由于Google上关于Flexget的文章大都是13年的，而Flexget这软件已经更新了很多次了，有些配置文件已经不在适用，为了方便后人折腾，我就决定将我折腾的过程记录下来。</p>
-<h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><p>以下是安装和折腾 Flexget 的前提条件：</p>
-<ol>
-<li>树莓派或任意 Linux 系统的主机。（推荐至少1GB内存，因为 Flexget 的依赖会比较多)</li>
-<li>树莓派或 Linux 主机上已安装有至少一个 BT 下载工具。我自己用的是装在路由器上的Transmission，不想折腾的话，也可以采用这个方案。当然 Flexget 可以和很多下载工具整合，不光是 Transmission ，不过你需要自己查询它的英文文档。</li>
-<li>树莓派或 Linux 主机上已安装有 Python 和 Pip。</li>
-<li>懂一点 YAML。Flexget的配置文件全部是基于 YAML 格式的，这个格式学起来其实也不算复杂，所以懂一点就足够。</li>
-<li>一个提供种子或者磁力链接的 RSS 源。这里我就不列举了，一般看动漫的都会知道哪能找到这样的资源。</li>
-</ol>
-<h3 id="折腾"><a href="#折腾" class="headerlink" title="折腾"></a>折腾</h3><p>这个 Flexget 折腾起来难度不是很大，下面是一个简单的教程</p>
-<ul>
-<li><p><strong>安装</strong></p>
-<ul>
-<li><p>官方的教程强烈推荐将 Flexget 安装到一个独立的 Python 环境中以免它的依赖跟本地依赖冲突。我个人也是这样做的:</p>
-</li>
-<li><p>首先要做的是安装虚拟环境<del>废话</del>。这个只需要此命令即可实现：<code>pip install virtualenv</code></p>
-</li>
-<li><p>安装好 virtualenv 后可以在本地创建一个文件夹作为 Flexget 的独立环境: </p>
-<p><code>mkdir flextget &amp;&amp; cd flexget</code></p>
-</li>
-<li><p>将刚刚建立的 flexget 文件夹转成独立的 Python 环境：<code>virtualenv .</code></p>
-</li>
-<li><p>现在 Flexget 文件夹中就有了一个完整的 Python 环境，我们需要先激活这个环境，然后再开始安装Flexget：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">source bin/activate #激活独立 Python 环境</span><br><span class="line">pip install flexget #安装flexget, 需要一段时间，因为依赖比较多</span><br><span class="line">deactivate #安装完成后，解除对当前独立 Python 环境的激活</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>这个时候，我们已经将 Flexget 安装完成了，但由于现在还没有配置文件，启动 Flexget 时会报错</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/flexget execute #运行Flexget, 会返回 Failed to find configuration file config.yml</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p><strong>配置</strong></p>
-<ul>
-<li><p>Flexget 的配置文件采用的 YAML 语言，并且非常灵活，可以做到在一个文件中加载另一个文件。</p>
-</li>
-<li><p>配置文件的核心是  config.yml, 下面是我自己的 config.yml 以及注释：</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">templates:</span></span><br><span class="line"><span class="attr">  global:</span></span><br><span class="line"><span class="attr">    transmission:</span></span><br><span class="line"><span class="attr">      host:</span> <span class="number">192.168</span><span class="number">.1</span><span class="number">.1</span></span><br><span class="line"><span class="attr">      port:</span> <span class="number">9091</span></span><br><span class="line"><span class="attr">    clean_transmission:</span></span><br><span class="line"><span class="attr">      host:</span> <span class="number">192.168</span><span class="number">.1</span><span class="number">.1</span></span><br><span class="line"><span class="attr">      port:</span> <span class="number">9091</span></span><br><span class="line"><span class="attr">      finished_for:</span> <span class="number">2</span> <span class="string">days</span></span><br><span class="line"><span class="attr">      enabled:</span> <span class="literal">Yes</span></span><br><span class="line"><span class="attr">    manipulate:</span></span><br><span class="line"><span class="attr">      - description:</span> </span><br><span class="line"><span class="attr">          remove:</span> <span class="literal">yes</span></span><br><span class="line"></span><br><span class="line"><span class="attr">tasks:</span></span><br><span class="line"><span class="attr">  bangumi:</span></span><br><span class="line"><span class="attr">    rss:</span></span><br><span class="line"><span class="attr">      url:</span> <span class="string">'https://example.com/rss.xml'</span> </span><br><span class="line"><span class="attr">    urlfix:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    include:</span> </span><br><span class="line"><span class="bullet">      -</span> <span class="string">regexp.yml</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">notify.yml</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>我的config.yml中包含了以下的部分：</p>
-<ul>
-<li><p>这里要注意的是flexget的config.yml是由一个个对插件的配置组成的。有个比较坑的地方是，配置文件中的缩进必须使用<strong>空格</strong>，同时，缩进必须为2的倍数而不能随机。</p>
-</li>
-<li><p>这个配置文件中使用的transmission插件需要额外的依赖，可使用如下命令安装 (需先按上文的说明进入 flexget 的 Python 环境)：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install transmissionrpc</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>templates 这个部分是模板插件，global 代表这个模板适用于所有 Flexget的下载任务。global 中的具体属性是用于设置 transmission 的。transmission部分中的host和port分别代表transmission所在服务器的IP和端口。clean_transmission插件可以自动清除已完成的transmission任务。这里的finished_for:2 days 意味着flexget会在一个BT下载任务完成两天后将其从tranmission的任务列表中清除。Manipulate 插件部分，我的设置是在匹配正则表达式钱将 RSS 条目中的description部分清除。这样可以能更精确的匹配。</p>
-</li>
-<li><p>template 之后是 tasks 插件的配置。tasks 插件是 flexget 的核心部分，在 flexget 中，每一个 task 代表了一个下载任务，可以使用不同的 RSS 源以及储存位置。上面的配置文件中只有一个名为 bangumi 的任务，这个任务使用了rss，urlfix，以及 include 插件。rss插件部分定义了用于订阅的 rss 文件的地址。urlfix插件可以修复部分无效url。include插件包含了两个配置文件，regexp.yml 是我用于储存新番正则表达式的配置文件，而 notify.yml 的配置文件则是用于flexget自动发送通知邮件。</p>
-</li>
-</ul>
-</li>
-<li><p>regexp.yml 的内容如下：</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">regexp:</span></span><br><span class="line"><span class="attr">  accept:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">'.+喵萌茶会字幕组.+南镰仓高校女子自行车社.+\d&#123;1,&#125;.+720p'</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">'.+RH字幕組.+清恋.+\d&#123;1,&#125;.+720p'</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">'.+轻之国度X动漫国.+Urara迷路帖.+\d&#123;1,&#125;.+720p'</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">'.+極影字幕社.+廢天使加百列.+\d&#123;1,&#125;.+720p'</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">'.+澄空学园.+人渣的本心.+第\d&#123;1,&#125;话.+720p'</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">'.+動漫國字幕組.+政宗君的復仇.+\d&#123;1,&#125;.+720P.+繁體'</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">'.+動漫國字幕組.+為美好的世界獻上祝福.+\d&#123;1,&#125;.+720P.+繁體'</span></span><br><span class="line"><span class="attr">  from:</span> <span class="string">title</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>此文件中主要包含了regexp插件的配置，独立出来的目的是方便更新。请注意此文件中第一行中的 regexp 有一定的缩进，这主要是为了符合前文提到的 flexget 的规则。</li>
-<li>accept 部分是 flexget 会接受的正则表达式，from：title 则表示当且仅当 title 匹配正则表达式的时候才会匹配。</li>
-</ul>
-</li>
-<li><p>notify.yml 的内容如下：</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">notify:</span>    </span><br><span class="line"><span class="attr">  task:</span></span><br><span class="line"><span class="attr">    via:</span></span><br><span class="line"><span class="attr">      - email:</span></span><br><span class="line"><span class="attr">          from:</span> </span><br><span class="line"><span class="attr">          to:</span> </span><br><span class="line"><span class="attr">          smtp_host:</span> </span><br><span class="line"><span class="attr">          smtp_port:</span> </span><br><span class="line"><span class="attr">          smtp_tls:</span> </span><br><span class="line"><span class="attr">          smtp_username:</span> <span class="string">your_username</span></span><br><span class="line"><span class="attr">          smtp_password:</span> <span class="string">your_password</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>notify 插件同样是按任务分类，在默认的情况下，会在种子匹配被添加到 transmission 的下载里时才会发送一封邮件。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><strong>_运行_</strong></p>
-<ul>
-<li><p>在以上配置完成之后，建议先使用 Flexget 自带的验证功能验证配置文件的格式，毕竟配置文件中坑比较多。可使用如下命令：<code>flexget check</code> 。如果验证有错的话，该功能会具体的指出错误出在哪一行，读者可自行参考错误信息完成对配置文件的更正。</p>
-</li>
-<li><p>验证完配置的格式之后，如果需保证正确，flexget 还提供了一种 test execute 的方式来测试是否真的能从rss文件提取，该运行方式不会将匹配的种子发送到 BT 下载器，也不会发送邮件，但会告诉你如果真的运行命令，会出现的结果，这对于检验 rss 文件的有效性非常有用。运行方式如下:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flexget --test execute</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>如果以上命令的运行结果和你所想的一样，那么你就可以正式的运行flexget了。只需去掉 –test 部分即可：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flexget execute</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>此命令如果成功运行则意味着我们可以想办法让flexget定期运行，以实现自动追番的目的。我这里采用的是 Linux 自带的 crontab 的方法。</p>
-<ul>
-<li><p>首先，运行 <code>crontab -e</code> , 此命令会在默认修改器中打开crontab文件</p>
-</li>
-<li><p>之后，需要在文件的最后加入一下内容：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">00 8,12,17,19,21 * * * /path/to/flexget/bin/flexget --cron -c /path/to/flexget/config.yml execute</span><br></pre></td></tr></table></figure>
-<p>我目前的配置文件是在每天的8点，12点，17点，19点和21点的时候自动执行flexget任务。由于cron的特殊性，这里必须使用完整的flexget路径并使用 –cron 告诉flexget使用cron模式以及通过 -c 指定配置文件的位置。</p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-  </section>
-
-  
 
 
           </div>
           
 
-
-          
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
         </div>
-        
           
   
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
   </div>
 
-  <aside id="sidebar" class="sidebar">
+  <aside class="sidebar">
     <div class="sidebar-inner">
 
-      
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
 
-      
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="KevinSJ">
-          <p class="site-author-name" itemprop="name">KevinSJ</p>
-           
-              <p class="site-description motion-element" itemprop="description"></p>
-          
-        </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives">
-                <span class="site-state-item-count">7</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
-
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">6</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
+  <p class="site-author-name" itemprop="name">KevinSJ</p>
+  <div class="site-description" itemprop="description">A blog about all things tech.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
         
-
-        <div class="links-of-author motion-element">
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
           
-        </div>
+        <span class="site-state-item-count">34</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/kevinsj" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;kevinsj" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
 
-        
-        
-
-        
-        
-
-        
 
 
-      </section>
-
-      
-
-      
+      </div>
 
     </div>
   </aside>
+  <div id="sidebar-dimmer"></div>
 
 
-        
       </div>
     </main>
 
-    <footer id="footer" class="footer">
+    <footer class="footer">
       <div class="footer-inner">
-        <div class="copyright">
+        
+
+        
+
+<div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2019</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">KevinSJ</span>
 </div>
-
-
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
-</div>
-
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
-  </a>
-</div>
-
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
 
         
 
-        
+
+
+
+
+
+
+
       </div>
     </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
   </div>
 
   
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
+<script src="/js/utils.js"></script>
 
-
-
+<script src="/js/motion.js"></script>
 
 
+<script src="/js/schemes/pisces.js"></script>
 
 
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
-
-
-
-  
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
-
-
-
-  
-
-
-  
-
-    
-      <script id="dsq-count-scr" src="https://kevin-blog-1.disqus.com/count.js" async></script>
-    
-
-    
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
+<script src="/js/next-boot.js"></script>
 
 
 
@@ -1561,21 +1125,16 @@
 
 
 
-  
 
 
 
 
 
-  
 
-  
 
   
 
   
 
-  
-
-<script src="https://unpkg.com/live2d-widget@^3.0.5/lib/L2Dwidget.min.js"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false}});</script></body>
+<script src="https://unpkg.com/live2d-widget@^3.1.3/lib/L2Dwidget.min.js"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false}});</script></body>
 </html>
