@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en,zh-Hans,default">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="google-site-verification" content="9g-E_K0GEppNWOItj0YYJV_1UbSLdVFrKOhHSPLkJcM">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"kevinsj.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="As a developer, one of the most important things is to find the right tool to write code with. To me, that means this tool needs to be lightweight, portable, and most importantly reliable. Why VSCode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tips for using NeoVim as devtool - 1">
+<meta property="og:url" content="http://kevinsj.github.io/2022/05/21/neovim-tricks-1/index.html">
+<meta property="og:site_name" content="Kevin Jiang&#39;s Technical Blog">
+<meta property="og:description" content="As a developer, one of the most important things is to find the right tool to write code with. To me, that means this tool needs to be lightweight, portable, and most importantly reliable. Why VSCode">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-05-21T03:14:02.000Z">
+<meta property="article:modified_time" content="2022-05-21T06:12:31.738Z">
+<meta property="article:author" content="KevinSJ">
+<meta property="article:tag" content="Vim">
+<meta property="article:tag" content="Tips">
+<meta property="article:tag" content="nvim">
+<meta property="article:tag" content="NeoVim">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://kevinsj.github.io/2022/05/21/neovim-tricks-1/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Tips for using NeoVim as devtool - 1 | Kevin Jiang's Technical Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Kevin Jiang's Technical Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Kevin Jiang's Technical Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://kevinsj.github.io/2022/05/21/neovim-tricks-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="KevinSJ">
+      <meta itemprop="description" content="A blog about all things tech.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Tips for using NeoVim as devtool - 1
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 05-21-2022 15:14:02 / Modified: 18:12:31" itemprop="dateCreated datePublished" datetime="2022-05-21T15:14:02+12:00">05-21-2022</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>As a developer, one of the most important things is to find the right tool to write code with. To me, that means this tool needs to be lightweight, portable, and most importantly reliable.</p>
+<h3 id="Why-VSCode-is-not-for-me"><a href="#Why-VSCode-is-not-for-me" class="headerlink" title="Why VSCode is not for me"></a>Why VSCode is not for me</h3><p>VSCode, aka Visual Studio Code, is a code editor developed by Microsoft. It is based on top of the Atom editor that was previously developed by GitHub. As a full stack developer whose main language is JavaScript&#x2F;TypeScript, I was told to use VSCode when I joined the company. However, as a long-time vim user, I still use the vim mappings when I am using VSCode. This is all done through plugin&#x2F;extensions. This seems to be okay at first, but over time, I really find VSCode annoying to use and I simply can’t tolerate it.</p>
+<p>The first thing is that contrary to most popular belief, VSCode is <strong>NOT</strong> an open source product. Yes, part of the source of VSCode <strong>is</strong> open-sourced, but the VSCode you downloaded from Microsoft website is not. They have put some proprietary stuff into the end product and I’m not a big fan of that. There are ways to get around this, namely, there are several truly open source edition of VSCode, the one I used to use is called VSCodium, but then you will lose access to the extensions market provided by Microsoft.</p>
+<p>Another thing that annoys me is that VSCode or any product that based on VSCode is just too slow and resource intensive – they are just an electron app running on another Chromium based browser. Having one Chrome is enough for me, so thank you Microsoft (I tried to avoid electron based apps as much as possible, for example, I use web version of Teams, rather than the app one)</p>
+<h3 id="How-NeoVim-x2F-Vim-fits-in"><a href="#How-NeoVim-x2F-Vim-fits-in" class="headerlink" title="How NeoVim&#x2F;Vim fits in"></a>How NeoVim&#x2F;Vim fits in</h3><p>I had been a long-time vim user, I first began using vim when I was studying computer science at the university. But I had never tried to use vim as my daily tool for software development before 2021. In February of 2021, we had a new dev joining my team. To my surprise, he was using vim (more precisely NeoVim) as his daily driver. This inspired me, and I started to explore ways to use VIM as well. At the time of this writing, I have been using NeoVim as my daily driver for more than a year now. To me, the experience has never been more pleasant. So I would just like to share a few tips on how I use it daily.</p>
+<h3 id="Run-tests-without-leaving-vim"><a href="#Run-tests-without-leaving-vim" class="headerlink" title="Run tests without leaving vim"></a>Run tests without leaving vim</h3><p>Suppose you currently have a test file opened in you vim, and you would like to run all the tests within this file, what would you do?</p>
+<h3 id="Solution-1-Open-a-new-terminal"><a href="#Solution-1-Open-a-new-terminal" class="headerlink" title="Solution 1: Open a new terminal"></a>Solution 1: Open a new terminal</h3><p>I think most people would open a new window or a new split in Tmux and start the command <code>yarn test filename</code>. At least that was what I was doing when I first encountered this problem. Well, obviously, this is not the ideal solution, because this would be really interruptive, you would have to switch between either a different terminal or a Tmux window.</p>
+<h3 id="Solution-2-Run-the-command-within-vim-itself"><a href="#Solution-2-Run-the-command-within-vim-itself" class="headerlink" title="Solution 2: Run the command within vim itself"></a>Solution 2: Run the command within vim itself</h3><p>After several days of using solution 1, I was really tired of it. Switching between different terminal is just too slow and interruptive. So this is when I come to the second solution: in normal mode, use <code>:!yarn test %</code>. Okay, this works, I don’t have to leave VIM each time I want to run the test. But now the problem is that running this command is blocking, meaning you can’t edit the file while the test is running. This is fine if the test is not long or you are just running a single test using <code>it.only</code> or something like that. But if the text is long enough, it might be 2 or 3 minutes before you can do anything again, which is quite annoying to me.</p>
+<h3 id="Solution-3-Using-Vim’s-terminal-mode"><a href="#Solution-3-Using-Vim’s-terminal-mode" class="headerlink" title="Solution 3: Using Vim’s terminal mode"></a>Solution 3: Using Vim’s terminal mode</h3><p>Starting from Vim 8.0, Vim adds a built-in terminal mode, which is quite handy to use. Once I found this out, I started to use <code>:sp term://yarn test %</code>, this will create a new <strong>horizontal</strong> split and start a terminal that runs <code>yarn test %</code>, while the tests are running, you can still do whatever you want to do and will not be blocked by the testing itself.<br>Once the command is finished, you will see the command exit in that window.</p>
+<h3 id="Solution-3-1-Shortcut-to-Vim-command"><a href="#Solution-3-1-Shortcut-to-Vim-command" class="headerlink" title="Solution 3.1: Shortcut to Vim command"></a>Solution 3.1: Shortcut to Vim command</h3><p>Solution 3 is almost perfect, except I use this command too frequently that typing this whole command becomes a pain. So I had to find some way to improve my experience. And this all comes down to mapping this command to something shorter (at least that was what I was thinking at first). So I added the following to my vimrc file <code>cmap rt!! !yarn test % &lt;CR&gt;</code> this saves lots of keystrokes, but still, I need to type it every single time I want to use it. I still feel there’s space for improvements. </p>
+<h3 id="Final-Solution-Key-mapping"><a href="#Final-Solution-Key-mapping" class="headerlink" title="Final Solution: Key mapping"></a>Final Solution: Key mapping</h3><p>Based on function 3.1, I started to think if I can map the command to a leader key, it turned out I definitely can, with this <code>map &lt;buffer&gt; &lt;silent&gt; &lt;nowait&gt; &lt;Leader&gt;rt :execute &#39;sp term://yarn test %&#39;&lt;CR&gt;</code></p>
+<h3 id="Afterthoughts"><a href="#Afterthoughts" class="headerlink" title="Afterthoughts"></a>Afterthoughts</h3><p>There are several caveats with the above solution.<br>First, this mapping will exist in every file type which is not ideal, cause you don’t want to use yarn to test a GO file for example. Therefore, I moved this command to a separate file under the <code>ftplugin</code> folder and call it <code>typescript_mappings.vim</code>.<br>Second, you will always have to locate the test file before you can run the test. This is not a deal breaker, but it is still not perfect. Usually you would refactor a simple function within a file and all you care about is whether the corresponding tests passes, you don’t necessarily need to edit the file or care about where the file is. This prompts me to turn this whole thing into a vimscript function<br>Here goes the function I created: </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">map &lt;leader&gt;T :Ft&lt;CR&gt;</span><br><span class="line"></span><br><span class="line">if exists(&#x27;*FindTest&#x27;)</span><br><span class="line">    finish</span><br><span class="line">endif</span><br><span class="line">command! -nargs=? Ft call FindTest(&lt;q-args&gt;)</span><br><span class="line">fun! FindTest(...)</span><br><span class="line">  set path+=**</span><br><span class="line"></span><br><span class="line">  let fileName = expand(&#x27;%:t:r&#x27;) . &#x27;.test.ts&#x27;</span><br><span class="line">  execute &#x27;tabnew &#x27;</span><br><span class="line">  execute &#x27;find &#x27;. fileName</span><br><span class="line">  execute &#x27;split term://yarn test &#x27;. fileName . &#x27; --watch&#x27;</span><br><span class="line">endfun</span><br></pre></td></tr></table></figure>
+<p>This function first set the look path to all the directories recursively, then it expand to the filename excluding the extension, then add .test.ts to it. After that, it opens a new tab, open the test file and then create a terminal, yarn test that file in watch mode.</p>
+<p>I put this file under the ftplugin again, but one issue is that because the both the file found and the current file are of the same file type, this means the script will be sourced twice. So I had to put the <code>if exists</code> check. I map this command to <leader> T but you can tailor that to your liking.</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>KevinSJ
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    <a href="http://kevinsj.github.io/2022/05/21/neovim-tricks-1/" title="Tips for using NeoVim as devtool - 1">http://kevinsj.github.io/2022/05/21/neovim-tricks-1/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Vim/" rel="tag"># Vim</a>
+              <a href="/tags/Tips/" rel="tag"># Tips</a>
+              <a href="/tags/nvim/" rel="tag"># nvim</a>
+              <a href="/tags/NeoVim/" rel="tag"># NeoVim</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/03/06/hide-phone-number-when-making-calls/" rel="prev" title="Hide Phone Number when making calls">
+      <i class="fa fa-chevron-left"></i> Hide Phone Number when making calls
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Why-VSCode-is-not-for-me"><span class="nav-number">1.</span> <span class="nav-text">Why VSCode is not for me</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#How-NeoVim-x2F-Vim-fits-in"><span class="nav-number">2.</span> <span class="nav-text">How NeoVim&#x2F;Vim fits in</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-tests-without-leaving-vim"><span class="nav-number">3.</span> <span class="nav-text">Run tests without leaving vim</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution-1-Open-a-new-terminal"><span class="nav-number">4.</span> <span class="nav-text">Solution 1: Open a new terminal</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution-2-Run-the-command-within-vim-itself"><span class="nav-number">5.</span> <span class="nav-text">Solution 2: Run the command within vim itself</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution-3-Using-Vim%E2%80%99s-terminal-mode"><span class="nav-number">6.</span> <span class="nav-text">Solution 3: Using Vim’s terminal mode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution-3-1-Shortcut-to-Vim-command"><span class="nav-number">7.</span> <span class="nav-text">Solution 3.1: Shortcut to Vim command</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Final-Solution-Key-mapping"><span class="nav-number">8.</span> <span class="nav-text">Final Solution: Key mapping</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Afterthoughts"><span class="nav-number">9.</span> <span class="nav-text">Afterthoughts</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">KevinSJ</p>
+  <div class="site-description" itemprop="description">A blog about all things tech.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">54</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/kevinsj" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;kevinsj" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/kevsj" title="LinkedIn → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;kevsj" rel="noopener" target="_blank"><i class="fab fa-linkedin fa-fw"></i>LinkedIn</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">KevinSJ</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script src="https://unpkg.com/live2d-widget@^3.1.3/lib/L2Dwidget.min.js"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false}});</script></body>
+</html>
