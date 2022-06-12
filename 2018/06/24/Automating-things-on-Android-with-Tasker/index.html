@@ -461,7 +461,7 @@
   <script>
     (function() {
       var db = firebase.firestore();
-      var articles = db.collection('blog_view');
+      var articles = db.collection('articles');
 
       if (CONFIG.page.isPost) { // Is article page
         var title = document.querySelector('.post-title').innerText.trim();
