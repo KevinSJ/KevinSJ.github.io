@@ -1,4 +1,5 @@
 http://kevinsj.github.io/2022/05/21/neovim-tricks-1/
+http://kevinsj.github.io/2022/07/22/linux-user-notes-1/
 http://kevinsj.github.io/2022/03/06/hide-phone-number-when-making-calls/
 http://kevinsj.github.io/2021/12/02/Fixing-issue-on-Xorg-and-VNC/
 http://kevinsj.github.io/2021/01/24/Upgrade-openwrt-on-Linksys-WRT1200AC-with-extroot/
@@ -75,4 +76,8 @@ http://kevinsj.github.io/tags/TigerVNC/
 http://kevinsj.github.io/tags/tips/
 http://kevinsj.github.io/tags/Tips/
 http://kevinsj.github.io/tags/nvim/
+http://kevinsj.github.io/tags/Manjaro-Linux/
+http://kevinsj.github.io/tags/Dual-monitor/
+http://kevinsj.github.io/tags/systemd/
+http://kevinsj.github.io/tags/udev/
 http://kevinsj.github.io/tags/NeoVim/

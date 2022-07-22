@@ -4,7 +4,16 @@
   <url>
     <loc>http://kevinsj.github.io/2022/05/21/neovim-tricks-1/</loc>
     
-    <lastmod>2022-06-12</lastmod>
+    <lastmod>2022-07-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://kevinsj.github.io/2022/07/22/linux-user-notes-1/</loc>
+    
+    <lastmod>2022-07-22</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -211,7 +220,7 @@
 
   <url>
     <loc>http://kevinsj.github.io/</loc>
-    <lastmod>2022-06-12</lastmod>
+    <lastmod>2022-07-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -219,378 +228,406 @@
   
   <url>
     <loc>http://kevinsj.github.io/tags/Notes/</loc>
-    <lastmod>2022-06-12</lastmod>
+    <lastmod>2022-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kevinsj.github.io/tags/Tasker/</loc>
-    <lastmod>2022-06-12</lastmod>
+    <lastmod>2022-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kevinsj.github.io/tags/Automation/</loc>
-    <lastmod>2022-06-12</lastmod>
+    <lastmod>2022-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kevinsj.github.io/tags/Android/</loc>
-    <lastmod>2022-06-12</lastmod>
+    <lastmod>2022-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kevinsj.github.io/tags/Google-App-Scripts/</loc>
-    <lastmod>2022-06-12</lastmod>
+    <lastmod>2022-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kevinsj.github.io/tags/VitualBox/</loc>
-    <lastmod>2022-06-12</lastmod>
+    <lastmod>2022-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kevinsj.github.io/tags/QEMU/</loc>
-    <lastmod>2022-06-12</lastmod>
+    <lastmod>2022-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kevinsj.github.io/tags/VM/</loc>
-    <lastmod>2022-06-12</lastmod>
+    <lastmod>2022-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kevinsj.github.io/tags/flexget/</loc>
-    <lastmod>2022-06-12</lastmod>
+    <lastmod>2022-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kevinsj.github.io/tags/raspberrypi/</loc>
-    <lastmod>2022-06-12</lastmod>
+    <lastmod>2022-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kevinsj.github.io/tags/Terraform/</loc>
-    <lastmod>2022-06-12</lastmod>
+    <lastmod>2022-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kevinsj.github.io/tags/Pitfalls/</loc>
-    <lastmod>2022-06-12</lastmod>
+    <lastmod>2022-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kevinsj.github.io/tags/Vim/</loc>
-    <lastmod>2022-06-12</lastmod>
+    <lastmod>2022-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kevinsj.github.io/tags/Practice/</loc>
-    <lastmod>2022-06-12</lastmod>
+    <lastmod>2022-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kevinsj.github.io/tags/jq/</loc>
-    <lastmod>2022-06-12</lastmod>
+    <lastmod>2022-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kevinsj.github.io/tags/problem-solving/</loc>
-    <lastmod>2022-06-12</lastmod>
+    <lastmod>2022-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kevinsj.github.io/tags/json/</loc>
-    <lastmod>2022-06-12</lastmod>
+    <lastmod>2022-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kevinsj.github.io/tags/Zoom/</loc>
-    <lastmod>2022-06-12</lastmod>
+    <lastmod>2022-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kevinsj.github.io/tags/Alfred/</loc>
-    <lastmod>2022-06-12</lastmod>
+    <lastmod>2022-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kevinsj.github.io/tags/OS-X/</loc>
-    <lastmod>2022-06-12</lastmod>
+    <lastmod>2022-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kevinsj.github.io/tags/Data-Saver/</loc>
-    <lastmod>2022-06-12</lastmod>
+    <lastmod>2022-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kevinsj.github.io/tags/Gmail/</loc>
-    <lastmod>2022-06-12</lastmod>
+    <lastmod>2022-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kevinsj.github.io/tags/Openwrt/</loc>
-    <lastmod>2022-06-12</lastmod>
+    <lastmod>2022-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kevinsj.github.io/tags/Upgrade/</loc>
-    <lastmod>2022-06-12</lastmod>
+    <lastmod>2022-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kevinsj.github.io/tags/Linksys/</loc>
-    <lastmod>2022-06-12</lastmod>
+    <lastmod>2022-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kevinsj.github.io/tags/WRT1200AC/</loc>
-    <lastmod>2022-06-12</lastmod>
+    <lastmod>2022-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kevinsj.github.io/tags/Lambda/</loc>
-    <lastmod>2022-06-12</lastmod>
+    <lastmod>2022-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kevinsj.github.io/tags/AWS/</loc>
-    <lastmod>2022-06-12</lastmod>
+    <lastmod>2022-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kevinsj.github.io/tags/Go/</loc>
-    <lastmod>2022-06-12</lastmod>
+    <lastmod>2022-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kevinsj.github.io/tags/Linux/</loc>
-    <lastmod>2022-06-12</lastmod>
+    <lastmod>2022-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kevinsj.github.io/tags/Deployment/</loc>
-    <lastmod>2022-06-12</lastmod>
+    <lastmod>2022-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kevinsj.github.io/tags/Kubernetes/</loc>
-    <lastmod>2022-06-12</lastmod>
+    <lastmod>2022-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kevinsj.github.io/tags/Version-constraint/</loc>
-    <lastmod>2022-06-12</lastmod>
+    <lastmod>2022-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kevinsj.github.io/tags/debug/</loc>
-    <lastmod>2022-06-12</lastmod>
+    <lastmod>2022-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kevinsj.github.io/tags/ADB/</loc>
-    <lastmod>2022-06-12</lastmod>
+    <lastmod>2022-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kevinsj.github.io/tags/JavaScript/</loc>
-    <lastmod>2022-06-12</lastmod>
+    <lastmod>2022-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kevinsj.github.io/tags/Postgres/</loc>
-    <lastmod>2022-06-12</lastmod>
+    <lastmod>2022-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kevinsj.github.io/tags/Sorting/</loc>
-    <lastmod>2022-06-12</lastmod>
+    <lastmod>2022-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kevinsj.github.io/tags/virtualbox/</loc>
-    <lastmod>2022-06-12</lastmod>
+    <lastmod>2022-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kevinsj.github.io/tags/Windows/</loc>
-    <lastmod>2022-06-12</lastmod>
+    <lastmod>2022-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kevinsj.github.io/tags/IELTS/</loc>
-    <lastmod>2022-06-12</lastmod>
+    <lastmod>2022-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kevinsj.github.io/tags/Preparation/</loc>
-    <lastmod>2022-06-12</lastmod>
+    <lastmod>2022-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kevinsj.github.io/tags/OpenType-font/</loc>
-    <lastmod>2022-06-12</lastmod>
+    <lastmod>2022-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kevinsj.github.io/tags/Font/</loc>
-    <lastmod>2022-06-12</lastmod>
+    <lastmod>2022-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kevinsj.github.io/tags/CSS/</loc>
-    <lastmod>2022-06-12</lastmod>
+    <lastmod>2022-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kevinsj.github.io/tags/font-family/</loc>
-    <lastmod>2022-06-12</lastmod>
+    <lastmod>2022-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kevinsj.github.io/tags/NodeJS/</loc>
-    <lastmod>2022-06-12</lastmod>
+    <lastmod>2022-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kevinsj.github.io/tags/Arch-Linux/</loc>
-    <lastmod>2022-06-12</lastmod>
+    <lastmod>2022-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kevinsj.github.io/tags/Xorg/</loc>
-    <lastmod>2022-06-12</lastmod>
+    <lastmod>2022-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kevinsj.github.io/tags/TigerVNC/</loc>
-    <lastmod>2022-06-12</lastmod>
+    <lastmod>2022-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kevinsj.github.io/tags/tips/</loc>
-    <lastmod>2022-06-12</lastmod>
+    <lastmod>2022-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kevinsj.github.io/tags/Tips/</loc>
-    <lastmod>2022-06-12</lastmod>
+    <lastmod>2022-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kevinsj.github.io/tags/nvim/</loc>
-    <lastmod>2022-06-12</lastmod>
+    <lastmod>2022-07-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://kevinsj.github.io/tags/Manjaro-Linux/</loc>
+    <lastmod>2022-07-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://kevinsj.github.io/tags/Dual-monitor/</loc>
+    <lastmod>2022-07-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://kevinsj.github.io/tags/systemd/</loc>
+    <lastmod>2022-07-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://kevinsj.github.io/tags/udev/</loc>
+    <lastmod>2022-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://kevinsj.github.io/tags/NeoVim/</loc>
-    <lastmod>2022-06-12</lastmod>
+    <lastmod>2022-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>

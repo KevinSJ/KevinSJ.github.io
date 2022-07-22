@@ -158,6 +158,91 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en,zh-Hans,default">
+    <link itemprop="mainEntityOfPage" href="http://kevinsj.github.io/2021/01/24/Lessons-Learnt-On-Deploying-GO-Lambda-Application-on-AWS/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="KevinSJ">
+      <meta itemprop="description" content="A blog about all things tech.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/24/Lessons-Learnt-On-Deploying-GO-Lambda-Application-on-AWS/" class="post-title-link" itemprop="url">Lessons Learnt On Deploying GO Lambda Application on AWS - Part I</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 01-24-2021 19:06:00" itemprop="dateCreated datePublished" datetime="2021-01-24T19:06:00+13:00">01-24-2021</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 01-30-2021 10:43:09" itemprop="dateModified" datetime="2021-01-30T10:43:09+13:00">01-30-2021</time>
+              </span>
+
+          
+            <span class="post-meta-item" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-users"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="firestore-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Recently, I started to build an application with Go, it is a quite simple application that does something very basic and then sends an notification to a telegram bot. It’s quite obvious to me this kind of application is quite suitable to run as Lambda, and that’s where I decided to deploy my application to once it is working well locally. It turned out that I had to solve several issues I encountered. Here I share how I solved those issues, so you don’t have to scratch your head when encounter them.</p>
+<h3 id="Attempt-1-Deploy-the-application-through-the-web-interface"><a href="#Attempt-1-Deploy-the-application-through-the-web-interface" class="headerlink" title="Attempt 1: Deploy the application through the web interface."></a>Attempt 1: Deploy the application through the web interface.</h3><p>For my first attempt on deploying the application, my goal is to make things as simple as possible.<br>Therefore, I chose to use the web interface. From the web interface, there’s an option to upload zip file and that’s where I began.</p>
+<h5 id="Problem-Compile-GO-in-an-static-way"><a href="#Problem-Compile-GO-in-an-static-way" class="headerlink" title="Problem: Compile GO in an static way"></a>Problem: Compile GO in an static way</h5><p>This problem happens quite often from what I see on the internet. The main issue with here is that, some of the libraries in GO uses a feature called <a target="_blank" rel="noopener" href="https://golang.org/cmd/cgo/">CGO</a> which means using C code in GO, and when this feature is in use, GO compiler will try to create dynamic binary.</p>
+<p>To solve this problem, it is often as simple as compiled the code to a statically linked binary. Do note that, some of the code that’s compiling use GCC was not working, this is because often times the GLIBC library is higher than the ones used in AWS lambda environment, at least that was the case for me (I am on an Linux laptop with Manjaro Linux).</p>
+<p>I was able to find something called <a target="_blank" rel="noopener" href="https://www.musl-libc.org/intro.html">musl-gcc</a> and then used it in my compilation </p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">build:</span></span><br><span class="line">	CC=<span class="string">&quot;musl-gcc&quot;</span> go build --ldflags &#x27;-linkmode external -extldflags <span class="string">&quot;-static&quot;</span>&#x27; ./main.go</span><br></pre></td></tr></table></figure>
+<p>This proves to be working fine, once I complied the binary, zip and upload it to lambda through the interface, everything seems to be working.</p>
+<h3 id="Attempt-2-Deploy-the-application-through-AWS-SAM"><a href="#Attempt-2-Deploy-the-application-through-AWS-SAM" class="headerlink" title="Attempt 2: Deploy the application through AWS SAM"></a>Attempt 2: Deploy the application through AWS SAM</h3><p>Often, it is not efficient to manually upload the code using a zip file through every time, that’s why I started to thinking about introducing <a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/what-is-sam.html">SAM</a> as a tool to simplified the process of deployment. This was when I encountered the second issue.</p>
+<h4 id="Problem-Asking-SAM-to-compile-the-GO-program-in-an-static-way"><a href="#Problem-Asking-SAM-to-compile-the-GO-program-in-an-static-way" class="headerlink" title="Problem: Asking SAM to compile the GO program in an static way."></a>Problem: Asking SAM to compile the GO program in an static way.</h4><p>As the line above says, SAM always compiled the code in a dynamic way which is why the binary fails to work again even locally using the command <code>sam invoke local</code>.</p>
+<p>Now it’s the time to tell SAM I don’t want dynamically linked binaries. As a matter of fact, none of the article available online has a direct answer to my question, fortunately, I did find an AWS documentation on <a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/building-custom-runtimes.html">using custom runtime</a>. Based on this article, a GO program that wants to utilize static linking can have the following template:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">Resources:</span></span><br><span class="line">  <span class="attr">HelloGOFunction:</span></span><br><span class="line">    <span class="attr">Type:</span> <span class="string">AWS::Serverless::Function</span></span><br><span class="line">    <span class="attr">Properties:</span></span><br><span class="line">      <span class="attr">FunctionName:</span> <span class="string">HelloGO</span></span><br><span class="line">      <span class="attr">Handler:</span> <span class="string">main</span></span><br><span class="line">      <span class="attr">Runtime:</span> <span class="string">go1.x</span></span><br><span class="line">      <span class="attr">MemorySize:</span> <span class="number">512</span></span><br><span class="line">      <span class="attr">CodeUri:</span> <span class="string">.</span></span><br><span class="line">    <span class="attr">Metadata:</span></span><br><span class="line">      <span class="attr">BuildMethod:</span> <span class="string">makefile</span></span><br></pre></td></tr></table></figure>
+<p>And in the MakeFile, the following corresponding entries need to be added:</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">build-HelloGOFunction:</span></span><br><span class="line">  CC=<span class="string">&quot;musl-gcc&quot;</span> go build --ldflags &#x27;-linkmode external -extldflags <span class="string">&quot;-static&quot;</span>&#x27; ./main.go</span><br><span class="line">  cp ./main <span class="variable">$(ARTIFACTS_DIR)</span></span><br></pre></td></tr></table></figure>
+<p>Doing so will make sure compiled binary are statically linked and works on lambda when bundle and uploaded.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en,zh-Hans,default">
     <link itemprop="mainEntityOfPage" href="http://kevinsj.github.io/2021/01/24/Upgrade-openwrt-on-Linksys-WRT1200AC-with-extroot/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -956,119 +1041,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en,zh-Hans,default">
-    <link itemprop="mainEntityOfPage" href="http://kevinsj.github.io/2017/06/11/06112017-Fun-With-GPG/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="KevinSJ">
-      <meta itemprop="description" content="A blog about all things tech.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/06/11/06112017-Fun-With-GPG/" class="post-title-link" itemprop="url">06112017-Fun-With-GPG</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 06-11-2017 16:33:06" itemprop="dateCreated datePublished" datetime="2017-06-11T16:33:06+12:00">06-11-2017</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 06-12-2017 09:36:14" itemprop="dateModified" datetime="2017-06-12T09:36:14+12:00">06-12-2017</time>
-              </span>
-
-          
-            <span class="post-meta-item" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-users"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="firestore-visitors-count"></span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="Fun-with-GPG"><a href="#Fun-with-GPG" class="headerlink" title="Fun with GPG"></a>Fun with GPG</h4><p>This week, I was having making some great progress in understanding how GPG works either locally or through email. The original intention to do all this was because I would like my router to send me notification whenever the tranmission finish download the torrent. This may be simple as it sounds and it had been working correctly for me for several months since I create the initial script. </p>
-<p>This week, however, I decided to do something special. I would like the router to sign/encrypt the message it sends to me. I am not sure why I need that, but anyways, I did get to learn a lot through the process.</p>
-<p>Here is my original script, it simply uses the mailx program that installed on the router and sends the email through SMTP. Looks quite simple, it pretty much is the same as the script I have shown in the previous post:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/sh</span></span><br><span class="line"></span><br><span class="line">SMTP_SERVER=YOUR_EMAIL_SMTP</span><br><span class="line">MESSAGE=&quot;Hello!\n\n \tThis is a notification from transmission, $TR_TORRENT_NAME has been completed on $TR_TIME_LOCALTIME\n\n Thanks!&quot;</span><br><span class="line">SENDER=&quot;YOUR_EMAIL_USER_NAME&quot;</span><br><span class="line">RECEPIENT=&quot;EMAIL_TO_RECEIVE&quot;</span><br><span class="line"></span><br><span class="line">printf &quot;$MESSAGE&quot;|mailx -vr $SENDER -s &quot;[Transmission] Torrent Has Been Downloaded&quot; -S smtp=$SMTP_SERVER -S smtp-use-starttls -S smtp-auth=login -S smtp-auth-user=$SENDER -S smtp-auth-password=&quot;YOUR_EMAIL_PASSWORD&quot; -S ssl-verify=ignore $RECEPIENT</span><br></pre></td></tr></table></figure>
-
-<p> A little more explanation here, there are two variables preset by Transmission. $TR_TORRENT_NAME, is the name of the torrent that has just been finished. $TR_TIME_LOCALTIME is the time when the download was finished. There were several other environment variables set by transmission also. Here is a list of them<a target="_blank" rel="noopener" href="https://trac.transmissionbt.com/wiki/Scripts">^1</a><br>Note: The meaning of this variable are not explicitly documented in the wiki, and I guess the meaning based on my understanding.</p>
-<table>
-<thead>
-<tr>
-<th>Env Variable Name</th>
-<th>Meaning</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>TR_APP_VERSION</td>
-<td>The version of the transmission app.</td>
-</tr>
-<tr>
-<td>TR_TIME_LOCALTIME</td>
-<td>The time when the current torrent has been downloaded.</td>
-</tr>
-<tr>
-<td>TR_TORRENT_DIR</td>
-<td>The directory that the content of the torrent was downloaded to.</td>
-</tr>
-<tr>
-<td>TR_TORRENT_HASH</td>
-<td>The hash value of the torrent.</td>
-</tr>
-<tr>
-<td>TR_TORRENT_ID</td>
-<td>The ID  of this torrent (in the download list for transmission bookeeping?).</td>
-</tr>
-<tr>
-<td>TR_TORRENT_NAME</td>
-<td>The name of the torrent.</td>
-</tr>
-</tbody></table>
-<p>So my initial thought was that adding the GPG encryption or signing is as easy as adding a new pipeline that redirects the output to GPG. However, it turned out to be much more difficult than that. When the script is called by transmission, it doesn’t set the environment variable required by GPG and because of this GPG would failed to find the private key used to sign/encrypt the message and therefore failed to encrypt. After setting the environmental variable in the scripts the GPG encryption works correctly. Here is the working script with encryption and signing. </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/sh</span></span><br><span class="line"></span><br><span class="line">SMTP_SERVER=YOUR_EMAIL_SMTP</span><br><span class="line">MESSAGE=&quot;Hello!\n\n \tThis is a notification from transmission, $TR_TORRENT_NAME has been completed on $TR_TIME_LOCALTIME\n\n Thanks!&quot;</span><br><span class="line">SENDER=&quot;YOUR_EMAIL_USER_NAME&quot;</span><br><span class="line">RECEPIENT=&quot;EMAIL_TO_RECEIVE&quot;</span><br><span class="line">HOME=&quot;YOUR HOME DIRECTORY&quot;</span><br><span class="line">GPGHOME=&quot;YOUR .gpg DIRECTORY&quot;</span><br><span class="line">export HOME=$HOME</span><br><span class="line">export GPGHOME=$GPGHOME</span><br><span class="line"></span><br><span class="line">printf &quot;$MESSAGE&quot;|gpg --sign --encrypt --passphrase &quot;your pass phrase&quot; --batch --armor --encrypt  -r recipient_pubkey_id |mailx -vr $SENDER -s &quot;[Transmission] Torrent Has Been Downloaded&quot; -S smtp=$SMTP_SERVER -S smtp-use-starttls -S smtp-auth=login -S smtp-auth-user=$SENDER -S smtp-auth-password=&quot;YOUR_EMAIL_PASSWORD&quot; -S ssl-verify=ignore $RECEPIENT</span><br></pre></td></tr></table></figure>
-
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1138,14 +1110,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-count">23</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">54</span>
+        <span class="site-state-item-count">58</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

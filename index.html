@@ -158,6 +158,87 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en,zh-Hans,default">
+    <link itemprop="mainEntityOfPage" href="http://kevinsj.github.io/2022/07/22/linux-user-notes-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="KevinSJ">
+      <meta itemprop="description" content="A blog about all things tech.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/07/22/linux-user-notes-1/" class="post-title-link" itemprop="url">Linux user notes -- dual monitor hot plug</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 07-23-2022 10:04:07 / Modified: 11:47:30" itemprop="dateCreated datePublished" datetime="2022-07-23T10:04:07+12:00">07-23-2022</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-users"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="firestore-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>As a long time Linux user, I have to admit sometimes it is not easy to achieve some of the things that can be easily done in other OS (like macOS or Windows), but that one of the things I enjoy about Linux as well – you need to force yourself to learn something, and once you’ve achieved it, you will learn from it and then realize how powerful Linux is. Anyway, for me, this had been one of the problems that had me troubled for a while – using dual monitors, and have Linux automatically detect and extend desktops automatically.</p>
+<h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h3><p>I use bspwm as my tiling window manager, and polybar as the ‘bar’. The problem I’m trying to solve here is to have the laptop automatically detect monitor hot-plug and then extend the bars with different layout to the new monitor. And when I unplugged the external monitor, the system revert back to single monitor layout.</p>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p>The easiest way to achieve this is using <a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/udev">udev</a>. Based on my understanding, udev is similar to device manager in Windows. To solve this problem with udev, all you need to do is to create a new udev rule.</p>
+<p>The first step is to find out which events are being triggered when the monitors are plugged&#x2F;unplugged. To achieve this, you can use the udev monitor: <code>udevadm monitor --environment --udev</code>. Plugin your monitor, and you will be able to see the events that are being triggered, as an example, here’s what I got, when I plugged in my external monitor: </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">UDEV  [5012.844939] change   /devices/pci0000:00/0000:00:02.0/drm/card0 (drm)</span><br><span class="line">ACTION=change</span><br><span class="line">DEVPATH=/devices/pci0000:00/0000:00:02.0/drm/card0</span><br><span class="line">SUBSYSTEM=drm</span><br><span class="line">HOTPLUG=1</span><br><span class="line">DEVNAME=/dev/dri/card0</span><br><span class="line">DEVTYPE=drm_minor</span><br><span class="line">SEQNUM=4288</span><br><span class="line">USEC_INITIALIZED=184807912</span><br><span class="line">ID_PATH=pci-0000:00:02.0</span><br><span class="line">ID_PATH_TAG=pci-0000_00_02_0</span><br><span class="line">ID_FOR_SEAT=drm-pci-0000_00_02_0</span><br><span class="line">DISPLAY=:0</span><br><span class="line">XAUTHORITY=/home/user/.Xauthority</span><br><span class="line">MAJOR=226</span><br><span class="line">MINOR=0</span><br><span class="line">DEVLINKS=/dev/dri/by-path/pci-0000:00:02.0-card</span><br><span class="line">TAGS=:master-of-seat:seat:uaccess:mutter-device-disable-kms-modifiers:</span><br><span class="line">CURRENT_TAGS=:master-of-seat:seat:uaccess:mutter-device-disable-kms-modifiers:</span><br></pre></td></tr></table></figure>
+
+<p>Next, we are going to create the rules for this udev event. So we create a new file under <code>/etc/udev/rules.d</code> folder, in this case I will call this file <code>/etc/udev/rules.d/95-hdmi-plug.rules</code>, and here’s the content of the file</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ACTION==&quot;change&quot;, SUBSYSTEM==&quot;drm&quot;, KERNEL==&quot;card0&quot; ENV&#123;DISPLAY&#125;=&quot;:0&quot;, ENV&#123;XAUTHORITY&#125;=&quot;/home/kevin/.Xauthority&quot;, RUN+=&quot;/home/user/.monitor-hot-plug.sh&quot;</span><br></pre></td></tr></table></figure>
+<p>Notice how I matched the event: I used <code>ACTION==&quot;change&quot;, SUBSYSTEM==&quot;drm&quot;, KERNEL==&quot;card0&quot;</code>, this is what comes directly from the monitoring after plugging in the external monitor. The ENV part is just setting some environment variables, which is necessary for X11. For the run part, I put in a script that is tailored to my need, it is quite short and simple, just telling xrandr to set the monitor positioning (probably not a best practice to hard code the positioning though): </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#! /usr/bin/bash</span></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">connect</span></span>()&#123;</span><br><span class="line">  xrandr --output eDP1 --mode 1920x1080 --pos 0x1080 --rotate normal --output HDMI1 --primary --mode 1920x1080 --pos 0x0 --rotate normal</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">disconnect</span></span>()&#123;</span><br><span class="line">  xrandr --output HDMI1 --off</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">xrandr | grep <span class="string">&quot;HDMI1 connected&quot;</span> &amp;&gt; /dev/null &amp;&amp; connect || disconnect</span><br><span class="line"></span><br><span class="line">/bin/bspc wm -r &amp; <span class="built_in">disown</span></span><br></pre></td></tr></table></figure>
+<p>At this point, we can start testing. You can definitely plug and remove the HDMI cable multiple times to test if it works, but that is a bit time consuming. We can use <code>sudo udevadm test /sys/class/drm/card0</code> to see if the config file is correct.</p>
+<p>Once you have done the necessary testing, it is important to reload the udev rules into the running system <code>sudo udevadm control --reload-rules</code></p>
+<h3 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h3><p>This article explore how udev rules can be utilized to manage hot plug of external monitors. There are also some other different uses for this tool, such as detecting external mouse, external video cam etc. Use the references below to know more.</p>
+<h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/udev">Arch Linux Wiki on Udev</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en,zh-Hans,default">
     <link itemprop="mainEntityOfPage" href="http://kevinsj.github.io/2022/05/21/neovim-tricks-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -189,7 +270,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 06-12-2022 19:43:38" itemprop="dateModified" datetime="2022-06-12T19:43:38+12:00">06-12-2022</time>
+                <time title="Modified: 07-23-2022 11:47:30" itemprop="dateModified" datetime="2022-07-23T11:47:30+12:00">07-23-2022</time>
               </span>
 
           
@@ -997,91 +1078,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en,zh-Hans,default">
-    <link itemprop="mainEntityOfPage" href="http://kevinsj.github.io/2021/01/24/Lessons-Learnt-On-Deploying-GO-Lambda-Application-on-AWS/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="KevinSJ">
-      <meta itemprop="description" content="A blog about all things tech.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/01/24/Lessons-Learnt-On-Deploying-GO-Lambda-Application-on-AWS/" class="post-title-link" itemprop="url">Lessons Learnt On Deploying GO Lambda Application on AWS - Part I</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 01-24-2021 19:06:00" itemprop="dateCreated datePublished" datetime="2021-01-24T19:06:00+13:00">01-24-2021</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 01-30-2021 10:43:09" itemprop="dateModified" datetime="2021-01-30T10:43:09+13:00">01-30-2021</time>
-              </span>
-
-          
-            <span class="post-meta-item" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-users"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="firestore-visitors-count"></span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Recently, I started to build an application with Go, it is a quite simple application that does something very basic and then sends an notification to a telegram bot. It’s quite obvious to me this kind of application is quite suitable to run as Lambda, and that’s where I decided to deploy my application to once it is working well locally. It turned out that I had to solve several issues I encountered. Here I share how I solved those issues, so you don’t have to scratch your head when encounter them.</p>
-<h3 id="Attempt-1-Deploy-the-application-through-the-web-interface"><a href="#Attempt-1-Deploy-the-application-through-the-web-interface" class="headerlink" title="Attempt 1: Deploy the application through the web interface."></a>Attempt 1: Deploy the application through the web interface.</h3><p>For my first attempt on deploying the application, my goal is to make things as simple as possible.<br>Therefore, I chose to use the web interface. From the web interface, there’s an option to upload zip file and that’s where I began.</p>
-<h5 id="Problem-Compile-GO-in-an-static-way"><a href="#Problem-Compile-GO-in-an-static-way" class="headerlink" title="Problem: Compile GO in an static way"></a>Problem: Compile GO in an static way</h5><p>This problem happens quite often from what I see on the internet. The main issue with here is that, some of the libraries in GO uses a feature called <a target="_blank" rel="noopener" href="https://golang.org/cmd/cgo/">CGO</a> which means using C code in GO, and when this feature is in use, GO compiler will try to create dynamic binary.</p>
-<p>To solve this problem, it is often as simple as compiled the code to a statically linked binary. Do note that, some of the code that’s compiling use GCC was not working, this is because often times the GLIBC library is higher than the ones used in AWS lambda environment, at least that was the case for me (I am on an Linux laptop with Manjaro Linux).</p>
-<p>I was able to find something called <a target="_blank" rel="noopener" href="https://www.musl-libc.org/intro.html">musl-gcc</a> and then used it in my compilation </p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">build:</span></span><br><span class="line">	CC=<span class="string">&quot;musl-gcc&quot;</span> go build --ldflags &#x27;-linkmode external -extldflags <span class="string">&quot;-static&quot;</span>&#x27; ./main.go</span><br></pre></td></tr></table></figure>
-<p>This proves to be working fine, once I complied the binary, zip and upload it to lambda through the interface, everything seems to be working.</p>
-<h3 id="Attempt-2-Deploy-the-application-through-AWS-SAM"><a href="#Attempt-2-Deploy-the-application-through-AWS-SAM" class="headerlink" title="Attempt 2: Deploy the application through AWS SAM"></a>Attempt 2: Deploy the application through AWS SAM</h3><p>Often, it is not efficient to manually upload the code using a zip file through every time, that’s why I started to thinking about introducing <a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/what-is-sam.html">SAM</a> as a tool to simplified the process of deployment. This was when I encountered the second issue.</p>
-<h4 id="Problem-Asking-SAM-to-compile-the-GO-program-in-an-static-way"><a href="#Problem-Asking-SAM-to-compile-the-GO-program-in-an-static-way" class="headerlink" title="Problem: Asking SAM to compile the GO program in an static way."></a>Problem: Asking SAM to compile the GO program in an static way.</h4><p>As the line above says, SAM always compiled the code in a dynamic way which is why the binary fails to work again even locally using the command <code>sam invoke local</code>.</p>
-<p>Now it’s the time to tell SAM I don’t want dynamically linked binaries. As a matter of fact, none of the article available online has a direct answer to my question, fortunately, I did find an AWS documentation on <a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/building-custom-runtimes.html">using custom runtime</a>. Based on this article, a GO program that wants to utilize static linking can have the following template:</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">Resources:</span></span><br><span class="line">  <span class="attr">HelloGOFunction:</span></span><br><span class="line">    <span class="attr">Type:</span> <span class="string">AWS::Serverless::Function</span></span><br><span class="line">    <span class="attr">Properties:</span></span><br><span class="line">      <span class="attr">FunctionName:</span> <span class="string">HelloGO</span></span><br><span class="line">      <span class="attr">Handler:</span> <span class="string">main</span></span><br><span class="line">      <span class="attr">Runtime:</span> <span class="string">go1.x</span></span><br><span class="line">      <span class="attr">MemorySize:</span> <span class="number">512</span></span><br><span class="line">      <span class="attr">CodeUri:</span> <span class="string">.</span></span><br><span class="line">    <span class="attr">Metadata:</span></span><br><span class="line">      <span class="attr">BuildMethod:</span> <span class="string">makefile</span></span><br></pre></td></tr></table></figure>
-<p>And in the MakeFile, the following corresponding entries need to be added:</p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">build-HelloGOFunction:</span></span><br><span class="line">  CC=<span class="string">&quot;musl-gcc&quot;</span> go build --ldflags &#x27;-linkmode external -extldflags <span class="string">&quot;-static&quot;</span>&#x27; ./main.go</span><br><span class="line">  cp ./main <span class="variable">$(ARTIFACTS_DIR)</span></span><br></pre></td></tr></table></figure>
-<p>Doing so will make sure compiled binary are statically linked and works on lambda when bundle and uploaded.</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1151,14 +1147,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-count">23</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">54</span>
+        <span class="site-state-item-count">58</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
