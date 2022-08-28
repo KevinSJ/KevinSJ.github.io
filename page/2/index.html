@@ -18,9 +18,8 @@
 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha256-xejo6yLi6vGtAjcMIsY8BHdKsLg7QynVlFMzdQgUuy8=" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"jiangsc.me","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"jiangsc.me","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="A blog about all things tech.">
 <meta property="og:type" content="blog">
@@ -57,7 +56,7 @@
 <link rel="alternate" href="/atom.xml" title="Kevin Jiang's Technical Blog" type="application/atom+xml">
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+<body itemscope itemtype="http://schema.org/WebPage">
   <div class="headband"></div>
 
   <main class="main">
@@ -225,7 +224,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 01-30-2021 10:43:09" itemprop="dateModified" datetime="2021-01-30T10:43:09+13:00">01-30-2021</time>
+      <time title="Modified: 08-28-2022 15:55:06" itemprop="dateModified" datetime="2022-08-28T15:55:06+12:00">08-28-2022</time>
     </span>
 
   
@@ -245,21 +244,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>Recently, I started to build an application with Go, it is a quite simple application that does something very basic and then sends an notification to a telegram bot. It’s quite obvious to me this kind of application is quite suitable to run as Lambda, and that’s where I decided to deploy my application to once it is working well locally. It turned out that I had to solve several issues I encountered. Here I share how I solved those issues, so you don’t have to scratch your head when encounter them.</p>
-<h3 id="Attempt-1-Deploy-the-application-through-the-web-interface"><a href="#Attempt-1-Deploy-the-application-through-the-web-interface" class="headerlink" title="Attempt 1: Deploy the application through the web interface."></a>Attempt 1: Deploy the application through the web interface.</h3><p>For my first attempt on deploying the application, my goal is to make things as simple as possible.<br>Therefore, I chose to use the web interface. From the web interface, there’s an option to upload zip file and that’s where I began.</p>
-<h5 id="Problem-Compile-GO-in-an-static-way"><a href="#Problem-Compile-GO-in-an-static-way" class="headerlink" title="Problem: Compile GO in an static way"></a>Problem: Compile GO in an static way</h5><p>This problem happens quite often from what I see on the internet. The main issue with here is that, some of the libraries in GO uses a feature called <a target="_blank" rel="noopener" href="https://golang.org/cmd/cgo/">CGO</a> which means using C code in GO, and when this feature is in use, GO compiler will try to create dynamic binary.</p>
-<p>To solve this problem, it is often as simple as compiled the code to a statically linked binary. Do note that, some of the code that’s compiling use GCC was not working, this is because often times the GLIBC library is higher than the ones used in AWS lambda environment, at least that was the case for me (I am on an Linux laptop with Manjaro Linux).</p>
-<p>I was able to find something called <a target="_blank" rel="noopener" href="https://www.musl-libc.org/intro.html">musl-gcc</a> and then used it in my compilation </p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">build:</span></span><br><span class="line">	CC=<span class="string">&quot;musl-gcc&quot;</span> go build --ldflags &#x27;-linkmode external -extldflags <span class="string">&quot;-static&quot;</span>&#x27; ./main.go</span><br></pre></td></tr></table></figure>
-<p>This proves to be working fine, once I complied the binary, zip and upload it to lambda through the interface, everything seems to be working.</p>
-<h3 id="Attempt-2-Deploy-the-application-through-AWS-SAM"><a href="#Attempt-2-Deploy-the-application-through-AWS-SAM" class="headerlink" title="Attempt 2: Deploy the application through AWS SAM"></a>Attempt 2: Deploy the application through AWS SAM</h3><p>Often, it is not efficient to manually upload the code using a zip file through every time, that’s why I started to thinking about introducing <a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/what-is-sam.html">SAM</a> as a tool to simplified the process of deployment. This was when I encountered the second issue.</p>
-<h4 id="Problem-Asking-SAM-to-compile-the-GO-program-in-an-static-way"><a href="#Problem-Asking-SAM-to-compile-the-GO-program-in-an-static-way" class="headerlink" title="Problem: Asking SAM to compile the GO program in an static way."></a>Problem: Asking SAM to compile the GO program in an static way.</h4><p>As the line above says, SAM always compiled the code in a dynamic way which is why the binary fails to work again even locally using the command <code>sam invoke local</code>.</p>
-<p>Now it’s the time to tell SAM I don’t want dynamically linked binaries. As a matter of fact, none of the article available online has a direct answer to my question, fortunately, I did find an AWS documentation on <a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/building-custom-runtimes.html">using custom runtime</a>. Based on this article, a GO program that wants to utilize static linking can have the following template:</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">Resources:</span></span><br><span class="line">  <span class="attr">HelloGOFunction:</span></span><br><span class="line">    <span class="attr">Type:</span> <span class="string">AWS::Serverless::Function</span></span><br><span class="line">    <span class="attr">Properties:</span></span><br><span class="line">      <span class="attr">FunctionName:</span> <span class="string">HelloGO</span></span><br><span class="line">      <span class="attr">Handler:</span> <span class="string">main</span></span><br><span class="line">      <span class="attr">Runtime:</span> <span class="string">go1.x</span></span><br><span class="line">      <span class="attr">MemorySize:</span> <span class="number">512</span></span><br><span class="line">      <span class="attr">CodeUri:</span> <span class="string">.</span></span><br><span class="line">    <span class="attr">Metadata:</span></span><br><span class="line">      <span class="attr">BuildMethod:</span> <span class="string">makefile</span></span><br></pre></td></tr></table></figure>
-<p>And in the MakeFile, the following corresponding entries need to be added:</p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">build-HelloGOFunction:</span></span><br><span class="line">  CC=<span class="string">&quot;musl-gcc&quot;</span> go build --ldflags &#x27;-linkmode external -extldflags <span class="string">&quot;-static&quot;</span>&#x27; ./main.go</span><br><span class="line">  cp ./main <span class="variable">$(ARTIFACTS_DIR)</span></span><br></pre></td></tr></table></figure>
-<p>Doing so will make sure compiled binary are statically linked and works on lambda when bundle and uploaded.</p>
-
+          <p>Recently, I started to build an application with Go, it is a quite simple application that does something very basic and then sends an notification to a telegram bot. It&#39;s quite obvious to me this kind of application is quite suitable to run as Lambda, and that&#39;s where I decided to deploy my application to once it is working well locally. It turned out that I had to solve several issues I encountered. Here I share how I solved those issues, so you don&#39;t have to scratch your head when encounter them.</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/01/24/Lessons-Learnt-On-Deploying-GO-Lambda-Application-on-AWS/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -321,7 +314,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 11-21-2021 14:56:13" itemprop="dateModified" datetime="2021-11-21T14:56:13+13:00">11-21-2021</time>
+      <time title="Modified: 08-28-2022 15:55:06" itemprop="dateModified" datetime="2022-08-28T15:55:06+12:00">08-28-2022</time>
     </span>
 
   
@@ -341,51 +334,26 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="Notes"><a href="#Notes" class="headerlink" title="Notes:"></a>Notes:</h3><ul>
+          <div class="note "><h3 id="Notes"><a href="#Notes" class="headerlink" title="Notes:"></a>Notes:</h3><ul>
 <li>WRT1200AC (this router) contains 2 partitions</li>
 <li>Flashing the firmware through the Luci interface actually flashes the new firmware to the inactive partition</li>
 </ul>
+</div>
+
 <h3 id="Steps"><a href="#Steps" class="headerlink" title="Steps:"></a>Steps:</h3><ul>
 <li>Download the bin file needed to upgrade the package</li>
 <li>Create a list of all the installed packages on current version using <code>opkg list-installed | cut -f 1 -d &#39; &#39; &gt; /root/installed_packages.txt</code></li>
 <li>Choose one of the following methods to flash:<ul>
-<li>Flash the file from the Luci interface<br>OR</li>
-<li>Download the file to the /tmp and then flash using sysupgrade /tmp/*.bin</li>
-</ul>
-</li>
-<li>After the flash and reboot, you will be in the partition that you wasn’t on before the flash, it will have all of your previous configs, but the extroot will not be there.</li>
-<li>Hopefully, you will already have internet access at this point, if not, go ahead and setup internet.</li>
-<li>Once your internet is up, you will need to run some commands to install packages needed to setup:<ul>
-<li>First, install packages that are necessary to setup extroot:<br><code>opkg update &amp;&amp; opkg install block-mount kmod-fs-ext4 kmod-usb-storage e2fsprogs kmod-usb-ohci kmod-usb-uhci fdisk</code></li>
-<li>In my case I use f2fs for my extroot, which means I need extra packages, like mkf2fs to format the flash.</li>
-<li>Now, format the device you plan to use for extroot, in my case, I ran <code>mkf2fs /dev/sda1</code> cause the sda2 was used as swap.</li>
-<li>At this point, copy the overlay to the newly formatted drive<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /tmp/introot</span><br><span class="line">mkdir -p /tmp/extroot</span><br><span class="line">mount --<span class="built_in">bind</span> / /tmp/introot</span><br><span class="line">mount /dev/sda1 /tmp/extroot</span><br><span class="line">tar -C /tmp/introot -cvf - . | tar -C /tmp/extroot -xf -</span><br><span class="line">umount /tmp/introot</span><br><span class="line">umount /tmp/extroot</span><br></pre></td></tr></table></figure></li>
-<li>Regenerate fstab using <code>block detect &gt; /etc/config/fstab;</code></li>
-<li>Reboot</li>
-<li>You should have a working Openwrt with extroot now. Change opkg/distfeeds.conf to the corresponding upgraded version.</li>
-<li>Now run <code>opkg upgrade $(opkg list-upgradable | awk &#39;($1 !~ &quot;^kmod|Multiple&quot;) &#123;print $1&#125;&#39;)</code> to keep base packages up-to-date.</li>
-<li>And install all your backed up packages using <code>cat /root/installed_packages.txt|xargs opkg install</code></li>
-</ul>
-</li>
-</ul>
-<p>Because I don’t use dnsmasq, this means once the steps above finishes, I will need to do some extra post installation steps</p>
-<h3 id="Post-installation-More-as-a-personal-note"><a href="#Post-installation-More-as-a-personal-note" class="headerlink" title="Post installation (More as a personal note):"></a>Post installation (More as a personal note):</h3><ul>
-<li>Remove odhcpd-ipv6only package and install odhcpd, this will ensure IPv4 dhcp functionality, otherwise, there will only be ipv6 addresses allocated.</li>
-</ul>
-<h3 id="November-2021-Update-Updating-to-Openwrt-21-02"><a href="#November-2021-Update-Updating-to-Openwrt-21-02" class="headerlink" title="November 2021 Update: Updating to Openwrt 21.02"></a>November 2021 Update: Updating to Openwrt 21.02</h3><p>I upgraded Openwrt version 21.02 branch in September of this year. It wasn’t as easy as I had thought, but I had the problem solved after all. In release 21.02, Openwrt introduced what’s called <a target="_blank" rel="noopener" href="https://www.kernel.org/doc/html/latest/networking/dsa/dsa.html">DSA</a> or Distributed Switch Architecture for this WRT1200AC device. To be honest, it is counter-intuitive to setup but it seems to be a more standard way when compared to the previous configuration.</p>
-<p>The part that I have problem with is mostly the VLAN tagging. My network ISP requires tagged VLAN to be able to use the network, so for Openwrt, I will have to tag the WAN port with the VLAN id. I was able to get around it with the following block: </p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">config device</span><br><span class="line">        option name &#x27;wan&#x27;</span><br><span class="line">        option macaddr &#x27;&lt;MAC_ADDRESS&gt;&#x27;</span><br><span class="line">config interface &#x27;wan&#x27;</span><br><span class="line">        option device &#x27;wan.10&#x27;</span><br><span class="line">        option proto &#x27;pppoe&#x27;</span><br><span class="line">        option username &#x27;&lt;PPPOE_USERNAME&gt;&#x27;</span><br><span class="line">        option ipv6 &#x27;1&#x27;</span><br><span class="line">        option peerdns &#x27;0&#x27;</span><br><span class="line">        option password &#x27;&lt;PPPOE_PASSWORD&gt;&#x27;</span><br><span class="line">        list dns &#x27;127.0.0.1&#x27;</span><br><span class="line">config interface &#x27;wan6&#x27;</span><br><span class="line">        option proto &#x27;dhcpv6&#x27;</span><br><span class="line">        option reqaddress &#x27;try&#x27;</span><br><span class="line">        option reqprefix &#x27;auto&#x27;</span><br><span class="line">        option peerdns &#x27;0&#x27;</span><br><span class="line">        list dns &#x27;::1&#x27;</span><br><span class="line">        option device &#x27;@wan</span><br></pre></td></tr></table></figure>
-
-<p>It actually is quite straightforward once you get the idea of configuration. For example, in the above shared config, a <code>device</code> is a layer 2 in the networking stack while an <code>interface</code> is at layer 3. Here is Openwrt wiki’s explanation: </p>
-<blockquote>
-<p>Devices are physical connections that convey bits/frames to other computers. They operate at layer 2 in the protocol stack, have a MAC address along with several other configurable parameters.<br>Network devices identify and configure hardware components of the device: individual Ethernet switch ports, wireless radios, USB networking devices, VLANs, or virtual ethernets.<br>Alternatively, bridge devices group several network devices together so they can be treated as a single entity. A bridge device functions like a separate unmanaged (hardware) switch, forwarding traffic between member ports as needed at the hardware level to maintain performance. Each physical port can be a member of only a single bridge device.<br>Interfaces route IP packets and operate at layer 3 in the protocol stack. An interface is associated with a single device that sends/receives its packets. Interfaces get their IP address parameters by the choice of protocol: Static, DHCP, PPP, 6in4, Wireguard, OpenVPN, etc.</p>
-</blockquote>
-<hr>
-<p>References: </p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://openwrt.org/docs/guide-user/network/dsa/dsa-mini-tutorial">https://openwrt.org/docs/guide-user/network/dsa/dsa-mini-tutorial</a></li>
-</ul>
-
+<li>Flash the file from the Luci interface<br>  OR</li>
+<li>Download the file to the &#x2F;tmp and then flash using sysupgrade &#x2F;tmp&#x2F;*.bin
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/01/24/Upgrade-openwrt-on-Linksys-WRT1200AC-with-extroot/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -447,7 +415,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 12-28-2020 12:33:14" itemprop="dateModified" datetime="2020-12-28T12:33:14+13:00">12-28-2020</time>
+      <time title="Modified: 08-28-2022 15:55:06" itemprop="dateModified" datetime="2022-08-28T15:55:06+12:00">08-28-2022</time>
     </span>
 
   
@@ -467,40 +435,19 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>Like it or not, 2020 has been a year where video conference are used a lot. For me, most of the meetings happens in Zoom. Finding the link to the meeting in the calendar and then clicking on it to join the meeting had gradually become a new norm and something I really don’t like (the fact that after clicking on the Zoom link brings up your browser instead of Zoom itself, and prompting you to click again to open Zoom is really a pain). As someone who would like to automate things as much as possible, I did eventually find a solution that works for me albeit several third party tools are required.</p>
+          <p>Like it or not, 2020 has been a year where video conference are used a lot. For me, most of the meetings happens in Zoom. Finding the link to the meeting in the calendar and then clicking on it to join the meeting had gradually become a new norm and something I really don&#39;t like (the fact that after clicking on the Zoom link brings up your browser instead of Zoom itself, and prompting you to click again to open Zoom is really a pain). As someone who would like to automate things as much as possible, I did eventually find a solution that works for me albeit several third party tools are required.</p>
 <h3 id="Problem-Statement-Automatically-join-a-Zoom-call-for-a-meeting-scheduled-in-calendar-without-user-interaction-on-MacOS-X"><a href="#Problem-Statement-Automatically-join-a-Zoom-call-for-a-meeting-scheduled-in-calendar-without-user-interaction-on-MacOS-X" class="headerlink" title="Problem Statement: Automatically join a Zoom call for a meeting scheduled in calendar without user interaction (on MacOS X)."></a>Problem Statement: Automatically join a Zoom call for a meeting scheduled in calendar without user interaction (on MacOS X).</h3><h3 id="Prerequisite"><a href="#Prerequisite" class="headerlink" title="Prerequisite:"></a>Prerequisite:</h3><ul>
 <li><a target="_blank" rel="noopener" href="https://www.alfredapp.com/">Alfred</a><br>  (Unclear if you need to be a paid user to create custom workflows, the author is a paid user)</li>
 <li><a target="_blank" rel="noopener" href="https://github.com/zerowidth/zoom-calendar.alfredworkflow">zoom-calendar.alfredworkflow</a><br>  (Yep, I found this alfred workflow by chance and based my work and this blog on this workflow, it is very handy and I would really like thank the author for creating this.)</li>
-<li>Automator<br>  (The builtin automation app in MacOS from Apple)</li>
-</ul>
-<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution:"></a>Solution:</h3><p>Assume you have already installed the Alfred App, you will need to go to <a target="_blank" rel="noopener" href="https://github.com/zerowidth/zoom-calendar.alfredworkflow">this</a> Github Repo, follow the instructions given and install the Alfred workflow.</p>
-<p>Once the workflow has been installed, we need to do some tweaking. Add an external trigger to this workflow and give it an id of ‘Automator’</p>
-<p>Now, open up Automator, choose the Calendar Alarm workflow as shown in the screenshot below:<br><img src="/2020/12/26/Automating-Zoom-with-Alfred-and-Apple-Scripts/automator-1.png"></p>
-<p>Copy and paste the following code to the calendar alarm:</p>
-<script src="https://gist.github.com/KevinSJ/bd11057c5d6f0fddc7abb38bdf7844b3.js"></script>
-
-<p>Now comes tricky part. You would first need to export your calendar from the cloud, export from Google Calendar Website or whatever calendar you are using. </p>
-<p>Then open up your Calendar app, and create a new local calendar, give it whatever name you want, in my case, I simply named it Automator. At this point, you can import the ical file exported from above.</p>
-<p>These two steps are necessary if you want to use the automation for most of your events. If there are only a few events that you would like to add the automation on, you can just use the copy function in the Calendar app and paste to the local calendar. In any case, a new local calendar is necessary otherwise the alarm trigger would not work.</p>
-<p>Once you completed setting up your local calendars, you can start adding the file trigger which will help you open up the Zoom. To do this, you need to modify the event of your choice and then change the alert settings, change it to custom and choose ‘Open file’ option, and then change the dropdown from ‘Calendar’ to ‘Other…’.</p>
-<p><img src="/2020/12/26/Automating-Zoom-with-Alfred-and-Apple-Scripts/calendar-1.png"></p>
-<p>Normally, the file you created with the Calendar alarm will be saved to <code>~/Library/Workflows/Applications/Calendar</code> so go ahead to find that folder and choose that file.</p>
-<p><img src="/2020/12/26/Automating-Zoom-with-Alfred-and-Apple-Scripts/calendar-2.png"></p>
-<p>At this point, you will have a working version of the calendar automation for this event, if you want it on more events, you will need to repeat the steps of changing alerts for each of the other events.</p>
-<h3 id="Future-improvements-amp-Alternatives"><a href="#Future-improvements-amp-Alternatives" class="headerlink" title="Future improvements &amp; Alternatives"></a>Future improvements &amp; Alternatives</h3><p>I have to admit the solution I described above is not perfect, and it requires some steps to setup, still once I set it up, everything works fine for me, and I would never need to remember to join a Zoom meeting because of this automation.</p>
-<p>Some future improvement and/or caveats that I found about this method is that: </p>
-<ul>
-<li>The events must have the zoom link somewhere (either description or location) for this automation to work.</li>
-<li>If there were two back-to-back meetings, the automation will fail, this is because the previous meeting hasn’t finished yet, and the given Alfred workflow will still list it at the top. I haven’t found a good solution to this.</li>
-</ul>
-<p>There are several alternative ways I can think of:</p>
-<ul>
-<li><p>Use Zoom itself, if you are logged into Zoom and allow them to access your calendar, they will provide a join button in their app to allow you to join the meeting without more button clicks.</p>
-</li>
-<li><p>Bookmark the Zoom url schemes and click on it. This is basically how the workflow works behind the scene: converting the url from http to zoom url scheme and then open it. I won’t go in depth on how to create a bookmark and convert the links to url schemes, but Zoom provide a great doc on their schemes <a target="_blank" rel="noopener" href="https://marketplace.zoomgov.com/docs/guides/guides/client-url-schemes">here</a>.</p>
-</li>
-</ul>
-
+<li>Automator<br>  (The builtin automation app in MacOS from Apple)
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/12/26/Automating-Zoom-with-Alfred-and-Apple-Scripts/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -562,7 +509,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 12-26-2020 22:54:36" itemprop="dateModified" datetime="2020-12-26T22:54:36+13:00">12-26-2020</time>
+      <time title="Modified: 08-28-2022 15:55:06" itemprop="dateModified" datetime="2022-08-28T15:55:06+12:00">08-28-2022</time>
     </span>
 
   
@@ -583,24 +530,14 @@
     
     <div class="post-body" itemprop="articleBody">
           <p>As a developer, you will sometimes face weird problems, it is important to come up with reliable and repeatable ways to solve this problems, so when such problems come up again, you would be able to find a solution easier. As for myself, one of the tools that I found most useful on Unix-like system is jq, which is a tool to process json files. Let me demonstrate how I use this tool to solve some problems I encountered during work.</p>
-<h3 id="Problem-Convert-a-JSON-file-to-CSV"><a href="#Problem-Convert-a-JSON-file-to-CSV" class="headerlink" title="Problem: Convert a JSON file to CSV"></a>Problem: Convert a JSON file to CSV</h3><p>Example JSON</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">&quot;title&quot;</span>: <span class="string">&quot;This is a song&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;artist&quot;</span>: <span class="string">&quot;This is an artist&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;album&quot;</span>: <span class="string">&quot;This is an album&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;year&quot;</span>: <span class="number">1989</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">&quot;title&quot;</span>: <span class="string">&quot;This is a song&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;artist&quot;</span>: <span class="string">&quot;This is an artist&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;album&quot;</span>: <span class="string">&quot;This is an album&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;year&quot;</span>: <span class="number">1989</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">&quot;title&quot;</span>: <span class="string">&quot;This is a song&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;artist&quot;</span>: <span class="string">&quot;This is an artist&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;album&quot;</span>: <span class="string">&quot;This is an album&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;year&quot;</span>: <span class="number">1989</span></span><br><span class="line">  &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-<p>JQ code to generate csv:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jq -r <span class="string">&#x27;(.[0] | keys_unsorted) as $keys | ([$keys] + map([.[ $keys[] ]])) [] | @csv&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>Resulting CSV:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&quot;title&quot;,&quot;artist&quot;,&quot;album&quot;,&quot;year&quot;</span><br><span class="line">&quot;This is a song&quot;,&quot;This is an artist&quot;,&quot;This is an album&quot;,1989</span><br><span class="line">&quot;This is a song&quot;,&quot;This is an artist&quot;,&quot;This is an album&quot;,1989</span><br><span class="line">&quot;This is a song&quot;,&quot;This is an artist&quot;,&quot;This is an album&quot;,1989</span><br></pre></td></tr></table></figure>
-<h3 id="Problem-Aggregate-JSON-object"><a href="#Problem-Aggregate-JSON-object" class="headerlink" title="Problem: Aggregate JSON object."></a>Problem: Aggregate JSON object.</h3><p>Example JSON:</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;A&quot;</span>: [&#123; <span class="attr">&quot;Name&quot;</span>: <span class="string">&quot;A1&quot;</span> &#125;, &#123; <span class="attr">&quot;Name&quot;</span>: <span class="string">&quot;A2&quot;</span> &#125;],</span><br><span class="line">  <span class="attr">&quot;B&quot;</span>: [&#123; <span class="attr">&quot;Name&quot;</span>: <span class="string">&quot;B1&quot;</span> &#125;, &#123; <span class="attr">&quot;Name&quot;</span>: <span class="string">&quot;B2&quot;</span> &#125;],</span><br><span class="line">  <span class="attr">&quot;C&quot;</span>: [&#123; <span class="attr">&quot;Name&quot;</span>: <span class="string">&quot;C&quot;</span> &#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>The goal is to produce something like below:</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="attr">&quot;A&quot;</span>: [<span class="string">&quot;A1&quot;</span>, <span class="string">&quot;A2&quot;</span>], <span class="attr">&quot;B&quot;</span>: [<span class="string">&quot;B1&quot;</span>, <span class="string">&quot;B2&quot;</span>], <span class="attr">&quot;C&quot;</span>: [<span class="string">&quot;C&quot;</span>] &#125;</span><br></pre></td></tr></table></figure>
-<p>It transform the object and aggregate (or compress?) them by “Name” property, I know this can be easily done with JavaScript, but jq and bash seems like more widely used and will come in handy when JavaScript is not available.</p>
-<p>The jq code I came up with is as follows:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jq <span class="string">&#x27;[keys_unsorted[] as $k|&#123;($k): [.[$k][]|.Name]&#125;]|add&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>References:</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://stackoverflow.com/a/32967407">https://stackoverflow.com/a/32967407</a></li>
-</ul>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/11/26/Solving-practical-problems-with-Jq-2020-11-26/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -654,9 +591,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 11-15-2020 13:54:30 / Modified: 14:45:47" itemprop="dateCreated datePublished" datetime="2020-11-15T13:54:30+13:00">11-15-2020</time>
+      <time title="Created: 11-15-2020 13:54:30" itemprop="dateCreated datePublished" datetime="2020-11-15T13:54:30+13:00">11-15-2020</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 08-28-2022 15:55:06" itemprop="dateModified" datetime="2022-08-28T15:55:06+12:00">08-28-2022</time>
     </span>
 
   
@@ -679,27 +622,20 @@
           <p>What would be the easiest way to remove all but one word from the end of each line in Vim?</p>
 <p>Today, I found a challenge on vimgolf and thought it might be interesting to share my solutions.</p>
 <p>Here is the original file</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">abcd 1 erfg 7721231</span><br><span class="line">acd 2 erfgasd 324321</span><br><span class="line">acd 3 erfgsdasd 23432</span><br><span class="line">abcd 5 erfgdsad 123556</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">abcd 1 erfg 7721231</span><br><span class="line">acd 2 erfgasd 324321</span><br><span class="line">acd 3 erfgsdasd 23432</span><br><span class="line">abcd 5 erfgdsad 123556</span><br></pre></td></tr></table></figure>
 
 <p>Here is the desired result:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">7721231</span><br><span class="line">324321</span><br><span class="line">23432</span><br><span class="line">123556</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">7721231</span><br><span class="line">324321</span><br><span class="line">23432</span><br><span class="line">123556</span><br></pre></td></tr></table></figure>
 
 <p>The challenge is quite straightforward, delete all but the last characters in the file. I found several ways to tackle this challenge, so let me show you all:</p>
-<h4 id="Take-1-Use-macro-only"><a href="#Take-1-Use-macro-only" class="headerlink" title="Take 1: Use macro only"></a>Take 1: Use macro only</h4><p>Record a macro, and play it back, so the keystrokes would be</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">qa $bd0j q 4@a &lt;cr&gt;</span><br><span class="line"></span><br><span class="line">qa starts recording macro to register a</span><br><span class="line">$ move cursor to the end of the line</span><br><span class="line">d0 means *d*elete to the beginning of the line</span><br><span class="line">j move cursor down</span><br><span class="line">q finish macro</span><br><span class="line">4@a repeat the macro in register a 4 times</span><br></pre></td></tr></table></figure>
-
-<h4 id="Take-2-Use-regex-and-norm"><a href="#Take-2-Use-regex-and-norm" class="headerlink" title="Take 2: Use regex and %norm"></a>Take 2: Use regex and %norm</h4><p>It’s quite obvious that all we want to keep from the original files are the numbers. So the regex would be simple to come up with, like something as simple as <code>/\d\+$&lt;cr&gt;</code> will do. Once you type this into vim, all the numbers at the end of the line will be highlighted. Next you can do: </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">:%norm dn &lt;cr&gt;</span><br><span class="line"></span><br><span class="line">% means applying to the whole file,</span><br><span class="line">norm means in execute following command in normal mode</span><br><span class="line">dn means *d*elete to *n*ext match</span><br></pre></td></tr></table></figure>
-
-<h4 id="Take-3-No-regex-pure-norm"><a href="#Take-3-No-regex-pure-norm" class="headerlink" title="Take 3: No regex pure %norm"></a>Take 3: No regex pure %norm</h4><p>This is the fastest way I can come up with, still, not as fast as the top answers on Vimgolf but it is decent in my opinion. Being slightly different from the option above, it is still using <code>%norm</code> though:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">%norm $bd0 &lt;cr&gt;  </span><br><span class="line"></span><br><span class="line">% means applying to the whole file,</span><br><span class="line">$ move cursor to the end of the line</span><br><span class="line">d0 means *d*elete to the beginning of the line</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="Takeaways"><a href="#Takeaways" class="headerlink" title="Takeaways:"></a>Takeaways:</h3><ul>
-<li><code>norm</code> is a quite powerful, and can be used to achieve complex stuff that can be otherwise achieved through a macro.</li>
-<li><code>d</code> the delete command is useful in many unexpected ways, besides <code>dn</code> and <code>d0</code> command mentioned above which deletes to the next match and deletes to the beginning of the line respectively. An additional useful variation of <code>d</code> command is <code>d4/x</code> where <code>4/x</code> meaning 4th occurrence of x.</li>
-</ul>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/11/15/practice-with-vim-I/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -753,9 +689,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 09-14-2020 21:39:11 / Modified: 22:00:03" itemprop="dateCreated datePublished" datetime="2020-09-14T21:39:11+12:00">09-14-2020</time>
+      <time title="Created: 09-14-2020 21:39:11" itemprop="dateCreated datePublished" datetime="2020-09-14T21:39:11+12:00">09-14-2020</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 08-28-2022 15:55:06" itemprop="dateModified" datetime="2022-08-28T15:55:06+12:00">08-28-2022</time>
     </span>
 
   
@@ -775,13 +717,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>This week, I was tasked with creating basic infrastructure for one of our newwebsites.  We use Fastly for our CDN and New Relic as a log aggregation tool, most of our infrastructure is setup using Terraform, which is a popular infrastructure as code (IaC) platform. Terraform supports Fastly through a custom plugin, which also has the capability of New Relic. We need to customize the format of New Relic so that we can find the logs easily in New Relic. As expected, the plugin actually provide a pretty straight forward to accomplish this – what you need to do is to come up with a proper json string that align with the format that Fastly provided in their document. This seemingly straightforward task ended up took me some time to debug.</p>
-<p>In terraform, you can create objects, and an object can be converted to string by using jsonencode function. This is where the pitfall comes in: Fastly’s formatting document said they have a option called “%&gt;s” which represents the final status of the fastly request. From my perspective, it would definitely be helpful if we can include this when we send the log to Fastly. So I added this to my formatting object, and then jsonencode the object. To my suprise, I get an error saying that Fastly failed to parse the formatting option I created, which is quite strange. I then started to debug, I export TF_LOG=”DEBUG”, which asked Terraform to give me all the debug logs. To my suprise, I found that the “%&gt;s” was jsonencode to “%\u003es” by terraform, and thus causing the error.  <strong>How come “&gt;” sign is encoded in Terraform? It turned out it’s for backward compatibility with ealier edition of Terraform.</strong> And according to their documentation </p>
-<blockquote>
-<p>When encoding strings, this function escapes some characters using Unicode escape sequences: replacing &lt;, &gt;, &amp;, U+2028, and U+2029 with \u003c, \u003e, \u0026, \u2028, and \u2029. This is to preserve compatibility with Terraform 0.11 behavior. </p>
-</blockquote>
-<p>they encode much more characters <strong>for you</strong> without you realizing it. I really hope they can provide a way to opt-out of this feature or make this an opt-in, it will make things way easier for developers.</p>
-
+          <p>This week, I was tasked with creating basic infrastructure for one of our newwebsites.  We use Fastly for our CDN and New Relic as a log aggregation tool, most of our infrastructure is setup using Terraform, which is a popular infrastructure as code (IaC) platform. Terraform supports Fastly through a custom plugin, which also has the capability of New Relic. We need to customize the format of New Relic so that we can find the logs easily in New Relic. As expected, the plugin actually provide a pretty straight forward to accomplish this -- what you need to do is to come up with a proper json string that align with the format that Fastly provided in their document. This seemingly straightforward task ended up took me some time to debug.</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/09/14/pitfall-of-jsonencode-in-terraform/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -843,7 +787,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 12-27-2020 00:45:47" itemprop="dateModified" datetime="2020-12-27T00:45:47+13:00">12-27-2020</time>
+      <time title="Modified: 08-28-2022 15:55:06" itemprop="dateModified" datetime="2022-08-28T15:55:06+12:00">08-28-2022</time>
     </span>
 
   
@@ -863,20 +807,18 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>Recently, I have been eager to get the data saver on Android to work automatically for me. My goal is to have Tasker automatically enable the built-in data saver when my data is low. Before I came up with this idea, I have search the web to see if there is any solutions exist already so I don’t have to reinventing the wheel. Unfortunately, I couldn’t find anything on this topic so I have to create my own solution. Upon 1 week of testing, things to work as I expected so I decided to share in this article how I did it.</p>
+          <p>Recently, I have been eager to get the data saver on Android to work automatically for me. My goal is to have Tasker automatically enable the built-in data saver when my data is low. Before I came up with this idea, I have search the web to see if there is any solutions exist already so I don&#39;t have to reinventing the wheel. Unfortunately, I couldn&#39;t find anything on this topic so I have to create my own solution. Upon 1 week of testing, things to work as I expected so I decided to share in this article how I did it.</p>
 <h2 id="Prerequisite"><a href="#Prerequisite" class="headerlink" title="Prerequisite"></a>Prerequisite</h2><ul>
-<li>An rooted Android phone – Unfortunately, the solution I came up with only works on rooted Android phone, I’m running Android 9.0.</li>
-<li>A way to get to know you current data usage – Some carriers allow you to get you data usage through SMS, some might only allow you to use USSD to get data usage. I am only covering the case of using SMS here (my case).</li>
-</ul>
-<h2 id="How-to"><a href="#How-to" class="headerlink" title="How-to"></a>How-to</h2><p>The data saver in Android is basically something that limits all the background data usage. After some digging on the Internet, I found that you can turn the data saver on with the following command <code>cmd netpolicy set restrict-background true</code> (requires root). Then it is pretty easy to have the data saver turned on automatically when the data is low. My way of doing this is as follows:</p>
-<ul>
-<li>Set a global variable as threshold for triggering the data saver.</li>
-<li>Send an SMS to my carrier every morning at 8 AM, parsing the SMS to get my remaining data.</li>
-<li>If my data remaining is lower than the threshold then turn on the data saver whenever mobile data is in use. This is done by using the run shell action and run the command mentioned above. </li>
-<li>Turn data saver off automatically when I am connected to WiFi (Not necessary but add it just in case).</li>
-</ul>
-<p>It is quite easy to do this when you carrier allows you to query data usage using SMS, with USSD however, things is not that easy and unfortunately, I haven’t figure out a way yet.</p>
-
+<li>An rooted Android phone -- Unfortunately, the solution I came up with only works on rooted Android phone, I&#39;m running Android 9.0.</li>
+<li>A way to get to know you current data usage -- Some carriers allow you to get you data usage through SMS, some might only allow you to use USSD to get data usage. I am only covering the case of using SMS here (my case).
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/10/12/Automating-Android-data-saver-with-tasker/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -938,7 +880,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 09-12-2020 14:27:57" itemprop="dateModified" datetime="2020-09-12T14:27:57+12:00">09-12-2020</time>
+      <time title="Modified: 08-28-2022 15:55:06" itemprop="dateModified" datetime="2022-08-28T15:55:06+12:00">08-28-2022</time>
     </span>
 
   
@@ -961,22 +903,15 @@
           <p>Recently, I decided to convert my QEMU based virtual machine installed on my Manjaro Linux to the VirtualBox format. The reason behind this is that I would like to be able to use the same VM across different host system (specifically Manjaro Linux and Windows 7). It is not a easy  thing to do, so I decided to document it for future references.</p>
 <h3 id="Prerequisite"><a href="#Prerequisite" class="headerlink" title="Prerequisite?"></a>Prerequisite?</h3><ul>
 <li>An existing image created using QEMU (My VM file end with .img,  for example)</li>
-<li>VirtualBox</li>
-</ul>
-<h3 id="How-to"><a href="#How-to" class="headerlink" title="How to?"></a>How to?</h3><p>First thing first, you would need to convert the QEMU image (extension img) to raw format, this can be done by issuing the following command:</p>
-<p><code>qemu-img convert Windows7-compressed.img  -O raw  Windows7.raw</code></p>
-<p>This will generate a raw image. Note that this newly generated file might be a lot larger than the file it based on, this is because the img file allocates space on as-is basis.</p>
-<p>After you get the raw image, it’s time to convert it to VDI format (which is used by VirtualBox). You can do this by running:</p>
-<p><code>VBoxManage convertfromraw Windows7.raw --format vdi  Windows7.vdi</code></p>
-<p>Then, it is recommended to compact the image:</p>
-<p><code>VBoxManage modifyhd Windows7.vdi --compact</code></p>
-<p>So after the previous step, you will have a working VirtualBox image, but if you boot it from VirtualBox, it might not work.</p>
-<h3 id="Gotchas"><a href="#Gotchas" class="headerlink" title="Gotchas!"></a>Gotchas!</h3><p>In my case, what I was trying to convert was a Windows 7 VM, and when I finished the above steps and try to boot the VM, I got a BSOD. My feeling is that there were some default that QEMU used that doesn’t work for a newly created machine in VirtualBox. I tweak the following settings in the newly created VirtualBox VM:</p>
-<ul>
-<li>Delete the auto created SATA controller and change it IDE controller.</li>
-</ul>
-<p>It turned out, after doing that, everything works as expected.</p>
-
+<li>VirtualBox
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/05/28/Converting-QEMU-VM-to-VirtualBox-VM/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1038,7 +973,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 09-12-2020 14:25:30" itemprop="dateModified" datetime="2020-09-12T14:25:30+12:00">09-12-2020</time>
+      <time title="Modified: 08-28-2022 15:55:06" itemprop="dateModified" datetime="2022-08-28T15:55:06+12:00">08-28-2022</time>
     </span>
 
   
@@ -1058,16 +993,16 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="Why-Tasker"><a href="#Why-Tasker" class="headerlink" title="Why Tasker?"></a>Why Tasker?</h3><p>This is probably an article that is long overdue to me personally. I have been an Android user since 2011, started with my Nexus S that I bought for use in college. It seems to me, the app Tasker had been very famous in the Andorid community, especially among users who know how to program.<br>For those who have never heard of this app, this is a powerful app that allows you to automate almost anything that you can think of on the Android system.For me,It was not until August of last year when I bought the tasker app that I started to realize how powerful this app is. I am really not a big fan of its old school UI and design so I didn’t start using it until this year. After uisng it for a while, I did come to realize that there is no other apps close to it, if I were to move to iOS, this is probably among one the apps that I will miss.  In this article I will explain how I used takser to automate things for myself, it is some boring stuff, but it did become something that I’m using everyday.</p>
-<h3 id="What-can-you-use-it-for"><a href="#What-can-you-use-it-for" class="headerlink" title="What can you use it for?"></a>What can you use it for?</h3><p>I will list one of the most used Tasks/Profiles that I created and used in this app:</p>
-<h5 id="Turn-off-on-ADB-when-using-certain-apps"><a href="#Turn-off-on-ADB-when-using-certain-apps" class="headerlink" title="Turn off/on ADB when using certain apps."></a>Turn off/on ADB when using certain apps.</h5><p>This is one of the easy ones that I found very useful. It is not uncommon nowadays for some apps to require you to turn off your ADB (Android Debugging Bridge) settings when you are using them, which to me, is quite annoying. So naturally, I created a Tasker profile together with a task to automate this. The trick here is you need to have root access, otherwise you are pretty much out of luck for this particular example. To create such a task, assuming you already have proper root access, go to the TASKS page in the app and click on the add icon, choose a name you like, and then you can create your first task! Think of a task as the things you want Tasker to do for you. In this particular case, my goal is simple: turn off ADB if it was not already off, turn it on if it was off. This way we can have one task that a turns off the ADB when you turns on the app; when you turns the app off, ADB will be switch back to on. </p>
-<p>It is clear that we will need a global variable that holds the  status of the adb status, to do this add an action: click on the button add icon while you are in the “Task Edit” page, and filter based on Shell, you will see a “Run Shell” as a result. Click on it, and in the “Command” input, enter “settings get global adb_enabled” and in “Store Output In” input, choose a global variable name you would like to use to hold the status of the current ADB status, just remember that you need to use all caps for the name for tasker to know it is an global variable. Also remember to check the “Use Root” checkbox. After this step, things will be simple, just add the if and else condition like I mentioned before, set adb_enabled to 0 if it is 1 and set it to 1 if it is 0, and after that don’t forget to set the global variable again. </p>
-<p>TL;DR Here is the XML, that you can directly import to your Tasker if you don’t want to create it yourself:</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">TaskerData</span> <span class="attr">sr</span>=<span class="string">&quot;&quot;</span> <span class="attr">dvi</span>=<span class="string">&quot;1&quot;</span> <span class="attr">tv</span>=<span class="string">&quot;5.2.bf&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Task</span> <span class="attr">sr</span>=<span class="string">&quot;task3&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">cdate</span>&gt;</span>1526421645228<span class="tag">&lt;/<span class="name">cdate</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">edate</span>&gt;</span>1529892193595<span class="tag">&lt;/<span class="name">edate</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span>&gt;</span>3<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">nme</span>&gt;</span>adb_auto<span class="tag">&lt;/<span class="name">nme</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">pri</span>&gt;</span>1006<span class="tag">&lt;/<span class="name">pri</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Action</span> <span class="attr">sr</span>=<span class="string">&quot;act0&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;7&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">code</span>&gt;</span>123<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">&quot;arg0&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;3&quot;</span>&gt;</span>settings get global adb_enabled<span class="tag">&lt;/<span class="name">Str</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">&quot;arg1&quot;</span> <span class="attr">val</span>=<span class="string">&quot;0&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">&quot;arg2&quot;</span> <span class="attr">val</span>=<span class="string">&quot;1&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">&quot;arg3&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;3&quot;</span>&gt;</span>%ADB_STATUS<span class="tag">&lt;/<span class="name">Str</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">&quot;arg4&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;3&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">&quot;arg5&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;3&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">Action</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Action</span> <span class="attr">sr</span>=<span class="string">&quot;act1&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;7&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">code</span>&gt;</span>37<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">ConditionList</span> <span class="attr">sr</span>=<span class="string">&quot;if&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">Condition</span> <span class="attr">sr</span>=<span class="string">&quot;c0&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;3&quot;</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">lhs</span>&gt;</span>%ADB_STATUS<span class="tag">&lt;/<span class="name">lhs</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">op</span>&gt;</span>0<span class="tag">&lt;/<span class="name">op</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">rhs</span>&gt;</span>1<span class="tag">&lt;/<span class="name">rhs</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">Condition</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">ConditionList</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">Action</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Action</span> <span class="attr">sr</span>=<span class="string">&quot;act2&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;7&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">code</span>&gt;</span>123<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">&quot;arg0&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;3&quot;</span>&gt;</span>settings put global adb_enabled 0<span class="tag">&lt;/<span class="name">Str</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">&quot;arg1&quot;</span> <span class="attr">val</span>=<span class="string">&quot;0&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">&quot;arg2&quot;</span> <span class="attr">val</span>=<span class="string">&quot;1&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">&quot;arg3&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;3&quot;</span>&gt;</span>%ADB_STATUS<span class="tag">&lt;/<span class="name">Str</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">&quot;arg4&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;3&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">&quot;arg5&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;3&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">Action</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Action</span> <span class="attr">sr</span>=<span class="string">&quot;act3&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;7&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">code</span>&gt;</span>43<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">Action</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Action</span> <span class="attr">sr</span>=<span class="string">&quot;act4&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;7&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">code</span>&gt;</span>123<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">&quot;arg0&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;3&quot;</span>&gt;</span>settings put global adb_enabled 1<span class="tag">&lt;/<span class="name">Str</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">&quot;arg1&quot;</span> <span class="attr">val</span>=<span class="string">&quot;0&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">&quot;arg2&quot;</span> <span class="attr">val</span>=<span class="string">&quot;1&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">&quot;arg3&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;3&quot;</span>&gt;</span>%ADB_STATUS<span class="tag">&lt;/<span class="name">Str</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">&quot;arg4&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;3&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">&quot;arg5&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;3&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">Action</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Action</span> <span class="attr">sr</span>=<span class="string">&quot;act5&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;7&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">code</span>&gt;</span>38<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">Action</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Action</span> <span class="attr">sr</span>=<span class="string">&quot;act6&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;7&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">code</span>&gt;</span>123<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">&quot;arg0&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;3&quot;</span>&gt;</span>settings get global adb_enabled<span class="tag">&lt;/<span class="name">Str</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">&quot;arg1&quot;</span> <span class="attr">val</span>=<span class="string">&quot;0&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Int</span> <span class="attr">sr</span>=<span class="string">&quot;arg2&quot;</span> <span class="attr">val</span>=<span class="string">&quot;1&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">&quot;arg3&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;3&quot;</span>&gt;</span>%ADB_STATUS<span class="tag">&lt;/<span class="name">Str</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">&quot;arg4&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;3&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Str</span> <span class="attr">sr</span>=<span class="string">&quot;arg5&quot;</span> <span class="attr">ve</span>=<span class="string">&quot;3&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">Action</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">Task</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">TaskerData</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>To import, you need to save the above snippet to XML on your phone. In tasker app,   click and hold the “TASKS” tab header, select import and choose the file </p>
-<p>To run the task based on your predefined conditions, go to “PROFILES” tab, click on add button in the button, choose the application you want, and then, chose the task you imported and you are good to go! Now the app won’t say you can’t use it because you have ADB turned on, Tasker will turned adb off when you are using the app, and turn it on when you are not using it! :)</p>
-
+          <h3 id="Why-Tasker"><a href="#Why-Tasker" class="headerlink" title="Why Tasker?"></a>Why Tasker?</h3><p>This is probably an article that is long overdue to me personally. I have been an Android user since 2011, started with my Nexus S that I bought for use in college. It seems to me, the app Tasker had been very famous in the Andorid community, especially among users who know how to program.<br>For those who have never heard of this app, this is a powerful app that allows you to automate almost anything that you can think of on the Android system.For me,It was not until August of last year when I bought the tasker app that I started to realize how powerful this app is. I am really not a big fan of its old school UI and design so I didn&#39;t start using it until this year. After uisng it for a while, I did come to realize that there is no other apps close to it, if I were to move to iOS, this is probably among one the apps that I will miss.  In this article I will explain how I used takser to automate things for myself, it is some boring stuff, but it did become something that I&#39;m using everyday.</p>
+<h3 id="What-can-you-use-it-for"><a href="#What-can-you-use-it-for" class="headerlink" title="What can you use it for?"></a>What can you use it for?</h3><p>I will list one of the most used Tasks&#x2F;Profiles that I created and used in this app:</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2018/06/24/Automating-things-on-Android-with-Tasker/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1129,7 +1064,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 12-27-2020 00:48:21" itemprop="dateModified" datetime="2020-12-27T00:48:21+13:00">12-27-2020</time>
+      <time title="Modified: 08-28-2022 15:55:06" itemprop="dateModified" datetime="2022-08-28T15:55:06+12:00">08-28-2022</time>
     </span>
 
   
@@ -1149,18 +1084,16 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h4 id="What-is-Google-App-Scripts"><a href="#What-is-Google-App-Scripts" class="headerlink" title="What is Google App Scripts?"></a>What is Google App Scripts?</h4><p>Before explaining what I did with Google App Scripts, let me explain what is Google App Scripts. It is basically a scripting engine that let you access all kinds of Google App features (including Gmail, Google Calendar, Google Docs, etc.). There are other ways to access these features but Google App Script might be the easist way out there. It comes with an online editor (you can work offline as well), and Google can trigger your scripts at certain time based on your need. Oh, forgot to mention, Google App Script uses JavaScript which is one of the most popular languages right now (Sadly, it doesn’t support ES6 syntax as of writing).</p>
-<h4 id="Why-use-Google-App-Scripts"><a href="#Why-use-Google-App-Scripts" class="headerlink" title="Why use Google App Scripts?"></a>Why use Google App Scripts?</h4><p>I have a habit of archiving my Emails every week on Mondays. It is easy enough to do in the gmail Web interface but I do need to remember to do it. That make me think if I can find a good way to automate this. I would always think of using some kind of API first, but it seems to me that it wouldn’t worth it to spend time to make a app just for the purpose of archiving emails. Then I came across Google App Scripts, which turned out to be exactly what I need to automate this.</p>
-<h4 id="What-I-came-up-with"><a href="#What-I-came-up-with" class="headerlink" title="What I came up with"></a>What I came up with</h4><p>Here is what I came up with to archive emails that are one-week-old every Monday at midnight:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">gmailAutoarchive</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> maxDate = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">  <span class="comment">// Archive all threads in inbox whose last message date is older than today.</span></span><br><span class="line">  <span class="keyword">var</span> threads = GmailApp.getInboxThreads();</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i <span class="keyword">in</span> threads)&#123;</span><br><span class="line">    <span class="keyword">var</span> thread = threads[i];</span><br><span class="line">    <span class="keyword">if</span> (thread.getLastMessageDate()&lt;maxDate)&#123;</span><br><span class="line">      thread.moveToArchive();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>You will be able to use this script by putting it into the google script editor located <a target="_blank" rel="noopener" href="https://script.google.com/">here</a>.</p>
-<p>To have Google auto run your scripts, you need to add the trigger which can be found under Edit –&gt; Current project’s triggers.</p>
-<h4 id="Variation"><a href="#Variation" class="headerlink" title="Variation"></a>Variation</h4><p>After creating this script, I created another script as a variation to this script that move messages with certain labels to trash.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">gmailAutoRemove</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> maxDate = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">  maxDate.setDate(maxDate.getDate() - <span class="number">30</span>); <span class="comment">// what was the date at that time?</span></span><br><span class="line">  <span class="keyword">var</span> label = [GmailApp.getUserLabelByName(<span class="string">&quot;label1&quot;</span>), GmailApp.getUserLabelByName(<span class="string">&quot;label2&quot;</span>), GmailApp.getUserLabelByName(<span class="string">&quot;label3&quot;</span>)];</span><br><span class="line">  label.forEach(removeByLabel(maxDate));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">removeByLabel</span>(<span class="params">maxDate</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">label</span>)</span>&#123;</span><br><span class="line">   <span class="keyword">var</span> threads = label.getThreads(<span class="number">0</span>, <span class="number">100</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i <span class="keyword">in</span> threads)&#123;</span><br><span class="line">      <span class="keyword">var</span> thread = threads[i];</span><br><span class="line">      <span class="keyword">if</span> (thread.getLastMessageDate() &lt; maxDate)&#123;</span><br><span class="line">        thread.moveToTrash();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-
-<p>References: <a target="_blank" rel="noopener" href="https://medium.com/@fw3d/auto-archive-emails-in-gmail-after-2-days-1ebf0e076b1c">Auto archive emails in Gmail after 2 days</a></p>
-
+          <h4 id="What-is-Google-App-Scripts"><a href="#What-is-Google-App-Scripts" class="headerlink" title="What is Google App Scripts?"></a>What is Google App Scripts?</h4><p>Before explaining what I did with Google App Scripts, let me explain what is Google App Scripts. It is basically a scripting engine that let you access all kinds of Google App features (including Gmail, Google Calendar, Google Docs, etc.). There are other ways to access these features but Google App Script might be the easist way out there. It comes with an online editor (you can work offline as well), and Google can trigger your scripts at certain time based on your need. Oh, forgot to mention, Google App Script uses JavaScript which is one of the most popular languages right now (Sadly, it doesn&#39;t support ES6 syntax as of writing).</p>
+<h4 id="Why-use-Google-App-Scripts"><a href="#Why-use-Google-App-Scripts" class="headerlink" title="Why use Google App Scripts?"></a>Why use Google App Scripts?</h4><p>I have a habit of archiving my Emails every week on Mondays. It is easy enough to do in the gmail Web interface but I do need to remember to do it. That make me think if I can find a good way to automate this. I would always think of using some kind of API first, but it seems to me that it wouldn&#39;t worth it to spend time to make a app just for the purpose of archiving emails. Then I came across Google App Scripts, which turned out to be exactly what I need to automate this.</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2018/03/24/AutomatingStuffWithGoogleAppScripts/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1190,22 +1123,22 @@
 
 
 <div class="copyright">
-  &copy; 
+  &copy; 2017 – 
   <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">KevinSJ</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
-  </div>
 
     </div>
   </footer>
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.6/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
 
   
 

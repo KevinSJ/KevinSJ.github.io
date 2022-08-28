@@ -18,9 +18,8 @@
 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha256-xejo6yLi6vGtAjcMIsY8BHdKsLg7QynVlFMzdQgUuy8=" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"jiangsc.me","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"jiangsc.me","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="This week, I was tasked with creating basic infrastructure for one of our newwebsites.  We use Fastly for our CDN and New Relic as a log aggregation tool, most of our infrastructure is setup using Ter">
 <meta property="og:type" content="blog">
@@ -30,7 +29,7 @@
 <meta property="og:description" content="This week, I was tasked with creating basic infrastructure for one of our newwebsites.  We use Fastly for our CDN and New Relic as a log aggregation tool, most of our infrastructure is setup using Ter">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-09-14T09:39:11.000Z">
-<meta property="article:modified_time" content="2020-09-14T10:00:03.082Z">
+<meta property="article:modified_time" content="2022-08-28T03:55:06.126Z">
 <meta property="article:author" content="KevinSJ">
 <meta property="article:tag" content="Notes">
 <meta property="article:tag" content="Terraform">
@@ -59,7 +58,7 @@
 <link rel="alternate" href="/atom.xml" title="Kevin Jiang's Technical Blog" type="application/atom+xml">
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+<body itemscope itemtype="http://schema.org/WebPage">
   <div class="headband"></div>
 
   <main class="main">
@@ -220,9 +219,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 09-14-2020 21:39:11 / Modified: 22:00:03" itemprop="dateCreated datePublished" datetime="2020-09-14T21:39:11+12:00">09-14-2020</time>
+      <time title="Created: 09-14-2020 21:39:11" itemprop="dateCreated datePublished" datetime="2020-09-14T21:39:11+12:00">09-14-2020</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 08-28-2022 15:55:06" itemprop="dateModified" datetime="2022-08-28T15:55:06+12:00">08-28-2022</time>
     </span>
 
   
@@ -242,8 +247,9 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>This week, I was tasked with creating basic infrastructure for one of our newwebsites.  We use Fastly for our CDN and New Relic as a log aggregation tool, most of our infrastructure is setup using Terraform, which is a popular infrastructure as code (IaC) platform. Terraform supports Fastly through a custom plugin, which also has the capability of New Relic. We need to customize the format of New Relic so that we can find the logs easily in New Relic. As expected, the plugin actually provide a pretty straight forward to accomplish this – what you need to do is to come up with a proper json string that align with the format that Fastly provided in their document. This seemingly straightforward task ended up took me some time to debug.</p>
-<p>In terraform, you can create objects, and an object can be converted to string by using jsonencode function. This is where the pitfall comes in: Fastly’s formatting document said they have a option called “%&gt;s” which represents the final status of the fastly request. From my perspective, it would definitely be helpful if we can include this when we send the log to Fastly. So I added this to my formatting object, and then jsonencode the object. To my suprise, I get an error saying that Fastly failed to parse the formatting option I created, which is quite strange. I then started to debug, I export TF_LOG=”DEBUG”, which asked Terraform to give me all the debug logs. To my suprise, I found that the “%&gt;s” was jsonencode to “%\u003es” by terraform, and thus causing the error.  <strong>How come “&gt;” sign is encoded in Terraform? It turned out it’s for backward compatibility with ealier edition of Terraform.</strong> And according to their documentation </p>
+        <p>This week, I was tasked with creating basic infrastructure for one of our newwebsites.  We use Fastly for our CDN and New Relic as a log aggregation tool, most of our infrastructure is setup using Terraform, which is a popular infrastructure as code (IaC) platform. Terraform supports Fastly through a custom plugin, which also has the capability of New Relic. We need to customize the format of New Relic so that we can find the logs easily in New Relic. As expected, the plugin actually provide a pretty straight forward to accomplish this -- what you need to do is to come up with a proper json string that align with the format that Fastly provided in their document. This seemingly straightforward task ended up took me some time to debug.</p>
+<span id="more"></span>
+<p>In terraform, you can create objects, and an object can be converted to string by using jsonencode function. This is where the pitfall comes in: Fastly&#39;s formatting document said they have a option called &quot;%&gt;s&quot; which represents the final status of the fastly request. From my perspective, it would definitely be helpful if we can include this when we send the log to Fastly. So I added this to my formatting object, and then jsonencode the object. To my suprise, I get an error saying that Fastly failed to parse the formatting option I created, which is quite strange. I then started to debug, I export TF_LOG&#x3D;&quot;DEBUG&quot;, which asked Terraform to give me all the debug logs. To my suprise, I found that the &quot;%&gt;s&quot; was jsonencode to &quot;%\u003es&quot; by terraform, and thus causing the error.  <strong>How come &quot;&gt;&quot; sign is encoded in Terraform? It turned out it&#39;s for backward compatibility with ealier edition of Terraform.</strong> And according to their documentation </p>
 <blockquote>
 <p>When encoding strings, this function escapes some characters using Unicode escape sequences: replacing &lt;, &gt;, &amp;, U+2028, and U+2029 with \u003c, \u003e, \u0026, \u2028, and \u2029. This is to preserve compatibility with Terraform 0.11 behavior. </p>
 </blockquote>
@@ -327,22 +333,22 @@
 
 
 <div class="copyright">
-  &copy; 
+  &copy; 2017 – 
   <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">KevinSJ</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
-  </div>
 
     </div>
   </footer>
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.6/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
 
   
 

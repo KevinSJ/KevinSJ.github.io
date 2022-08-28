@@ -18,19 +18,18 @@
 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha256-xejo6yLi6vGtAjcMIsY8BHdKsLg7QynVlFMzdQgUuy8=" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"jiangsc.me","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"jiangsc.me","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Notes: WRT1200AC (this router) contains 2 partitions Flashing the firmware through the Luci interface actually flashes the new firmware to the inactive partition  Steps: Download the bin file needed t">
+    <meta name="description" content="Notes: WRT1200AC (this router) contains 2 partitions Flashing the firmware through the Luci interface actually flashes the new firmware to the inactive partition    Steps: Download the bin file needed">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="Upgrade openwrt on Linksys WRT1200AC with extroot">
 <meta property="og:url" content="https://jiangsc.me/2021/01/24/Upgrade-openwrt-on-Linksys-WRT1200AC-with-extroot/index.html">
 <meta property="og:site_name" content="Kevin Jiang&#39;s Technical Blog">
-<meta property="og:description" content="Notes: WRT1200AC (this router) contains 2 partitions Flashing the firmware through the Luci interface actually flashes the new firmware to the inactive partition  Steps: Download the bin file needed t">
+<meta property="og:description" content="Notes: WRT1200AC (this router) contains 2 partitions Flashing the firmware through the Luci interface actually flashes the new firmware to the inactive partition    Steps: Download the bin file needed">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-01-24T01:29:55.000Z">
-<meta property="article:modified_time" content="2021-11-21T01:56:13.696Z">
+<meta property="article:modified_time" content="2022-08-28T03:55:06.126Z">
 <meta property="article:author" content="KevinSJ">
 <meta property="article:tag" content="Notes">
 <meta property="article:tag" content="Openwrt">
@@ -62,7 +61,7 @@
 <link rel="alternate" href="/atom.xml" title="Kevin Jiang's Technical Blog" type="application/atom+xml">
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+<body itemscope itemtype="http://schema.org/WebPage">
   <div class="headband"></div>
 
   <main class="main">
@@ -232,7 +231,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 11-21-2021 14:56:13" itemprop="dateModified" datetime="2021-11-21T14:56:13+13:00">11-21-2021</time>
+      <time title="Modified: 08-28-2022 15:55:06" itemprop="dateModified" datetime="2022-08-28T15:55:06+12:00">08-28-2022</time>
     </span>
 
   
@@ -252,44 +251,45 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h3 id="Notes"><a href="#Notes" class="headerlink" title="Notes:"></a>Notes:</h3><ul>
+        <div class="note "><h3 id="Notes"><a href="#Notes" class="headerlink" title="Notes:"></a>Notes:</h3><ul>
 <li>WRT1200AC (this router) contains 2 partitions</li>
 <li>Flashing the firmware through the Luci interface actually flashes the new firmware to the inactive partition</li>
 </ul>
+</div>
+
 <h3 id="Steps"><a href="#Steps" class="headerlink" title="Steps:"></a>Steps:</h3><ul>
 <li>Download the bin file needed to upgrade the package</li>
 <li>Create a list of all the installed packages on current version using <code>opkg list-installed | cut -f 1 -d &#39; &#39; &gt; /root/installed_packages.txt</code></li>
 <li>Choose one of the following methods to flash:<ul>
-<li>Flash the file from the Luci interface<br>OR</li>
-<li>Download the file to the /tmp and then flash using sysupgrade /tmp/*.bin</li>
+<li>Flash the file from the Luci interface<br>  OR</li>
+<li>Download the file to the &#x2F;tmp and then flash using sysupgrade &#x2F;tmp&#x2F;*.bin<span id="more"></span></li>
 </ul>
 </li>
-<li>After the flash and reboot, you will be in the partition that you wasn’t on before the flash, it will have all of your previous configs, but the extroot will not be there.</li>
+<li>After the flash and reboot, you will be in the partition that you wasn&#39;t on before the flash, it will have all of your previous configs, but the extroot will not be there.</li>
 <li>Hopefully, you will already have internet access at this point, if not, go ahead and setup internet.</li>
 <li>Once your internet is up, you will need to run some commands to install packages needed to setup:<ul>
-<li>First, install packages that are necessary to setup extroot:<br><code>opkg update &amp;&amp; opkg install block-mount kmod-fs-ext4 kmod-usb-storage e2fsprogs kmod-usb-ohci kmod-usb-uhci fdisk</code></li>
+<li>First, install packages that are necessary to setup extroot:<br>  <code>opkg update &amp;&amp; opkg install block-mount kmod-fs-ext4 kmod-usb-storage e2fsprogs kmod-usb-ohci kmod-usb-uhci fdisk</code></li>
 <li>In my case I use f2fs for my extroot, which means I need extra packages, like mkf2fs to format the flash.</li>
 <li>Now, format the device you plan to use for extroot, in my case, I ran <code>mkf2fs /dev/sda1</code> cause the sda2 was used as swap.</li>
-<li>At this point, copy the overlay to the newly formatted drive<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /tmp/introot</span><br><span class="line">mkdir -p /tmp/extroot</span><br><span class="line">mount --<span class="built_in">bind</span> / /tmp/introot</span><br><span class="line">mount /dev/sda1 /tmp/extroot</span><br><span class="line">tar -C /tmp/introot -cvf - . | tar -C /tmp/extroot -xf -</span><br><span class="line">umount /tmp/introot</span><br><span class="line">umount /tmp/extroot</span><br></pre></td></tr></table></figure></li>
+<li>At this point, copy the overlay to the newly formatted drive  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -p /tmp/introot</span><br><span class="line"><span class="built_in">mkdir</span> -p /tmp/extroot</span><br><span class="line">mount --<span class="built_in">bind</span> / /tmp/introot</span><br><span class="line">mount /dev/sda1 /tmp/extroot</span><br><span class="line">tar -C /tmp/introot -cvf - . | tar -C /tmp/extroot -xf -</span><br><span class="line">umount /tmp/introot</span><br><span class="line">umount /tmp/extroot</span><br></pre></td></tr></table></figure></li>
 <li>Regenerate fstab using <code>block detect &gt; /etc/config/fstab;</code></li>
 <li>Reboot</li>
-<li>You should have a working Openwrt with extroot now. Change opkg/distfeeds.conf to the corresponding upgraded version.</li>
+<li>You should have a working Openwrt with extroot now. Change opkg&#x2F;distfeeds.conf to the corresponding upgraded version.</li>
 <li>Now run <code>opkg upgrade $(opkg list-upgradable | awk &#39;($1 !~ &quot;^kmod|Multiple&quot;) &#123;print $1&#125;&#39;)</code> to keep base packages up-to-date.</li>
-<li>And install all your backed up packages using <code>cat /root/installed_packages.txt|xargs opkg install</code></li>
+<li>And install all your backed up packages using <code>cat /root/installed_packages.txt|xargs opkg install</code><br>Because I don&#39;t use dnsmasq, this means once the steps above finishes, I will need to do some extra post installation steps</li>
 </ul>
 </li>
 </ul>
-<p>Because I don’t use dnsmasq, this means once the steps above finishes, I will need to do some extra post installation steps</p>
 <h3 id="Post-installation-More-as-a-personal-note"><a href="#Post-installation-More-as-a-personal-note" class="headerlink" title="Post installation (More as a personal note):"></a>Post installation (More as a personal note):</h3><ul>
 <li>Remove odhcpd-ipv6only package and install odhcpd, this will ensure IPv4 dhcp functionality, otherwise, there will only be ipv6 addresses allocated.</li>
 </ul>
-<h3 id="November-2021-Update-Updating-to-Openwrt-21-02"><a href="#November-2021-Update-Updating-to-Openwrt-21-02" class="headerlink" title="November 2021 Update: Updating to Openwrt 21.02"></a>November 2021 Update: Updating to Openwrt 21.02</h3><p>I upgraded Openwrt version 21.02 branch in September of this year. It wasn’t as easy as I had thought, but I had the problem solved after all. In release 21.02, Openwrt introduced what’s called <a target="_blank" rel="noopener" href="https://www.kernel.org/doc/html/latest/networking/dsa/dsa.html">DSA</a> or Distributed Switch Architecture for this WRT1200AC device. To be honest, it is counter-intuitive to setup but it seems to be a more standard way when compared to the previous configuration.</p>
+<h3 id="November-2021-Update-Updating-to-Openwrt-21-02"><a href="#November-2021-Update-Updating-to-Openwrt-21-02" class="headerlink" title="November 2021 Update: Updating to Openwrt 21.02"></a>November 2021 Update: Updating to Openwrt 21.02</h3><p>I upgraded Openwrt version 21.02 branch in September of this year. It wasn&#39;t as easy as I had thought, but I had the problem solved after all. In release 21.02, Openwrt introduced what&#39;s called <a target="_blank" rel="noopener" href="https://www.kernel.org/doc/html/latest/networking/dsa/dsa.html">DSA</a> or Distributed Switch Architecture for this WRT1200AC device. To be honest, it is counter-intuitive to setup but it seems to be a more standard way when compared to the previous configuration.</p>
 <p>The part that I have problem with is mostly the VLAN tagging. My network ISP requires tagged VLAN to be able to use the network, so for Openwrt, I will have to tag the WAN port with the VLAN id. I was able to get around it with the following block: </p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">config device</span><br><span class="line">        option name &#x27;wan&#x27;</span><br><span class="line">        option macaddr &#x27;&lt;MAC_ADDRESS&gt;&#x27;</span><br><span class="line">config interface &#x27;wan&#x27;</span><br><span class="line">        option device &#x27;wan.10&#x27;</span><br><span class="line">        option proto &#x27;pppoe&#x27;</span><br><span class="line">        option username &#x27;&lt;PPPOE_USERNAME&gt;&#x27;</span><br><span class="line">        option ipv6 &#x27;1&#x27;</span><br><span class="line">        option peerdns &#x27;0&#x27;</span><br><span class="line">        option password &#x27;&lt;PPPOE_PASSWORD&gt;&#x27;</span><br><span class="line">        list dns &#x27;127.0.0.1&#x27;</span><br><span class="line">config interface &#x27;wan6&#x27;</span><br><span class="line">        option proto &#x27;dhcpv6&#x27;</span><br><span class="line">        option reqaddress &#x27;try&#x27;</span><br><span class="line">        option reqprefix &#x27;auto&#x27;</span><br><span class="line">        option peerdns &#x27;0&#x27;</span><br><span class="line">        list dns &#x27;::1&#x27;</span><br><span class="line">        option device &#x27;@wan</span><br></pre></td></tr></table></figure>
 
-<p>It actually is quite straightforward once you get the idea of configuration. For example, in the above shared config, a <code>device</code> is a layer 2 in the networking stack while an <code>interface</code> is at layer 3. Here is Openwrt wiki’s explanation: </p>
+<p>It actually is quite straightforward once you get the idea of configuration. For example, in the above shared config, a <code>device</code> is a layer 2 in the networking stack while an <code>interface</code> is at layer 3. Here is Openwrt wiki&#39;s explanation: </p>
 <blockquote>
-<p>Devices are physical connections that convey bits/frames to other computers. They operate at layer 2 in the protocol stack, have a MAC address along with several other configurable parameters.<br>Network devices identify and configure hardware components of the device: individual Ethernet switch ports, wireless radios, USB networking devices, VLANs, or virtual ethernets.<br>Alternatively, bridge devices group several network devices together so they can be treated as a single entity. A bridge device functions like a separate unmanaged (hardware) switch, forwarding traffic between member ports as needed at the hardware level to maintain performance. Each physical port can be a member of only a single bridge device.<br>Interfaces route IP packets and operate at layer 3 in the protocol stack. An interface is associated with a single device that sends/receives its packets. Interfaces get their IP address parameters by the choice of protocol: Static, DHCP, PPP, 6in4, Wireguard, OpenVPN, etc.</p>
+<p>Devices are physical connections that convey bits&#x2F;frames to other computers. They operate at layer 2 in the protocol stack, have a MAC address along with several other configurable parameters.<br>Network devices identify and configure hardware components of the device: individual Ethernet switch ports, wireless radios, USB networking devices, VLANs, or virtual ethernets.<br>Alternatively, bridge devices group several network devices together so they can be treated as a single entity. A bridge device functions like a separate unmanaged (hardware) switch, forwarding traffic between member ports as needed at the hardware level to maintain performance. Each physical port can be a member of only a single bridge device.<br>Interfaces route IP packets and operate at layer 3 in the protocol stack. An interface is associated with a single device that sends&#x2F;receives its packets. Interfaces get their IP address parameters by the choice of protocol: Static, DHCP, PPP, 6in4, Wireguard, OpenVPN, etc.</p>
 </blockquote>
 <hr>
 <p>References: </p>
@@ -378,22 +378,22 @@
 
 
 <div class="copyright">
-  &copy; 
+  &copy; 2017 – 
   <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">KevinSJ</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
-  </div>
 
     </div>
   </footer>
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.6/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
 
   
 

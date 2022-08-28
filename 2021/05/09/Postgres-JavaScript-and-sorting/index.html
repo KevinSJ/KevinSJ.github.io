@@ -18,9 +18,8 @@
 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha256-xejo6yLi6vGtAjcMIsY8BHdKsLg7QynVlFMzdQgUuy8=" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"jiangsc.me","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"jiangsc.me","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="This week, while setting up local project for work, I encountered some weired issue during the unit test and this has something to do with postgres and its default settings under Windows and other OS.">
 <meta property="og:type" content="blog">
@@ -30,7 +29,7 @@
 <meta property="og:description" content="This week, while setting up local project for work, I encountered some weired issue during the unit test and this has something to do with postgres and its default settings under Windows and other OS.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-05-09T01:00:12.000Z">
-<meta property="article:modified_time" content="2021-05-09T01:07:18.554Z">
+<meta property="article:modified_time" content="2022-08-28T03:55:06.126Z">
 <meta property="article:author" content="KevinSJ">
 <meta property="article:tag" content="JavaScript">
 <meta property="article:tag" content="Postgres">
@@ -59,7 +58,7 @@
 <link rel="alternate" href="/atom.xml" title="Kevin Jiang's Technical Blog" type="application/atom+xml">
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+<body itemscope itemtype="http://schema.org/WebPage">
   <div class="headband"></div>
 
   <main class="main">
@@ -221,9 +220,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 05-09-2021 13:00:12 / Modified: 13:07:18" itemprop="dateCreated datePublished" datetime="2021-05-09T13:00:12+12:00">05-09-2021</time>
+      <time title="Created: 05-09-2021 13:00:12" itemprop="dateCreated datePublished" datetime="2021-05-09T13:00:12+12:00">05-09-2021</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 08-28-2022 15:55:06" itemprop="dateModified" datetime="2022-08-28T15:55:06+12:00">08-28-2022</time>
     </span>
 
   
@@ -246,14 +251,15 @@
         <p>This week, while setting up local project for work, I encountered some weired issue during the unit test and this has something to do with postgres and its default settings under Windows and other OS.</p>
 <h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h3><p>As an example, consider the following array: <code>[ &#39;D&#39;, &#39;d&#39;, &#39;a&#39;, &#39;A&#39;, &#39;c&#39;, &#39;b&#39;, &#39;CD&#39;, &#39;Capacitor&#39; ]</code></p>
 <p>Sorting this in JavaScript results in case sensitive result, where upper case always come first: </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; [ <span class="string">&#x27;D&#x27;</span>, <span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;A&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;CD&#x27;</span>, <span class="string">&#x27;Capacitor&#x27;</span> ].sort()</span><br><span class="line">[ <span class="string">&quot;A&quot;</span>, <span class="string">&quot;CD&quot;</span>, <span class="string">&quot;Capacitor&quot;</span>, <span class="string">&quot;D&quot;</span>, <span class="string">&quot;a&quot;</span>, <span class="string">&quot;b&quot;</span>, <span class="string">&quot;c&quot;</span>, <span class="string">&quot;d&quot;</span> ]</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; [ <span class="string">&#x27;D&#x27;</span>, <span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;A&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;CD&#x27;</span>, <span class="string">&#x27;Capacitor&#x27;</span> ].<span class="title function_">sort</span>()</span><br><span class="line">[ <span class="string">&quot;A&quot;</span>, <span class="string">&quot;CD&quot;</span>, <span class="string">&quot;Capacitor&quot;</span>, <span class="string">&quot;D&quot;</span>, <span class="string">&quot;a&quot;</span>, <span class="string">&quot;b&quot;</span>, <span class="string">&quot;c&quot;</span>, <span class="string">&quot;d&quot;</span> ]</span><br></pre></td></tr></table></figure>
 <p>Sorting this in Postgres SQL with default installation will yield a case insensitive sorting where upper and lower case are mixed:</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> regexp_split_to_table(<span class="string">&#x27;D d a A c b CD Capacitor&#x27;</span>, <span class="string">&#x27; &#x27;</span>) <span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"> regexp_split_to_table </span><br><span class="line"><span class="comment">-----------------------</span></span><br><span class="line"> a</span><br><span class="line"> A</span><br><span class="line"> b</span><br><span class="line"> c</span><br><span class="line"> Capacitor</span><br><span class="line"> CD</span><br><span class="line"> d</span><br><span class="line"> D</span><br></pre></td></tr></table></figure>
 
 <p>The goal here is to make sorting consistent, so we can either fix the Postgres side or fix the JavaScript side.</p>
+<span id="more"></span>
 <h3 id="Investigation"><a href="#Investigation" class="headerlink" title="Investigation"></a>Investigation</h3><p>Looking carefully at each of these results, it is not difficult to realize that the sorting in JavaScript is based on ASCII, i.e. character <code>A</code> has an ASCII code of 32 where as <code>a</code> has ASCII code of 97, so <code>A</code> comes first. This <strong>IS NOT</strong> the proper way to do string sorting in JavaScript.</p>
 <p>For the result that Postgres gave, it is a bit more complex. Postgres uses <code>LC_COLLATE</code> to determine the sort order of the array.This variable comes from the system and different OS have different implementation, when using locale <code>C</code> or <code>POSIX</code>, strings are sorted according to their ASCII value, any other locales will result in a case insensitive result.</p>
-<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p>Here comes the solution part, as mentioned earlier, we can either fix the JavaScript or fix the Postgres, so I’ll present the solutions separately.</p>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p>Here comes the solution part, as mentioned earlier, we can either fix the JavaScript or fix the Postgres, so I&#39;ll present the solutions separately.</p>
 <p>There are several ways to make the sorting case insensitive in JavaScript: </p>
 <ul>
 <li><p><code>[ &#39;D&#39;, &#39;d&#39;, &#39;a&#39;, &#39;A&#39;, &#39;c&#39;, &#39;b&#39;, &#39;CD&#39;, &#39;Capacitor&#39; ].sort((a,b) =&gt; a.localeCompare(b))</code><br>This uses localeCompare from string prototype which have some performance implication on larger array.</p>
@@ -268,8 +274,8 @@
 <p>The one-off way to fix the sorting is by specifiying the <code>LC_COLLATE</code> value when creating the database, for example: </p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> DATABASE db </span><br><span class="line">    <span class="keyword">WITH</span> TEMPLATE <span class="operator">=</span> template0 </span><br><span class="line">    ENCODING <span class="operator">=</span> <span class="string">&#x27;UTF8&#x27;</span> </span><br><span class="line">    LC_COLLATE <span class="operator">=</span> <span class="string">&#x27;C&#x27;</span> </span><br><span class="line">    LC_CTYPE <span class="operator">=</span> <span class="string">&#x27;C&#x27;</span>;</span><br></pre></td></tr></table></figure>
 <p>The created database (db in this case) will use <code>C</code> as <code>LC_COLLATE</code> overriding the default <code>LC_COLLATE</code> value from the OS. With the new database created, you easily verify it will sort in a case sensitive way by the ASCII value once you connect to the database and run the query presented previously.</p>
-<p>This one-off way is good enough only if you care about creating such database once. Imaging next time you create a new database, you will still have to manually override the <code>LC_COLLATE</code> value. So the way to go is to modify the template database, because <code>LC_COLLATE</code> can’t be changed once the database has been created, we will have to create a new database and set it as template. </p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">--- Unset template1 as template before dropping</span></span><br><span class="line">UPDATE pg_database </span><br><span class="line">    <span class="keyword">SET</span> datistemplate<span class="operator">=</span><span class="string">&#x27;false&#x27;</span> </span><br><span class="line">    <span class="keyword">WHERE</span> datname<span class="operator">=</span><span class="string">&#x27;template1&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">--- Create a new database that uses C as locale</span></span><br><span class="line"><span class="keyword">CREATE</span> DATABASE template1 </span><br><span class="line">    IS_TEMPLATE <span class="literal">true</span> </span><br><span class="line">    ENCODING <span class="operator">=</span> <span class="string">&#x27;UTF8&#x27;</span> </span><br><span class="line">    LC_COLLATE <span class="operator">=</span> <span class="string">&#x27;C&#x27;</span> </span><br><span class="line">    LC_CTYPE <span class="operator">=</span> <span class="string">&#x27;C&#x27;</span> </span><br><span class="line">    CONNECTION LIMIT <span class="operator">=</span> <span class="number">-1</span> </span><br><span class="line">    TEMPLATE template0;</span><br><span class="line"></span><br><span class="line"><span class="comment">--- Create a new databse now should have C as locale.</span></span><br><span class="line"><span class="keyword">CREATE</span> DATABASE db3;</span><br><span class="line"></span><br><span class="line"><span class="comment">--- Should return C </span></span><br><span class="line"><span class="keyword">SHOW</span> lc_collate;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>This one-off way is good enough only if you care about creating such database once. Imaging next time you create a new database, you will still have to manually override the <code>LC_COLLATE</code> value. So the way to go is to modify the template database, because <code>LC_COLLATE</code> can&#39;t be changed once the database has been created, we will have to create a new database and set it as template. </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">--- Unset template1 as template before dropping</span></span><br><span class="line"><span class="keyword">UPDATE</span> pg_database </span><br><span class="line">    <span class="keyword">SET</span> datistemplate<span class="operator">=</span><span class="string">&#x27;false&#x27;</span> </span><br><span class="line">    <span class="keyword">WHERE</span> datname<span class="operator">=</span><span class="string">&#x27;template1&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">--- Create a new database that uses C as locale</span></span><br><span class="line"><span class="keyword">CREATE</span> DATABASE template1 </span><br><span class="line">    IS_TEMPLATE <span class="literal">true</span> </span><br><span class="line">    ENCODING <span class="operator">=</span> <span class="string">&#x27;UTF8&#x27;</span> </span><br><span class="line">    LC_COLLATE <span class="operator">=</span> <span class="string">&#x27;C&#x27;</span> </span><br><span class="line">    LC_CTYPE <span class="operator">=</span> <span class="string">&#x27;C&#x27;</span> </span><br><span class="line">    CONNECTION LIMIT <span class="operator">=</span> <span class="number">-1</span> </span><br><span class="line">    TEMPLATE template0;</span><br><span class="line"></span><br><span class="line"><span class="comment">--- Create a new databse now should have C as locale.</span></span><br><span class="line"><span class="keyword">CREATE</span> DATABASE db3;</span><br><span class="line"></span><br><span class="line"><span class="comment">--- Should return C </span></span><br><span class="line"><span class="keyword">SHOW</span> lc_collate;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>Another way to do this, is to initialize the database cluster with C locale as below: </p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chown -R postgres:postgres /var/lib/postgres/</span><br><span class="line">su - postgres -c &quot;initdb --locale C -D &#x27;/var/lib/postgres/data&#x27;&quot;</span><br></pre></td></tr></table></figure>
 <p>this will create template database with C locale.</p>
@@ -360,22 +366,22 @@
 
 
 <div class="copyright">
-  &copy; 
+  &copy; 2017 – 
   <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">KevinSJ</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
-  </div>
 
     </div>
   </footer>
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.6/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
 
   
 

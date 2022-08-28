@@ -18,19 +18,18 @@
 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha256-xejo6yLi6vGtAjcMIsY8BHdKsLg7QynVlFMzdQgUuy8=" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"jiangsc.me","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"jiangsc.me","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Recently, I started to build an application with Go, it is a quite simple application that does something very basic and then sends an notification to a telegram bot. It’s quite obvious to me this kin">
+    <meta name="description" content="Recently, I started to build an application with Go, it is a quite simple application that does something very basic and then sends an notification to a telegram bot. It&#39;s quite obvious to me this">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="Lessons Learnt On Deploying GO Lambda Application on AWS - Part I">
 <meta property="og:url" content="https://jiangsc.me/2021/01/24/Lessons-Learnt-On-Deploying-GO-Lambda-Application-on-AWS/index.html">
 <meta property="og:site_name" content="Kevin Jiang&#39;s Technical Blog">
-<meta property="og:description" content="Recently, I started to build an application with Go, it is a quite simple application that does something very basic and then sends an notification to a telegram bot. It’s quite obvious to me this kin">
+<meta property="og:description" content="Recently, I started to build an application with Go, it is a quite simple application that does something very basic and then sends an notification to a telegram bot. It&#39;s quite obvious to me this">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-01-24T06:06:00.000Z">
-<meta property="article:modified_time" content="2021-01-29T21:43:09.411Z">
+<meta property="article:modified_time" content="2022-08-28T03:55:06.126Z">
 <meta property="article:author" content="KevinSJ">
 <meta property="article:tag" content="Lambda">
 <meta property="article:tag" content="AWS">
@@ -60,7 +59,7 @@
 <link rel="alternate" href="/atom.xml" title="Kevin Jiang's Technical Blog" type="application/atom+xml">
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+<body itemscope itemtype="http://schema.org/WebPage">
   <div class="headband"></div>
 
   <main class="main">
@@ -230,7 +229,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 01-30-2021 10:43:09" itemprop="dateModified" datetime="2021-01-30T10:43:09+13:00">01-30-2021</time>
+      <time title="Modified: 08-28-2022 15:55:06" itemprop="dateModified" datetime="2022-08-28T15:55:06+12:00">08-28-2022</time>
     </span>
 
   
@@ -250,19 +249,23 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>Recently, I started to build an application with Go, it is a quite simple application that does something very basic and then sends an notification to a telegram bot. It’s quite obvious to me this kind of application is quite suitable to run as Lambda, and that’s where I decided to deploy my application to once it is working well locally. It turned out that I had to solve several issues I encountered. Here I share how I solved those issues, so you don’t have to scratch your head when encounter them.</p>
-<h3 id="Attempt-1-Deploy-the-application-through-the-web-interface"><a href="#Attempt-1-Deploy-the-application-through-the-web-interface" class="headerlink" title="Attempt 1: Deploy the application through the web interface."></a>Attempt 1: Deploy the application through the web interface.</h3><p>For my first attempt on deploying the application, my goal is to make things as simple as possible.<br>Therefore, I chose to use the web interface. From the web interface, there’s an option to upload zip file and that’s where I began.</p>
+        <p>Recently, I started to build an application with Go, it is a quite simple application that does something very basic and then sends an notification to a telegram bot. It&#39;s quite obvious to me this kind of application is quite suitable to run as Lambda, and that&#39;s where I decided to deploy my application to once it is working well locally. It turned out that I had to solve several issues I encountered. Here I share how I solved those issues, so you don&#39;t have to scratch your head when encounter them.</p>
+<span id="more"></span>
+<h3 id="Attempt-1-Deploy-the-application-through-the-web-interface"><a href="#Attempt-1-Deploy-the-application-through-the-web-interface" class="headerlink" title="Attempt 1: Deploy the application through the web interface."></a>Attempt 1: Deploy the application through the web interface.</h3><p>For my first attempt on deploying the application, my goal is to make things as simple as possible.<br>Therefore, I chose to use the web interface. From the web interface, there&#39;s an option to upload zip file and that&#39;s where I began.</p>
 <h5 id="Problem-Compile-GO-in-an-static-way"><a href="#Problem-Compile-GO-in-an-static-way" class="headerlink" title="Problem: Compile GO in an static way"></a>Problem: Compile GO in an static way</h5><p>This problem happens quite often from what I see on the internet. The main issue with here is that, some of the libraries in GO uses a feature called <a target="_blank" rel="noopener" href="https://golang.org/cmd/cgo/">CGO</a> which means using C code in GO, and when this feature is in use, GO compiler will try to create dynamic binary.</p>
-<p>To solve this problem, it is often as simple as compiled the code to a statically linked binary. Do note that, some of the code that’s compiling use GCC was not working, this is because often times the GLIBC library is higher than the ones used in AWS lambda environment, at least that was the case for me (I am on an Linux laptop with Manjaro Linux).</p>
+<p>To solve this problem, it is often as simple as compiled the code to a statically linked binary. Do note that, some of the code that&#39;s compiling use GCC was not working, this is because often times the GLIBC library is higher than the ones used in AWS lambda environment, at least that was the case for me (I am on an Linux laptop with Manjaro Linux).</p>
 <p>I was able to find something called <a target="_blank" rel="noopener" href="https://www.musl-libc.org/intro.html">musl-gcc</a> and then used it in my compilation </p>
 <figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">build:</span></span><br><span class="line">	CC=<span class="string">&quot;musl-gcc&quot;</span> go build --ldflags &#x27;-linkmode external -extldflags <span class="string">&quot;-static&quot;</span>&#x27; ./main.go</span><br></pre></td></tr></table></figure>
+
 <p>This proves to be working fine, once I complied the binary, zip and upload it to lambda through the interface, everything seems to be working.</p>
-<h3 id="Attempt-2-Deploy-the-application-through-AWS-SAM"><a href="#Attempt-2-Deploy-the-application-through-AWS-SAM" class="headerlink" title="Attempt 2: Deploy the application through AWS SAM"></a>Attempt 2: Deploy the application through AWS SAM</h3><p>Often, it is not efficient to manually upload the code using a zip file through every time, that’s why I started to thinking about introducing <a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/what-is-sam.html">SAM</a> as a tool to simplified the process of deployment. This was when I encountered the second issue.</p>
+<h3 id="Attempt-2-Deploy-the-application-through-AWS-SAM"><a href="#Attempt-2-Deploy-the-application-through-AWS-SAM" class="headerlink" title="Attempt 2: Deploy the application through AWS SAM"></a>Attempt 2: Deploy the application through AWS SAM</h3><p>Often, it is not efficient to manually upload the code using a zip file through every time, that&#39;s why I started to thinking about introducing <a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/what-is-sam.html">SAM</a> as a tool to simplified the process of deployment. This was when I encountered the second issue.</p>
 <h4 id="Problem-Asking-SAM-to-compile-the-GO-program-in-an-static-way"><a href="#Problem-Asking-SAM-to-compile-the-GO-program-in-an-static-way" class="headerlink" title="Problem: Asking SAM to compile the GO program in an static way."></a>Problem: Asking SAM to compile the GO program in an static way.</h4><p>As the line above says, SAM always compiled the code in a dynamic way which is why the binary fails to work again even locally using the command <code>sam invoke local</code>.</p>
-<p>Now it’s the time to tell SAM I don’t want dynamically linked binaries. As a matter of fact, none of the article available online has a direct answer to my question, fortunately, I did find an AWS documentation on <a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/building-custom-runtimes.html">using custom runtime</a>. Based on this article, a GO program that wants to utilize static linking can have the following template:</p>
+<p>Now it&#39;s the time to tell SAM I don&#39;t want dynamically linked binaries. As a matter of fact, none of the article available online has a direct answer to my question, fortunately, I did find an AWS documentation on <a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/building-custom-runtimes.html">using custom runtime</a>. Based on this article, a GO program that wants to utilize static linking can have the following template:</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">Resources:</span></span><br><span class="line">  <span class="attr">HelloGOFunction:</span></span><br><span class="line">    <span class="attr">Type:</span> <span class="string">AWS::Serverless::Function</span></span><br><span class="line">    <span class="attr">Properties:</span></span><br><span class="line">      <span class="attr">FunctionName:</span> <span class="string">HelloGO</span></span><br><span class="line">      <span class="attr">Handler:</span> <span class="string">main</span></span><br><span class="line">      <span class="attr">Runtime:</span> <span class="string">go1.x</span></span><br><span class="line">      <span class="attr">MemorySize:</span> <span class="number">512</span></span><br><span class="line">      <span class="attr">CodeUri:</span> <span class="string">.</span></span><br><span class="line">    <span class="attr">Metadata:</span></span><br><span class="line">      <span class="attr">BuildMethod:</span> <span class="string">makefile</span></span><br></pre></td></tr></table></figure>
+
 <p>And in the MakeFile, the following corresponding entries need to be added:</p>
 <figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">build-HelloGOFunction:</span></span><br><span class="line">  CC=<span class="string">&quot;musl-gcc&quot;</span> go build --ldflags &#x27;-linkmode external -extldflags <span class="string">&quot;-static&quot;</span>&#x27; ./main.go</span><br><span class="line">  cp ./main <span class="variable">$(ARTIFACTS_DIR)</span></span><br></pre></td></tr></table></figure>
+
 <p>Doing so will make sure compiled binary are statically linked and works on lambda when bundle and uploaded.</p>
 
     </div>
@@ -344,22 +347,22 @@
 
 
 <div class="copyright">
-  &copy; 
+  &copy; 2017 – 
   <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">KevinSJ</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
-  </div>
 
     </div>
   </footer>
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.6/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
 
   
 

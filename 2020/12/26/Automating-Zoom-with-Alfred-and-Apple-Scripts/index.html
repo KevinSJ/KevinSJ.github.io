@@ -18,9 +18,8 @@
 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha256-xejo6yLi6vGtAjcMIsY8BHdKsLg7QynVlFMzdQgUuy8=" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"jiangsc.me","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"jiangsc.me","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="Like it or not, 2020 has been a year where video conference are used a lot. For me, most of the meetings happens in Zoom. Finding the link to the meeting in the calendar and then clicking on it to joi">
 <meta property="og:type" content="blog">
@@ -33,7 +32,7 @@
 <meta property="og:image" content="https://jiangsc.me/2020/12/26/Automating-Zoom-with-Alfred-and-Apple-Scripts/calendar-1.png">
 <meta property="og:image" content="https://jiangsc.me/2020/12/26/Automating-Zoom-with-Alfred-and-Apple-Scripts/calendar-2.png">
 <meta property="article:published_time" content="2020-12-26T09:55:59.000Z">
-<meta property="article:modified_time" content="2020-12-27T23:33:14.975Z">
+<meta property="article:modified_time" content="2022-08-28T03:55:06.126Z">
 <meta property="article:author" content="KevinSJ">
 <meta property="article:tag" content="Automation">
 <meta property="article:tag" content="Zoom">
@@ -64,7 +63,7 @@
 <link rel="alternate" href="/atom.xml" title="Kevin Jiang's Technical Blog" type="application/atom+xml">
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+<body itemscope itemtype="http://schema.org/WebPage">
   <div class="headband"></div>
 
   <main class="main">
@@ -234,7 +233,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 12-28-2020 12:33:14" itemprop="dateModified" datetime="2020-12-28T12:33:14+13:00">12-28-2020</time>
+      <time title="Modified: 08-28-2022 15:55:06" itemprop="dateModified" datetime="2022-08-28T15:55:06+12:00">08-28-2022</time>
     </span>
 
   
@@ -254,37 +253,37 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>Like it or not, 2020 has been a year where video conference are used a lot. For me, most of the meetings happens in Zoom. Finding the link to the meeting in the calendar and then clicking on it to join the meeting had gradually become a new norm and something I really don’t like (the fact that after clicking on the Zoom link brings up your browser instead of Zoom itself, and prompting you to click again to open Zoom is really a pain). As someone who would like to automate things as much as possible, I did eventually find a solution that works for me albeit several third party tools are required.</p>
+        <p>Like it or not, 2020 has been a year where video conference are used a lot. For me, most of the meetings happens in Zoom. Finding the link to the meeting in the calendar and then clicking on it to join the meeting had gradually become a new norm and something I really don&#39;t like (the fact that after clicking on the Zoom link brings up your browser instead of Zoom itself, and prompting you to click again to open Zoom is really a pain). As someone who would like to automate things as much as possible, I did eventually find a solution that works for me albeit several third party tools are required.</p>
 <h3 id="Problem-Statement-Automatically-join-a-Zoom-call-for-a-meeting-scheduled-in-calendar-without-user-interaction-on-MacOS-X"><a href="#Problem-Statement-Automatically-join-a-Zoom-call-for-a-meeting-scheduled-in-calendar-without-user-interaction-on-MacOS-X" class="headerlink" title="Problem Statement: Automatically join a Zoom call for a meeting scheduled in calendar without user interaction (on MacOS X)."></a>Problem Statement: Automatically join a Zoom call for a meeting scheduled in calendar without user interaction (on MacOS X).</h3><h3 id="Prerequisite"><a href="#Prerequisite" class="headerlink" title="Prerequisite:"></a>Prerequisite:</h3><ul>
 <li><a target="_blank" rel="noopener" href="https://www.alfredapp.com/">Alfred</a><br>  (Unclear if you need to be a paid user to create custom workflows, the author is a paid user)</li>
 <li><a target="_blank" rel="noopener" href="https://github.com/zerowidth/zoom-calendar.alfredworkflow">zoom-calendar.alfredworkflow</a><br>  (Yep, I found this alfred workflow by chance and based my work and this blog on this workflow, it is very handy and I would really like thank the author for creating this.)</li>
-<li>Automator<br>  (The builtin automation app in MacOS from Apple)</li>
+<li>Automator<br>  (The builtin automation app in MacOS from Apple)<span id="more"></span>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution:"></a>Solution:</h3>Assume you have already installed the Alfred App, you will need to go to <a target="_blank" rel="noopener" href="https://github.com/zerowidth/zoom-calendar.alfredworkflow">this</a> Github Repo, follow the instructions given and install the Alfred workflow.</li>
 </ul>
-<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution:"></a>Solution:</h3><p>Assume you have already installed the Alfred App, you will need to go to <a target="_blank" rel="noopener" href="https://github.com/zerowidth/zoom-calendar.alfredworkflow">this</a> Github Repo, follow the instructions given and install the Alfred workflow.</p>
-<p>Once the workflow has been installed, we need to do some tweaking. Add an external trigger to this workflow and give it an id of ‘Automator’</p>
-<p>Now, open up Automator, choose the Calendar Alarm workflow as shown in the screenshot below:<br><img src="/2020/12/26/Automating-Zoom-with-Alfred-and-Apple-Scripts/automator-1.png"></p>
+<p>Once the workflow has been installed, we need to do some tweaking. Add an external trigger to this workflow and give it an id of &#39;Automator&#39;</p>
+<p>Now, open up Automator, choose the Calendar Alarm workflow as shown in the screenshot below:<br><img data-src="/2020/12/26/Automating-Zoom-with-Alfred-and-Apple-Scripts/automator-1.png"></p>
 <p>Copy and paste the following code to the calendar alarm:</p>
 <script src="https://gist.github.com/KevinSJ/bd11057c5d6f0fddc7abb38bdf7844b3.js"></script>
 
 <p>Now comes tricky part. You would first need to export your calendar from the cloud, export from Google Calendar Website or whatever calendar you are using. </p>
 <p>Then open up your Calendar app, and create a new local calendar, give it whatever name you want, in my case, I simply named it Automator. At this point, you can import the ical file exported from above.</p>
 <p>These two steps are necessary if you want to use the automation for most of your events. If there are only a few events that you would like to add the automation on, you can just use the copy function in the Calendar app and paste to the local calendar. In any case, a new local calendar is necessary otherwise the alarm trigger would not work.</p>
-<p>Once you completed setting up your local calendars, you can start adding the file trigger which will help you open up the Zoom. To do this, you need to modify the event of your choice and then change the alert settings, change it to custom and choose ‘Open file’ option, and then change the dropdown from ‘Calendar’ to ‘Other…’.</p>
-<p><img src="/2020/12/26/Automating-Zoom-with-Alfred-and-Apple-Scripts/calendar-1.png"></p>
+<p>Once you completed setting up your local calendars, you can start adding the file trigger which will help you open up the Zoom. To do this, you need to modify the event of your choice and then change the alert settings, change it to custom and choose &#39;Open file&#39; option, and then change the dropdown from &#39;Calendar&#39; to &#39;Other...&#39;.</p>
+<p><img data-src="/2020/12/26/Automating-Zoom-with-Alfred-and-Apple-Scripts/calendar-1.png"></p>
 <p>Normally, the file you created with the Calendar alarm will be saved to <code>~/Library/Workflows/Applications/Calendar</code> so go ahead to find that folder and choose that file.</p>
-<p><img src="/2020/12/26/Automating-Zoom-with-Alfred-and-Apple-Scripts/calendar-2.png"></p>
+<p><img data-src="/2020/12/26/Automating-Zoom-with-Alfred-and-Apple-Scripts/calendar-2.png"></p>
 <p>At this point, you will have a working version of the calendar automation for this event, if you want it on more events, you will need to repeat the steps of changing alerts for each of the other events.</p>
 <h3 id="Future-improvements-amp-Alternatives"><a href="#Future-improvements-amp-Alternatives" class="headerlink" title="Future improvements &amp; Alternatives"></a>Future improvements &amp; Alternatives</h3><p>I have to admit the solution I described above is not perfect, and it requires some steps to setup, still once I set it up, everything works fine for me, and I would never need to remember to join a Zoom meeting because of this automation.</p>
-<p>Some future improvement and/or caveats that I found about this method is that: </p>
+<p>Some future improvement and&#x2F;or caveats that I found about this method is that: </p>
 <ul>
 <li>The events must have the zoom link somewhere (either description or location) for this automation to work.</li>
-<li>If there were two back-to-back meetings, the automation will fail, this is because the previous meeting hasn’t finished yet, and the given Alfred workflow will still list it at the top. I haven’t found a good solution to this.</li>
+<li>If there were two back-to-back meetings, the automation will fail, this is because the previous meeting hasn&#39;t finished yet, and the given Alfred workflow will still list it at the top. I haven&#39;t found a good solution to this.</li>
 </ul>
 <p>There are several alternative ways I can think of:</p>
 <ul>
 <li><p>Use Zoom itself, if you are logged into Zoom and allow them to access your calendar, they will provide a join button in their app to allow you to join the meeting without more button clicks.</p>
 </li>
-<li><p>Bookmark the Zoom url schemes and click on it. This is basically how the workflow works behind the scene: converting the url from http to zoom url scheme and then open it. I won’t go in depth on how to create a bookmark and convert the links to url schemes, but Zoom provide a great doc on their schemes <a target="_blank" rel="noopener" href="https://marketplace.zoomgov.com/docs/guides/guides/client-url-schemes">here</a>.</p>
+<li><p>Bookmark the Zoom url schemes and click on it. This is basically how the workflow works behind the scene: converting the url from http to zoom url scheme and then open it. I won&#39;t go in depth on how to create a bookmark and convert the links to url schemes, but Zoom provide a great doc on their schemes <a target="_blank" rel="noopener" href="https://marketplace.zoomgov.com/docs/guides/guides/client-url-schemes">here</a>.</p>
 </li>
 </ul>
 
@@ -367,22 +366,22 @@
 
 
 <div class="copyright">
-  &copy; 
+  &copy; 2017 – 
   <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">KevinSJ</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
-  </div>
 
     </div>
   </footer>
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.6/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
 
   
 
