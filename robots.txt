@@ -2,6 +2,7 @@ User-agent: *
 Allow: /
 Allow: /archives/
 Allow: /tags/
+Allow: /about/
 
 Allow: /vendors/
 Allow: /js/
@@ -9,4 +10,4 @@ Allow: /css/
 Allow: /lib/
 Allow: /live2dw/
 
-Sitemap: https://kevinsj.github.io/sitemap.xml
+Sitemap: https://jiangsc.me/sitemap.xml
