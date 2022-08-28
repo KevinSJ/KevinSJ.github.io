@@ -1,3 +1,4 @@
+https://jiangsc.me/about/index.html
 https://jiangsc.me/2022/05/21/neovim-tricks-1/
 https://jiangsc.me/2022/07/22/linux-user-notes-1/
 https://jiangsc.me/2022/03/06/hide-phone-number-when-making-calls/
