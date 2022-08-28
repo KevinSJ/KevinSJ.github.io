@@ -20,12 +20,12 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha256-xejo6yLi6vGtAjcMIsY8BHdKsLg7QynVlFMzdQgUuy8=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"kevinsj.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"jiangsc.me","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="参考链接： https:&#x2F;&#x2F;gist.github.com&#x2F;sebleblanc&#x2F;f5e4a635d0fc8b953df7 缘起今天心血来潮，把之前部署在Github Pages上的Jekyll删掉了，完全换成了Hexo，并进行重做。主要还是想到自己在工作和平常生活中遇到的不少技术坑还是可以值得写下来记录一下。我的目标是每周一篇技术博客吧。这周想要写的就是Flexget。身为一个海外党，在国外追新">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="在树莓派上部署flexget实现自动追番">
-<meta property="og:url" content="http://kevinsj.github.io/2017/03/12/%E5%9C%A8%E6%A0%91%E8%8E%93%E6%B4%BE%E4%B8%8A%E9%83%A8%E7%BD%B2flexget%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E8%BF%BD%E7%95%AA/index.html">
+<meta property="og:url" content="https://jiangsc.me/2017/03/12/%E5%9C%A8%E6%A0%91%E8%8E%93%E6%B4%BE%E4%B8%8A%E9%83%A8%E7%BD%B2flexget%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E8%BF%BD%E7%95%AA/index.html">
 <meta property="og:site_name" content="Kevin Jiang&#39;s Technical Blog">
 <meta property="og:description" content="参考链接： https:&#x2F;&#x2F;gist.github.com&#x2F;sebleblanc&#x2F;f5e4a635d0fc8b953df7 缘起今天心血来潮，把之前部署在Github Pages上的Jekyll删掉了，完全换成了Hexo，并进行重做。主要还是想到自己在工作和平常生活中遇到的不少技术坑还是可以值得写下来记录一下。我的目标是每周一篇技术博客吧。这周想要写的就是Flexget。身为一个海外党，在国外追新">
 <meta property="og:locale" content="en_US">
@@ -37,11 +37,11 @@
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://kevinsj.github.io/2017/03/12/%E5%9C%A8%E6%A0%91%E8%8E%93%E6%B4%BE%E4%B8%8A%E9%83%A8%E7%BD%B2flexget%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E8%BF%BD%E7%95%AA/">
+<link rel="canonical" href="https://jiangsc.me/2017/03/12/%E5%9C%A8%E6%A0%91%E8%8E%93%E6%B4%BE%E4%B8%8A%E9%83%A8%E7%BD%B2flexget%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E8%BF%BD%E7%95%AA/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://kevinsj.github.io/2017/03/12/%E5%9C%A8%E6%A0%91%E8%8E%93%E6%B4%BE%E4%B8%8A%E9%83%A8%E7%BD%B2flexget%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E8%BF%BD%E7%95%AA/","path":"2017/03/12/在树莓派上部署flexget实现自动追番/","title":"在树莓派上部署flexget实现自动追番"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://jiangsc.me/2017/03/12/%E5%9C%A8%E6%A0%91%E8%8E%93%E6%B4%BE%E4%B8%8A%E9%83%A8%E7%BD%B2flexget%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E8%BF%BD%E7%95%AA/","path":"2017/03/12/在树莓派上部署flexget实现自动追番/","title":"在树莓派上部署flexget实现自动追番"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>在树莓派上部署flexget实现自动追番 | Kevin Jiang's Technical Blog</title>
@@ -192,7 +192,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://kevinsj.github.io/2017/03/12/%E5%9C%A8%E6%A0%91%E8%8E%93%E6%B4%BE%E4%B8%8A%E9%83%A8%E7%BD%B2flexget%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E8%BF%BD%E7%95%AA/">
+    <link itemprop="mainEntityOfPage" href="https://jiangsc.me/2017/03/12/%E5%9C%A8%E6%A0%91%E8%8E%93%E6%B4%BE%E4%B8%8A%E9%83%A8%E7%BD%B2flexget%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E8%BF%BD%E7%95%AA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -358,7 +358,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>Post link: </strong>
-      <a href="http://kevinsj.github.io/2017/03/12/%E5%9C%A8%E6%A0%91%E8%8E%93%E6%B4%BE%E4%B8%8A%E9%83%A8%E7%BD%B2flexget%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E8%BF%BD%E7%95%AA/" title="在树莓派上部署flexget实现自动追番">http://kevinsj.github.io/2017/03/12/在树莓派上部署flexget实现自动追番/</a>
+      <a href="https://jiangsc.me/2017/03/12/%E5%9C%A8%E6%A0%91%E8%8E%93%E6%B4%BE%E4%B8%8A%E9%83%A8%E7%BD%B2flexget%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E8%BF%BD%E7%95%AA/" title="在树莓派上部署flexget实现自动追番">https://jiangsc.me/2017/03/12/在树莓派上部署flexget实现自动追番/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.

@@ -3,11 +3,11 @@
   <title>Kevin Jiang&#39;s Technical Blog</title>
   
   
-  <link href="http://kevinsj.github.io/atom.xml" rel="self"/>
+  <link href="https://jiangsc.me/atom.xml" rel="self"/>
   
-  <link href="http://kevinsj.github.io/"/>
-  <updated>2022-08-28T02:04:55.562Z</updated>
-  <id>http://kevinsj.github.io/</id>
+  <link href="https://jiangsc.me/"/>
+  <updated>2022-08-28T02:20:21.620Z</updated>
+  <id>https://jiangsc.me/</id>
   
   <author>
     <name>KevinSJ</name>
@@ -18,10 +18,10 @@
   
   <entry>
     <title>Linux user notes -- dual monitor hot plug</title>
-    <link href="http://kevinsj.github.io/2022/07/22/linux-user-notes-1/"/>
-    <id>http://kevinsj.github.io/2022/07/22/linux-user-notes-1/</id>
+    <link href="https://jiangsc.me/2022/07/22/linux-user-notes-1/"/>
+    <id>https://jiangsc.me/2022/07/22/linux-user-notes-1/</id>
     <published>2022-07-22T22:04:07.000Z</published>
-    <updated>2022-08-28T02:04:55.562Z</updated>
+    <updated>2022-08-28T02:20:21.620Z</updated>
     
     <content type="html"><![CDATA[<p>As a long time Linux user, I have to admit sometimes it is not easy to achieve some of the things that can be easily done in other OS (like macOS or Windows), but that one of the things I enjoy about Linux as well -- you need to force yourself to learn something, and once you&#39;ve achieved it, you will learn from it and then realize how powerful Linux is. Anyway, for me, this had been one of the problems that had me troubled for a while -- using dual monitors, and have Linux automatically detect and extend desktops automatically.</p><h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h3><p>I use bspwm as my tiling window manager, and polybar as the &#39;bar&#39;. The problem I&#39;m trying to solve here is to have the laptop automatically detect monitor hot-plug and then extend the bars with different layout to the new monitor. And when I unplugged the external monitor, the system revert back to single monitor layout.</p><h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p>The easiest way to achieve this is using <a href="https://wiki.archlinux.org/title/udev">udev</a>. Based on my understanding, udev is similar to device manager in Windows. To solve this problem with udev, all you need to do is to create a new udev rule.</p><p>The first step is to find out which events are being triggered when the monitors are plugged&#x2F;unplugged. To achieve this, you can use the udev monitor: <code>udevadm monitor --environment --udev</code>. Plugin your monitor, and you will be able to see the events that are being triggered, as an example, here&#39;s what I got, when I plugged in my external monitor: </p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">UDEV  [5012.844939] change   /devices/pci0000:00/0000:00:02.0/drm/card0 (drm)</span><br><span class="line">ACTION=change</span><br><span class="line">DEVPATH=/devices/pci0000:00/0000:00:02.0/drm/card0</span><br><span class="line">SUBSYSTEM=drm</span><br><span class="line">HOTPLUG=1</span><br><span class="line">DEVNAME=/dev/dri/card0</span><br><span class="line">DEVTYPE=drm_minor</span><br><span class="line">SEQNUM=4288</span><br><span class="line">USEC_INITIALIZED=184807912</span><br><span class="line">ID_PATH=pci-0000:00:02.0</span><br><span class="line">ID_PATH_TAG=pci-0000_00_02_0</span><br><span class="line">ID_FOR_SEAT=drm-pci-0000_00_02_0</span><br><span class="line">DISPLAY=:0</span><br><span class="line">XAUTHORITY=/home/user/.Xauthority</span><br><span class="line">MAJOR=226</span><br><span class="line">MINOR=0</span><br><span class="line">DEVLINKS=/dev/dri/by-path/pci-0000:00:02.0-card</span><br><span class="line">TAGS=:master-of-seat:seat:uaccess:mutter-device-disable-kms-modifiers:</span><br><span class="line">CURRENT_TAGS=:master-of-seat:seat:uaccess:mutter-device-disable-kms-modifiers:</span><br></pre></td></tr></table></figure><p>Next, we are going to create the rules for this udev event. So we create a new file under <code>/etc/udev/rules.d</code> folder, in this case I will call this file <code>/etc/udev/rules.d/95-hdmi-plug.rules</code>, and here&#39;s the content of the file</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ACTION==&quot;change&quot;, SUBSYSTEM==&quot;drm&quot;, KERNEL==&quot;card0&quot; ENV&#123;DISPLAY&#125;=&quot;:0&quot;, ENV&#123;XAUTHORITY&#125;=&quot;/home/kevin/.Xauthority&quot;, RUN+=&quot;/home/user/.monitor-hot-plug.sh&quot;</span><br></pre></td></tr></table></figure><p>Notice how I matched the event: I used <code>ACTION==&quot;change&quot;, SUBSYSTEM==&quot;drm&quot;, KERNEL==&quot;card0&quot;</code>, this is what comes directly from the monitoring after plugging in the external monitor. The ENV part is just setting some environment variables, which is necessary for X11. For the run part, I put in a script that is tailored to my need, it is quite short and simple, just telling xrandr to set the monitor positioning (probably not a best practice to hard code the positioning though): </p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#! /usr/bin/bash</span></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">connect</span></span>()&#123;</span><br><span class="line">  xrandr --output eDP1 --mode 1920x1080 --pos 0x1080 --rotate normal --output HDMI1 --primary --mode 1920x1080 --pos 0x0 --rotate normal</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">disconnect</span></span>()&#123;</span><br><span class="line">  xrandr --output HDMI1 --off</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">xrandr | grep <span class="string">&quot;HDMI1 connected&quot;</span> &amp;&gt; /dev/null &amp;&amp; connect || disconnect</span><br><span class="line"></span><br><span class="line">/bin/bspc wm -r &amp; <span class="built_in">disown</span></span><br></pre></td></tr></table></figure><p>At this point, we can start testing. You can definitely plug and remove the HDMI cable multiple times to test if it works, but that is a bit time consuming. We can use <code>sudo udevadm test /sys/class/drm/card0</code> to see if the config file is correct.</p><p>Once you have done the necessary testing, it is important to reload the udev rules into the running system <code>sudo udevadm control --reload-rules</code></p><h3 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h3><p>This article explore how udev rules can be utilized to manage hot plug of external monitors. There are also some other different uses for this tool, such as detecting external mouse, external video cam etc. Use the references below to know more.</p><h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><ul><li><a href="https://wiki.archlinux.org/title/udev">Arch Linux Wiki on Udev</a></li></ul>]]></content>
     
@@ -34,26 +34,26 @@
     
     
     
-    <category term="Notes" scheme="http://kevinsj.github.io/tags/Notes/"/>
+    <category term="Notes" scheme="https://jiangsc.me/tags/Notes/"/>
     
-    <category term="Linux" scheme="http://kevinsj.github.io/tags/Linux/"/>
+    <category term="Linux" scheme="https://jiangsc.me/tags/Linux/"/>
     
-    <category term="Manjaro Linux" scheme="http://kevinsj.github.io/tags/Manjaro-Linux/"/>
+    <category term="Manjaro Linux" scheme="https://jiangsc.me/tags/Manjaro-Linux/"/>
     
-    <category term="Dual monitor" scheme="http://kevinsj.github.io/tags/Dual-monitor/"/>
+    <category term="Dual monitor" scheme="https://jiangsc.me/tags/Dual-monitor/"/>
     
-    <category term="systemd" scheme="http://kevinsj.github.io/tags/systemd/"/>
+    <category term="systemd" scheme="https://jiangsc.me/tags/systemd/"/>
     
-    <category term="udev" scheme="http://kevinsj.github.io/tags/udev/"/>
+    <category term="udev" scheme="https://jiangsc.me/tags/udev/"/>
     
   </entry>
   
   <entry>
     <title>Tips for using NeoVim as devtool - 1</title>
-    <link href="http://kevinsj.github.io/2022/05/21/neovim-tricks-1/"/>
-    <id>http://kevinsj.github.io/2022/05/21/neovim-tricks-1/</id>
+    <link href="https://jiangsc.me/2022/05/21/neovim-tricks-1/"/>
+    <id>https://jiangsc.me/2022/05/21/neovim-tricks-1/</id>
     <published>2022-05-21T03:14:02.000Z</published>
-    <updated>2022-08-28T02:04:55.562Z</updated>
+    <updated>2022-08-28T02:20:21.620Z</updated>
     
     <content type="html"><![CDATA[<p>As a developer, one of the most important things is to find the right tool to write code with. To me, that means this tool needs to be lightweight, portable, and most importantly reliable.</p><h3 id="Why-VSCode-is-not-for-me"><a href="#Why-VSCode-is-not-for-me" class="headerlink" title="Why VSCode is not for me"></a>Why VSCode is not for me</h3><p>VSCode, aka Visual Studio Code, is a code editor developed by Microsoft. It is based on top of the Atom editor that was previously developed by GitHub. As a full stack developer whose main language is JavaScript&#x2F;TypeScript, I was told to use VSCode when I joined the company. However, as a long-time vim user, I still use the vim mappings when I am using VSCode. This is all done through plugin&#x2F;extensions. This seems to be okay at first, but over time, I really find VSCode annoying to use and I simply can&#39;t tolerate it.</p><p>The first thing is that contrary to most popular belief, VSCode is <strong>NOT</strong> an open source product. Yes, part of the source of VSCode <strong>is</strong> open-sourced, but the VSCode you downloaded from Microsoft website is not. They have put some proprietary stuff into the end product and I&#39;m not a big fan of that. There are ways to get around this, namely, there are several truly open source edition of VSCode, the one I used to use is called VSCodium, but then you will lose access to the extensions market provided by Microsoft.</p><p>Another thing that annoys me is that VSCode or any product that based on VSCode is just too slow and resource intensive -- they are just an electron app running on another Chromium based browser. Having one Chrome is enough for me, so thank you Microsoft (I tried to avoid electron based apps as much as possible, for example, I use web version of Teams, rather than the app one)</p><h3 id="How-NeoVim-x2F-Vim-fits-in"><a href="#How-NeoVim-x2F-Vim-fits-in" class="headerlink" title="How NeoVim&#x2F;Vim fits in"></a>How NeoVim&#x2F;Vim fits in</h3><p>I had been a long-time vim user, I first began using vim when I was studying computer science at the university. But I had never tried to use vim as my daily tool for software development before 2021. In February of 2021, we had a new dev joining my team. To my surprise, he was using vim (more precisely NeoVim) as his daily driver. This inspired me, and I started to explore ways to use VIM as well. At the time of this writing, I have been using NeoVim as my daily driver for more than a year now. To me, the experience has never been more pleasant. So I would just like to share a few tips on how I use it daily.</p><h3 id="Run-tests-without-leaving-vim"><a href="#Run-tests-without-leaving-vim" class="headerlink" title="Run tests without leaving vim"></a>Run tests without leaving vim</h3><p>Suppose you currently have a test file opened in you vim, and you would like to run all the tests within this file, what would you do?</p><h3 id="Solution-1-Open-a-new-terminal"><a href="#Solution-1-Open-a-new-terminal" class="headerlink" title="Solution 1: Open a new terminal"></a>Solution 1: Open a new terminal</h3><p>I think most people would open a new window or a new split in Tmux and start the command <code>yarn test filename</code>. At least that was what I was doing when I first encountered this problem. Well, obviously, this is not the ideal solution, because this would be really interruptive, you would have to switch between either a different terminal or a Tmux window.</p><h3 id="Solution-2-Run-the-command-within-vim-itself"><a href="#Solution-2-Run-the-command-within-vim-itself" class="headerlink" title="Solution 2: Run the command within vim itself"></a>Solution 2: Run the command within vim itself</h3><p>After several days of using solution 1, I was really tired of it. Switching between different terminal is just too slow and interruptive. So this is when I come to the second solution: in normal mode, use <code>:!yarn test %</code>. Okay, this works, I don&#39;t have to leave VIM each time I want to run the test. But now the problem is that running this command is blocking, meaning you can&#39;t edit the file while the test is running. This is fine if the test is not long or you are just running a single test using <code>it.only</code> or something like that. But if the text is long enough, it might be 2 or 3 minutes before you can do anything again, which is quite annoying to me.</p><h3 id="Solution-3-Using-Vim-39-s-terminal-mode"><a href="#Solution-3-Using-Vim-39-s-terminal-mode" class="headerlink" title="Solution 3: Using Vim&#39;s terminal mode"></a>Solution 3: Using Vim&#39;s terminal mode</h3><p>Starting from Vim 8.0, Vim adds a built-in terminal mode, which is quite handy to use. Once I found this out, I started to use <code>:sp term://yarn test %</code>, this will create a new <strong>horizontal</strong> split and start a terminal that runs <code>yarn test %</code>, while the tests are running, you can still do whatever you want to do and will not be blocked by the testing itself.<br>Once the command is finished, you will see the command exit in that window.</p><h3 id="Solution-3-1-Shortcut-to-Vim-command"><a href="#Solution-3-1-Shortcut-to-Vim-command" class="headerlink" title="Solution 3.1: Shortcut to Vim command"></a>Solution 3.1: Shortcut to Vim command</h3><p>Solution 3 is almost perfect, except I use this command too frequently that typing this whole command becomes a pain. So I had to find some way to improve my experience. And this all comes down to mapping this command to something shorter (at least that was what I was thinking at first). So I added the following to my vimrc file <code>cmap rt!! !yarn test % &lt;CR&gt;</code> this saves lots of keystrokes, but still, I need to type it every single time I want to use it. I still feel there&#39;s space for improvements. </p><h3 id="Final-Solution-Key-mapping"><a href="#Final-Solution-Key-mapping" class="headerlink" title="Final Solution: Key mapping"></a>Final Solution: Key mapping</h3><p>Based on function 3.1, I started to think if I can map the command to a leader key, it turned out I definitely can, with this <code>map &lt;buffer&gt; &lt;silent&gt; &lt;nowait&gt; &lt;Leader&gt;rt :execute &#39;sp term://yarn test %&#39;&lt;CR&gt;</code></p><h3 id="Afterthoughts"><a href="#Afterthoughts" class="headerlink" title="Afterthoughts"></a>Afterthoughts</h3><p>There are several caveats with the above solution.<br>First, this mapping will exist in every file type which is not ideal, cause you don&#39;t want to use yarn to test a GO file for example. Therefore, I moved this command to a separate file under the <code>ftplugin</code> folder and call it <code>typescript_mappings.vim</code>.<br>Second, you will always have to locate the test file before you can run the test. This is not a deal breaker, but it is still not perfect. Usually you would refactor a simple function within a file and all you care about is whether the corresponding tests passes, you don&#39;t necessarily need to edit the file or care about where the file is. This prompts me to turn this whole thing into a vimscript function<br>Here goes the function I created: </p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">map &lt;leader&gt;T :Ft&lt;CR&gt;</span><br><span class="line"></span><br><span class="line">if exists(&#x27;*FindTest&#x27;)</span><br><span class="line">    finish</span><br><span class="line">endif</span><br><span class="line">command! -nargs=? Ft call FindTest(&lt;q-args&gt;)</span><br><span class="line">fun! FindTest(...)</span><br><span class="line">  set path+=**</span><br><span class="line"></span><br><span class="line">  let fileName = expand(&#x27;%:t:r&#x27;) . &#x27;.test.ts&#x27;</span><br><span class="line">  execute &#x27;tabnew &#x27;</span><br><span class="line">  execute &#x27;find &#x27;. fileName</span><br><span class="line">  execute &#x27;split term://yarn test &#x27;. fileName . &#x27; --watch&#x27;</span><br><span class="line">endfun</span><br></pre></td></tr></table></figure><p>This function first set the look path to all the directories recursively, then it expand to the filename excluding the extension, then add .test.ts to it. After that, it opens a new tab, open the test file and then create a terminal, yarn test that file in watch mode.</p><p>I put this file under the ftplugin again, but one issue is that because the both the file found and the current file are of the same file type, this means the script will be sourced twice. So I had to put the <code>if exists</code> check. I map this command to <leader> T but you can tailor that to your liking.</p>]]></content>
     
@@ -66,20 +66,20 @@
     
     
     
-    <category term="Vim" scheme="http://kevinsj.github.io/tags/Vim/"/>
+    <category term="Vim" scheme="https://jiangsc.me/tags/Vim/"/>
     
-    <category term="Tips" scheme="http://kevinsj.github.io/tags/Tips/"/>
+    <category term="Tips" scheme="https://jiangsc.me/tags/Tips/"/>
     
-    <category term="nvim" scheme="http://kevinsj.github.io/tags/nvim/"/>
+    <category term="nvim" scheme="https://jiangsc.me/tags/nvim/"/>
     
-    <category term="NeoVim" scheme="http://kevinsj.github.io/tags/NeoVim/"/>
+    <category term="NeoVim" scheme="https://jiangsc.me/tags/NeoVim/"/>
     
   </entry>
   
   <entry>
     <title>Hide Phone Number when making calls</title>
-    <link href="http://kevinsj.github.io/2022/03/06/hide-phone-number-when-making-calls/"/>
-    <id>http://kevinsj.github.io/2022/03/06/hide-phone-number-when-making-calls/</id>
+    <link href="https://jiangsc.me/2022/03/06/hide-phone-number-when-making-calls/"/>
+    <id>https://jiangsc.me/2022/03/06/hide-phone-number-when-making-calls/</id>
     <published>2022-03-06T04:43:57.000Z</published>
     <updated>2022-03-06T05:00:18.235Z</updated>
     
@@ -94,14 +94,14 @@
     
     
     
-    <category term="tips" scheme="http://kevinsj.github.io/tags/tips/"/>
+    <category term="tips" scheme="https://jiangsc.me/tags/tips/"/>
     
   </entry>
   
   <entry>
     <title>Fixing issue on Xorg and VNC</title>
-    <link href="http://kevinsj.github.io/2021/12/02/Fixing-issue-on-Xorg-and-VNC/"/>
-    <id>http://kevinsj.github.io/2021/12/02/Fixing-issue-on-Xorg-and-VNC/</id>
+    <link href="https://jiangsc.me/2021/12/02/Fixing-issue-on-Xorg-and-VNC/"/>
+    <id>https://jiangsc.me/2021/12/02/Fixing-issue-on-Xorg-and-VNC/</id>
     <published>2021-12-02T09:48:35.000Z</published>
     <updated>2021-12-03T10:32:43.779Z</updated>
     
@@ -116,20 +116,20 @@
     
     
     
-    <category term="Linux" scheme="http://kevinsj.github.io/tags/Linux/"/>
+    <category term="Linux" scheme="https://jiangsc.me/tags/Linux/"/>
     
-    <category term="Arch Linux" scheme="http://kevinsj.github.io/tags/Arch-Linux/"/>
+    <category term="Arch Linux" scheme="https://jiangsc.me/tags/Arch-Linux/"/>
     
-    <category term="Xorg" scheme="http://kevinsj.github.io/tags/Xorg/"/>
+    <category term="Xorg" scheme="https://jiangsc.me/tags/Xorg/"/>
     
-    <category term="TigerVNC" scheme="http://kevinsj.github.io/tags/TigerVNC/"/>
+    <category term="TigerVNC" scheme="https://jiangsc.me/tags/TigerVNC/"/>
     
   </entry>
   
   <entry>
     <title>OpenType Font and Font Family</title>
-    <link href="http://kevinsj.github.io/2021/08/14/OpenType-Font-and-Font-Family/"/>
-    <id>http://kevinsj.github.io/2021/08/14/OpenType-Font-and-Font-Family/</id>
+    <link href="https://jiangsc.me/2021/08/14/OpenType-Font-and-Font-Family/"/>
+    <id>https://jiangsc.me/2021/08/14/OpenType-Font-and-Font-Family/</id>
     <published>2021-08-14T01:31:56.000Z</published>
     <updated>2021-11-20T01:20:58.433Z</updated>
     
@@ -144,22 +144,22 @@
     
     
     
-    <category term="OpenType font" scheme="http://kevinsj.github.io/tags/OpenType-font/"/>
+    <category term="OpenType font" scheme="https://jiangsc.me/tags/OpenType-font/"/>
     
-    <category term="Font" scheme="http://kevinsj.github.io/tags/Font/"/>
+    <category term="Font" scheme="https://jiangsc.me/tags/Font/"/>
     
-    <category term="CSS" scheme="http://kevinsj.github.io/tags/CSS/"/>
+    <category term="CSS" scheme="https://jiangsc.me/tags/CSS/"/>
     
-    <category term="font-family" scheme="http://kevinsj.github.io/tags/font-family/"/>
+    <category term="font-family" scheme="https://jiangsc.me/tags/font-family/"/>
     
-    <category term="NodeJS" scheme="http://kevinsj.github.io/tags/NodeJS/"/>
+    <category term="NodeJS" scheme="https://jiangsc.me/tags/NodeJS/"/>
     
   </entry>
   
   <entry>
     <title>Advanced VirtualBox: Auto start virtual machine on Windows</title>
-    <link href="http://kevinsj.github.io/2021/07/10/Advanced-VirtualBox-Auto-start-virtualbox-on-Windows/"/>
-    <id>http://kevinsj.github.io/2021/07/10/Advanced-VirtualBox-Auto-start-virtualbox-on-Windows/</id>
+    <link href="https://jiangsc.me/2021/07/10/Advanced-VirtualBox-Auto-start-virtualbox-on-Windows/"/>
+    <id>https://jiangsc.me/2021/07/10/Advanced-VirtualBox-Auto-start-virtualbox-on-Windows/</id>
     <published>2021-07-10T00:18:14.000Z</published>
     <updated>2021-08-08T04:00:15.144Z</updated>
     
@@ -174,18 +174,18 @@
     
     
     
-    <category term="Automation" scheme="http://kevinsj.github.io/tags/Automation/"/>
+    <category term="Automation" scheme="https://jiangsc.me/tags/Automation/"/>
     
-    <category term="virtualbox" scheme="http://kevinsj.github.io/tags/virtualbox/"/>
+    <category term="virtualbox" scheme="https://jiangsc.me/tags/virtualbox/"/>
     
-    <category term="Windows" scheme="http://kevinsj.github.io/tags/Windows/"/>
+    <category term="Windows" scheme="https://jiangsc.me/tags/Windows/"/>
     
   </entry>
   
   <entry>
     <title>IELTS exam and experience</title>
-    <link href="http://kevinsj.github.io/2021/06/30/IELTS-exam-and-experience/"/>
-    <id>http://kevinsj.github.io/2021/06/30/IELTS-exam-and-experience/</id>
+    <link href="https://jiangsc.me/2021/06/30/IELTS-exam-and-experience/"/>
+    <id>https://jiangsc.me/2021/06/30/IELTS-exam-and-experience/</id>
     <published>2021-06-30T09:13:50.000Z</published>
     <updated>2021-07-10T00:15:14.798Z</updated>
     
@@ -200,16 +200,16 @@
     
     
     
-    <category term="IELTS" scheme="http://kevinsj.github.io/tags/IELTS/"/>
+    <category term="IELTS" scheme="https://jiangsc.me/tags/IELTS/"/>
     
-    <category term="Preparation" scheme="http://kevinsj.github.io/tags/Preparation/"/>
+    <category term="Preparation" scheme="https://jiangsc.me/tags/Preparation/"/>
     
   </entry>
   
   <entry>
     <title>Postgres, JavaScript and sorting</title>
-    <link href="http://kevinsj.github.io/2021/05/09/Postgres-JavaScript-and-sorting/"/>
-    <id>http://kevinsj.github.io/2021/05/09/Postgres-JavaScript-and-sorting/</id>
+    <link href="https://jiangsc.me/2021/05/09/Postgres-JavaScript-and-sorting/"/>
+    <id>https://jiangsc.me/2021/05/09/Postgres-JavaScript-and-sorting/</id>
     <published>2021-05-09T01:00:12.000Z</published>
     <updated>2021-05-09T01:07:18.554Z</updated>
     
@@ -224,18 +224,18 @@
     
     
     
-    <category term="JavaScript" scheme="http://kevinsj.github.io/tags/JavaScript/"/>
+    <category term="JavaScript" scheme="https://jiangsc.me/tags/JavaScript/"/>
     
-    <category term="Postgres" scheme="http://kevinsj.github.io/tags/Postgres/"/>
+    <category term="Postgres" scheme="https://jiangsc.me/tags/Postgres/"/>
     
-    <category term="Sorting" scheme="http://kevinsj.github.io/tags/Sorting/"/>
+    <category term="Sorting" scheme="https://jiangsc.me/tags/Sorting/"/>
     
   </entry>
   
   <entry>
     <title>Android ADB and user management</title>
-    <link href="http://kevinsj.github.io/2021/04/17/Android-ADB-and-user-management/"/>
-    <id>http://kevinsj.github.io/2021/04/17/Android-ADB-and-user-management/</id>
+    <link href="https://jiangsc.me/2021/04/17/Android-ADB-and-user-management/"/>
+    <id>https://jiangsc.me/2021/04/17/Android-ADB-and-user-management/</id>
     <published>2021-04-17T04:24:17.000Z</published>
     <updated>2021-04-17T05:26:25.017Z</updated>
     
@@ -251,16 +251,16 @@
     
     
     
-    <category term="Android" scheme="http://kevinsj.github.io/tags/Android/"/>
+    <category term="Android" scheme="https://jiangsc.me/tags/Android/"/>
     
-    <category term="ADB" scheme="http://kevinsj.github.io/tags/ADB/"/>
+    <category term="ADB" scheme="https://jiangsc.me/tags/ADB/"/>
     
   </entry>
   
   <entry>
     <title>Terraform, Version Constraint and Debugging</title>
-    <link href="http://kevinsj.github.io/2021/02/27/Terraform-version-constraint-and-debugging/"/>
-    <id>http://kevinsj.github.io/2021/02/27/Terraform-version-constraint-and-debugging/</id>
+    <link href="https://jiangsc.me/2021/02/27/Terraform-version-constraint-and-debugging/"/>
+    <id>https://jiangsc.me/2021/02/27/Terraform-version-constraint-and-debugging/</id>
     <published>2021-02-27T21:08:59.000Z</published>
     <updated>2021-02-28T00:03:30.117Z</updated>
     
@@ -275,20 +275,20 @@
     
     
     
-    <category term="Terraform" scheme="http://kevinsj.github.io/tags/Terraform/"/>
+    <category term="Terraform" scheme="https://jiangsc.me/tags/Terraform/"/>
     
-    <category term="Kubernetes" scheme="http://kevinsj.github.io/tags/Kubernetes/"/>
+    <category term="Kubernetes" scheme="https://jiangsc.me/tags/Kubernetes/"/>
     
-    <category term="Version constraint" scheme="http://kevinsj.github.io/tags/Version-constraint/"/>
+    <category term="Version constraint" scheme="https://jiangsc.me/tags/Version-constraint/"/>
     
-    <category term="debug" scheme="http://kevinsj.github.io/tags/debug/"/>
+    <category term="debug" scheme="https://jiangsc.me/tags/debug/"/>
     
   </entry>
   
   <entry>
     <title>Lessons Learnt On Deploying GO Lambda Application on AWS - Part I</title>
-    <link href="http://kevinsj.github.io/2021/01/24/Lessons-Learnt-On-Deploying-GO-Lambda-Application-on-AWS/"/>
-    <id>http://kevinsj.github.io/2021/01/24/Lessons-Learnt-On-Deploying-GO-Lambda-Application-on-AWS/</id>
+    <link href="https://jiangsc.me/2021/01/24/Lessons-Learnt-On-Deploying-GO-Lambda-Application-on-AWS/"/>
+    <id>https://jiangsc.me/2021/01/24/Lessons-Learnt-On-Deploying-GO-Lambda-Application-on-AWS/</id>
     <published>2021-01-24T06:06:00.000Z</published>
     <updated>2021-01-29T21:43:09.411Z</updated>
     
@@ -303,20 +303,20 @@
     
     
     
-    <category term="Lambda" scheme="http://kevinsj.github.io/tags/Lambda/"/>
+    <category term="Lambda" scheme="https://jiangsc.me/tags/Lambda/"/>
     
-    <category term="AWS" scheme="http://kevinsj.github.io/tags/AWS/"/>
+    <category term="AWS" scheme="https://jiangsc.me/tags/AWS/"/>
     
-    <category term="Go" scheme="http://kevinsj.github.io/tags/Go/"/>
+    <category term="Go" scheme="https://jiangsc.me/tags/Go/"/>
     
-    <category term="Deployment" scheme="http://kevinsj.github.io/tags/Deployment/"/>
+    <category term="Deployment" scheme="https://jiangsc.me/tags/Deployment/"/>
     
   </entry>
   
   <entry>
     <title>Upgrade openwrt on Linksys WRT1200AC with extroot</title>
-    <link href="http://kevinsj.github.io/2021/01/24/Upgrade-openwrt-on-Linksys-WRT1200AC-with-extroot/"/>
-    <id>http://kevinsj.github.io/2021/01/24/Upgrade-openwrt-on-Linksys-WRT1200AC-with-extroot/</id>
+    <link href="https://jiangsc.me/2021/01/24/Upgrade-openwrt-on-Linksys-WRT1200AC-with-extroot/"/>
+    <id>https://jiangsc.me/2021/01/24/Upgrade-openwrt-on-Linksys-WRT1200AC-with-extroot/</id>
     <published>2021-01-24T01:29:55.000Z</published>
     <updated>2021-11-21T01:56:13.696Z</updated>
     
@@ -332,24 +332,24 @@
     
     
     
-    <category term="Notes" scheme="http://kevinsj.github.io/tags/Notes/"/>
+    <category term="Notes" scheme="https://jiangsc.me/tags/Notes/"/>
     
-    <category term="Openwrt" scheme="http://kevinsj.github.io/tags/Openwrt/"/>
+    <category term="Openwrt" scheme="https://jiangsc.me/tags/Openwrt/"/>
     
-    <category term="Upgrade" scheme="http://kevinsj.github.io/tags/Upgrade/"/>
+    <category term="Upgrade" scheme="https://jiangsc.me/tags/Upgrade/"/>
     
-    <category term="Linksys" scheme="http://kevinsj.github.io/tags/Linksys/"/>
+    <category term="Linksys" scheme="https://jiangsc.me/tags/Linksys/"/>
     
-    <category term="WRT1200AC" scheme="http://kevinsj.github.io/tags/WRT1200AC/"/>
+    <category term="WRT1200AC" scheme="https://jiangsc.me/tags/WRT1200AC/"/>
     
-    <category term="Linux" scheme="http://kevinsj.github.io/tags/Linux/"/>
+    <category term="Linux" scheme="https://jiangsc.me/tags/Linux/"/>
     
   </entry>
   
   <entry>
     <title>Automating Zoom with Alfred and Apple Scripts</title>
-    <link href="http://kevinsj.github.io/2020/12/26/Automating-Zoom-with-Alfred-and-Apple-Scripts/"/>
-    <id>http://kevinsj.github.io/2020/12/26/Automating-Zoom-with-Alfred-and-Apple-Scripts/</id>
+    <link href="https://jiangsc.me/2020/12/26/Automating-Zoom-with-Alfred-and-Apple-Scripts/"/>
+    <id>https://jiangsc.me/2020/12/26/Automating-Zoom-with-Alfred-and-Apple-Scripts/</id>
     <published>2020-12-26T09:55:59.000Z</published>
     <updated>2020-12-27T23:33:14.975Z</updated>
     
@@ -364,20 +364,20 @@
     
     
     
-    <category term="Automation" scheme="http://kevinsj.github.io/tags/Automation/"/>
+    <category term="Automation" scheme="https://jiangsc.me/tags/Automation/"/>
     
-    <category term="Zoom" scheme="http://kevinsj.github.io/tags/Zoom/"/>
+    <category term="Zoom" scheme="https://jiangsc.me/tags/Zoom/"/>
     
-    <category term="Alfred" scheme="http://kevinsj.github.io/tags/Alfred/"/>
+    <category term="Alfred" scheme="https://jiangsc.me/tags/Alfred/"/>
     
-    <category term="OS X" scheme="http://kevinsj.github.io/tags/OS-X/"/>
+    <category term="OS X" scheme="https://jiangsc.me/tags/OS-X/"/>
     
   </entry>
   
   <entry>
     <title>Solving practical problems with jq</title>
-    <link href="http://kevinsj.github.io/2020/11/26/Solving-practical-problems-with-Jq-2020-11-26/"/>
-    <id>http://kevinsj.github.io/2020/11/26/Solving-practical-problems-with-Jq-2020-11-26/</id>
+    <link href="https://jiangsc.me/2020/11/26/Solving-practical-problems-with-Jq-2020-11-26/"/>
+    <id>https://jiangsc.me/2020/11/26/Solving-practical-problems-with-Jq-2020-11-26/</id>
     <published>2020-11-26T08:37:32.000Z</published>
     <updated>2020-12-26T09:54:36.011Z</updated>
     
@@ -392,18 +392,18 @@
     
     
     
-    <category term="jq" scheme="http://kevinsj.github.io/tags/jq/"/>
+    <category term="jq" scheme="https://jiangsc.me/tags/jq/"/>
     
-    <category term="problem solving" scheme="http://kevinsj.github.io/tags/problem-solving/"/>
+    <category term="problem solving" scheme="https://jiangsc.me/tags/problem-solving/"/>
     
-    <category term="json" scheme="http://kevinsj.github.io/tags/json/"/>
+    <category term="json" scheme="https://jiangsc.me/tags/json/"/>
     
   </entry>
   
   <entry>
     <title>Practice With Vim (I)</title>
-    <link href="http://kevinsj.github.io/2020/11/15/practice-with-vim-I/"/>
-    <id>http://kevinsj.github.io/2020/11/15/practice-with-vim-I/</id>
+    <link href="https://jiangsc.me/2020/11/15/practice-with-vim-I/"/>
+    <id>https://jiangsc.me/2020/11/15/practice-with-vim-I/</id>
     <published>2020-11-15T00:54:30.000Z</published>
     <updated>2020-11-15T01:45:47.774Z</updated>
     
@@ -419,18 +419,18 @@
     
     
     
-    <category term="Notes" scheme="http://kevinsj.github.io/tags/Notes/"/>
+    <category term="Notes" scheme="https://jiangsc.me/tags/Notes/"/>
     
-    <category term="Vim" scheme="http://kevinsj.github.io/tags/Vim/"/>
+    <category term="Vim" scheme="https://jiangsc.me/tags/Vim/"/>
     
-    <category term="Practice" scheme="http://kevinsj.github.io/tags/Practice/"/>
+    <category term="Practice" scheme="https://jiangsc.me/tags/Practice/"/>
     
   </entry>
   
   <entry>
     <title>Pitfall of jsonencode in Terraform</title>
-    <link href="http://kevinsj.github.io/2020/09/14/pitfall-of-jsonencode-in-terraform/"/>
-    <id>http://kevinsj.github.io/2020/09/14/pitfall-of-jsonencode-in-terraform/</id>
+    <link href="https://jiangsc.me/2020/09/14/pitfall-of-jsonencode-in-terraform/"/>
+    <id>https://jiangsc.me/2020/09/14/pitfall-of-jsonencode-in-terraform/</id>
     <published>2020-09-14T09:39:11.000Z</published>
     <updated>2020-09-14T10:00:03.082Z</updated>
     
@@ -445,18 +445,18 @@
     
     
     
-    <category term="Notes" scheme="http://kevinsj.github.io/tags/Notes/"/>
+    <category term="Notes" scheme="https://jiangsc.me/tags/Notes/"/>
     
-    <category term="Terraform" scheme="http://kevinsj.github.io/tags/Terraform/"/>
+    <category term="Terraform" scheme="https://jiangsc.me/tags/Terraform/"/>
     
-    <category term="Pitfalls" scheme="http://kevinsj.github.io/tags/Pitfalls/"/>
+    <category term="Pitfalls" scheme="https://jiangsc.me/tags/Pitfalls/"/>
     
   </entry>
   
   <entry>
     <title>Automating Android data saver with tasker</title>
-    <link href="http://kevinsj.github.io/2019/10/12/Automating-Android-data-saver-with-tasker/"/>
-    <id>http://kevinsj.github.io/2019/10/12/Automating-Android-data-saver-with-tasker/</id>
+    <link href="https://jiangsc.me/2019/10/12/Automating-Android-data-saver-with-tasker/"/>
+    <id>https://jiangsc.me/2019/10/12/Automating-Android-data-saver-with-tasker/</id>
     <published>2019-10-12T06:34:42.000Z</published>
     <updated>2020-12-26T11:45:47.578Z</updated>
     
@@ -471,20 +471,20 @@
     
     
     
-    <category term="Tasker" scheme="http://kevinsj.github.io/tags/Tasker/"/>
+    <category term="Tasker" scheme="https://jiangsc.me/tags/Tasker/"/>
     
-    <category term="Automation" scheme="http://kevinsj.github.io/tags/Automation/"/>
+    <category term="Automation" scheme="https://jiangsc.me/tags/Automation/"/>
     
-    <category term="Android" scheme="http://kevinsj.github.io/tags/Android/"/>
+    <category term="Android" scheme="https://jiangsc.me/tags/Android/"/>
     
-    <category term="Data Saver" scheme="http://kevinsj.github.io/tags/Data-Saver/"/>
+    <category term="Data Saver" scheme="https://jiangsc.me/tags/Data-Saver/"/>
     
   </entry>
   
   <entry>
     <title>Converting QEMU VM to VirtualBox VM</title>
-    <link href="http://kevinsj.github.io/2019/05/28/Converting-QEMU-VM-to-VirtualBox-VM/"/>
-    <id>http://kevinsj.github.io/2019/05/28/Converting-QEMU-VM-to-VirtualBox-VM/</id>
+    <link href="https://jiangsc.me/2019/05/28/Converting-QEMU-VM-to-VirtualBox-VM/"/>
+    <id>https://jiangsc.me/2019/05/28/Converting-QEMU-VM-to-VirtualBox-VM/</id>
     <published>2019-05-28T08:55:20.000Z</published>
     <updated>2020-09-12T02:27:57.555Z</updated>
     
@@ -499,18 +499,18 @@
     
     
     
-    <category term="VitualBox" scheme="http://kevinsj.github.io/tags/VitualBox/"/>
+    <category term="VitualBox" scheme="https://jiangsc.me/tags/VitualBox/"/>
     
-    <category term="QEMU" scheme="http://kevinsj.github.io/tags/QEMU/"/>
+    <category term="QEMU" scheme="https://jiangsc.me/tags/QEMU/"/>
     
-    <category term="VM" scheme="http://kevinsj.github.io/tags/VM/"/>
+    <category term="VM" scheme="https://jiangsc.me/tags/VM/"/>
     
   </entry>
   
   <entry>
     <title>Automating things on Android with Tasker (I)</title>
-    <link href="http://kevinsj.github.io/2018/06/24/Automating-things-on-Android-with-Tasker/"/>
-    <id>http://kevinsj.github.io/2018/06/24/Automating-things-on-Android-with-Tasker/</id>
+    <link href="https://jiangsc.me/2018/06/24/Automating-things-on-Android-with-Tasker/"/>
+    <id>https://jiangsc.me/2018/06/24/Automating-things-on-Android-with-Tasker/</id>
     <published>2018-06-24T09:30:31.000Z</published>
     <updated>2020-09-12T02:25:30.675Z</updated>
     
@@ -525,18 +525,18 @@
     
     
     
-    <category term="Tasker" scheme="http://kevinsj.github.io/tags/Tasker/"/>
+    <category term="Tasker" scheme="https://jiangsc.me/tags/Tasker/"/>
     
-    <category term="Automation" scheme="http://kevinsj.github.io/tags/Automation/"/>
+    <category term="Automation" scheme="https://jiangsc.me/tags/Automation/"/>
     
-    <category term="Android" scheme="http://kevinsj.github.io/tags/Android/"/>
+    <category term="Android" scheme="https://jiangsc.me/tags/Android/"/>
     
   </entry>
   
   <entry>
     <title>Automating Gmail Archive With Google App Scripts</title>
-    <link href="http://kevinsj.github.io/2018/03/24/AutomatingStuffWithGoogleAppScripts/"/>
-    <id>http://kevinsj.github.io/2018/03/24/AutomatingStuffWithGoogleAppScripts/</id>
+    <link href="https://jiangsc.me/2018/03/24/AutomatingStuffWithGoogleAppScripts/"/>
+    <id>https://jiangsc.me/2018/03/24/AutomatingStuffWithGoogleAppScripts/</id>
     <published>2018-03-24T00:28:59.000Z</published>
     <updated>2020-12-26T11:48:21.752Z</updated>
     
@@ -551,11 +551,11 @@
     
     
     
-    <category term="Automation" scheme="http://kevinsj.github.io/tags/Automation/"/>
+    <category term="Automation" scheme="https://jiangsc.me/tags/Automation/"/>
     
-    <category term="Google App Scripts" scheme="http://kevinsj.github.io/tags/Google-App-Scripts/"/>
+    <category term="Google App Scripts" scheme="https://jiangsc.me/tags/Google-App-Scripts/"/>
     
-    <category term="Gmail" scheme="http://kevinsj.github.io/tags/Gmail/"/>
+    <category term="Gmail" scheme="https://jiangsc.me/tags/Gmail/"/>
     
   </entry>
   
