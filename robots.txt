@@ -3,6 +3,7 @@ Allow: /
 Allow: /archives/
 Allow: /tags/
 Allow: /about/
+Allow: /gallery/
 
 Allow: /vendors/
 Allow: /js/

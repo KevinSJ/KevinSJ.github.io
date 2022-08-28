@@ -2,6 +2,33 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://jiangsc.me/2017/03/12/%E5%9C%A8%E6%A0%91%E8%8E%93%E6%B4%BE%E4%B8%8A%E9%83%A8%E7%BD%B2flexget%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E8%BF%BD%E7%95%AA/</loc>
+    
+    <lastmod>2022-08-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/about/index.html</loc>
+    
+    <lastmod>2022-08-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/gallery/index.html</loc>
+    
+    <lastmod>2022-08-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://jiangsc.me/2018/06/24/Automating-things-on-Android-with-Tasker/</loc>
     
     <lastmod>2022-08-28</lastmod>
@@ -38,15 +65,6 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/2017/03/12/%E5%9C%A8%E6%A0%91%E8%8E%93%E6%B4%BE%E4%B8%8A%E9%83%A8%E7%BD%B2flexget%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E8%BF%BD%E7%95%AA/</loc>
-    
-    <lastmod>2022-08-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://jiangsc.me/2020/09/14/pitfall-of-jsonencode-in-terraform/</loc>
     
     <lastmod>2022-08-28</lastmod>
@@ -66,6 +84,15 @@
   
   <url>
     <loc>https://jiangsc.me/2020/11/26/Solving-practical-problems-with-Jq-2020-11-26/</loc>
+    
+    <lastmod>2022-08-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/2020/12/26/Automating-Zoom-with-Alfred-and-Apple-Scripts/</loc>
     
     <lastmod>2022-08-28</lastmod>
     
@@ -164,15 +191,6 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/about/index.html</loc>
-    
-    <lastmod>2022-08-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://jiangsc.me/2019/10/12/Automating-Android-data-saver-with-tasker/</loc>
     
     <lastmod>2022-08-28</lastmod>
@@ -183,15 +201,6 @@
   
   <url>
     <loc>https://jiangsc.me/2017/06/11/06112017-Fun-With-GPG/</loc>
-    
-    <lastmod>2022-08-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/2020/12/26/Automating-Zoom-with-Alfred-and-Apple-Scripts/</loc>
     
     <lastmod>2022-08-28</lastmod>
     
