@@ -31,6 +31,9 @@
 <meta property="og:description" content="A blog about all things tech.">
 <meta property="og:locale" content="en_US">
 <meta property="article:author" content="KevinSJ">
+<meta property="article:tag" content="Tech">
+<meta property="article:tag" content="Programming">
+<meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://kevinsj.github.io/tags/Arch-Linux/">
@@ -364,7 +367,7 @@
   <script>
     (function() {
       var db = firebase.firestore();
-      var articles = db.collection('articles');
+      var articles = db.collection('blog_view');
 
       if (CONFIG.page.isPost) { // Is article page
         var title = document.querySelector('.post-title').innerText.trim();
