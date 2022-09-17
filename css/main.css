@@ -627,22 +627,22 @@ pre code {
   padding: 0 2px;
 }
 .post-body .label.default {
-  background: #f0f0f0;
+  background: #d8d8d8;
 }
 .post-body .label.primary {
-  background: #efe6f7;
+  background: #d9c4ec;
 }
 .post-body .label.info {
-  background: #e5f2f8;
+  background: #c3e1ee;
 }
 .post-body .label.success {
-  background: #e7f4e9;
+  background: #c9e8ce;
 }
 .post-body .label.warning {
-  background: #fcf6e1;
+  background: #faecc1;
 }
 .post-body .label.danger {
-  background: #fae8eb;
+  background: #f3c8ce;
 }
 .post-body .link-grid {
   display: grid;
@@ -847,8 +847,9 @@ pre code {
   margin-bottom: 20px;
   padding: 1em;
   position: relative;
-  border: 1px solid #eee;
-  border-left-width: 5px;
+  background: #f9f9f9;
+  border: initial;
+  border-left: 3px solid #eee;
 }
 .post-body .note summary {
   cursor: pointer;
@@ -884,8 +885,23 @@ pre code {
 .post-body .note img:last-child {
   margin-bottom: 0;
 }
+.post-body .note:not(.no-icon) {
+  padding-left: 2.5em;
+}
+.post-body .note:not(.no-icon)::before {
+  font-size: 1.5em;
+  left: 0.3em;
+  position: absolute;
+  top: calc(50% - 1em);
+}
 .post-body .note.default {
+  background: #dedede;
   border-left-color: #777;
+}
+@media (prefers-color-scheme: dark) {
+  .post-body .note.default {
+    background: #3a3a3a;
+  }
 }
 .post-body .note.default h2,
 .post-body .note.default h3,
@@ -894,8 +910,20 @@ pre code {
 .post-body .note.default h6 {
   color: #777;
 }
+.post-body .note.default:not(.no-icon)::before {
+  content: '\f0a9';
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  color: #777;
+}
 .post-body .note.primary {
+  background: #dfceef;
   border-left-color: #6f42c1;
+}
+@media (prefers-color-scheme: dark) {
+  .post-body .note.primary {
+    background: #3a383b;
+  }
 }
 .post-body .note.primary h2,
 .post-body .note.primary h3,
@@ -904,8 +932,20 @@ pre code {
 .post-body .note.primary h6 {
   color: #6f42c1;
 }
+.post-body .note.primary:not(.no-icon)::before {
+  content: '\f055';
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  color: #6f42c1;
+}
 .post-body .note.info {
+  background: #cce6f1;
   border-left-color: #428bca;
+}
+@media (prefers-color-scheme: dark) {
+  .post-body .note.info {
+    background: #383b3c;
+  }
 }
 .post-body .note.info h2,
 .post-body .note.info h3,
@@ -914,8 +954,20 @@ pre code {
 .post-body .note.info h6 {
   color: #428bca;
 }
+.post-body .note.info:not(.no-icon)::before {
+  content: '\f05a';
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  color: #428bca;
+}
 .post-body .note.success {
+  background: #d1ebd6;
   border-left-color: #5cb85c;
+}
+@media (prefers-color-scheme: dark) {
+  .post-body .note.success {
+    background: #383b39;
+  }
 }
 .post-body .note.success h2,
 .post-body .note.success h3,
@@ -924,8 +976,20 @@ pre code {
 .post-body .note.success h6 {
   color: #5cb85c;
 }
+.post-body .note.success:not(.no-icon)::before {
+  content: '\f058';
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  color: #5cb85c;
+}
 .post-body .note.warning {
+  background: #fbefca;
   border-left-color: #f0ad4e;
+}
+@media (prefers-color-scheme: dark) {
+  .post-body .note.warning {
+    background: #3d3b38;
+  }
 }
 .post-body .note.warning h2,
 .post-body .note.warning h3,
@@ -934,14 +998,32 @@ pre code {
 .post-body .note.warning h6 {
   color: #f0ad4e;
 }
+.post-body .note.warning:not(.no-icon)::before {
+  content: '\f06a';
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  color: #f0ad4e;
+}
 .post-body .note.danger {
+  background: #f5d1d6;
   border-left-color: #d9534f;
+}
+@media (prefers-color-scheme: dark) {
+  .post-body .note.danger {
+    background: #3c3839;
+  }
 }
 .post-body .note.danger h2,
 .post-body .note.danger h3,
 .post-body .note.danger h4,
 .post-body .note.danger h5,
 .post-body .note.danger h6 {
+  color: #d9534f;
+}
+.post-body .note.danger:not(.no-icon)::before {
+  content: '\f056';
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
   color: #d9534f;
 }
 .pdfobject-container iframe,
