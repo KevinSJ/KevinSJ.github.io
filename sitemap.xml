@@ -2,15 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://jiangsc.me/2018/06/24/Automating-things-on-Android-with-Tasker/</loc>
-    
-    <lastmod>2022-09-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://jiangsc.me/2018/03/24/AutomatingStuffWithGoogleAppScripts/</loc>
     
     <lastmod>2022-09-17</lastmod>
@@ -201,6 +192,15 @@
   
   <url>
     <loc>https://jiangsc.me/2017/06/11/06112017-Fun-With-GPG/</loc>
+    
+    <lastmod>2022-09-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/2018/06/24/Automating-things-on-Android-with-Tasker/</loc>
     
     <lastmod>2022-09-17</lastmod>
     
