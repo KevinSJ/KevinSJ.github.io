@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="9g-E_K0GEppNWOItj0YYJV_1UbSLdVFrKOhHSPLkJcM">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha256-xejo6yLi6vGtAjcMIsY8BHdKsLg7QynVlFMzdQgUuy8=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"jiangsc.me","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="BackgroundI&#39;m not an Android developer, but I do work with Android applications which means I have to work with Android Studio and Android emulator quite often. Recently, I encountered a quite int">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Android Emulator Tips -- Simulate Mobile Carrier">
+<meta property="og:url" content="https://jiangsc.me/2022/10/05/android-emulator-carrier-simulation/index.html">
+<meta property="og:site_name" content="Kevin Jiang&#39;s Technical Blog">
+<meta property="og:description" content="BackgroundI&#39;m not an Android developer, but I do work with Android applications which means I have to work with Android Studio and Android emulator quite often. Recently, I encountered a quite int">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-10-05T09:13:05.000Z">
+<meta property="article:modified_time" content="2022-10-29T10:09:20.835Z">
+<meta property="article:author" content="KevinSJ">
+<meta property="article:tag" content="Android">
+<meta property="article:tag" content="Emulator">
+<meta property="article:tag" content="Android Development">
+<meta property="article:tag" content="Carrier Simulation">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://jiangsc.me/2022/10/05/android-emulator-carrier-simulation/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://jiangsc.me/2022/10/05/android-emulator-carrier-simulation/","path":"2022/10/05/android-emulator-carrier-simulation/","title":"Android Emulator Tips -- Simulate Mobile Carrier"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Android Emulator Tips -- Simulate Mobile Carrier | Kevin Jiang's Technical Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Kevin Jiang's Technical Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Kevin Jiang's Technical Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-gallery"><a href="/gallery/" rel="section"><i class="fa fa-image fa-fw"></i>Gallery</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Background"><span class="nav-number">1.</span> <span class="nav-text">Background</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution"><span class="nav-number">2.</span> <span class="nav-text">Solution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Another-way"><span class="nav-number">3.</span> <span class="nav-text">Another way</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">KevinSJ</p>
+  <div class="site-description" itemprop="description">A blog about all things tech.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">64</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/kevinsj" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;kevinsj" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/kevsj" title="LinkedIn → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;kevsj" rel="noopener" target="_blank"><i class="fab fa-linkedin fa-fw"></i>LinkedIn</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/KevinSJ" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://jiangsc.me/2022/10/05/android-emulator-carrier-simulation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="KevinSJ">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
+      <meta itemprop="description" content="A blog about all things tech.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Android Emulator Tips -- Simulate Mobile Carrier | Kevin Jiang's Technical Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Android Emulator Tips -- Simulate Mobile Carrier
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 10-05-2022 22:13:05" itemprop="dateCreated datePublished" datetime="2022-10-05T22:13:05+13:00">10-05-2022</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 10-29-2022 23:09:20" itemprop="dateModified" datetime="2022-10-29T23:09:20+13:00">10-29-2022</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="firestore-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h3><p>I&#39;m not an Android developer, but I do work with Android applications which means I have to work with Android Studio and Android emulator quite often. Recently, I encountered a quite interesting problem which prompt me to write this post and hopefully can help someone in the future.</p>
+<p><strong>Why?</strong></p>
+<p>Because I need to identify where the user of the mobile app is located and provide different content to the user based on their location.</p>
+<p><strong>How?</strong></p>
+<p>There are definitely several ways to do so, one obvious way is to use the IP address. However, with the growing use of VPN, this is definitely not the most reliable option.</p>
+<p>The other option that comes up is to identify through the mobile carrier. If you are not familiar with telco or mobile networks, I will provide a brief background next.</p>
+<p><strong>MCCs and MNCs</strong><br>Each mobile network operator (or carrier) can be uniquely identified by using a combination of MCC (mobile country code) and MNC(mobile network code). More information on this on <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Mobile_country_code" title="Mobile Country Code - Wikipedia">Wikipedia</a>. What this means is that, you can usually reliably identify where the user is from by looking at their mobile carrier&#39;s MCC code.</p>
+<p>Usually, you would have to translate the MCC code to a country code on your own but it turns out in Android you don&#39;t have to do the translation yourself. Instead, you can directly use <a target="_blank" rel="noopener" href="https://developer.android.com/reference/android/telephony/TelephonyManager#getNetworkCountryIso()" title="getNetworkCountryIso API">this</a> API which will give you an ISO country code in 2 letters. You can then do whatever you want with this country code, pass this through a header to a server or the likes.</p>
+<p>Once you have implemented this using getNetworkCountryIso, you will realize it is almost impossible to test or verify if this functionality will actually work as expected. One of the easiest way is to provide a debug menu within the app (in debug mode) and then mock different countries, this is the obviously the most efficient and cost effective way.</p>
+<p>If in reality, a debug menu to mock countries is not something you can achieve, then you will have to use the emulator. This is what the rest of this post will be about, and hopefully this post can help you with your solution.</p>
+<span id="more"></span>
+
+<div class="note info"><p><strong>The problem to solve is to &quot;change&quot; the carrier in the Android emulator.</strong></p>
+</div>
+
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p>The solution I came up with involves changing one of Android system image, only one file change is strictly necessary.</p>
+<p>In Linux and&#x2F;or MacOS systems, the file to change sits under <code>$ANDROID_SDK_ROOT/system-images/android-33/google_apis/x86_64/data/misc/modem_simulator/etc/modem_simulator/files/numeric_operator.xml</code></p>
+<p>What you would need to do is to add the MCC and MNC combo to the file and give it whatever name you want.</p>
+<p>In Linux, system image location:<br><code>$ANDROID_SDK_ROOT/system-images/android-$sdk_version/google_apis/x86_64</code></p>
+<p>File to change or copy?</p>
+<ul>
+<li>$ANDROID_SDK_ROOT&#x2F;system-images&#x2F;android-33&#x2F;google_apis&#x2F;x86_64&#x2F;data&#x2F;misc&#x2F;modem_simulator&#x2F;iccprofile_for_sim0.xml Line 79, CIMI, replace first three digit with MCC you want.</li>
+<li>$ANDROID_SDK_ROOT&#x2F;system-images&#x2F;android-33&#x2F;google_apis&#x2F;x86_64&#x2F;data&#x2F;misc&#x2F;modem_simulator&#x2F;etc&#x2F;modem_simulator&#x2F;files&#x2F;numeric_operator.xml, add the newly added MCC to this file, give it a name</li>
+</ul>
+<p>Verify:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">adb shell getprop|grep gsm</span><br><span class="line">emulator @$(emulator -list-avds|<span class="built_in">head</span>) \</span><br><span class="line">    -logcat <span class="string">&#x27;*:silent&#x27;</span> \ </span><br><span class="line">    -no-snapshot \</span><br><span class="line">    -writable-system \</span><br><span class="line">    -no-boot-anim</span><br></pre></td></tr></table></figure>
+
+<p>Once the emulator has started, you can check the carrier has changed to the one you have chosen.</p>
+<h3 id="Another-way"><a href="#Another-way" class="headerlink" title="Another way"></a>Another way</h3><p>Android emulator allow you to pass the iccprofile at boot time as well, so you can copy the iccprofile_for_sim0 to the location you want and start the emulator as follows:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">adb shell getprop|grep gsm</span><br><span class="line">emulator @$(emulator -list-avds|<span class="built_in">head</span>) \</span><br><span class="line">    -logcat <span class="string">&#x27;*:silent&#x27;</span> \ </span><br><span class="line">    -no-snapshot \</span><br><span class="line">    -writable-system \</span><br><span class="line">    -iccprofile LOCATION_TO_YOUR_ICC_PROFILE</span><br><span class="line">    -no-boot-anim</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>Post author:  </strong>KevinSJ
+  </li>
+  <li class="post-copyright-link">
+      <strong>Post link: </strong>
+      <a href="https://jiangsc.me/2022/10/05/android-emulator-carrier-simulation/" title="Android Emulator Tips -- Simulate Mobile Carrier">https://jiangsc.me/2022/10/05/android-emulator-carrier-simulation/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+          <div class="followme">
+  <span>Welcome to my other publishing channels</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="/atom.xml">
+          <span class="icon">
+            <i class="fa fa-rss"></i>
+          </span>
+
+          <span class="label">RSS</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Android/" rel="tag"># Android</a>
+              <a href="/tags/Emulator/" rel="tag"># Emulator</a>
+              <a href="/tags/Android-Development/" rel="tag"># Android Development</a>
+              <a href="/tags/Carrier-Simulation/" rel="tag"># Carrier Simulation</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/09/17/linux-user-notes-2/" rel="prev" title="Linux user notes -- open Zoom meetings in one click">
+                  <i class="fa fa-chevron-left"></i> Linux user notes -- open Zoom meetings in one click
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/10/29/neovim-tricks-2/" rel="next" title="Tips for using NeoVim as devtool - 2">
+                  Tips for using NeoVim as devtool - 2 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">KevinSJ</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.6/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.8/pdfobject.min.js","integrity":"sha256-tu9j5pBilBQrWSDePOOajCUdz6hWsid/lBNzK4KgEPM="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
+
+
+
+
+  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.9.1/firebase-app-compat.js" integrity="sha256-BZqADJTynzztcubgFmplXDkhMk7o/6KO4tHzL8X+biE=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.9.1/firebase-firestore-compat.js" integrity="sha256-8Y5+rcygX0v5tCQhOjr4rob7oykEcp6IhhutNKKGzfk=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="firestore" type="application/json">{"enable":true,"collection":"blog_view","apiKey":"AIzaSyAwkI10aTDM2430EyQhtAz5X04hk16ozRc","projectId":"blog-269be"}</script>
+  <script src="/js/third-party/statistics/firestore.js"></script>
+
+
+
+
+<script src="https://unpkg.com/live2d-widget@^3.1.3/lib/L2Dwidget.min.js"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false}});</script></body>
+</html>

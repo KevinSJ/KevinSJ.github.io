@@ -29,7 +29,7 @@
 <meta property="og:description" content="As a developer, one of the most important things is to find the right tool to write code with. To me, that means this tool needs to be lightweight, portable, and most importantly reliable. Why VSCode">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-05-21T03:14:02.000Z">
-<meta property="article:modified_time" content="2022-09-17T11:53:23.602Z">
+<meta property="article:modified_time" content="2022-10-29T10:09:20.835Z">
 <meta property="article:author" content="KevinSJ">
 <meta property="article:tag" content="Vim">
 <meta property="article:tag" content="Tips">
@@ -135,13 +135,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-count">26</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">61</span>
+        <span class="site-state-item-count">64</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -229,7 +229,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 09-17-2022 23:53:23" itemprop="dateModified" datetime="2022-09-17T23:53:23+12:00">09-17-2022</time>
+      <time title="Modified: 10-29-2022 23:09:20" itemprop="dateModified" datetime="2022-10-29T23:09:20+13:00">10-29-2022</time>
     </span>
 
   
@@ -265,9 +265,10 @@
 
 
 <h3 id="Afterthoughts"><a href="#Afterthoughts" class="headerlink" title="Afterthoughts"></a>Afterthoughts</h3><p>There are several caveats with the above solution.<br>First, this mapping will exist in every file type which is not ideal, cause you don&#39;t want to use yarn to test a GO file for example. Therefore, I moved this command to a separate file under the <code>ftplugin</code> folder and call it <code>typescript_mappings.vim</code>.<br>Second, you will always have to locate the test file before you can run the test. This is not a deal breaker, but it is still not perfect. Usually you would refactor a simple function within a file and all you care about is whether the corresponding tests passes, you don&#39;t necessarily need to edit the file or care about where the file is. This prompts me to turn this whole thing into a vimscript function<br>Here goes the function I created: </p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">map &lt;leader&gt;T :Ft&lt;CR&gt;</span><br><span class="line"></span><br><span class="line">if exists(&#x27;*FindTest&#x27;)</span><br><span class="line">    finish</span><br><span class="line">endif</span><br><span class="line">command! -nargs=? Ft call FindTest(&lt;q-args&gt;)</span><br><span class="line">fun! FindTest(...)</span><br><span class="line">  set path+=**</span><br><span class="line"></span><br><span class="line">  let fileName = expand(&#x27;%:t:r&#x27;) . &#x27;.test.ts&#x27;</span><br><span class="line">  execute &#x27;tabnew &#x27;</span><br><span class="line">  execute &#x27;find &#x27;. fileName</span><br><span class="line">  execute &#x27;split term://yarn test &#x27;. fileName . &#x27; --watch&#x27;</span><br><span class="line">endfun</span><br></pre></td></tr></table></figure>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">map</span> <span class="symbol">&lt;leader&gt;</span>T :Ft<span class="symbol">&lt;CR&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">exists</span>(<span class="string">&#x27;*FindTest&#x27;</span>)</span><br><span class="line">    <span class="keyword">finish</span></span><br><span class="line"><span class="keyword">endif</span></span><br><span class="line">command! -nargs=? Ft <span class="keyword">call</span> FindTest(<span class="symbol">&lt;q-args&gt;</span>)</span><br><span class="line">fun! FindTest(...)</span><br><span class="line">  <span class="keyword">set</span> path+=**</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> fileName = <span class="built_in">expand</span>(<span class="string">&#x27;%:t:r&#x27;</span>) . <span class="string">&#x27;.test.ts&#x27;</span></span><br><span class="line">  <span class="keyword">execute</span> <span class="string">&#x27;tabnew &#x27;</span></span><br><span class="line">  <span class="keyword">execute</span> <span class="string">&#x27;find &#x27;</span>. fileName</span><br><span class="line">  <span class="keyword">execute</span> <span class="string">&#x27;split term://yarn test &#x27;</span>. fileName . <span class="string">&#x27; --watch&#x27;</span></span><br><span class="line">endfun</span><br></pre></td></tr></table></figure>
 <p>This function first set the look path to all the directories recursively, then it expand to the filename excluding the extension, then add .test.ts to it. After that, it opens a new tab, open the test file and then create a terminal, yarn test that file in watch mode.</p>
 <p>I put this file under the ftplugin again, but one issue is that because the both the file found and the current file are of the same file type, this means the script will be sourced twice. So I had to put the <code>if exists</code> check. I map this command to <leader> T but you can tailor that to your liking.</p>
+<p>Update Oct 2022: If you like this article, you may also want to check the second article in this series <a href="/2022/10/29/neovim-tricks-2/">here</a>, it is about scratch buffer in vim.</p>
 
     </div>
 

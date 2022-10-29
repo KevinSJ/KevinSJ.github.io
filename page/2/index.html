@@ -131,13 +131,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-count">26</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">61</span>
+        <span class="site-state-item-count">64</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -187,6 +187,198 @@
   
   
 
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://jiangsc.me/2021/05/09/Postgres-JavaScript-and-sorting/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="KevinSJ">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
+      <meta itemprop="description" content="A blog about all things tech.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Kevin Jiang's Technical Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/05/09/Postgres-JavaScript-and-sorting/" class="post-title-link" itemprop="url">Postgres, JavaScript and sorting</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 05-09-2021 13:00:12" itemprop="dateCreated datePublished" datetime="2021-05-09T13:00:12+12:00">05-09-2021</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 10-29-2022 23:09:20" itemprop="dateModified" datetime="2022-10-29T23:09:20+13:00">10-29-2022</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="firestore-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>This week, while setting up local project for work, I encountered some weired issue during the unit test and this has something to do with postgres and its default settings under Windows and other OS.</p>
+<h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h3><p>As an example, consider the following array: <code>[ &#39;D&#39;, &#39;d&#39;, &#39;a&#39;, &#39;A&#39;, &#39;c&#39;, &#39;b&#39;, &#39;CD&#39;, &#39;Capacitor&#39; ]</code></p>
+<p>Sorting this in JavaScript results in case sensitive result, where upper case always come first: </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; [ <span class="string">&#x27;D&#x27;</span>, <span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;A&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;CD&#x27;</span>, <span class="string">&#x27;Capacitor&#x27;</span> ].<span class="title function_">sort</span>()</span><br><span class="line">[ <span class="string">&quot;A&quot;</span>, <span class="string">&quot;CD&quot;</span>, <span class="string">&quot;Capacitor&quot;</span>, <span class="string">&quot;D&quot;</span>, <span class="string">&quot;a&quot;</span>, <span class="string">&quot;b&quot;</span>, <span class="string">&quot;c&quot;</span>, <span class="string">&quot;d&quot;</span> ]</span><br></pre></td></tr></table></figure>
+<p>Sorting this in Postgres SQL with default installation will yield a case insensitive sorting where upper and lower case are mixed:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> regexp_split_to_table(<span class="string">&#x27;D d a A c b CD Capacitor&#x27;</span>, <span class="string">&#x27; &#x27;</span>) <span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"> regexp_split_to_table </span><br><span class="line"><span class="comment">-----------------------</span></span><br><span class="line"> a</span><br><span class="line"> A</span><br><span class="line"> b</span><br><span class="line"> c</span><br><span class="line"> Capacitor</span><br><span class="line"> CD</span><br><span class="line"> d</span><br><span class="line"> D</span><br></pre></td></tr></table></figure>
+
+<p>The goal here is to make sorting consistent, so we can either fix the Postgres side or fix the JavaScript side.</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/05/09/Postgres-JavaScript-and-sorting/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://jiangsc.me/2021/04/17/Android-ADB-and-user-management/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="KevinSJ">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
+      <meta itemprop="description" content="A blog about all things tech.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Kevin Jiang's Technical Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/04/17/Android-ADB-and-user-management/" class="post-title-link" itemprop="url">Android ADB and user management</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 04-17-2021 16:24:17" itemprop="dateCreated datePublished" datetime="2021-04-17T16:24:17+12:00">04-17-2021</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 10-29-2022 23:09:20" itemprop="dateModified" datetime="2022-10-29T23:09:20+13:00">10-29-2022</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="firestore-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>⚠ This article requires Rooted Android phones, please follow the instructions with caution.</p>
+<h3 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h3><p>Since Android 5, the Android system have added the capability of multi-user, the aim is most likely to make sharing devices easier between different users in the family. Later on, Google added again something called profile, this allows enterprise to manage devices their employers use. In this article, I am going to explore some other possibilities enabled by multiuser&#x2F;profile functionality. More specifically I&#39;m going to focus on the restricted user profile. </p>
+<h3 id="Problem-to-Solve"><a href="#Problem-to-Solve" class="headerlink" title="Problem to Solve"></a>Problem to Solve</h3><p>There are several problems I&#39;m aiming to solve with the restricted profile: </p>
+<ul>
+<li>I want to focus on things that actually matter rather than spending too much time on my phone, I would like my phone to be without any apps that can disturb or distract me when I want to focus. But I don&#39;t want to uninstall certain apps, as they are necessary in order to keep in touch with my family and friends.</li>
+<li>I want to install certain apps that can track me into a separate space, a space where it is impossible for them to track me using the microphone, camera, or location.
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/04/17/Android-ADB-and-user-management/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="https://jiangsc.me/2021/02/27/Terraform-version-constraint-and-debugging/">
 
@@ -224,7 +416,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 09-17-2022 23:53:23" itemprop="dateModified" datetime="2022-09-17T23:53:23+12:00">09-17-2022</time>
+      <time title="Modified: 10-29-2022 23:09:20" itemprop="dateModified" datetime="2022-10-29T23:09:20+13:00">10-29-2022</time>
     </span>
 
   
@@ -314,7 +506,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 09-17-2022 23:53:23" itemprop="dateModified" datetime="2022-09-17T23:53:23+12:00">09-17-2022</time>
+      <time title="Modified: 10-29-2022 23:09:20" itemprop="dateModified" datetime="2022-10-29T23:09:20+13:00">10-29-2022</time>
     </span>
 
   
@@ -404,7 +596,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 09-17-2022 23:53:23" itemprop="dateModified" datetime="2022-09-17T23:53:23+12:00">09-17-2022</time>
+      <time title="Modified: 10-29-2022 23:09:20" itemprop="dateModified" datetime="2022-10-29T23:09:20+13:00">10-29-2022</time>
     </span>
 
   
@@ -505,7 +697,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 09-17-2022 23:53:23" itemprop="dateModified" datetime="2022-09-17T23:53:23+12:00">09-17-2022</time>
+      <time title="Modified: 10-29-2022 23:09:20" itemprop="dateModified" datetime="2022-10-29T23:09:20+13:00">10-29-2022</time>
     </span>
 
   
@@ -599,7 +791,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 09-17-2022 23:53:23" itemprop="dateModified" datetime="2022-09-17T23:53:23+12:00">09-17-2022</time>
+      <time title="Modified: 10-29-2022 23:09:20" itemprop="dateModified" datetime="2022-10-29T23:09:20+13:00">10-29-2022</time>
     </span>
 
   
@@ -689,7 +881,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 09-17-2022 23:53:23" itemprop="dateModified" datetime="2022-09-17T23:53:23+12:00">09-17-2022</time>
+      <time title="Modified: 10-29-2022 23:09:20" itemprop="dateModified" datetime="2022-10-29T23:09:20+13:00">10-29-2022</time>
     </span>
 
   
@@ -787,7 +979,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 09-17-2022 23:53:23" itemprop="dateModified" datetime="2022-09-17T23:53:23+12:00">09-17-2022</time>
+      <time title="Modified: 10-29-2022 23:09:20" itemprop="dateModified" datetime="2022-10-29T23:09:20+13:00">10-29-2022</time>
     </span>
 
   
@@ -877,7 +1069,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 09-17-2022 23:53:23" itemprop="dateModified" datetime="2022-09-17T23:53:23+12:00">09-17-2022</time>
+      <time title="Modified: 10-29-2022 23:09:20" itemprop="dateModified" datetime="2022-10-29T23:09:20+13:00">10-29-2022</time>
     </span>
 
   
@@ -904,190 +1096,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2019/10/12/Automating-Android-data-saver-with-tasker/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://jiangsc.me/2019/05/28/Converting-QEMU-VM-to-VirtualBox-VM/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="KevinSJ">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
-      <meta itemprop="description" content="A blog about all things tech.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Kevin Jiang's Technical Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2019/05/28/Converting-QEMU-VM-to-VirtualBox-VM/" class="post-title-link" itemprop="url">Converting QEMU VM to VirtualBox VM</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 05-28-2019 20:55:20" itemprop="dateCreated datePublished" datetime="2019-05-28T20:55:20+12:00">05-28-2019</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 09-17-2022 23:53:23" itemprop="dateModified" datetime="2022-09-17T23:53:23+12:00">09-17-2022</time>
-    </span>
-
-  
-    <span class="post-meta-item" title="Views">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">Views: </span>
-      <span class="firestore-visitors-count"></span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Recently, I decided to convert my QEMU based virtual machine installed on my Manjaro Linux to the VirtualBox format. The reason behind this is that I would like to be able to use the same VM across different host system (specifically Manjaro Linux and Windows 7). It is not a easy  thing to do, so I decided to document it for future references.</p>
-<h3 id="Prerequisite"><a href="#Prerequisite" class="headerlink" title="Prerequisite?"></a>Prerequisite?</h3><ul>
-<li>An existing image created using QEMU (My VM file end with .img,  for example)</li>
-<li>VirtualBox
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/05/28/Converting-QEMU-VM-to-VirtualBox-VM/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://jiangsc.me/2018/06/24/Automating-things-on-Android-with-Tasker/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="KevinSJ">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
-      <meta itemprop="description" content="A blog about all things tech.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Kevin Jiang's Technical Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2018/06/24/Automating-things-on-Android-with-Tasker/" class="post-title-link" itemprop="url">Automating things on Android with Tasker (I)</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 06-24-2018 21:30:31" itemprop="dateCreated datePublished" datetime="2018-06-24T21:30:31+12:00">06-24-2018</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 09-17-2022 23:53:23" itemprop="dateModified" datetime="2022-09-17T23:53:23+12:00">09-17-2022</time>
-    </span>
-
-  
-    <span class="post-meta-item" title="Views">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">Views: </span>
-      <span class="firestore-visitors-count"></span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="Why-Tasker"><a href="#Why-Tasker" class="headerlink" title="Why Tasker?"></a>Why Tasker?</h3><p>This is probably an article that is long overdue to me personally. I have been an Android user since 2011, started with my Nexus S that I bought for use in college. It seems to me, the app Tasker had been very famous in the Andorid community, especially among users who know how to program.<br>For those who have never heard of this app, this is a powerful app that allows you to automate almost anything that you can think of on the Android system.For me,It was not until August of last year when I bought the tasker app that I started to realize how powerful this app is. I am really not a big fan of its old school UI and design so I didn&#39;t start using it until this year. After uisng it for a while, I did come to realize that there is no other apps close to it, if I were to move to iOS, this is probably among one the apps that I will miss.  In this article I will explain how I used takser to automate things for myself, it is some boring stuff, but it did become something that I&#39;m using everyday.</p>
-<h3 id="What-can-you-use-it-for"><a href="#What-can-you-use-it-for" class="headerlink" title="What can you use it for?"></a>What can you use it for?</h3><p>I will list one of the most used Tasks&#x2F;Profiles that I created and used in this app:</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2018/06/24/Automating-things-on-Android-with-Tasker/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>

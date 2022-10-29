@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="9g-E_K0GEppNWOItj0YYJV_1UbSLdVFrKOhHSPLkJcM">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha256-xejo6yLi6vGtAjcMIsY8BHdKsLg7QynVlFMzdQgUuy8=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"jiangsc.me","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="This is the second article about NeoVim tips, if you are interested in the first one, please check here   Motivation: the need for a scratch pad within NeoVimQuite often in my daily work, I need to ch">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Tips for using NeoVim as devtool - 2">
+<meta property="og:url" content="https://jiangsc.me/2022/10/29/neovim-tricks-2/index.html">
+<meta property="og:site_name" content="Kevin Jiang&#39;s Technical Blog">
+<meta property="og:description" content="This is the second article about NeoVim tips, if you are interested in the first one, please check here   Motivation: the need for a scratch pad within NeoVimQuite often in my daily work, I need to ch">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-10-29T06:00:04.000Z">
+<meta property="article:modified_time" content="2022-10-29T10:09:20.835Z">
+<meta property="article:author" content="KevinSJ">
+<meta property="article:tag" content="Vim">
+<meta property="article:tag" content="Tips">
+<meta property="article:tag" content="nvim">
+<meta property="article:tag" content="NeoVim">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://jiangsc.me/2022/10/29/neovim-tricks-2/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://jiangsc.me/2022/10/29/neovim-tricks-2/","path":"2022/10/29/neovim-tricks-2/","title":"Tips for using NeoVim as devtool - 2"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Tips for using NeoVim as devtool - 2 | Kevin Jiang's Technical Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Kevin Jiang's Technical Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Kevin Jiang's Technical Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-gallery"><a href="/gallery/" rel="section"><i class="fa fa-image fa-fw"></i>Gallery</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Motivation-the-need-for-a-scratch-pad-within-NeoVim"><span class="nav-number">1.</span> <span class="nav-text">Motivation: the need for a scratch pad within NeoVim</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution-Scratch-buffer-in-VIM"><span class="nav-number">2.</span> <span class="nav-text">Solution: Scratch buffer in VIM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bonus-Enhanced-scratch-buffer"><span class="nav-number">3.</span> <span class="nav-text">Bonus: Enhanced scratch buffer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Future-Improvements"><span class="nav-number">4.</span> <span class="nav-text">Future Improvements</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">KevinSJ</p>
+  <div class="site-description" itemprop="description">A blog about all things tech.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">64</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/kevinsj" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;kevinsj" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/kevsj" title="LinkedIn → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;kevsj" rel="noopener" target="_blank"><i class="fab fa-linkedin fa-fw"></i>LinkedIn</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/KevinSJ" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://jiangsc.me/2022/10/29/neovim-tricks-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="KevinSJ">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
+      <meta itemprop="description" content="A blog about all things tech.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Tips for using NeoVim as devtool - 2 | Kevin Jiang's Technical Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Tips for using NeoVim as devtool - 2
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 10-29-2022 19:00:04 / Modified: 23:09:20" itemprop="dateCreated datePublished" datetime="2022-10-29T19:00:04+13:00">10-29-2022</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="firestore-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <div class="note info"><p>This is the second article about NeoVim tips, if you are interested in the first one, please check <a href="/2022/05/21/neovim-tricks-1/">here</a></p>
+</div>
+
+<h3 id="Motivation-the-need-for-a-scratch-pad-within-NeoVim"><a href="#Motivation-the-need-for-a-scratch-pad-within-NeoVim" class="headerlink" title="Motivation: the need for a scratch pad within NeoVim"></a>Motivation: the need for a scratch pad within NeoVim</h3><p>Quite often in my daily work, I need to check some response that are in JSON or XML format. I could open VSCode and paste in and format whatever I got to readable format, or I could also find an online formatter to format these things. But, as a VIM user, I want to do it in a VIM way. The answer comes down to scratch buffer.</p>
+<span id="more"></span>
+
+<h3 id="Solution-Scratch-buffer-in-VIM"><a href="#Solution-Scratch-buffer-in-VIM" class="headerlink" title="Solution: Scratch buffer in VIM"></a>Solution: Scratch buffer in VIM</h3><p>A scratch buffer, well, is a scratch buffer.<br>In VIM, this means:</p>
+<ol>
+<li>It should only stay within memory, no actual file backing. So <code>setlocal buftype=nofile</code></li>
+<li>It should not have swap file backing. So <code>setlocal noswapfile</code></li>
+<li>It should be hidden from the list of buffers. So <code>set bufhidden=hide</code></li>
+</ol>
+<p>Based on these characteristics, we can create a VIM function that creates a scratch buffer:</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">command! -nargs=<span class="number">0</span> Ns <span class="keyword">call</span> Newscratch()</span><br><span class="line">fun! Newscratch()</span><br><span class="line">  <span class="keyword">execute</span> <span class="string">&#x27;tabnew &#x27;</span></span><br><span class="line">  <span class="keyword">setlocal</span> buftype=nofile</span><br><span class="line">  <span class="keyword">setlocal</span> bufhidden=<span class="keyword">hide</span></span><br><span class="line">  <span class="keyword">setlocal</span> noswapfile</span><br><span class="line">endfun</span><br></pre></td></tr></table></figure>
+
+<p>The above code declares a function called Newscratch in vim and map that function as Ns for short. Newscratch creates a new tab, and then set that tab as a scratch as defined above.</p>
+<p>Since I&#39;m in the process of migrating my vim configuration into Lua for NeoVim, here is a Lua version of the same function</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">new_scratch</span><span class="params">()</span></span></span><br><span class="line">    vim.api.nvim_command(<span class="string">&#x27;tabnew&#x27;</span>)</span><br><span class="line">    <span class="comment">--[[</span></span><br><span class="line"><span class="comment">    [Parameters:</span></span><br><span class="line"><span class="comment">    [&#123;listed&#125; Sets &#x27;buflisted&#x27;</span></span><br><span class="line"><span class="comment">    [&#123;scratch&#125; Creates a &quot;throwaway&quot; scratch-buffer for temporary work (always</span></span><br><span class="line"><span class="comment">    [&#x27;nomodified&#x27;). Also sets &#x27;nomodeline&#x27; on the buffer.</span></span><br><span class="line"><span class="comment">    ]]</span></span><br><span class="line">    vim.api.nvim_create_buf(<span class="literal">false</span>, <span class="literal">true</span>)</span><br><span class="line">    vim.opt_local.buftype = <span class="string">&#x27;nofile&#x27;</span></span><br><span class="line">    vim.opt_local.bufhidden = <span class="string">&#x27;hide&#x27;</span></span><br><span class="line">    vim.opt_local.swapfile = <span class="literal">false</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Bonus-Enhanced-scratch-buffer"><a href="#Bonus-Enhanced-scratch-buffer" class="headerlink" title="Bonus: Enhanced scratch buffer"></a>Bonus: Enhanced scratch buffer</h3><p>I have found several issues with my initial implementation of scratch buffer, this is not an exhausted list, but the issues are:</p>
+<ol>
+<li>I sometimes want to save the content of the buffer to an actual file, I found myself doing that quite often, to a point I want to have it builtin to the scratch buffer.</li>
+<li>Quite often, I want to format the content of the buffer, if it&#39;s xml, I want to use XML formatter, if JSON, use JSON formatter. I also need to decode base64 encoded strings to normal text, and it would be a good idea to just include this as well.</li>
+<li>When JSON and XML files are large, they are quite difficult to navigate, I want to be able to use the vim builtin folding functionality to fold such files.</li>
+</ol>
+<p>These things listed above are what I use most often, therefore, I ended up enhancing my scratch buffer with some keymaps.<br>First up is the saving part, in VIM script, you can achieve it like this:</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">nnoremap</span> <span class="symbol">&lt;buffer&gt;</span> <span class="symbol">&lt;silent&gt;</span> ,s :<span class="keyword">execute</span>(<span class="string">&#x27;:file scratch_&#x27;</span>) .. <span class="built_in">localtime</span>() .. (&amp;ft != <span class="string">&#x27;&#x27;</span> ? <span class="string">&#x27;.&#x27;</span> .. &amp;ft : <span class="string">&#x27;&#x27;</span>)<span class="symbol">&lt;cr&gt;</span><span class="symbol">&lt;bar&gt;</span>:<span class="keyword">set</span> buftype= swapfile<span class="symbol">&lt;bar&gt;</span>:<span class="keyword">w</span><span class="symbol">&lt;cr&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>The above code maps <code>,s</code> to saving the scratch file with localtime() (which returns unix timestamp) and appending the appropriate file format based on the <code>&amp;ft</code> variable, it also reset the buffer type so subsequent changes can be saved to the file.</p>
+<p>Next, I added the ability to format, this is done through external tools: for JSON, I used <code>jq</code>; for XML, I used <code>xmllint</code>. Both of these software are open source.</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">nnoremap</span> <span class="symbol">&lt;silent&gt;</span> <span class="symbol">&lt;buffer&gt;</span> ,<span class="keyword">xm</span> :%!xmllint --format - <span class="symbol">&lt;cr&gt;</span></span><br><span class="line"><span class="keyword">nnoremap</span> <span class="symbol">&lt;silent&gt;</span> <span class="symbol">&lt;buffer&gt;</span> ,ff :%!jq . <span class="symbol">&lt;cr&gt;</span></span><br><span class="line"><span class="keyword">vmap</span> <span class="symbol">&lt;silent&gt;</span> <span class="symbol">&lt;buffer&gt;</span> ,dc :!base64 -d <span class="symbol">&lt;cr&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>As you can see, I mapped <code>,ff</code> to jq formatting and <code>,xm</code> to XML formatting, <code>,dc</code> is mapped to base64 decoding.</p>
+<p>Last but not least is the folding, I eventually combined the formatting with the folding, so I will present the updated version of the above code that included folding:</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">nnoremap</span> <span class="symbol">&lt;silent&gt;</span> <span class="symbol">&lt;buffer&gt;</span> ,ff :%!jq . <span class="symbol">&lt;cr&gt;</span><span class="symbol">&lt;bar&gt;</span>:<span class="keyword">setf</span> json<span class="symbol">&lt;bar&gt;</span> <span class="keyword">set</span> foldmethod=expr<span class="symbol">&lt;bar&gt;</span><span class="keyword">set</span> foldexpr=nvim_treesitter#foldexpr()<span class="symbol">&lt;bar&gt;</span>:redraw!<span class="symbol">&lt;bar&gt;</span>:<span class="keyword">foldopen</span><span class="symbol">&lt;cr&gt;</span></span><br><span class="line"><span class="keyword">nnoremap</span> <span class="symbol">&lt;silent&gt;</span> <span class="symbol">&lt;buffer&gt;</span> ,<span class="keyword">xm</span> :%!xmllint --format - <span class="symbol">&lt;cr&gt;</span><span class="symbol">&lt;bar&gt;</span>:<span class="keyword">setf</span> html<span class="symbol">&lt;bar&gt;</span>:<span class="keyword">set</span> foldmethod=expr<span class="symbol">&lt;bar&gt;</span><span class="keyword">set</span> foldexpr=nvim_treesitter#foldexpr()<span class="symbol">&lt;bar&gt;</span>:redraw!<span class="symbol">&lt;cr&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>This folding uses nvim_treesitter to fold, so a prerequisite is to have treesitter installed.</p>
+<p>Once I solved the three issues I faced, I combined the functionality into the VIM function I created, the final version is as below:</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">command! -nargs=<span class="number">0</span> Ns <span class="keyword">call</span> Newscratch()</span><br><span class="line">fun! Newscratch()</span><br><span class="line">  <span class="keyword">execute</span> <span class="string">&#x27;tabnew &#x27;</span></span><br><span class="line">  <span class="keyword">nnoremap</span> <span class="symbol">&lt;silent&gt;</span> <span class="symbol">&lt;buffer&gt;</span> <span class="symbol">&lt;Leader&gt;</span>ff :%!jq . <span class="symbol">&lt;cr&gt;</span><span class="symbol">&lt;bar&gt;</span>:<span class="keyword">setf</span> json<span class="symbol">&lt;bar&gt;</span> <span class="keyword">set</span> foldmethod=expr<span class="symbol">&lt;bar&gt;</span><span class="keyword">set</span> foldexpr=nvim_treesitter#foldexpr()<span class="symbol">&lt;bar&gt;</span>:redraw!<span class="symbol">&lt;bar&gt;</span>:<span class="keyword">foldopen</span><span class="symbol">&lt;cr&gt;</span></span><br><span class="line">  <span class="keyword">nnoremap</span> <span class="symbol">&lt;silent&gt;</span> <span class="symbol">&lt;buffer&gt;</span> ,ff :%!jq . <span class="symbol">&lt;cr&gt;</span><span class="symbol">&lt;bar&gt;</span>:<span class="keyword">setf</span> json<span class="symbol">&lt;bar&gt;</span> <span class="keyword">set</span> foldmethod=expr<span class="symbol">&lt;bar&gt;</span><span class="keyword">set</span> foldexpr=nvim_treesitter#foldexpr()<span class="symbol">&lt;bar&gt;</span>:redraw!<span class="symbol">&lt;bar&gt;</span>:<span class="keyword">foldopen</span><span class="symbol">&lt;cr&gt;</span></span><br><span class="line">  <span class="keyword">nnoremap</span> <span class="symbol">&lt;silent&gt;</span> <span class="symbol">&lt;buffer&gt;</span> ,<span class="keyword">xm</span> :%!xmllint --format - <span class="symbol">&lt;cr&gt;</span><span class="symbol">&lt;bar&gt;</span>:<span class="keyword">setf</span> html<span class="symbol">&lt;bar&gt;</span>:<span class="keyword">set</span> foldmethod=expr<span class="symbol">&lt;bar&gt;</span><span class="keyword">set</span> foldexpr=nvim_treesitter#foldexpr()<span class="symbol">&lt;bar&gt;</span>:redraw!<span class="symbol">&lt;cr&gt;</span></span><br><span class="line">  <span class="keyword">nnoremap</span> <span class="symbol">&lt;buffer&gt;</span> <span class="symbol">&lt;silent&gt;</span> ,s :<span class="keyword">execute</span>(<span class="string">&#x27;:file scratch_&#x27;</span>) .. <span class="built_in">localtime</span>() .. (&amp;ft != <span class="string">&#x27;&#x27;</span> ? <span class="string">&#x27;.&#x27;</span> .. &amp;ft : <span class="string">&#x27;&#x27;</span>)<span class="symbol">&lt;cr&gt;</span><span class="symbol">&lt;bar&gt;</span>:<span class="keyword">set</span> buftype= swapfile<span class="symbol">&lt;bar&gt;</span>:<span class="keyword">w</span><span class="symbol">&lt;cr&gt;</span></span><br><span class="line">  <span class="keyword">nnoremap</span> <span class="symbol">&lt;buffer&gt;</span> <span class="symbol">&lt;silent&gt;</span> ,n :<span class="keyword">execute</span>(<span class="string">&#x27;:file ~/notes/note_&#x27;</span>) .. <span class="built_in">localtime</span>() .. (&amp;ft != <span class="string">&#x27;&#x27;</span> ? <span class="string">&#x27;.&#x27;</span> .. &amp;ft : <span class="string">&#x27;&#x27;</span>)<span class="symbol">&lt;cr&gt;</span><span class="symbol">&lt;bar&gt;</span>:<span class="keyword">set</span> buftype= swapfile<span class="symbol">&lt;bar&gt;</span>:<span class="keyword">w</span><span class="symbol">&lt;cr&gt;</span></span><br><span class="line">  <span class="keyword">vmap</span> <span class="symbol">&lt;silent&gt;</span> <span class="symbol">&lt;buffer&gt;</span> ,dc :!base64 -d <span class="symbol">&lt;cr&gt;</span></span><br><span class="line">  <span class="keyword">setlocal</span> buftype=nofile</span><br><span class="line">  <span class="keyword">setlocal</span> bufhidden=<span class="keyword">hide</span></span><br><span class="line">  <span class="keyword">setlocal</span> noswapfile</span><br><span class="line">  <span class="keyword">setlocal</span> wrap</span><br><span class="line">endfun</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="Future-Improvements"><a href="#Future-Improvements" class="headerlink" title="Future Improvements"></a>Future Improvements</h3><p>I&#39;m actually quite happy with what I have achieved with the script I wrote above. I do acknowledge there are several things that can be improved, those are on my wishlist, and I do not have a way to achieve them at the moment:</p>
+<ol>
+<li>Format file upon pasting based on the file type detection. -- This is my most wanted feature, but question is how will you be able to know the file type without a file extension, probably will never be able to achieve.</li>
+<li>Scratch buffer that can be opened within a float window within VIM.  -- This is achievable, but may not have too much value, maybe can do that later.</li>
+<li>Split things into function. -- This is probably really necessary, but for now, I will just leave as is. Maybe will convert to function when I have time.</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>Post author:  </strong>KevinSJ
+  </li>
+  <li class="post-copyright-link">
+      <strong>Post link: </strong>
+      <a href="https://jiangsc.me/2022/10/29/neovim-tricks-2/" title="Tips for using NeoVim as devtool - 2">https://jiangsc.me/2022/10/29/neovim-tricks-2/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+          <div class="followme">
+  <span>Welcome to my other publishing channels</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="/atom.xml">
+          <span class="icon">
+            <i class="fa fa-rss"></i>
+          </span>
+
+          <span class="label">RSS</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Vim/" rel="tag"># Vim</a>
+              <a href="/tags/Tips/" rel="tag"># Tips</a>
+              <a href="/tags/nvim/" rel="tag"># nvim</a>
+              <a href="/tags/NeoVim/" rel="tag"># NeoVim</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/10/05/android-emulator-carrier-simulation/" rel="prev" title="Android Emulator Tips -- Simulate Mobile Carrier">
+                  <i class="fa fa-chevron-left"></i> Android Emulator Tips -- Simulate Mobile Carrier
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">KevinSJ</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.6/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.8/pdfobject.min.js","integrity":"sha256-tu9j5pBilBQrWSDePOOajCUdz6hWsid/lBNzK4KgEPM="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
+
+
+
+
+  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.9.1/firebase-app-compat.js" integrity="sha256-BZqADJTynzztcubgFmplXDkhMk7o/6KO4tHzL8X+biE=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.9.1/firebase-firestore-compat.js" integrity="sha256-8Y5+rcygX0v5tCQhOjr4rob7oykEcp6IhhutNKKGzfk=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="firestore" type="application/json">{"enable":true,"collection":"blog_view","apiKey":"AIzaSyAwkI10aTDM2430EyQhtAz5X04hk16ozRc","projectId":"blog-269be"}</script>
+  <script src="/js/third-party/statistics/firestore.js"></script>
+
+
+
+
+<script src="https://unpkg.com/live2d-widget@^3.1.3/lib/L2Dwidget.min.js"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false}});</script></body>
+</html>
