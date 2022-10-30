@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
 <meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.2.0">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
@@ -29,7 +29,7 @@
 <meta property="og:description" content="Recently, I decided to convert my QEMU based virtual machine installed on my Manjaro Linux to the VirtualBox format. The reason behind this is that I would like to be able to use the same VM across di">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2019-05-28T08:55:20.000Z">
-<meta property="article:modified_time" content="2022-10-29T10:09:20.835Z">
+<meta property="article:modified_time" content="2022-08-28T03:27:50.489Z">
 <meta property="article:author" content="KevinSJ">
 <meta property="article:tag" content="VitualBox">
 <meta property="article:tag" content="QEMU">
@@ -51,7 +51,7 @@
 
 
 
-
+<script src="https://fastly.jsdelivr.net/npm/exif-js@2/exif.min.js"></script>
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
@@ -228,7 +228,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 10-29-2022 23:09:20" itemprop="dateModified" datetime="2022-10-29T23:09:20+13:00">10-29-2022</time>
+      <time title="Modified: 08-28-2022 15:27:50" itemprop="dateModified" datetime="2022-08-28T15:27:50+12:00">08-28-2022</time>
     </span>
 
   
@@ -380,6 +380,35 @@
 
 
 
+<script>
+function getExif(target) {
+  const template = "{Make} {Model} {DateTimeOriginal} {FocalLength}mm f/{FNumber} {ExposureTime}s";
+  EXIF.getData(target, function() {
+    const tags = EXIF.getAllTags(this);
+    let result = template;
+    for (let [key, value] of Object.entries(tags)) {
+      if (key === 'ExposureTime' && value <= 0.25) {
+        value = '1/' + parseInt(1 / value);
+      }
+      result = result.replace(`{${key}}`, value);
+    }
+    if (result !== template) {
+      const box = document.createElement('div');
+      target.wrap(box);
+      box.classList.add('exif-container');
+      box.insertAdjacentHTML('beforeend', `<div class="exif-metabar"><span>${result}</span></div>`);
+    }
+  });
+}
+
+[...document.querySelectorAll('.post-body img')].forEach(element => {
+  if (element.complete) getExif(element);
+  // `lazyload` compatible
+  element.addEventListener('load', () => {
+    getExif(element);
+  });
+});
+</script>
 
 <script src="https://unpkg.com/live2d-widget@^3.1.3/lib/L2Dwidget.min.js"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false}});</script></body>
 </html>
