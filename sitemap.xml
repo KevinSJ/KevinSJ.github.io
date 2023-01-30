@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://jiangsc.me/2023/01/30/GO-Split-long-text-by-byte-count/</loc>
+    
+    <lastmod>2023-01-30</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://jiangsc.me/2022/05/21/neovim-tricks-1/</loc>
     
     <lastmod>2022-10-29</lastmod>
@@ -714,6 +723,48 @@
   
   <url>
     <loc>https://jiangsc.me/tags/Carrier-Simulation/</loc>
+    <lastmod>2023-01-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/tags/GO/</loc>
+    <lastmod>2023-01-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/tags/Problem-Solving/</loc>
+    <lastmod>2023-01-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/tags/Split-text/</loc>
+    <lastmod>2023-01-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/tags/Byte/</loc>
+    <lastmod>2023-01-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/tags/Rune/</loc>
+    <lastmod>2023-01-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/tags/String/</loc>
     <lastmod>2023-01-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
