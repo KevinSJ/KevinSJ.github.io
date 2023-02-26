@@ -205,7 +205,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 02-26-2023 19:32:59" itemprop="dateModified" datetime="2023-02-26T19:32:59+13:00">02-26-2023</time>
+      <time title="Modified: 02-26-2023 19:37:27" itemprop="dateModified" datetime="2023-02-26T19:37:27+13:00">02-26-2023</time>
     </span>
 
   
@@ -228,18 +228,14 @@
           <p>I&#39;m not a mobile app developer, but for my day-to-day job, I&#39;m responsible for creating APIs that&#39;s consumed by mobile client. This means I often have both iOS and Android simulator running at the same time.</p>
 <p>Normally, you would have to open both XCode and Android Studio respectively as that is how things are supposed to work: start each IDE, build the app in the IDE, and then run the app in the simulator through the IDE.</p>
 <p>I don&#39;t like to do things this way, it is inefficient and will (most likely) consume lots of resources. Therefore, I developed my own scripts to do things efficiently in the command line. In this article, I will share some of the scripts I use when working with Android code, I believe these scripts are huge quality of life improvement for developers like me who need to run mobile apps in a simulator as part of their day-to-day job, but not necessarily modify or commit to the mobile code. Some of the things discussed in this article have already been mentioned briefly <a href="/2022/10/05/android-emulator-carrier-simulation/">last year</a>.</p>
-<h3 id="Testing-deep-links-in-Android-Emulator"><a href="#Testing-deep-links-in-Android-Emulator" class="headerlink" title="Testing deep links in Android Emulator"></a>Testing deep links in Android Emulator</h3><p>If you are not familiar with deep links, check out <a target="_blank" rel="noopener" href="https://developer.android.com/training/app-links/deep-linking">article about deep link on android</a>.</p>
-<p>I will cover several methods I have found to test deep links.</p>
-<div class="tabs" id=""><ul class="nav-tabs"><li class="tab active"><a href="#-1">Method 1: Sending SMS through the telnet with link</a></li><li class="tab"><a href="#-2">Method 2: Directly test the deep link through ADB and intent</a></li></ul><div class="tab-content"><div class="tab-pane active" id="-1"><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">sendDeepLink</span></span>() &#123;</span><br><span class="line">    <span class="comment"># Define your deep link here the first param passed to this function will</span></span><br><span class="line">    <span class="comment"># be the actual deep link</span></span><br><span class="line">    URL=<span class="string">&quot;http://YOUR_DEEP_LINK_DOMAIN/&quot;</span><span class="variable">$1</span></span><br><span class="line"></span><br><span class="line">    nc localhost 5554 &lt;&lt; <span class="string">_EOF &gt; /dev/null 2&gt;&amp;1</span></span><br><span class="line"><span class="string">auth $(cat  $HOME/.emulator_console_auth_token)</span></span><br><span class="line"><span class="string">sms send SENDER_NAME $URL</span></span><br><span class="line"><span class="string">_EOF</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">URL=<span class="string">&quot;<span class="variable">$1</span>&quot;</span></span><br><span class="line">sendDeepLink <span class="string">&quot;<span class="variable">$URL</span>&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>The script above utilize <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Telnet">telnet</a>, it is a somewhat ancient protocol that&#39;s still implemented in Android Emulators. You can potentially use telnet for many different things. For our purpose, I&#39;m just showing how to send SMS through telnet.</p>
-<p>Starting from the line that begins with nc, here I&#39;m using nc to connect to Android telnet port, which is localhost:5554. I&#39;m also utilizing Heredoc, I&#39;m passing the emulator_console_auth_token as the first thing and authenticate the telnet connection: <code>auth $(cat  $HOME/.emulator_console_auth_token)</code>. If we don&#39;t do this, we will have to copy &amp; paste whatever is in the auth_token file manually.</p>
-<p>Once authenticated to telnet, we will start sending the fake SMS, because this line <code>sms send SENDER_NAME $URL</code> is still part of the Heredoc, so it is ran through the telnet connection. This is instructing the telnet terminal to send the <code>$URL</code> to the emulator as <code>SENDER_NAME</code>. And we close the Heredoc using <code>_EOF</code> which is what we used to open the Heredoc.</p>
-<p>If you would like to know more about telnet, you can checkout the Android docs on <a target="_blank" rel="noopener" href="https://developer.android.com/studio/run/emulator-console#querycontrol">telnet console commands</a></p></div><div class="tab-pane" id="-2"><p><code>adb shell am start -W -a android.intent.action.VIEW -d &quot;your deep link url&quot;</code></p>
-<p>This is probably way more easier than the telnet method. However, I don&#39;t have full Understanding of how this works (and I haven&#39;t tested), so I&#39;m not going to try and explain it.</p></div></div></div>
-
-<p>I found Telnet and ADB are really good tools to help Android development. Hope you find the tips above helpful.</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/02/11/mobile-dev-cli-tips-1/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -301,7 +297,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 02-26-2023 19:32:59" itemprop="dateModified" datetime="2023-02-26T19:32:59+13:00">02-26-2023</time>
+      <time title="Modified: 02-11-2023 18:27:08" itemprop="dateModified" datetime="2023-02-11T18:27:08+13:00">02-11-2023</time>
     </span>
 
   
@@ -383,15 +379,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
+      
 
-      <time title="Created: 01-30-2023 13:04:19" itemprop="dateCreated datePublished" datetime="2023-01-30T13:04:19+13:00">01-30-2023</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 02-26-2023 19:32:59" itemprop="dateModified" datetime="2023-02-26T19:32:59+13:00">02-26-2023</time>
+      <time title="Created: 01-30-2023 13:04:19 / Modified: 18:53:50" itemprop="dateCreated datePublished" datetime="2023-01-30T13:04:19+13:00">01-30-2023</time>
     </span>
 
   
