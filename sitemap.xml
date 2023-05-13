@@ -11,6 +11,15 @@
   </url>
   
   <url>
+    <loc>https://jiangsc.me/2023/05/07/Tips-for-Setting-Up-Linux-on-AMD-based-Thinkpad/</loc>
+    
+    <lastmod>2023-05-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://jiangsc.me/2023/03/11/2023-03-11-technical-postmortem/</loc>
     
     <lastmod>2023-05-13</lastmod>
@@ -841,6 +850,20 @@
   
   <url>
     <loc>https://jiangsc.me/tags/Node-js/</loc>
+    <lastmod>2023-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/tags/ArchLinux/</loc>
+    <lastmod>2023-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/tags/AMD/</loc>
     <lastmod>2023-05-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

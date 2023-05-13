@@ -126,13 +126,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-count">31</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">77</span>
+        <span class="site-state-item-count">79</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -160,6 +160,141 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://jiangsc.me/2023/05/07/Tips-for-Setting-Up-Linux-on-AMD-based-Thinkpad/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="KevinSJ">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
+      <meta itemprop="description" content="A blog about all things tech.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Kevin Jiang's Technical Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/05/07/Tips-for-Setting-Up-Linux-on-AMD-based-Thinkpad/" class="post-title-link" itemprop="url">Tips for Setting Up Linux on AMD based Thinkpad</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 05-07-2023 22:01:51" itemprop="dateCreated datePublished" datetime="2023-05-07T22:01:51+12:00">05-07-2023</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 05-13-2023 22:30:37" itemprop="dateModified" datetime="2023-05-13T22:30:37+12:00">05-13-2023</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="firestore-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>Recently, I bought a new laptop, it is a <a target="_blank" rel="noopener" href="https://www.notebookcheck.net/ThinkPad-Neo-14-Lenovo-launches-new-China-exclusive-14-inch-ThinkPad.616679.0.html">Lenovo Thinkpad Neo14</a>. This is an exclusive model for the Chinese market. I was quite happy with the build quality and the look of it, only thing I dislike is it came pre-installed with Windows 11 which bundled many different kind of useless software.</p>
+<p>To me, on the second day of getting the laptop, I start installing Linux on it. More specifically, I installed Arch Linux.</p>
+<h3 id="Prior-Experience-with-Arch-Linux"><a href="#Prior-Experience-with-Arch-Linux" class="headerlink" title="Prior Experience with Arch Linux"></a>Prior Experience with Arch Linux</h3><p>I had been a long time Linux user, my earlier days of Linux starts with Ubuntu.I started dual-boot Linux and Windows when I got a laptop for my University.<br>Depending on who you ask, people might tell you Manjaro is not actually Arch. I don&#39;t have any strong opinion on this, but over the years, I did learn quite a lot of stuff through using Manjaro, this eventually lead me to migrate to pure Arch when I got the chance to upgrade my laptop SSD from the one that&#39;s pre-installed to a NVME SSD.</p>
+<p>I have been using Arch since September 2022, I&#39;ve been quite happy with everything. So for this new laptop, I&#39;ve decided to continue using Linux. This article will be mainly about the issues I faced during my migration to the new laptop, and how I resolve those issues.</p>
+<p>My hope is that this article would serve as a future reference should I need to this kind of migration again. And it would help some other people who face similar issues and find their way here.</p>
+<h3 id="Resolving-Migration-Issues"><a href="#Resolving-Migration-Issues" class="headerlink" title="Resolving Migration Issues"></a>Resolving Migration Issues</h3><p>My approach was a bit different when it comes to &#39;migration&#39; -- I directly took the SSD from my old Intel laptop and install it on the new one.</p>
+<h4 id="Issue-1-Can-not-boot"><a href="#Issue-1-Can-not-boot" class="headerlink" title="Issue #1: Can not boot"></a>Issue #1: Can not boot</h4><p>No one would expect Linux to be a plug-and-play OS, me neither, so I wasn&#39;t too surprised when my new laptop didn&#39;t boot correctly. The next thing I did was to get a thumb drive with Arch Linux ISO and boot into it.</p>
+<p><strong>Solution</strong>:</p>
+<ul>
+<li>Boot into Arch Linux install ISO.</li>
+<li>Connect to internet<ul>
+<li>iwctl station wlan0 get-networks</li>
+<li>iwctl station wlan0 connect <WI-FI name></li>
+</ul>
+</li>
+<li>Mount the drive for the actual partition and chroot to the actual installed OS with the following:<ul>
+<li><code>mount /dev/nvme0n1p1 /mnt</code></li>
+<li><code>mount /dev/nvme0n1p2 /mnt/boot</code> (because I had a separate boot drive)</li>
+</ul>
+</li>
+<li>Uninstall Intel microcode, install AMD microcode</li>
+<li>Rebuild the kernel<ul>
+<li><code>sudo mkinitcpio -k /boot/vmlinuz-linux -c /etc/mkinitcpio.conf -g /boot/initramfs-linux.img -S autodetect</code></li>
+</ul>
+</li>
+</ul>
+<p>(At this point, I thought I would have a working OS. Sadly enough, when I reboot, I still wasn&#39;t able to get to the login manager screen. I was suspecting it is an issue with the graphic drive, so I had to reboot into the install ISO and set the run level, I realized later, I didn&#39;t have to do this)</p>
+<ul>
+<li>Set the run level to use console (or command line interface, no graphical interface) -- <code>systemctl set-default multi-user.target</code> (Alternatively, you can potentially try to use Ctrl-Alt-F2 to drop into console mode when the machine failed to boot to login manager)</li>
+</ul>
+<h4 id="Issue-2-Booted-with-no-graphical-interface"><a href="#Issue-2-Booted-with-no-graphical-interface" class="headerlink" title="Issue #2: Booted with no graphical interface"></a>Issue #2: Booted with no graphical interface</h4><p>The next mission was to fix the graphic driver, so it can boot to the graphical interface.<br><strong>Solution</strong>:</p>
+<ul>
+<li>pacman -Sy xf86-video-amdgpu xf86-video-ati (these two packages are necessary, they are the drivers for the amd integrated graphics card)</li>
+<li>pacman -Rns xf86-video-nouveau (Uninstall the Intel driver)</li>
+<li>sudo Xorg -configure (this is to generate the new Xorg config file. This is necessary because my previous laptop was using Intel integrated graphics, and this new one is using AMD)</li>
+</ul>
+<h4 id="Issue-3-Miscellaneous-fix"><a href="#Issue-3-Miscellaneous-fix" class="headerlink" title="Issue #3: Miscellaneous fix"></a>Issue #3: Miscellaneous fix</h4><p>The aforementioned issues are the biggest ones, once I got the laptop setup, almost everything are usable, I don&#39;t even need to do any more setup. There are several caveats though. Here&#39;s a shortlist of those miscellaneous issues.</p>
+<ul>
+<li><p><strong>Fix Polybar and Sxhkd for screen brightness</strong><br>The changing of screen brightness (aka backlight) from the polybar did not work out of the box. This is sort of expected, cause the previous configuration was based on an Intel graphics card.</p>
+<h4 id="Fixing-Polybar"><a href="#Fixing-Polybar" class="headerlink" title="Fixing Polybar:"></a>Fixing Polybar:</h4><p>  My previous polybar configuration was using the xbacklight module, to get the brightness work on my AMD laptop, I had to switch to use brightness module.<br>  Here&#39;s my config for that part</p>
+  <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[module/brightness]</span></span><br><span class="line"><span class="attr">type</span> = internal/backlight</span><br><span class="line"><span class="attr">card</span> = amdgpu_bl0</span><br><span class="line"><span class="attr">use-actual-brightness</span> = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="attr">format</span> = &lt;label&gt;</span><br><span class="line"><span class="attr">label</span> = %&#123;F<span class="comment">#BB5F80&#125;   %&#123;F-&#125;  %percentage% %</span></span><br><span class="line"></span><br><span class="line"><span class="attr">bar-width</span> = <span class="number">10</span></span><br><span class="line"><span class="attr">bar-indicator</span> = |</span><br><span class="line">bar-indicator-foreground = <span class="comment">#fff</span></span><br><span class="line"><span class="attr">bar-indicator-font</span> = <span class="number">2</span></span><br><span class="line"><span class="attr">bar-fill</span> = ─</span><br><span class="line"><span class="attr">bar-fill-font</span> = <span class="number">2</span></span><br><span class="line">bar-fill-foreground = <span class="comment">#9f78e1</span></span><br><span class="line"><span class="attr">bar-empty</span> = ─</span><br><span class="line"><span class="attr">bar-empty-font</span> = <span class="number">2</span></span><br><span class="line"><span class="attr">bar-empty-foreground</span> = <span class="variable">$&#123;colors.foreground-alt&#125;</span></span><br></pre></td></tr></table></figure>
+<h4 id="Fixing-Sxhkd"><a href="#Fixing-Sxhkd" class="headerlink" title="Fixing Sxhkd:"></a>Fixing Sxhkd:</h4><p>  In Sxhkd config, I previously had a shortcut to use xbacklight to increase or decrease the screen brightness, this did not work with Linux, I switched to use a different software called brightnessctl, everything work as expected.</p>
+<p>  Here&#39;s updated configuration for the brightness shortcut</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">XF86MonBrightnessUp</span><br><span class="line">   brightnessctl set 10%+</span><br><span class="line"></span><br><span class="line">XF86MonBrightnessDown</span><br><span class="line">   brightnessctl set 10%-</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Vulkan and OpenCL fix<br>Vulkan and OpenCL are quite useful in that they provide hardware acceleration to certain software, to me, I use Darktable quite often, so I setup OpenCL acceleration by running the following:<br><code>yay opencl-amd</code> or <code>yay rocm-opencl-runtime</code>. Seems like the later one is more recent and supports the latest GPU, however, in my case, installing the first one also works.<br>You can verify your OpenCL installation by running <code>clinfo</code><br>For Vulkan support, install the vulkan-radeon package from aur like below:<br><code>yay vulkan-radeon</code></p>
+</li>
+</ul>
+<h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><ul>
+<li>Arch Linux Wiki on chroot: <a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/chroot">https://wiki.archlinux.org/title/chroot</a></li>
+<li>Arch Linux Wiki on GPGPU: <a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/GPGPU">https://wiki.archlinux.org/title/GPGPU</a></li>
+<li>Arch Linux Wiki on backlight: <a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/backlight">https://wiki.archlinux.org/title/backlight</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -205,7 +340,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 05-13-2023 16:37:09" itemprop="dateModified" datetime="2023-05-13T16:37:09+12:00">05-13-2023</time>
+      <time title="Modified: 05-13-2023 22:30:37" itemprop="dateModified" datetime="2023-05-13T22:30:37+12:00">05-13-2023</time>
     </span>
 
   
@@ -296,7 +431,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 05-13-2023 16:37:09" itemprop="dateModified" datetime="2023-05-13T16:37:09+12:00">05-13-2023</time>
+      <time title="Modified: 05-13-2023 22:30:37" itemprop="dateModified" datetime="2023-05-13T22:30:37+12:00">05-13-2023</time>
     </span>
 
   
@@ -978,99 +1113,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://jiangsc.me/2022/03/06/hide-phone-number-when-making-calls/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="KevinSJ">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
-      <meta itemprop="description" content="A blog about all things tech.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Kevin Jiang's Technical Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/03/06/hide-phone-number-when-making-calls/" class="post-title-link" itemprop="url">Hide Phone Number when making calls</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 03-06-2022 17:43:57" itemprop="dateCreated datePublished" datetime="2022-03-06T17:43:57+13:00">03-06-2022</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 08-28-2022 16:00:48" itemprop="dateModified" datetime="2022-08-28T16:00:48+12:00">08-28-2022</time>
-    </span>
-
-  
-    <span class="post-meta-item" title="Views">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">Views: </span>
-      <span class="firestore-visitors-count"></span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <div class="note danger"><h4 id="Warning"><a href="#Warning" class="headerlink" title="Warning"></a>Warning</h4><p>⚠ Hiding phone numbers may not be legal in some places, and even if you hide your number, you mobile operator <strong>WILL</strong> (of course) see your number. Use the method described in this article at your own risk!</p>
-</div>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/03/06/hide-phone-number-when-making-calls/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" title="Next page" aria-label="Next page" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" title="Next page" aria-label="Next page" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>
