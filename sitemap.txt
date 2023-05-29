@@ -107,8 +107,8 @@ https://jiangsc.me/tags/Rune/
 https://jiangsc.me/tags/String/
 https://jiangsc.me/tags/telnet/
 https://jiangsc.me/tags/Command-line/
-https://jiangsc.me/tags/ArchLinux/
-https://jiangsc.me/tags/AMD/
 https://jiangsc.me/tags/postmortem/
 https://jiangsc.me/tags/production-incident/
 https://jiangsc.me/tags/Node-js/
+https://jiangsc.me/tags/ArchLinux/
+https://jiangsc.me/tags/AMD/
