@@ -20,6 +20,15 @@
   </url>
   
   <url>
+    <loc>https://jiangsc.me/2023/06/03/thinkpad-neo-14-issue-fix/</loc>
+    
+    <lastmod>2023-06-03</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://jiangsc.me/2023/03/11/2023-03-11-technical-postmortem/</loc>
     
     <lastmod>2023-06-03</lastmod>
@@ -864,6 +873,20 @@
   
   <url>
     <loc>https://jiangsc.me/tags/AMD/</loc>
+    <lastmod>2023-06-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/tags/Thinkpad/</loc>
+    <lastmod>2023-06-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/tags/Neo-14/</loc>
     <lastmod>2023-06-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

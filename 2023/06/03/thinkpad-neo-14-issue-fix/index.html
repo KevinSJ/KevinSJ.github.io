@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="9g-E_K0GEppNWOItj0YYJV_1UbSLdVFrKOhHSPLkJcM">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"jiangsc.me","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="This article is an continuation for my previous article on setting up Linux on this specific laptop which I&#39;ve been using daily for a little over a month. My distro is Arch Linux, so I will be mai">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Fixing issues on Thinkpad Neo 14 running Linux">
+<meta property="og:url" content="https://jiangsc.me/2023/06/03/thinkpad-neo-14-issue-fix/index.html">
+<meta property="og:site_name" content="Kevin Jiang&#39;s Technical Blog">
+<meta property="og:description" content="This article is an continuation for my previous article on setting up Linux on this specific laptop which I&#39;ve been using daily for a little over a month. My distro is Arch Linux, so I will be mai">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-06-03T01:17:20.000Z">
+<meta property="article:modified_time" content="2023-06-03T05:33:35.648Z">
+<meta property="article:author" content="KevinSJ">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="ArchLinux">
+<meta property="article:tag" content="AMD">
+<meta property="article:tag" content="Thinkpad">
+<meta property="article:tag" content="Neo 14">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://jiangsc.me/2023/06/03/thinkpad-neo-14-issue-fix/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://jiangsc.me/2023/06/03/thinkpad-neo-14-issue-fix/","path":"2023/06/03/thinkpad-neo-14-issue-fix/","title":"Fixing issues on Thinkpad Neo 14 running Linux"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Fixing issues on Thinkpad Neo 14 running Linux | Kevin Jiang's Technical Blog</title>
+  
+
+
+
+
+
+
+
+<script src="https://fastly.jsdelivr.net/npm/exif-js@2/exif.min.js"></script>
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Kevin Jiang's Technical Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Kevin Jiang's Technical Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-gallery"><a href="/gallery/" rel="section"><i class="fa fa-image fa-fw"></i>Gallery</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Issue-1-Internal-microphone-array-not-working-out-of-the-box"><span class="nav-number">1.</span> <span class="nav-text">Issue 1: Internal microphone array not working out of the box</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Solution-Modify-the-source-code-and-recompile-the-kernel"><span class="nav-number">1.1.</span> <span class="nav-text">Solution: Modify the source code and recompile the kernel</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Issue-2-Wake-from-sleep-takes-more-than-10-seconds"><span class="nav-number">2.</span> <span class="nav-text">Issue 2: Wake from sleep takes more than 10 seconds</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Solution-Change-Kernel-Parameter"><span class="nav-number">2.1.</span> <span class="nav-text">Solution: Change Kernel Parameter</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Issue-3-External-monitor-cause-system-lag"><span class="nav-number">3.</span> <span class="nav-text">Issue 3: External monitor cause system lag</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Solution-Modify-Xorg-configuration-file"><span class="nav-number">3.1.</span> <span class="nav-text">Solution: Modify Xorg configuration file</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Issue-4-CPU-frequency-hardware-limit-is-not-using-the-highest-possible-frequency-4-8-GHZ"><span class="nav-number">4.</span> <span class="nav-text">Issue 4: CPU frequency hardware limit is not using the highest possible frequency (4.8 GHZ)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Solution-Change-kernel-parameter"><span class="nav-number">4.1.</span> <span class="nav-text">Solution: Change kernel parameter</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">KevinSJ</p>
+  <div class="site-description" itemprop="description">A blog about all things tech.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">81</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/kevinsj" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;kevinsj" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/kevsj" title="LinkedIn → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;kevsj" rel="noopener me" target="_blank"><i class="fab fa-linkedin fa-fw"></i>LinkedIn</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://jiangsc.me/2023/06/03/thinkpad-neo-14-issue-fix/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="KevinSJ">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
+      <meta itemprop="description" content="A blog about all things tech.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Fixing issues on Thinkpad Neo 14 running Linux | Kevin Jiang's Technical Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Fixing issues on Thinkpad Neo 14 running Linux
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 06-03-2023 13:17:20 / Modified: 17:33:35" itemprop="dateCreated datePublished" datetime="2023-06-03T13:17:20+12:00">06-03-2023</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="firestore-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>This article is an continuation for my <a href="/2023/05/07/Tips-for-Setting-Up-Linux-on-AMD-based-Thinkpad/" title="Tips for Setting Up Linux on AMD based Thinkpad">previous article</a> on setting up Linux on this specific laptop which I&#39;ve been using daily for a little over a month. My distro is Arch Linux, so I will be mainly discussing and referencing to Arch Linux related information as well solution.</p>
+<p>The major problems that bothers me are listed below and fortunately, I&#39;ve found solutions to all of them, which is also why I&#39;m writing this article to share my solution.</p>
+<ul>
+<li>Internal microphone not working out of the box</li>
+<li>Wake from sleep takes more than 10 seconds</li>
+<li>External monitor cause system lag</li>
+<li>CPU frequency not optimized to use the highest possible boost frequency (4.8 GHZ)</li>
+</ul>
+<span id="more"></span>
+
+<h3 id="Issue-1-Internal-microphone-array-not-working-out-of-the-box"><a href="#Issue-1-Internal-microphone-array-not-working-out-of-the-box" class="headerlink" title="Issue 1: Internal microphone array not working out of the box"></a>Issue 1: Internal microphone array not working out of the box</h3><div class="note primary"><p>Before I get to the solution, I must say the solution requires fair amount of technical knowledge so it is probably not suitable for most Linux user. If you want to keep using Linux, it is probably easier to use a 3.5mm headphone with microphone.</p>
+</div>
+
+<p>This was the issue that bothers me most, I just need it to work correctly as this is the my daily driver laptop and it&#39;s important to have the microphone work correctly.</p>
+<ul>
+<li><strong>Root cause:</strong> I had to dig all over the internet to find a proper solution for this. And what helped me in the end was <a target="_blank" rel="noopener" href="https://bbs.archlinux.org/viewtopic.php?pid=2058087#p2058087">this Arch Linux forum post</a>. Based on the discussion there, the root cause seems to be my specific laptop model is not in the quirk list, and lots of people there was having this same issue. The suggested solution in that forum post is to modify the source code directly.</li>
+</ul>
+<h4 id="Solution-Modify-the-source-code-and-recompile-the-kernel"><a href="#Solution-Modify-the-source-code-and-recompile-the-kernel" class="headerlink" title="Solution: Modify the source code and recompile the kernel"></a>Solution: Modify the source code and recompile the kernel</h4><p>I assume this is a big ask for most Linux user, but I will still go through what I did. I had submitted the patch to Linux kernel by the time this article is published, so hopefully when someone find this article from major search engines, this is no longer an issue.<br>Here is what I did:</p>
+<ul>
+<li>Clone the Linux repo from GitHub: <code>git clone https://github.com/torvalds/linux.git --depth 1</code> (the reason I added depth 1 is to save some time when cloning, I don&#39;t really need to have all the Linux history locally, and having <code>--depth 1</code> will only give the most recent commit log)</li>
+<li>Change the file <code>sound/soc/amd/yc/acp6x-mach.c</code>, adding the line detailed in the patch below to anywhere in the <code>yc_acp_quirk_table</code><figure class="highlight patch"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">diff --git a/sound/soc/amd/yc/acp6x-mach.c b/sound/soc/amd/yc/acp6x-mach.c</span></span><br><span class="line"><span class="comment">index 4406a5def..246299a17 100644</span></span><br><span class="line"><span class="comment">--- a/sound/soc/amd/yc/acp6x-mach.c</span></span><br><span class="line"><span class="comment">+++ b/sound/soc/amd/yc/acp6x-mach.c</span></span><br><span class="line"><span class="meta">@@ -171,6 +171,13 @@</span> static const struct dmi_system_id yc_acp_quirk_table[] = &#123;</span><br><span class="line"> 			DMI_MATCH(DMI_PRODUCT_NAME, &quot;21CL&quot;),</span><br><span class="line"> 		&#125;</span><br><span class="line"> 	&#125;,</span><br><span class="line"><span class="addition">+	&#123;</span></span><br><span class="line"><span class="addition">+		.driver_data = &amp;acp6x_card,</span></span><br><span class="line"><span class="addition">+		.matches = &#123;</span></span><br><span class="line"><span class="addition">+			DMI_MATCH(DMI_BOARD_VENDOR, &quot;LENOVO&quot;),</span></span><br><span class="line"><span class="addition">+			DMI_MATCH(DMI_PRODUCT_NAME, &quot;21EF&quot;),</span></span><br><span class="line"><span class="addition">+		&#125;</span></span><br><span class="line"><span class="addition">+	&#125;,</span></span><br><span class="line"> 	&#123;</span><br><span class="line"> 		.driver_data = &amp;acp6x_card,</span><br><span class="line"> 		.matches = &#123;</span><br></pre></td></tr></table></figure></li>
+<li>Follow the <a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Kernel/Arch_build_system">Linux Kernel building guide for Arch Linux using Arch Build System</a> to recompile the kernel, just remember to apply the patch using the method detailed in the guide <strong>BEFORE</strong> you started compiling.</li>
+<li>Once you have installed and boot into the newly compiled kernel, you will notice your Pulse Audio profile will only have <code>Play Hi-Fi Audio</code> left.</li>
+<li>If you are using Pulse Audio only, you will need to edit <code>/etc/pulse/default.pa</code> and add <code>load-module module-udev-detect use_ucm=0</code></li>
+<li>If you are using Pipewire, you will need to edit <code>sudo vim /usr/share/wireplumber/main.lua.d/50-alsa-config.lua</code>, in this file, find and replace the following line (it should be true by default):<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- Use UCM instead of profile when available. Can be</span></span><br><span class="line"><span class="comment">-- disabled to skip trying to use the UCM profile.</span></span><br><span class="line">[<span class="string">&quot;api.alsa.use-ucm&quot;</span>] = <span class="literal">false</span>,</span><br></pre></td></tr></table></figure>
+You will need to reboot again to make sure these files take effects.</li>
+</ul>
+<p>Like I said in the beginning, fixing this is not easy, but hopefully, my patch to the kernel will already fix this issue by the time you read this article.</p>
+<h3 id="Issue-2-Wake-from-sleep-takes-more-than-10-seconds"><a href="#Issue-2-Wake-from-sleep-takes-more-than-10-seconds" class="headerlink" title="Issue 2: Wake from sleep takes more than 10 seconds"></a>Issue 2: Wake from sleep takes more than 10 seconds</h3><p>This was also one of the bigger issues for me. On my previous Intel laptop, the wake from sleep&#x2F;suspend would take less than 5 seconds. On this machine, it would take more than 15 seconds, sometimes 20 seconds. This is getting really annoying especially because I put the laptop into sleep quite often.</p>
+<ul>
+<li><strong>Root cause:</strong> I&#39;m not really sure if this is the actual cause, but this issue has something to do with a bug (?) in the kernel (?). I found the following line in the <code>dmesg</code> when I was looking into this issue:<br><code>DEBUG:	2023-05-20T12:36:26,105472+12:00 nvme 0000:02:00.0: AMD-Vi: Event logged [IO_PAGE_FAULT domain=0x000d address=0x7152c000 flags=0x0000]</code>, so my assumption is that something is wrong with this AMD-Vi thingy.</li>
+</ul>
+<h4 id="Solution-Change-Kernel-Parameter"><a href="#Solution-Change-Kernel-Parameter" class="headerlink" title="Solution: Change Kernel Parameter"></a>Solution: Change Kernel Parameter</h4><p>I don&#39;t know if this would be the correct fix, but it did solve the issue. I solved the issue by changing kernel boot parameter.</p>
+<div class="note success"><p>I added <code>iommu=pt</code> to the kernel parameter. The situation was greatly improved after reboot, the wake up time decreased to around 3 seconds.</p>
+</div>
+
+
+<h3 id="Issue-3-External-monitor-cause-system-lag"><a href="#Issue-3-External-monitor-cause-system-lag" class="headerlink" title="Issue 3: External monitor cause system lag"></a>Issue 3: External monitor cause system lag</h3><p>This is likely because of my misconfigured Xorg and not likely happen to other people, but the issue I experienced was that the internal monitor will lag a lot when an external monitor is connected.</p>
+<h4 id="Solution-Modify-Xorg-configuration-file"><a href="#Solution-Modify-Xorg-configuration-file" class="headerlink" title="Solution: Modify Xorg configuration file"></a>Solution: Modify Xorg configuration file</h4><p>I modified the <code>/etc/X11/xorg.conf</code> file, here&#39;s the configuration after modification:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Section &quot;Device&quot;</span><br><span class="line">        ### Available Driver options are:-</span><br><span class="line">        ### Values: &lt;i&gt;: integer, &lt;f&gt;: float, &lt;bool&gt;: &quot;True&quot;/&quot;False&quot;,</span><br><span class="line">        ### &lt;string&gt;: &quot;String&quot;, &lt;freq&gt;: &quot;&lt;f&gt; Hz/kHz/MHz&quot;,</span><br><span class="line">        ### &lt;percent&gt;: &quot;&lt;f&gt;%&quot;</span><br><span class="line">        ### [arg]: arg optional</span><br><span class="line">        Option     &quot;DRI&quot;                	&quot;3&quot;</span><br><span class="line">        #Option     &quot;ShadowPrimary&quot;      	# [&lt;bool&gt;]</span><br><span class="line">        Option     &quot;TearFree&quot;           	&quot;true&quot;</span><br><span class="line">        #Option     &quot;TearFree&quot;           	# [&lt;bool&gt;]</span><br><span class="line">        #Option     &quot;DeleteUnusedDP12Displays&quot; 	# [&lt;bool&gt;]</span><br><span class="line">        #Option     &quot;VariableRefresh&quot;    	# [&lt;bool&gt;]</span><br><span class="line">        #Option     &quot;AsyncFlipSecondaries&quot; 	# [&lt;bool&gt;]</span><br><span class="line">	Identifier  &quot;Card1&quot;</span><br><span class="line">	Driver      &quot;amdgpu&quot;</span><br><span class="line">	BusID       &quot;PCI:51:0:1&quot;</span><br><span class="line">EndSection</span><br></pre></td></tr></table></figure>
+
+<div class="note success"><p>I changed <code>DRI</code> to 3, and set <code>TearFree</code> option to true. Once reboot, I found the issue&#39;s been resolved.</p>
+</div>
+
+<h3 id="Issue-4-CPU-frequency-hardware-limit-is-not-using-the-highest-possible-frequency-4-8-GHZ"><a href="#Issue-4-CPU-frequency-hardware-limit-is-not-using-the-highest-possible-frequency-4-8-GHZ" class="headerlink" title="Issue 4: CPU frequency hardware limit is not using the highest possible frequency (4.8 GHZ)"></a>Issue 4: CPU frequency hardware limit is not using the highest possible frequency (4.8 GHZ)</h3><p>This one is probably not that important, with the current frequency at 3.2 GHZ without boosting, I was able to compile the Linux kernel in 33 minutes. Given the performance of this CPU, unleashing the frequency to 4.8 GHZ will probably also be helpful.</p>
+<h4 id="Solution-Change-kernel-parameter"><a href="#Solution-Change-kernel-parameter" class="headerlink" title="Solution: Change kernel parameter"></a>Solution: Change kernel parameter</h4><p>I changed kernel parameter again for this one.</p>
+<div class="note success"><p>I added an additional kernel parameter of <code>amd_pstate=active</code>. </p>
+</div>
+<p>On kernel 6.3+, this will set the CPU to use <code>amd_pstate_epp</code>, on earlier versions, this will make the system use <code>amd_pstate</code> as scaling driver. Note that scaling driver is different from CPU governor. If you want to use <code>amd_pstate</code> on 6.3 and above, you need to set <code>amd_pstate=passive</code> instead of active<br>You can verify you are indeed using the driver by running <code>sudo cpupower --cpu all frequency-info --human</code>, you will be able to see the driver as <code>driver: amd_pstate_epp</code></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>Post author:  </strong>KevinSJ
+  </li>
+  <li class="post-copyright-link">
+      <strong>Post link: </strong>
+      <a href="https://jiangsc.me/2023/06/03/thinkpad-neo-14-issue-fix/" title="Fixing issues on Thinkpad Neo 14 running Linux">https://jiangsc.me/2023/06/03/thinkpad-neo-14-issue-fix/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+          <div class="followme">
+  <span>Welcome to my other publishing channels</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+              <a href="/tags/ArchLinux/" rel="tag"># ArchLinux</a>
+              <a href="/tags/AMD/" rel="tag"># AMD</a>
+              <a href="/tags/Thinkpad/" rel="tag"># Thinkpad</a>
+              <a href="/tags/Neo-14/" rel="tag"># Neo 14</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/05/07/Tips-for-Setting-Up-Linux-on-AMD-based-Thinkpad/" rel="prev" title="Tips for Setting Up Linux on AMD based Thinkpad">
+                  <i class="fa fa-chevron-left"></i> Tips for Setting Up Linux on AMD based Thinkpad
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">KevinSJ</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/KevinSJ" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.8/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
+
+  
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.8/pdfobject.min.js","integrity":"sha256-tu9j5pBilBQrWSDePOOajCUdz6hWsid/lBNzK4KgEPM="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/9.3.0/mermaid.min.js","integrity":"sha256-QdTG1YTLLTwD3b95jLqFxpQX9uYuJMNAtVZgwKX4oYU="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.16.0/firebase-app-compat.js" integrity="sha256-ugLrv2V3S3effuUc0sDKuh3ICRsl8dlG1FS+iAMQtlE=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.16.0/firebase-firestore-compat.js" integrity="sha256-oaAQkODa+UNQUcrZrKC7MRY6Z+H/AyOOvWY/nPHGDM8=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="firestore" type="application/json">{"enable":true,"collection":"blog_view","apiKey":"AIzaSyAwkI10aTDM2430EyQhtAz5X04hk16ozRc","projectId":"blog-269be"}</script>
+  <script src="/js/third-party/statistics/firestore.js"></script>
+
+
+
+<script>
+function getExif(target) {
+  const template = "{Make} {Model} {DateTimeOriginal} {FocalLength}mm f/{FNumber} {ExposureTime}s";
+  EXIF.getData(target, function() {
+    const tags = EXIF.getAllTags(this);
+    let result = template;
+    for (let [key, value] of Object.entries(tags)) {
+      if (key === 'ExposureTime' && value <= 0.25) {
+        value = '1/' + parseInt(1 / value);
+      }
+      result = result.replace(`{${key}}`, value);
+    }
+    if (result !== template) {
+      const box = document.createElement('div');
+      target.wrap(box);
+      box.classList.add('exif-container');
+      box.insertAdjacentHTML('beforeend', `<div class="exif-metabar"><span>${result}</span></div>`);
+    }
+  });
+}
+
+[...document.querySelectorAll('.post-body img')].forEach(element => {
+  if (element.complete) getExif(element);
+  // `lazyload` compatible
+  element.addEventListener('load', () => {
+    getExif(element);
+  });
+});
+</script>
+
+<script src="https://unpkg.com/live2d-widget@^3.1.3/lib/L2Dwidget.min.js"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false}});</script></body>
+</html>
