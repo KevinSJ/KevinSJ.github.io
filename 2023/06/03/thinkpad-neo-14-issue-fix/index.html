@@ -20,15 +20,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"jiangsc.me","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="This article is an continuation for my previous article on setting up Linux on this specific laptop which I&#39;ve been using daily for a little over a month. My distro is Arch Linux, so I will be mai">
+    <meta name="description" content="This article is a continuation for my previous article on setting up Linux on this specific laptop, which I&#39;ve been using daily for a little over a month. My distro is Arch Linux, so this article">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="Fixing issues on Thinkpad Neo 14 running Linux">
 <meta property="og:url" content="https://jiangsc.me/2023/06/03/thinkpad-neo-14-issue-fix/index.html">
 <meta property="og:site_name" content="Kevin Jiang&#39;s Technical Blog">
-<meta property="og:description" content="This article is an continuation for my previous article on setting up Linux on this specific laptop which I&#39;ve been using daily for a little over a month. My distro is Arch Linux, so I will be mai">
+<meta property="og:description" content="This article is a continuation for my previous article on setting up Linux on this specific laptop, which I&#39;ve been using daily for a little over a month. My distro is Arch Linux, so this article">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-06-03T01:17:20.000Z">
-<meta property="article:modified_time" content="2023-06-10T04:36:37.674Z">
+<meta property="article:modified_time" content="2023-06-10T08:09:54.685Z">
 <meta property="article:author" content="KevinSJ">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="ArchLinux">
@@ -211,7 +211,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 06-10-2023 16:36:37" itemprop="dateModified" datetime="2023-06-10T16:36:37+12:00">06-10-2023</time>
+      <time title="Modified: 06-10-2023 20:09:54" itemprop="dateModified" datetime="2023-06-10T20:09:54+12:00">06-10-2023</time>
     </span>
 
   
@@ -231,8 +231,8 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>This article is an continuation for my <a href="/2023/05/07/Tips-for-Setting-Up-Linux-on-AMD-based-Thinkpad/" title="Tips for Setting Up Linux on AMD based Thinkpad">previous article</a> on setting up Linux on this specific laptop which I&#39;ve been using daily for a little over a month. My distro is Arch Linux, so I will be mainly discussing and referencing to Arch Linux related information as well solution.</p>
-<p>The major problems that bothers me are listed below and fortunately, I&#39;ve found solutions to all of them, which is also why I&#39;m writing this article to share my solution.</p>
+        <p>This article is a continuation for my <a href="/2023/05/07/Tips-for-Setting-Up-Linux-on-AMD-based-Thinkpad/" title="Tips for Setting Up Linux on AMD based Thinkpad">previous article</a> on setting up Linux on this specific laptop, which I&#39;ve been using daily for a little over a month. My distro is Arch Linux, so this article mainly focuses on Arch Linux-related information as well as solutions.</p>
+<p>The major problems that bother me are listed below, and fortunately, I&#39;ve found solutions to all of them, which is also why I&#39;m writing this article to share my solutions.</p>
 <ul>
 <li>Internal microphone not working out of the box</li>
 <li>Wake from sleep takes more than 10 seconds</li>
@@ -241,12 +241,12 @@
 </ul>
 <span id="more"></span>
 
-<h3 id="Issue-1-Internal-microphone-array-not-working-out-of-the-box"><a href="#Issue-1-Internal-microphone-array-not-working-out-of-the-box" class="headerlink" title="Issue 1: Internal microphone array not working out of the box"></a>Issue 1: Internal microphone array not working out of the box</h3><div class="note primary"><p>Before I get to the solution, I must say the solution requires fair amount of technical knowledge so it is probably not suitable for most Linux user. If you want to keep using Linux, it is probably easier to use a 3.5mm headphone with microphone.</p>
+<h3 id="Issue-1-Internal-microphone-array-not-working-out-of-the-box"><a href="#Issue-1-Internal-microphone-array-not-working-out-of-the-box" class="headerlink" title="Issue 1: Internal microphone array not working out of the box"></a>Issue 1: Internal microphone array not working out of the box</h3><div class="note primary"><p>Before I get to the solution, I must say that the solution requires fair amount of technical knowledge so it is probably not suitable for most Linux user. If you want to keep using Linux, it is probably easier to use a 3.5mm headphone with microphone.</p>
 </div>
 
-<p>This was the issue that bothers me most, I just need it to work correctly as this is the my daily driver laptop and it&#39;s important to have the microphone work correctly.</p>
+<p>This was the issue that bothered me most, I just needed it to work correctly as this is my daily driver laptop and it&#39;s important to have the microphone work correctly.</p>
 <ul>
-<li><strong>Root cause:</strong> I had to dig all over the internet to find a proper solution for this. And what helped me in the end was <a target="_blank" rel="noopener" href="https://bbs.archlinux.org/viewtopic.php?pid=2058087#p2058087">this Arch Linux forum post</a>. Based on the discussion there, the root cause seems to be my specific laptop model is not in the quirk list, and lots of people there was having this same issue. The suggested solution in that forum post is to modify the source code directly.</li>
+<li><strong>Root cause:</strong> I had to search all over the internet to find a proper solution for this. And what helped me in the end was <a target="_blank" rel="noopener" href="https://bbs.archlinux.org/viewtopic.php?pid=2058087#p2058087">this Arch Linux forum post</a>. Based on the discussion there, the root cause seems to be my specific laptop model is not in the quirk list, and lots of people there was having this same issue. The suggested solution in that forum post is to modify the source code directly.</li>
 </ul>
 <h4 id="Solution-Modify-the-source-code-and-recompile-the-kernel"><a href="#Solution-Modify-the-source-code-and-recompile-the-kernel" class="headerlink" title="Solution: Modify the source code and recompile the kernel"></a>Solution: Modify the source code and recompile the kernel</h4><p>I assume this is a big ask for most Linux user, but I will still go through what I did. I had submitted the patch to Linux kernel by the time this article is published, so hopefully when someone find this article from major search engines, this is no longer an issue.<br>Here is what I did:</p>
 <ul>
