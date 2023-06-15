@@ -1,6 +1,6 @@
 https://jiangsc.me/2023/02/11/mobile-dev-cli-tips-1/
-https://jiangsc.me/2023/05/07/Tips-for-Setting-Up-Linux-on-AMD-based-Thinkpad/
 https://jiangsc.me/2023/06/03/thinkpad-neo-14-issue-fix/
+https://jiangsc.me/2023/05/07/Tips-for-Setting-Up-Linux-on-AMD-based-Thinkpad/
 https://jiangsc.me/2023/03/11/2023-03-11-technical-postmortem/
 https://jiangsc.me/2023/02/08/Cli-tips-create-azure-devops-pr/
 https://jiangsc.me/2023/01/30/GO-Split-long-text-by-byte-count/
