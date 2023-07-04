@@ -1,7 +1,8 @@
 https://jiangsc.me/2023/02/11/mobile-dev-cli-tips-1/
-https://jiangsc.me/2023/05/07/Tips-for-Setting-Up-Linux-on-AMD-based-Thinkpad/
+https://jiangsc.me/2023/06/24/self-signed-cert-issues-and-solutions/
 https://jiangsc.me/2023/06/03/thinkpad-neo-14-issue-fix/
 https://jiangsc.me/2023/03/11/2023-03-11-technical-postmortem/
+https://jiangsc.me/2023/05/07/Tips-for-Setting-Up-Linux-on-AMD-based-Thinkpad/
 https://jiangsc.me/2023/02/08/Cli-tips-create-azure-devops-pr/
 https://jiangsc.me/2023/01/30/GO-Split-long-text-by-byte-count/
 https://jiangsc.me/2022/05/21/neovim-tricks-1/
@@ -115,3 +116,10 @@ https://jiangsc.me/tags/ArchLinux/
 https://jiangsc.me/tags/AMD/
 https://jiangsc.me/tags/Thinkpad/
 https://jiangsc.me/tags/Neo-14/
+https://jiangsc.me/tags/MacOS/
+https://jiangsc.me/tags/Docker/
+https://jiangsc.me/tags/Python/
+https://jiangsc.me/tags/Node-JS/
+https://jiangsc.me/tags/Colima/
+https://jiangsc.me/tags/Self-signed-Certificate/
+https://jiangsc.me/tags/TLS/

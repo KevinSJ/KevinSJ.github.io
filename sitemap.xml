@@ -11,7 +11,7 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/2023/05/07/Tips-for-Setting-Up-Linux-on-AMD-based-Thinkpad/</loc>
+    <loc>https://jiangsc.me/2023/06/24/self-signed-cert-issues-and-solutions/</loc>
     
     <lastmod>2023-07-04</lastmod>
     
@@ -30,6 +30,15 @@
   
   <url>
     <loc>https://jiangsc.me/2023/03/11/2023-03-11-technical-postmortem/</loc>
+    
+    <lastmod>2023-07-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/2023/05/07/Tips-for-Setting-Up-Linux-on-AMD-based-Thinkpad/</loc>
     
     <lastmod>2023-07-04</lastmod>
     
@@ -887,6 +896,55 @@
   
   <url>
     <loc>https://jiangsc.me/tags/Neo-14/</loc>
+    <lastmod>2023-07-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/tags/MacOS/</loc>
+    <lastmod>2023-07-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/tags/Docker/</loc>
+    <lastmod>2023-07-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/tags/Python/</loc>
+    <lastmod>2023-07-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/tags/Node-JS/</loc>
+    <lastmod>2023-07-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/tags/Colima/</loc>
+    <lastmod>2023-07-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/tags/Self-signed-Certificate/</loc>
+    <lastmod>2023-07-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/tags/TLS/</loc>
     <lastmod>2023-07-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

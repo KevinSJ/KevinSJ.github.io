@@ -28,7 +28,7 @@
 <meta property="og:description" content="This article is a continuation for my previous article on setting up Linux on this specific laptop, which I&#39;ve been using daily for a little over a month. My distro is Arch Linux, so this article">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-06-03T01:17:20.000Z">
-<meta property="article:modified_time" content="2023-07-04T04:41:50.131Z">
+<meta property="article:modified_time" content="2023-07-04T10:46:19.040Z">
 <meta property="article:author" content="KevinSJ">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="ArchLinux">
@@ -131,13 +131,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-count">33</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">81</span>
+        <span class="site-state-item-count">88</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -211,7 +211,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 07-04-2023 16:41:50" itemprop="dateModified" datetime="2023-07-04T16:41:50+12:00">07-04-2023</time>
+      <time title="Modified: 07-04-2023 22:46:19" itemprop="dateModified" datetime="2023-07-04T22:46:19+12:00">07-04-2023</time>
     </span>
 
   
@@ -241,18 +241,23 @@
 </ul>
 <span id="more"></span>
 
-<h3 id="Issue-1-Internal-microphone-array-not-working-out-of-the-box"><a href="#Issue-1-Internal-microphone-array-not-working-out-of-the-box" class="headerlink" title="Issue 1: Internal microphone array not working out of the box"></a>Issue 1: Internal microphone array not working out of the box</h3><div class="note primary"><p>Before I get to the solution, I must say that the solution requires fair amount of technical knowledge so it is probably not suitable for most Linux user. If you want to keep using Linux, it is probably easier to use a 3.5mm headphone with microphone.</p>
+<h3 id="Issue-1-Internal-microphone-array-not-working-out-of-the-box"><a href="#Issue-1-Internal-microphone-array-not-working-out-of-the-box" class="headerlink" title="Issue 1: Internal microphone array not working out of the box"></a>Issue 1: Internal microphone array not working out of the box</h3><div class="note info"><p>2023-07-04 update: the patch I submitted to Linux Kernel has been merged, so the laptop Thinkpad Neo14 is in the quirks list for the microphone 🎉. This means, if you are on the LTS kernel version of 6.1, or a kernel version later than 6.3, you should be able to see the microphone &#39;working&#39; (you will still need to fix the pulse audio part detailed below).</p>
 </div>
 
-<p>This was the issue that bothered me most, I just needed it to work correctly as this is my daily driver laptop and it&#39;s important to have the microphone work correctly.</p>
+<p><del>This was the issue that bothered me most, I just needed it to work correctly as this is my daily driver laptop and it&#39;s important to have the microphone work correctly.</del></p>
 <ul>
 <li><strong>Root cause:</strong> I had to search all over the internet to find a proper solution for this. And what helped me in the end was <a target="_blank" rel="noopener" href="https://bbs.archlinux.org/viewtopic.php?pid=2058087#p2058087">this Arch Linux forum post</a>. Based on the discussion there, the root cause seems to be my specific laptop model is not in the quirk list, and lots of people there was having this same issue. The suggested solution in that forum post is to modify the source code directly.</li>
 </ul>
-<h4 id="Solution-Modify-the-source-code-and-recompile-the-kernel"><a href="#Solution-Modify-the-source-code-and-recompile-the-kernel" class="headerlink" title="Solution: Modify the source code and recompile the kernel"></a>Solution: Modify the source code and recompile the kernel</h4><p>I assume this is a big ask for most Linux user, but I will still go through what I did. I had submitted the patch to Linux kernel by the time this article is published, so hopefully when someone find this article from major search engines, this is no longer an issue.<br>Here is what I did:</p>
+<h4 id="Solution-Modify-the-source-code-and-recompile-the-kernel"><a href="#Solution-Modify-the-source-code-and-recompile-the-kernel" class="headerlink" title="Solution: Modify the source code and recompile the kernel"></a><del>Solution: Modify the source code and recompile the kernel</del></h4><p><del>I assume this is a big ask for most Linux user, but I will still go through what I did. I had submitted the patch to Linux kernel by the time this article is published, so hopefully when someone find this article from major search engines, this is no longer an issue.</del><br><del>Here is what I did:</del></p>
 <ul>
-<li>Clone the Linux repo from GitHub: <code>git clone https://github.com/torvalds/linux.git --depth 1</code> (the reason I added depth 1 is to save some time when cloning, I don&#39;t really need to have all the Linux history locally, and having <code>--depth 1</code> will only give the most recent commit log)</li>
-<li>Change the file <code>sound/soc/amd/yc/acp6x-mach.c</code>, adding the line detailed in the patch below to anywhere in the <code>yc_acp_quirk_table</code><figure class="highlight patch"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">diff --git a/sound/soc/amd/yc/acp6x-mach.c b/sound/soc/amd/yc/acp6x-mach.c</span></span><br><span class="line"><span class="comment">index 4406a5def..246299a17 100644</span></span><br><span class="line"><span class="comment">--- a/sound/soc/amd/yc/acp6x-mach.c</span></span><br><span class="line"><span class="comment">+++ b/sound/soc/amd/yc/acp6x-mach.c</span></span><br><span class="line"><span class="meta">@@ -171,6 +171,13 @@</span> static const struct dmi_system_id yc_acp_quirk_table[] = &#123;</span><br><span class="line"> 			DMI_MATCH(DMI_PRODUCT_NAME, &quot;21CL&quot;),</span><br><span class="line"> 		&#125;</span><br><span class="line"> 	&#125;,</span><br><span class="line"><span class="addition">+	&#123;</span></span><br><span class="line"><span class="addition">+		.driver_data = &amp;acp6x_card,</span></span><br><span class="line"><span class="addition">+		.matches = &#123;</span></span><br><span class="line"><span class="addition">+			DMI_MATCH(DMI_BOARD_VENDOR, &quot;LENOVO&quot;),</span></span><br><span class="line"><span class="addition">+			DMI_MATCH(DMI_PRODUCT_NAME, &quot;21EF&quot;),</span></span><br><span class="line"><span class="addition">+		&#125;</span></span><br><span class="line"><span class="addition">+	&#125;,</span></span><br><span class="line"> 	&#123;</span><br><span class="line"> 		.driver_data = &amp;acp6x_card,</span><br><span class="line"> 		.matches = &#123;</span><br></pre></td></tr></table></figure></li>
-<li>Follow the <a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Kernel/Arch_build_system">Linux Kernel building guide for Arch Linux using Arch Build System</a> to recompile the kernel, just remember to apply the patch using the method detailed in the guide <strong>BEFORE</strong> you started compiling.</li>
+<li><del>Clone the Linux repo from GitHub: <code>git clone https://github.com/torvalds/linux.git --depth 1</code> (the reason I added depth 1 is to save some time when cloning, I don&#39;t really need to have all the Linux history locally, and having <code>--depth 1</code> will only give the most recent commit log)</del></li>
+<li><del>Change the file <code>sound/soc/amd/yc/acp6x-mach.c</code>, adding the line detailed in the patch below to anywhere in the <code>yc_acp_quirk_table</code></del></li>
+</ul>
+<div class="note info"><p>The following patch was exactly what I had submitted to Linux kernel, I leave it here for reference only:</p>
+</div>
+<figure class="highlight patch"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">diff --git a/sound/soc/amd/yc/acp6x-mach.c b/sound/soc/amd/yc/acp6x-mach.c</span></span><br><span class="line"><span class="comment">index 4406a5def..246299a17 100644</span></span><br><span class="line"><span class="comment">--- a/sound/soc/amd/yc/acp6x-mach.c</span></span><br><span class="line"><span class="comment">+++ b/sound/soc/amd/yc/acp6x-mach.c</span></span><br><span class="line"><span class="meta">@@ -171,6 +171,13 @@</span> static const struct dmi_system_id yc_acp_quirk_table[] = &#123;</span><br><span class="line"> 			DMI_MATCH(DMI_PRODUCT_NAME, &quot;21CL&quot;),</span><br><span class="line"> 		&#125;</span><br><span class="line"> 	&#125;,</span><br><span class="line"><span class="addition">+	&#123;</span></span><br><span class="line"><span class="addition">+		.driver_data = &amp;acp6x_card,</span></span><br><span class="line"><span class="addition">+		.matches = &#123;</span></span><br><span class="line"><span class="addition">+			DMI_MATCH(DMI_BOARD_VENDOR, &quot;LENOVO&quot;),</span></span><br><span class="line"><span class="addition">+			DMI_MATCH(DMI_PRODUCT_NAME, &quot;21EF&quot;),</span></span><br><span class="line"><span class="addition">+		&#125;</span></span><br><span class="line"><span class="addition">+	&#125;,</span></span><br><span class="line"> 	&#123;</span><br><span class="line"> 		.driver_data = &amp;acp6x_card,</span><br><span class="line"> 		.matches = &#123;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><del>Follow the <a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Kernel/Arch_build_system">Linux Kernel building guide for Arch Linux using Arch Build System</a> to recompile the kernel, just remember to apply the patch using the method detailed in the guide <strong>BEFORE</strong> you started compiling.</del></li>
 <li>Once you have installed and boot into the newly compiled kernel, you will notice your Pulse Audio profile will only have <code>Play Hi-Fi Audio</code> left.</li>
 <li>If you are using Pulse Audio only, you will need to edit <code>/etc/pulse/default.pa</code> and add <code>load-module module-udev-detect use_ucm=0</code></li>
 <li>If you are using Pipewire, you will need to edit <code>sudo vim /usr/share/wireplumber/main.lua.d/50-alsa-config.lua</code>, in this file, find and replace the following line (it should be true by default):<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- Use UCM instead of profile when available. Can be</span></span><br><span class="line"><span class="comment">-- disabled to skip trying to use the UCM profile.</span></span><br><span class="line">[<span class="string">&quot;api.alsa.use-ucm&quot;</span>] = <span class="literal">false</span>,</span><br></pre></td></tr></table></figure>
@@ -277,7 +282,7 @@ You will need to reboot again to make sure these files take effects.</li>
 
 <h3 id="Issue-4-CPU-frequency-hardware-limit-is-not-using-the-highest-possible-frequency-4-8-GHZ"><a href="#Issue-4-CPU-frequency-hardware-limit-is-not-using-the-highest-possible-frequency-4-8-GHZ" class="headerlink" title="Issue 4: CPU frequency hardware limit is not using the highest possible frequency (4.8 GHZ)"></a>Issue 4: CPU frequency hardware limit is not using the highest possible frequency (4.8 GHZ)</h3><p>This one is probably not that important, with the current frequency at 3.2 GHZ without boosting, I was able to compile the Linux kernel in 33 minutes. Given the performance of this CPU, unleashing the frequency to 4.8 GHZ will probably also be helpful.</p>
 <h4 id="Solution-Change-kernel-parameter"><a href="#Solution-Change-kernel-parameter" class="headerlink" title="Solution: Change kernel parameter"></a>Solution: Change kernel parameter</h4><p>I changed kernel parameter again for this one.</p>
-<div class="note success"><p>I added an additional kernel parameter of <code>amd_pstate=active</code>. </p>
+<div class="note success"><p>I added an additional kernel parameter of <code>amd_pstate=active</code>.</p>
 </div>
 <p>On kernel 6.3+, this will set the CPU to use <code>amd_pstate_epp</code>, on earlier versions, this will make the system use <code>amd_pstate</code> as scaling driver. Note that scaling driver is different from CPU governor. If you want to use <code>amd_pstate</code> on 6.3 and above, you need to set <code>amd_pstate=passive</code> instead of active<br>You can verify you are indeed using the driver by running <code>sudo cpupower --cpu all frequency-info --human</code>, you will be able to see the driver as <code>driver: amd_pstate_epp</code></p>
 <h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><p><a target="_blank" rel="noopener" href="https://bbs.archlinux.org/viewtopic.php?pid=2058087">https://bbs.archlinux.org/viewtopic.php?pid=2058087</a><br><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Kernel/Arch_build_system">https://wiki.archlinux.org/title/Kernel/Arch_build_system</a><br><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Patching_packages#Applying_patches">https://wiki.archlinux.org/title/Patching_packages#Applying_patches</a><br><a target="_blank" rel="noopener" href="https://old.reddit.com/r/archlinux/comments/1381g2g/amd_pstate_epp_scaling_driver_available_with/">https://old.reddit.com/r/archlinux/comments/1381g2g/amd_pstate_epp_scaling_driver_available_with/</a></p>
@@ -340,6 +345,9 @@ You will need to reboot again to make sure these files take effects.</li>
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2023/06/24/self-signed-cert-issues-and-solutions/" rel="next" title="Self-signed certificate, issues and solutions">
+                  Self-signed certificate, issues and solutions <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>

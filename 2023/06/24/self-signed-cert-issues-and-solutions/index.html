@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="9g-E_K0GEppNWOItj0YYJV_1UbSLdVFrKOhHSPLkJcM">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"jiangsc.me","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Recently, I&#39;ve encounter several situations where I have to deal with self-signed certificate. As this is such a common issue, I&#39;ve decided to write this article to document my learnings and f">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Self-signed certificate, issues and solutions">
+<meta property="og:url" content="https://jiangsc.me/2023/06/24/self-signed-cert-issues-and-solutions/index.html">
+<meta property="og:site_name" content="Kevin Jiang&#39;s Technical Blog">
+<meta property="og:description" content="Recently, I&#39;ve encounter several situations where I have to deal with self-signed certificate. As this is such a common issue, I&#39;ve decided to write this article to document my learnings and f">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-06-24T06:11:32.000Z">
+<meta property="article:modified_time" content="2023-07-04T10:46:19.040Z">
+<meta property="article:author" content="KevinSJ">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="MacOS">
+<meta property="article:tag" content="Docker">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Node.JS">
+<meta property="article:tag" content="Colima">
+<meta property="article:tag" content="Self-signed Certificate">
+<meta property="article:tag" content="TLS">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://jiangsc.me/2023/06/24/self-signed-cert-issues-and-solutions/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://jiangsc.me/2023/06/24/self-signed-cert-issues-and-solutions/","path":"2023/06/24/self-signed-cert-issues-and-solutions/","title":"Self-signed certificate, issues and solutions"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Self-signed certificate, issues and solutions | Kevin Jiang's Technical Blog</title>
+  
+
+
+
+
+
+
+
+<script src="https://fastly.jsdelivr.net/npm/exif-js@2/exif.min.js"></script>
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Kevin Jiang's Technical Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Kevin Jiang's Technical Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-gallery"><a href="/gallery/" rel="section"><i class="fa fa-image fa-fw"></i>Gallery</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-a-SSL-certificate"><span class="nav-number">1.</span> <span class="nav-text">What is a (SSL) certificate?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-a-self-signed-certificate"><span class="nav-number">2.</span> <span class="nav-text">What is a self-signed certificate?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Benefits-and-risks-associated-with-self-signed-certificate"><span class="nav-number">3.</span> <span class="nav-text">Benefits and risks associated with self-signed certificate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Issues-and-solutions"><span class="nav-number">4.</span> <span class="nav-text">Issues and solutions</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Using-self-signed-certificate-in-JavaScript-x2F-NodeJS"><span class="nav-number">4.0.1.</span> <span class="nav-text">Using self-signed certificate in JavaScript&#x2F;NodeJS</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Using-self-signed-certificate-in-Python"><span class="nav-number">4.0.2.</span> <span class="nav-text">Using self-signed certificate in Python</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Using-self-signed-certificate-with-Docker-x2F-Colima"><span class="nav-number">4.0.3.</span> <span class="nav-text">Using self-signed certificate with Docker&#x2F;Colima</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#References"><span class="nav-number">4.1.</span> <span class="nav-text">References</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">KevinSJ</p>
+  <div class="site-description" itemprop="description">A blog about all things tech.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">88</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/kevinsj" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;kevinsj" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/kevsj" title="LinkedIn → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;kevsj" rel="noopener me" target="_blank"><i class="fab fa-linkedin fa-fw"></i>LinkedIn</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://jiangsc.me/2023/06/24/self-signed-cert-issues-and-solutions/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="KevinSJ">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
+      <meta itemprop="description" content="A blog about all things tech.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Self-signed certificate, issues and solutions | Kevin Jiang's Technical Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Self-signed certificate, issues and solutions
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 06-24-2023 18:11:32" itemprop="dateCreated datePublished" datetime="2023-06-24T18:11:32+12:00">06-24-2023</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 07-04-2023 22:46:19" itemprop="dateModified" datetime="2023-07-04T22:46:19+12:00">07-04-2023</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="firestore-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>Recently, I&#39;ve encounter several situations where I have to deal with self-signed certificate. As this is such a common issue, I&#39;ve decided to write this article to document my learnings and for my own reference in the future.</p>
+<p>This article will start by explaining what is a SSL certificate, and what is a self-signed certificate. From there, I will detail the problems I encountered recently on self-signed certificate, and how I solved them.</p>
+<span id="more"></span>
+
+<h3 id="What-is-a-SSL-certificate"><a href="#What-is-a-SSL-certificate" class="headerlink" title="What is a (SSL) certificate?"></a>What is a (SSL) certificate?</h3><p>A certificate, is something you used to prove you identity. For example, in most countries around the world, you would usually have something to identify who you are and prove you are who you claimed to be, this could be something like a driver license, and are usually issued by the government.</p>
+<p>In the context of internet security, you&#39;ve got SSL certificate. This is something the browser would use to authenticate the identity of a website. An SSL certificate is most likely issued and signed by a trusted CA or certificate authority.</p>
+<h3 id="What-is-a-self-signed-certificate"><a href="#What-is-a-self-signed-certificate" class="headerlink" title="What is a self-signed certificate?"></a>What is a self-signed certificate?</h3><p>To put it in short, a self-signed certificate is something that&#39;s issued and signed by the same party. In other words, this is like you have issued yourself a driver license, to identify and prove you are you. I&#39;m pretty sure you would have a hard time convincing people to accept that as a proof of your identity.</p>
+<h3 id="Benefits-and-risks-associated-with-self-signed-certificate"><a href="#Benefits-and-risks-associated-with-self-signed-certificate" class="headerlink" title="Benefits and risks associated with self-signed certificate"></a>Benefits and risks associated with self-signed certificate</h3><p>It is quite obvious that to most people, self-signed certificate would pose a big risk. Because SSL certificate are usually used for HTTPS communication,  if a self-signed certificate is obtained from an untrusted source and installed on your computer, the malicious party can pretend to be a any website, and will be able to decrypt the HTTPS traffic from your computer. This is called Man-in-the-middle attack.</p>
+<p>However, with increasingly strict requirement on HTTPS in most browsers, it is necessary to trust a self-signed certificate. Here are some common scenarios.</p>
+<ul>
+<li>In a large enterprise, the intranet traffic is usually not exposed to the public. In this situation, a self-signed certificate is appropriate because it would allow the traffic to be encrypted properly.</li>
+<li>In a home or SOHO network environment, you may want to use a self-signed certificate on your router, this will stop your browser from complaining about HTTP traffic.</li>
+<li>In a development environment, you may also want to use a self-signed certificate. This is so that you can utilize the Man-in-the-middle method and sniff some of the HTTPS traffic, making things easier to debug. (This is especially useful when you are doing mobile application development)</li>
+</ul>
+<h3 id="Issues-and-solutions"><a href="#Issues-and-solutions" class="headerlink" title="Issues and solutions"></a>Issues and solutions</h3><p>I would like to go over the issues I have encountered recently on self-signed certificates. In most situations, to solve the problem, you can either <strong>bypass</strong> or <strong>trust</strong>. <strong>Bypass</strong> means blindly trust all self-signed certificate and don&#39;t warn me again. <strong>Trust</strong> means trusting <strong>only</strong> the certificate in question, which means if you ever have another self-signed certificate, you would have to <strong>trust</strong> it again. Unless you have a very good reason, <strong>do not</strong> use the bypass solution.</p>
+<h5 id="Using-self-signed-certificate-in-JavaScript-x2F-NodeJS"><a href="#Using-self-signed-certificate-in-JavaScript-x2F-NodeJS" class="headerlink" title="Using self-signed certificate in JavaScript&#x2F;NodeJS"></a>Using self-signed certificate in JavaScript&#x2F;NodeJS</h5><p>If you are a NodeJS developer, you would most likely to have encounter error message like <code>Self-signed certificate in certificate chain</code>. This error is actually from NodeJS https client, if you are using a third party library (like Apollo server client), you will have to dig and find how to pass custom http client to that library.</p>
+<div class="tabs" id="solutions_node"><ul class="nav-tabs"><li class="tab active"><a href="#solutions_node-1">Solution 1: Bypass</a></li><li class="tab"><a href="#solutions_node-2">Solution 2: Trust</a></li></ul><div class="tab-content"><div class="tab-pane active" id="solutions_node-1"><p>There are several ways to bypass this warning.</p>
+<ul>
+<li>At global level: using environment variable, <code>export NODE_TLS_REJECT_UNAUTHORIZED=0</code></li>
+<li>At HTTPS client level:<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">https.<span class="title function_">request</span>(&#123;</span><br><span class="line">      <span class="attr">host</span>: <span class="string">&#x27;192.168.1.1&#x27;</span>,</span><br><span class="line">      <span class="attr">port</span>: <span class="number">443</span>,</span><br><span class="line">      <span class="attr">path</span>: <span class="string">&#x27;/&#x27;</span>,</span><br><span class="line">      <span class="attr">method</span>: <span class="string">&#x27;GET&#x27;</span>,</span><br><span class="line">      <span class="attr">rejectUnauthorized</span>: <span class="literal">false</span>,</span><br><span class="line">      <span class="attr">requestCert</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="attr">agent</span>: <span class="literal">false</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+</ul></div><div class="tab-pane" id="solutions_node-2"><figure class="highlight javascript"><figcaption><span>Trust certificate in NodeJS</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> https = <span class="built_in">require</span>(<span class="string">&#x27;https&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Read the self-signed certificate file</span></span><br><span class="line"><span class="keyword">const</span> caCert = fs.<span class="title function_">readFileSync</span>(<span class="string">&#x27;path/to/self-signed-certificate.pem&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Configure the agent with the self-signed certificate</span></span><br><span class="line"><span class="keyword">const</span> agent = <span class="keyword">new</span> https.<span class="title class_">Agent</span>(&#123;</span><br><span class="line">  <span class="attr">ca</span>: caCert</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Make the HTTP request using the agent</span></span><br><span class="line"><span class="keyword">const</span> options = &#123;</span><br><span class="line">  <span class="attr">hostname</span>: <span class="string">&#x27;yourserver.com&#x27;</span>,</span><br><span class="line">  <span class="attr">port</span>: <span class="number">443</span>,</span><br><span class="line">  <span class="attr">path</span>: <span class="string">&#x27;/&#x27;</span>,</span><br><span class="line">  <span class="attr">method</span>: <span class="string">&#x27;GET&#x27;</span>,</span><br><span class="line">  <span class="attr">agent</span>: agent</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> req = https.<span class="title function_">request</span>(options, <span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// Response handling logic</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">req.<span class="title function_">on</span>(<span class="string">&#x27;error&#x27;</span>, <span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">error</span>(error);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">req.<span class="title function_">end</span>();</span><br></pre></td></tr></table></figure></div></div></div>
+
+
+<h5 id="Using-self-signed-certificate-in-Python"><a href="#Using-self-signed-certificate-in-Python" class="headerlink" title="Using self-signed certificate in Python"></a>Using self-signed certificate in Python</h5><div class="tabs" id="solutions_python"><ul class="nav-tabs"><li class="tab active"><a href="#solutions_python-1">Solution 1: Bypass</a></li><li class="tab"><a href="#solutions_python-2">Solution 2: Trust</a></li></ul><div class="tab-content"><div class="tab-pane active" id="solutions_python-1"><p>To bypass at a client level, add verify&#x3D;False.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">data = &#123;<span class="string">&#x27;foo&#x27;</span>:<span class="string">&#x27;bar&#x27;</span>&#125;</span><br><span class="line">url = <span class="string">&#x27;https://foo.com/bar&#x27;</span></span><br><span class="line">r = requests.post(url, data=data, verify=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="solutions_python-2"><p>To trust the certificate, you will need to put the certificate on that machine and either use the environment variable or pass the certificate in the path</p>
+<figure class="highlight python"><figcaption><span>Trust certificate in Python</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> certifi</span><br><span class="line"></span><br><span class="line"><span class="comment"># Specify the URL of the server you want to connect to</span></span><br><span class="line">url = <span class="string">&#x27;https://yourserver.com&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Path to your self-signed certificate file (PEM format)</span></span><br><span class="line">cert_file = <span class="string">&#x27;path/to/self-signed-certificate.pem&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Send an HTTP GET request</span></span><br><span class="line">response = requests.get(url, cert=(cert_file, cert_file), verify=certifi.where())</span><br><span class="line"></span><br><span class="line"><span class="comment"># Process the response</span></span><br><span class="line"><span class="built_in">print</span>(response.text)</span><br></pre></td></tr></table></figure>
+
+<p>Or <code>export REQUESTS_CA_BUNDLE = /path/to/your/certificate.pem</code></p></div></div></div>
+
+
+<h5 id="Using-self-signed-certificate-with-Docker-x2F-Colima"><a href="#Using-self-signed-certificate-with-Docker-x2F-Colima" class="headerlink" title="Using self-signed certificate with Docker&#x2F;Colima"></a>Using self-signed certificate with Docker&#x2F;Colima</h5><p>This is something I encountered recently, our internal Docker registry uses self-signed certificate, this turned out to be quite a challenge. I had to find ways to add the certificate Colima host machine for this to work correctly.<br>Here&#39;s the command I ran:<br><code>colima ssh -- sudo sh -c &quot;openssl s_client -showcerts -connect our-internal-url:443 &lt;/dev/null 2&gt;/dev/null|openssl x509 -outform PEM &gt; /usr/local/share/ca-certificates/internal.crt &amp;&amp; update-ca-certificates &amp;&amp; cat /var/run/docker.pid | xargs kill&quot;</code><br>This will download the certificate and install in the certificate storage in the colima VM in one go.</p>
+<h4 id="References"><a href="#References" class="headerlink" title="References"></a>References</h4><p><a target="_blank" rel="noopener" href="https://gist.github.com/jkremser/a8143384049b171d4e64c5aeb6da4793">https://gist.github.com/jkremser/a8143384049b171d4e64c5aeb6da4793</a></p>
+<ul>
+<li>Some of the code in this article was generated using ChatGPT.</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>Post author:  </strong>KevinSJ
+  </li>
+  <li class="post-copyright-link">
+      <strong>Post link: </strong>
+      <a href="https://jiangsc.me/2023/06/24/self-signed-cert-issues-and-solutions/" title="Self-signed certificate, issues and solutions">https://jiangsc.me/2023/06/24/self-signed-cert-issues-and-solutions/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+          <div class="followme">
+  <span>Welcome to my other publishing channels</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+              <a href="/tags/MacOS/" rel="tag"># MacOS</a>
+              <a href="/tags/Docker/" rel="tag"># Docker</a>
+              <a href="/tags/Python/" rel="tag"># Python</a>
+              <a href="/tags/Node-JS/" rel="tag"># Node.JS</a>
+              <a href="/tags/Colima/" rel="tag"># Colima</a>
+              <a href="/tags/Self-signed-Certificate/" rel="tag"># Self-signed Certificate</a>
+              <a href="/tags/TLS/" rel="tag"># TLS</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/06/03/thinkpad-neo-14-issue-fix/" rel="prev" title="Fixing issues on Thinkpad Neo 14 running Linux">
+                  <i class="fa fa-chevron-left"></i> Fixing issues on Thinkpad Neo 14 running Linux
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">KevinSJ</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/KevinSJ" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.8/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
+
+  
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.8/pdfobject.min.js","integrity":"sha256-tu9j5pBilBQrWSDePOOajCUdz6hWsid/lBNzK4KgEPM="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/9.3.0/mermaid.min.js","integrity":"sha256-QdTG1YTLLTwD3b95jLqFxpQX9uYuJMNAtVZgwKX4oYU="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.16.0/firebase-app-compat.js" integrity="sha256-ugLrv2V3S3effuUc0sDKuh3ICRsl8dlG1FS+iAMQtlE=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.16.0/firebase-firestore-compat.js" integrity="sha256-oaAQkODa+UNQUcrZrKC7MRY6Z+H/AyOOvWY/nPHGDM8=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="firestore" type="application/json">{"enable":true,"collection":"blog_view","apiKey":"AIzaSyAwkI10aTDM2430EyQhtAz5X04hk16ozRc","projectId":"blog-269be"}</script>
+  <script src="/js/third-party/statistics/firestore.js"></script>
+
+
+
+<script>
+function getExif(target) {
+  const template = "{Make} {Model} {DateTimeOriginal} {FocalLength}mm f/{FNumber} {ExposureTime}s";
+  EXIF.getData(target, function() {
+    const tags = EXIF.getAllTags(this);
+    let result = template;
+    for (let [key, value] of Object.entries(tags)) {
+      if (key === 'ExposureTime' && value <= 0.25) {
+        value = '1/' + parseInt(1 / value);
+      }
+      result = result.replace(`{${key}}`, value);
+    }
+    if (result !== template) {
+      const box = document.createElement('div');
+      target.wrap(box);
+      box.classList.add('exif-container');
+      box.insertAdjacentHTML('beforeend', `<div class="exif-metabar"><span>${result}</span></div>`);
+    }
+  });
+}
+
+[...document.querySelectorAll('.post-body img')].forEach(element => {
+  if (element.complete) getExif(element);
+  // `lazyload` compatible
+  element.addEventListener('load', () => {
+    getExif(element);
+  });
+});
+</script>
+
+<script src="https://unpkg.com/live2d-widget@^3.1.3/lib/L2Dwidget.min.js"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false}});</script></body>
+</html>
