@@ -1,3 +1,4 @@
+https://jiangsc.me/2023/07/14/Easy-Self-Hosting-with-Traefik-Proxy/
 https://jiangsc.me/2023/06/24/self-signed-cert-issues-and-solutions/
 https://jiangsc.me/2023/06/03/thinkpad-neo-14-issue-fix/
 https://jiangsc.me/2023/05/07/Tips-for-Setting-Up-Linux-on-AMD-based-Thinkpad/
@@ -121,5 +122,10 @@ https://jiangsc.me/tags/MacOS/
 https://jiangsc.me/tags/Docker/
 https://jiangsc.me/tags/Node-JS/
 https://jiangsc.me/tags/Colima/
+https://jiangsc.me/tags/Self-hosting/
+https://jiangsc.me/tags/Traefik/
+https://jiangsc.me/tags/Google-Cloud-Platform/
 https://jiangsc.me/tags/Self-signed-Certificate/
 https://jiangsc.me/tags/TLS/
+https://jiangsc.me/tags/Cloud-Native/
+https://jiangsc.me/tags/Reverse-Proxy/
