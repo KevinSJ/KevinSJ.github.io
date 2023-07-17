@@ -151,6 +151,9 @@
       <span class="links-of-author-item">
         <a href="https://www.linkedin.com/in/kevsj" title="LinkedIn → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;kevsj" rel="noopener me" target="_blank"><i class="fab fa-linkedin fa-fw"></i>LinkedIn</a>
       </span>
+      <span class="links-of-author-item">
+        <a href="https://gitlab.com/kevinsj" title="GitLab → https:&#x2F;&#x2F;gitlab.com&#x2F;kevinsj" rel="noopener me" target="_blank"><i class="fab fa-gitlab fa-fw"></i>GitLab</a>
+      </span>
   </div>
   <div class="cc-license animated" itemprop="license">
     <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
@@ -243,7 +246,7 @@
 <h3 id="Understanding-the-Zoom-URL-scheme"><a href="#Understanding-the-Zoom-URL-scheme" class="headerlink" title="Understanding the Zoom URL scheme"></a>Understanding the Zoom URL scheme</h3><div class="note info"><p>The zoom url scheme starts with zoommtg, it contains the information of the meeting id and the password</p>
 </div>
 <p>The Zoom URL scheme is not that difficult to understand, if you want to use the URL scheme to join a meeting, you can use the following:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zoommtg://zoom.us/join?confno=&#123;confno&#125;&amp;pwd=&#123;pwd&#125;`</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zoommtg://zoom.us/join?confno=&#123;confno&#125;&amp;<span class="built_in">pwd</span>=&#123;<span class="built_in">pwd</span>&#125;`</span><br></pre></td></tr></table></figure>
 <p>where the confno is the number part of the Zoom meeting link you received and the pwd part is whatever comes after the pwd part in the URL.</p>
 <p>Now is the time to combine <code>xdg-open</code> and the URL scheme, you can do something like <code>xdg-open zoommtg://zoom.us/join?confno=123456&amp;pwd=65432</code> in the terminal. Note that using it like that will start Zoom in the current terminal, meaning you won&#39;t be able to do anything in the current terminal which is less than ideal. The correct way to open zoom in the background would be <code>(xdg-open zoommtg://zoom.us/join?confno=123456&amp;pwd=65432 &amp;)</code></p>
 <h3 id="Opening-Zoom-without-browser"><a href="#Opening-Zoom-without-browser" class="headerlink" title="Opening Zoom without browser"></a>Opening Zoom without browser</h3><p>Now that we are clear on the Zoom scheme, we can think of several different ways to open Zoom quickly: </p>
@@ -254,7 +257,7 @@
 
 <p>This is the solution that I went with, it is a bit more setup work at the beginning, but I&#39;m quite happy with it.</p>
 <p>The first thing I did was creating a file called <code>.zoom_meetings.conf</code> in my home directory. Inside this file, I have something like this</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Example zoommtg://zoom.us/join?confno=123456&amp;pwd=654321</span><br></pre></td></tr></table></figure>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Example</span> zoommtg://zoom.us/join?confno=<span class="number">123456</span>&amp;pwd=<span class="number">654321</span></span><br></pre></td></tr></table></figure>
 
 <p>Next step is to create a script in where you put your rofi config, as an example, I put it in <code>.config/rofi/zoom/launcher.sh</code></p>
 <p>This file will have the following: </p>

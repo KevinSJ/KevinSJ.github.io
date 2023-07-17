@@ -144,6 +144,9 @@
       <span class="links-of-author-item">
         <a href="https://www.linkedin.com/in/kevsj" title="LinkedIn → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;kevsj" rel="noopener me" target="_blank"><i class="fab fa-linkedin fa-fw"></i>LinkedIn</a>
       </span>
+      <span class="links-of-author-item">
+        <a href="https://gitlab.com/kevinsj" title="GitLab → https:&#x2F;&#x2F;gitlab.com&#x2F;kevinsj" rel="noopener me" target="_blank"><i class="fab fa-gitlab fa-fw"></i>GitLab</a>
+      </span>
   </div>
   <div class="cc-license animated" itemprop="license">
     <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
@@ -693,10 +696,10 @@
           <p>What would be the easiest way to remove all but one word from the end of each line in Vim?</p>
 <p>Today, I found a challenge on vimgolf and thought it might be interesting to share my solutions.</p>
 <p>Here is the original file</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">abcd 1 erfg 7721231</span><br><span class="line">acd 2 erfgasd 324321</span><br><span class="line">acd 3 erfgsdasd 23432</span><br><span class="line">abcd 5 erfgdsad 123556</span><br></pre></td></tr></table></figure>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">abcd</span> <span class="number">1</span> erfg <span class="number">7721231</span></span><br><span class="line"><span class="attribute">acd</span> <span class="number">2</span> erfgasd <span class="number">324321</span></span><br><span class="line"><span class="attribute">acd</span> <span class="number">3</span> erfgsdasd <span class="number">23432</span></span><br><span class="line"><span class="attribute">abcd</span> <span class="number">5</span> erfgdsad <span class="number">123556</span></span><br></pre></td></tr></table></figure>
 
 <p>Here is the desired result:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">7721231</span><br><span class="line">324321</span><br><span class="line">23432</span><br><span class="line">123556</span><br></pre></td></tr></table></figure>
+<figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">7721231</span></span><br><span class="line"><span class="number">324321</span></span><br><span class="line"><span class="number">23432</span></span><br><span class="line"><span class="number">123556</span></span><br></pre></td></tr></table></figure>
 
 <p>The challenge is quite straightforward, delete all but the last characters in the file. I found several ways to tackle this challenge, so let me show you all:</p>
           <!--noindex-->
