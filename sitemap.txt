@@ -108,6 +108,8 @@ https://jiangsc.me/tags/Emulator/
 https://jiangsc.me/tags/Android-Development/
 https://jiangsc.me/tags/Carrier-Simulation/
 https://jiangsc.me/tags/tips/
+https://jiangsc.me/tags/TypeScript/
+https://jiangsc.me/tags/Module/
 https://jiangsc.me/tags/Manjaro-Linux/
 https://jiangsc.me/tags/Dual-monitor/
 https://jiangsc.me/tags/systemd/
@@ -130,5 +132,3 @@ https://jiangsc.me/tags/Self-signed-Certificate/
 https://jiangsc.me/tags/TLS/
 https://jiangsc.me/tags/flexget/
 https://jiangsc.me/tags/raspberrypi/
-https://jiangsc.me/tags/TypeScript/
-https://jiangsc.me/tags/Module/
