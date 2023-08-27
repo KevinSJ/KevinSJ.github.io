@@ -2,16 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://jiangsc.me/2023/07/29/js-ts-module-resolution-and-alias/</loc>
+    <loc>https://jiangsc.me/about/index.html</loc>
     
-    <lastmod>2023-07-29</lastmod>
+    <lastmod>2023-08-27</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://jiangsc.me/about/index.html</loc>
+    <loc>https://jiangsc.me/2023/07/29/js-ts-module-resolution-and-alias/</loc>
     
     <lastmod>2023-07-29</lastmod>
     
