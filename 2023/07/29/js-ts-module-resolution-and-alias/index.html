@@ -28,7 +28,7 @@
 <meta property="og:description" content="Recently, I&#39;ve encountered an interesting issue with a project using TypeScript. In this article, I will describe the problem, the investigation I did and how I locate the root cause, and suggest">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-07-29T06:43:44.000Z">
-<meta property="article:modified_time" content="2023-07-29T09:41:39.837Z">
+<meta property="article:modified_time" content="2023-08-27T11:09:56.409Z">
 <meta property="article:author" content="KevinSJ">
 <meta property="article:tag" content="JavaScript">
 <meta property="article:tag" content="TypeScript">
@@ -204,9 +204,8 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 07-29-2023 18:43:44 / Modified: 21:41:39" itemprop="dateCreated datePublished" datetime="2023-07-29T18:43:44+12:00">07-29-2023</time>
+      <time title="Created: 07-29-2023 18:43:44" itemprop="dateCreated datePublished" datetime="2023-07-29T18:43:44+12:00">07-29-2023</time>
     </span>
 
   
@@ -243,13 +242,13 @@
 </div>
 
 <p>My conclusion was the answer to all of questions boils down to how this project was setup, more specifically how it uses TypeScript and the tsconfig file.</p>
-<p>Modern day JavaScript has the concept of modules. A module can be imported in two ways, relative and non-relative. A relative imports, involves finding the path using relative path, that is, when you see something like <code>import helper from &#39;../../helper&#39;</code> is a relative import. Whereas, <code>import helper from &#39;tests/helpers&#39;</code> is an example of non-relative import. At runtime (or compile time for TypeScript), modules import one another using module loader <a target="_blank" rel="noopener" href="https://www.typescriptlang.org/docs/handbook/modules.html">^1</a>. The process of how modules decide where to find the module to import from is called module resolution.</p>
+<p>Modern day JavaScript has the concept of modules. A module can be imported in two ways, relative and non-relative. A relative imports, involves finding the path using relative path, that is, when you see something like <code>import helper from &#39;../../helper&#39;</code> is a relative import. Whereas, <code>import helper from &#39;tests/helpers&#39;</code> is an example of non-relative import. At runtime (or compile time for TypeScript), modules import one another using module loader <span class="exturl" data-url="aHR0cHM6Ly93d3cudHlwZXNjcmlwdGxhbmcub3JnL2RvY3MvaGFuZGJvb2svbW9kdWxlcy5odG1s">^1<i class="fa fa-external-link-alt"></i></span>. The process of how modules decide where to find the module to import from is called module resolution.</p>
 <p>In most circumstances, you would prefer relative imports, which works fine if you don&#39;t have deeply nested folder structures. Non-relative imports are mostly for importing modules from third party NPM packages. However, once the projects gets larger, you would see non-relative imports even for modules that are not from third party which makes importing easier to understand and follow.</p>
-<p>TypeScript <a target="_blank" rel="noopener" href="https://www.typescriptlang.org/docs/handbook/module-resolution.html#how-typescript-resolves-modules">mimics NodeJS module resolution algorithm</a>. It also employs some flags to <strong>INFORM</strong> the compiler of what&#39;s expected to happen to module resolution at runtime. This is because, a project may have a different structure at runtime vs at build time. As an example, most front-end projects will be bundled to multiple JavaScript files, this is not representative of the project structure before it&#39;s built. One important thing to note here is that TypeScript compiler itself <strong>WILL NOT</strong> do any transformation on its own.</p>
+<p>TypeScript <span class="exturl" data-url="aHR0cHM6Ly93d3cudHlwZXNjcmlwdGxhbmcub3JnL2RvY3MvaGFuZGJvb2svbW9kdWxlLXJlc29sdXRpb24uaHRtbCNob3ctdHlwZXNjcmlwdC1yZXNvbHZlcy1tb2R1bGVz">mimics NodeJS module resolution algorithm<i class="fa fa-external-link-alt"></i></span>. It also employs some flags to <strong>INFORM</strong> the compiler of what&#39;s expected to happen to module resolution at runtime. This is because, a project may have a different structure at runtime vs at build time. As an example, most front-end projects will be bundled to multiple JavaScript files, this is not representative of the project structure before it&#39;s built. One important thing to note here is that TypeScript compiler itself <strong>WILL NOT</strong> do any transformation on its own.</p>
 <p>In <code>tsconfig</code>, <code>baseUrl</code> and <code>path</code> configuration are examples of the aforementioned flags.</p>
 <ul>
-<li><code>baseUrl</code>: Setting baseUrl informs the compiler where to find modules. All module imports with non-relative names are assumed to be relative to the baseUrl. <a target="_blank" rel="noopener" href="https://www.typescriptlang.org/docs/handbook/module-resolution.html#base-url">^2</a></li>
-<li><code>path</code>:  this is a mapping between file and module, and should be used when modules sits outside of the baseUrl. <a target="_blank" rel="noopener" href="https://www.typescriptlang.org/docs/handbook/module-resolution.html#path-mapping">^3</a></li>
+<li><code>baseUrl</code>: Setting baseUrl informs the compiler where to find modules. All module imports with non-relative names are assumed to be relative to the baseUrl. <span class="exturl" data-url="aHR0cHM6Ly93d3cudHlwZXNjcmlwdGxhbmcub3JnL2RvY3MvaGFuZGJvb2svbW9kdWxlLXJlc29sdXRpb24uaHRtbCNiYXNlLXVybA==">^2<i class="fa fa-external-link-alt"></i></span></li>
+<li><code>path</code>:  this is a mapping between file and module, and should be used when modules sits outside of the baseUrl. <span class="exturl" data-url="aHR0cHM6Ly93d3cudHlwZXNjcmlwdGxhbmcub3JnL2RvY3MvaGFuZGJvb2svbW9kdWxlLXJlc29sdXRpb24uaHRtbCNwYXRoLW1hcHBpbmc=">^3<i class="fa fa-external-link-alt"></i></span></li>
 </ul>
 <p>The <code>tsconfig</code> file for this project in question contains the following line <code>baseUrl: ./src</code>. This has several implications:</p>
 <ul>
@@ -261,15 +260,15 @@
 </ul>
 </li>
 </ul>
-<p>For the project I mentioned, <a target="_blank" rel="noopener" href="https://github.com/ilearnio/module-alias">a NPM package called module-alias</a> was used. However, not all aliases are registered properly. This was what led to the <code>module not found</code> error at runtime.</p>
+<p>For the project I mentioned, <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2lsZWFybmlvL21vZHVsZS1hbGlhcw==">a NPM package called module-alias<i class="fa fa-external-link-alt"></i></span> was used. However, not all aliases are registered properly. This was what led to the <code>module not found</code> error at runtime.</p>
 <h3 id="Solutions"><a href="#Solutions" class="headerlink" title="Solutions"></a>Solutions</h3><p>I think the key is to have consistency between the project setup and TypeScript configuration (tsconfig), that is, if the project is not using a bundler, the baseUrl should be used together with paths mapping. And anytime a new non-relative import is added in code, one should also check whether the alias has been setup correctly. </p>
 <p>There are many ways to setup alias for non-relative path import:</p>
 <ul>
 <li>Using the <code>module-alias</code> NPM package. Note that this package is not a development dependency, you will have to include it in your actual dependency.</li>
-<li>Using the <a target="_blank" rel="noopener" href="https://nodejs.org/docs/latest-v18.x/api/packages.html#subpath-imports">subpath imports method</a> provided by NodeJS (this is only applicable in NodeJS project) which setup alias in package.json</li>
+<li>Using the <span class="exturl" data-url="aHR0cHM6Ly9ub2RlanMub3JnL2RvY3MvbGF0ZXN0LXYxOC54L2FwaS9wYWNrYWdlcy5odG1sI3N1YnBhdGgtaW1wb3J0cw==">subpath imports method<i class="fa fa-external-link-alt"></i></span> provided by NodeJS (this is only applicable in NodeJS project) which setup alias in package.json</li>
 </ul>
 <hr>
-<h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><p><a target="_blank" rel="noopener" href="https://www.typescriptlang.org/docs/handbook/modules.html">https://www.typescriptlang.org/docs/handbook/modules.html</a><br><a target="_blank" rel="noopener" href="https://www.typescriptlang.org/docs/handbook/module-resolution.html">https://www.typescriptlang.org/docs/handbook/module-resolution.html</a></p>
+<h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><p><span class="exturl" data-url="aHR0cHM6Ly93d3cudHlwZXNjcmlwdGxhbmcub3JnL2RvY3MvaGFuZGJvb2svbW9kdWxlcy5odG1s">https://www.typescriptlang.org/docs/handbook/modules.html<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly93d3cudHlwZXNjcmlwdGxhbmcub3JnL2RvY3MvaGFuZGJvb2svbW9kdWxlLXJlc29sdXRpb24uaHRtbA==">https://www.typescriptlang.org/docs/handbook/module-resolution.html<i class="fa fa-external-link-alt"></i></span></p>
 
     </div>
 

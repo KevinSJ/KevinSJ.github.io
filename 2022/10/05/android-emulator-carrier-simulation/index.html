@@ -28,7 +28,7 @@
 <meta property="og:description" content="BackgroundI&#39;m not an Android developer, but I do work with Android applications which means I have to work with Android Studio and Android emulator quite often. Recently, I encountered a quite int">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-10-05T09:13:05.000Z">
-<meta property="article:modified_time" content="2022-10-29T05:59:16.315Z">
+<meta property="article:modified_time" content="2023-08-27T11:09:56.409Z">
 <meta property="article:author" content="KevinSJ">
 <meta property="article:tag" content="Android">
 <meta property="article:tag" content="Emulator">
@@ -208,13 +208,6 @@
 
       <time title="Created: 10-05-2022 22:13:05" itemprop="dateCreated datePublished" datetime="2022-10-05T22:13:05+13:00">10-05-2022</time>
     </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 10-29-2022 18:59:16" itemprop="dateModified" datetime="2022-10-29T18:59:16+13:00">10-29-2022</time>
-    </span>
 
   
     <span class="post-meta-item" title="Views">
@@ -238,8 +231,8 @@
 <p><strong>How?</strong></p>
 <p>There are definitely several ways to do so, one obvious way is to use the IP address. However, with the growing use of VPN, this is definitely not the most reliable option.</p>
 <p>The other option that comes up is to identify through the mobile carrier. If you are not familiar with telco or mobile networks, I will provide a brief background next.</p>
-<p><strong>MCCs and MNCs</strong><br>Each mobile network operator (or carrier) can be uniquely identified by using a combination of MCC (mobile country code) and MNC(mobile network code). More information on this on <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Mobile_country_code" title="Mobile Country Code - Wikipedia">Wikipedia</a>. What this means is that, you can usually reliably identify where the user is from by looking at their mobile carrier&#39;s MCC code.</p>
-<p>Usually, you would have to translate the MCC code to a country code on your own but it turns out in Android you don&#39;t have to do the translation yourself. Instead, you can directly use <a target="_blank" rel="noopener" href="https://developer.android.com/reference/android/telephony/TelephonyManager#getNetworkCountryIso()" title="getNetworkCountryIso API">this</a> API which will give you an ISO country code in 2 letters. You can then do whatever you want with this country code, pass this through a header to a server or the likes.</p>
+<p><strong>MCCs and MNCs</strong><br>Each mobile network operator (or carrier) can be uniquely identified by using a combination of MCC (mobile country code) and MNC(mobile network code). More information on this on <span class="exturl" data-url="aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvTW9iaWxlX2NvdW50cnlfY29kZQ==" title="Mobile Country Code - Wikipedia">Wikipedia<i class="fa fa-external-link-alt"></i></span>. What this means is that, you can usually reliably identify where the user is from by looking at their mobile carrier&#39;s MCC code.</p>
+<p>Usually, you would have to translate the MCC code to a country code on your own but it turns out in Android you don&#39;t have to do the translation yourself. Instead, you can directly use <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYW5kcm9pZC5jb20vcmVmZXJlbmNlL2FuZHJvaWQvdGVsZXBob255L1RlbGVwaG9ueU1hbmFnZXIjZ2V0TmV0d29ya0NvdW50cnlJc28oKQ==" title="getNetworkCountryIso API">this<i class="fa fa-external-link-alt"></i></span> API which will give you an ISO country code in 2 letters. You can then do whatever you want with this country code, pass this through a header to a server or the likes.</p>
 <p>Once you have implemented this using getNetworkCountryIso, you will realize it is almost impossible to test or verify if this functionality will actually work as expected. One of the easiest way is to provide a debug menu within the app (in debug mode) and then mock different countries, this is the obviously the most efficient and cost effective way.</p>
 <p>If in reality, a debug menu to mock countries is not something you can achieve, then you will have to use the emulator. This is what the rest of this post will be about, and hopefully this post can help you with your solution.</p>
 <span id="more"></span>

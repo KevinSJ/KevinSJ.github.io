@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://jiangsc.me/2020/12/26/Automating-Zoom-with-Alfred-and-Apple-Scripts/calendar-1.png">
 <meta property="og:image" content="https://jiangsc.me/2020/12/26/Automating-Zoom-with-Alfred-and-Apple-Scripts/calendar-2.png">
 <meta property="article:published_time" content="2020-12-26T09:55:59.000Z">
-<meta property="article:modified_time" content="2022-08-28T03:27:39.159Z">
+<meta property="article:modified_time" content="2023-08-27T11:09:56.405Z">
 <meta property="article:author" content="KevinSJ">
 <meta property="article:tag" content="Automation">
 <meta property="article:tag" content="Zoom">
@@ -212,13 +212,6 @@
 
       <time title="Created: 12-26-2020 22:55:59" itemprop="dateCreated datePublished" datetime="2020-12-26T22:55:59+13:00">12-26-2020</time>
     </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 08-28-2022 15:27:39" itemprop="dateModified" datetime="2022-08-28T15:27:39+12:00">08-28-2022</time>
-    </span>
 
   
     <span class="post-meta-item" title="Views">
@@ -238,11 +231,11 @@
     
     <div class="post-body" itemprop="articleBody"><p>Like it or not, 2020 has been a year where video conference are used a lot. For me, most of the meetings happens in Zoom. Finding the link to the meeting in the calendar and then clicking on it to join the meeting had gradually become a new norm and something I really don&#39;t like (the fact that after clicking on the Zoom link brings up your browser instead of Zoom itself, and prompting you to click again to open Zoom is really a pain). As someone who would like to automate things as much as possible, I did eventually find a solution that works for me albeit several third party tools are required.</p>
 <h3 id="Problem-Statement-Automatically-join-a-Zoom-call-for-a-meeting-scheduled-in-calendar-without-user-interaction-on-MacOS-X"><a href="#Problem-Statement-Automatically-join-a-Zoom-call-for-a-meeting-scheduled-in-calendar-without-user-interaction-on-MacOS-X" class="headerlink" title="Problem Statement: Automatically join a Zoom call for a meeting scheduled in calendar without user interaction (on MacOS X)."></a>Problem Statement: Automatically join a Zoom call for a meeting scheduled in calendar without user interaction (on MacOS X).</h3><h3 id="Prerequisite"><a href="#Prerequisite" class="headerlink" title="Prerequisite:"></a>Prerequisite:</h3><ul>
-<li><a target="_blank" rel="noopener" href="https://www.alfredapp.com/">Alfred</a><br>  (Unclear if you need to be a paid user to create custom workflows, the author is a paid user)</li>
-<li><a target="_blank" rel="noopener" href="https://github.com/zerowidth/zoom-calendar.alfredworkflow">zoom-calendar.alfredworkflow</a><br>  (Yep, I found this alfred workflow by chance and based my work and this blog on this workflow, it is very handy and I would really like thank the author for creating this.)</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuYWxmcmVkYXBwLmNvbS8=">Alfred<i class="fa fa-external-link-alt"></i></span><br>  (Unclear if you need to be a paid user to create custom workflows, the author is a paid user)</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3plcm93aWR0aC96b29tLWNhbGVuZGFyLmFsZnJlZHdvcmtmbG93">zoom-calendar.alfredworkflow<i class="fa fa-external-link-alt"></i></span><br>  (Yep, I found this alfred workflow by chance and based my work and this blog on this workflow, it is very handy and I would really like thank the author for creating this.)</li>
 <li>Automator<br>  (The builtin automation app in MacOS from Apple)<span id="more"></span></li>
 </ul>
-<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution:"></a>Solution:</h3><p>Assume you have already installed the Alfred App, you will need to go to <a target="_blank" rel="noopener" href="https://github.com/zerowidth/zoom-calendar.alfredworkflow">this</a> Github Repo, follow the instructions given and install the Alfred workflow.</p>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution:"></a>Solution:</h3><p>Assume you have already installed the Alfred App, you will need to go to <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3plcm93aWR0aC96b29tLWNhbGVuZGFyLmFsZnJlZHdvcmtmbG93">this<i class="fa fa-external-link-alt"></i></span> Github Repo, follow the instructions given and install the Alfred workflow.</p>
 <p>Once the workflow has been installed, we need to do some tweaking. Add an external trigger to this workflow and give it an id of &#39;Automator&#39;</p>
 <p>Now, open up Automator, choose the Calendar Alarm workflow as shown in the screenshot below:<br><img data-src="/2020/12/26/Automating-Zoom-with-Alfred-and-Apple-Scripts/automator-1.png"></p>
 <p>Copy and paste the following code to the calendar alarm:</p>
@@ -266,7 +259,7 @@
 <ul>
 <li><p>Use Zoom itself, if you are logged into Zoom and allow them to access your calendar, they will provide a join button in their app to allow you to join the meeting without more button clicks.</p>
 </li>
-<li><p>Bookmark the Zoom url schemes and click on it. This is basically how the workflow works behind the scene: converting the url from http to zoom url scheme and then open it. I won&#39;t go in depth on how to create a bookmark and convert the links to url schemes, but Zoom provide a great doc on their schemes <a target="_blank" rel="noopener" href="https://marketplace.zoomgov.com/docs/guides/guides/client-url-schemes">here</a>.</p>
+<li><p>Bookmark the Zoom url schemes and click on it. This is basically how the workflow works behind the scene: converting the url from http to zoom url scheme and then open it. I won&#39;t go in depth on how to create a bookmark and convert the links to url schemes, but Zoom provide a great doc on their schemes <span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS56b29tZ292LmNvbS9kb2NzL2d1aWRlcy9ndWlkZXMvY2xpZW50LXVybC1zY2hlbWVz">here<i class="fa fa-external-link-alt"></i></span>.</p>
 </li>
 </ul>
 

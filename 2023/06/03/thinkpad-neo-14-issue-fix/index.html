@@ -28,7 +28,7 @@
 <meta property="og:description" content="This article is a continuation for my previous article on setting up Linux on this specific laptop, which I&#39;ve been using daily for a little over a month. My distro is Arch Linux, so this article">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-06-03T01:17:20.000Z">
-<meta property="article:modified_time" content="2023-07-04T10:22:01.068Z">
+<meta property="article:modified_time" content="2023-08-27T11:09:56.409Z">
 <meta property="article:author" content="KevinSJ">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="ArchLinux">
@@ -209,13 +209,6 @@
 
       <time title="Created: 06-03-2023 13:17:20" itemprop="dateCreated datePublished" datetime="2023-06-03T13:17:20+12:00">06-03-2023</time>
     </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 07-04-2023 22:22:01" itemprop="dateModified" datetime="2023-07-04T22:22:01+12:00">07-04-2023</time>
-    </span>
 
   
     <span class="post-meta-item" title="Views">
@@ -248,7 +241,7 @@
 
 <p><del>This was the issue that bothered me most, I just needed it to work correctly as this is my daily driver laptop and it&#39;s important to have the microphone work correctly.</del></p>
 <ul>
-<li><strong>Root cause:</strong> I had to search all over the internet to find a proper solution for this. And what helped me in the end was <a target="_blank" rel="noopener" href="https://bbs.archlinux.org/viewtopic.php?pid=2058087#p2058087">this Arch Linux forum post</a>. Based on the discussion there, the root cause seems to be my specific laptop model is not in the quirk list, and lots of people there was having this same issue. The suggested solution in that forum post is to modify the source code directly.</li>
+<li><strong>Root cause:</strong> I had to search all over the internet to find a proper solution for this. And what helped me in the end was <span class="exturl" data-url="aHR0cHM6Ly9iYnMuYXJjaGxpbnV4Lm9yZy92aWV3dG9waWMucGhwP3BpZD0yMDU4MDg3I3AyMDU4MDg3">this Arch Linux forum post<i class="fa fa-external-link-alt"></i></span>. Based on the discussion there, the root cause seems to be my specific laptop model is not in the quirk list, and lots of people there was having this same issue. The suggested solution in that forum post is to modify the source code directly.</li>
 </ul>
 <h4 id="Solution-Modify-the-source-code-and-recompile-the-kernel"><a href="#Solution-Modify-the-source-code-and-recompile-the-kernel" class="headerlink" title="Solution: Modify the source code and recompile the kernel"></a><del>Solution: Modify the source code and recompile the kernel</del></h4><p><del>I assume this is a big ask for most Linux user, but I will still go through what I did. I had submitted the patch to Linux kernel by the time this article is published, so hopefully when someone find this article from major search engines, this is no longer an issue.</del><br><del>Here is what I did:</del></p>
 <ul>
@@ -259,7 +252,7 @@
 </div>
 <figure class="highlight patch"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">diff --git a/sound/soc/amd/yc/acp6x-mach.c b/sound/soc/amd/yc/acp6x-mach.c</span></span><br><span class="line"><span class="comment">index 4406a5def..246299a17 100644</span></span><br><span class="line"><span class="comment">--- a/sound/soc/amd/yc/acp6x-mach.c</span></span><br><span class="line"><span class="comment">+++ b/sound/soc/amd/yc/acp6x-mach.c</span></span><br><span class="line"><span class="meta">@@ -171,6 +171,13 @@</span> static const struct dmi_system_id yc_acp_quirk_table[] = &#123;</span><br><span class="line"> 			DMI_MATCH(DMI_PRODUCT_NAME, &quot;21CL&quot;),</span><br><span class="line"> 		&#125;</span><br><span class="line"> 	&#125;,</span><br><span class="line"><span class="addition">+	&#123;</span></span><br><span class="line"><span class="addition">+		.driver_data = &amp;acp6x_card,</span></span><br><span class="line"><span class="addition">+		.matches = &#123;</span></span><br><span class="line"><span class="addition">+			DMI_MATCH(DMI_BOARD_VENDOR, &quot;LENOVO&quot;),</span></span><br><span class="line"><span class="addition">+			DMI_MATCH(DMI_PRODUCT_NAME, &quot;21EF&quot;),</span></span><br><span class="line"><span class="addition">+		&#125;</span></span><br><span class="line"><span class="addition">+	&#125;,</span></span><br><span class="line"> 	&#123;</span><br><span class="line"> 		.driver_data = &amp;acp6x_card,</span><br><span class="line"> 		.matches = &#123;</span><br></pre></td></tr></table></figure>
 <ul>
-<li><del>Follow the <a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Kernel/Arch_build_system">Linux Kernel building guide for Arch Linux using Arch Build System</a> to recompile the kernel, just remember to apply the patch using the method detailed in the guide <strong>BEFORE</strong> you started compiling.</del></li>
+<li><del>Follow the <span class="exturl" data-url="aHR0cHM6Ly93aWtpLmFyY2hsaW51eC5vcmcvdGl0bGUvS2VybmVsL0FyY2hfYnVpbGRfc3lzdGVt">Linux Kernel building guide for Arch Linux using Arch Build System<i class="fa fa-external-link-alt"></i></span> to recompile the kernel, just remember to apply the patch using the method detailed in the guide <strong>BEFORE</strong> you started compiling.</del></li>
 <li>Once you have installed and boot into the newly compiled kernel, you will notice your Pulse Audio profile will only have <code>Play Hi-Fi Audio</code> left.</li>
 <li>If you are using Pulse Audio only, you will need to edit <code>/etc/pulse/default.pa</code> and add <code>load-module module-udev-detect use_ucm=0</code></li>
 <li>If you are using Pipewire, you will need to edit <code>sudo vim /usr/share/wireplumber/main.lua.d/50-alsa-config.lua</code>, in this file, find and replace the following line (it should be true by default):<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- Use UCM instead of profile when available. Can be</span></span><br><span class="line"><span class="comment">-- disabled to skip trying to use the UCM profile.</span></span><br><span class="line">[<span class="string">&quot;api.alsa.use-ucm&quot;</span>] = <span class="literal">false</span>,</span><br></pre></td></tr></table></figure>
@@ -287,7 +280,7 @@ You will need to reboot again to make sure these files take effects.</li>
 <div class="note success"><p>I added an additional kernel parameter of <code>amd_pstate=active</code>.</p>
 </div>
 <p>On kernel 6.3+, this will set the CPU to use <code>amd_pstate_epp</code>, on earlier versions, this will make the system use <code>amd_pstate</code> as scaling driver. Note that scaling driver is different from CPU governor. If you want to use <code>amd_pstate</code> on 6.3 and above, you need to set <code>amd_pstate=passive</code> instead of active<br>You can verify you are indeed using the driver by running <code>sudo cpupower --cpu all frequency-info --human</code>, you will be able to see the driver as <code>driver: amd_pstate_epp</code></p>
-<h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><p><a target="_blank" rel="noopener" href="https://bbs.archlinux.org/viewtopic.php?pid=2058087">https://bbs.archlinux.org/viewtopic.php?pid=2058087</a><br><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Kernel/Arch_build_system">https://wiki.archlinux.org/title/Kernel/Arch_build_system</a><br><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Patching_packages#Applying_patches">https://wiki.archlinux.org/title/Patching_packages#Applying_patches</a><br><a target="_blank" rel="noopener" href="https://old.reddit.com/r/archlinux/comments/1381g2g/amd_pstate_epp_scaling_driver_available_with/">https://old.reddit.com/r/archlinux/comments/1381g2g/amd_pstate_epp_scaling_driver_available_with/</a></p>
+<h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><p><span class="exturl" data-url="aHR0cHM6Ly9iYnMuYXJjaGxpbnV4Lm9yZy92aWV3dG9waWMucGhwP3BpZD0yMDU4MDg3">https://bbs.archlinux.org/viewtopic.php?pid=2058087<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly93aWtpLmFyY2hsaW51eC5vcmcvdGl0bGUvS2VybmVsL0FyY2hfYnVpbGRfc3lzdGVt">https://wiki.archlinux.org/title/Kernel/Arch_build_system<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly93aWtpLmFyY2hsaW51eC5vcmcvdGl0bGUvUGF0Y2hpbmdfcGFja2FnZXMjQXBwbHlpbmdfcGF0Y2hlcw==">https://wiki.archlinux.org/title/Patching_packages#Applying_patches<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9vbGQucmVkZGl0LmNvbS9yL2FyY2hsaW51eC9jb21tZW50cy8xMzgxZzJnL2FtZF9wc3RhdGVfZXBwX3NjYWxpbmdfZHJpdmVyX2F2YWlsYWJsZV93aXRoLw==">https://old.reddit.com/r/archlinux/comments/1381g2g/amd_pstate_epp_scaling_driver_available_with/<i class="fa fa-external-link-alt"></i></span></p>
 
     </div>
 
