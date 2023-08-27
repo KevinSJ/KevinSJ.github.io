@@ -28,7 +28,7 @@
 <meta property="og:description" content="⚠ This article requires Rooted Android phones, please follow the instructions with caution. BackgroundSince Android 5, the Android system have added the capability of multi-user, the aim is most likel">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-04-17T04:24:17.000Z">
-<meta property="article:modified_time" content="2023-08-27T11:01:27.180Z">
+<meta property="article:modified_time" content="2022-08-28T03:27:19.332Z">
 <meta property="article:author" content="KevinSJ">
 <meta property="article:tag" content="Android">
 <meta property="article:tag" content="ADB">
@@ -211,7 +211,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 08-27-2023 23:01:27" itemprop="dateModified" datetime="2023-08-27T23:01:27+12:00">08-27-2023</time>
+      <time title="Modified: 08-28-2022 15:27:19" itemprop="dateModified" datetime="2022-08-28T15:27:19+12:00">08-28-2022</time>
     </span>
 
   
@@ -245,7 +245,7 @@
 <p>Once the user has been created, you can manage the list of the users it will have access to in the settings, this is in Settings&#x2F;Multi-user. </p>
 <p>To me, I want impose more restrictions on the user, there is indeed a way to do so:</p>
 <p><code>adb shell su -c &#39;pm set-user-restriction --user USER_ID no_install_apps 1&#39;</code> -- this will disallow install apps for the newly created profile, in this case <strong>no_install_apps</strong> is the name of the restriction, while the ** 1** immidiately follow is a boolean representing whether the restriction is enabled. (This command assumes you use Magsik as su)</p>
-<p>You can find a list of restrictions available from Google&#39;s official <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYW5kcm9pZC5jb20vcmVmZXJlbmNlL2FuZHJvaWQvb3MvVXNlck1hbmFnZXIjY29uc3RhbnRzXzE=">document<i class="fa fa-external-link-alt"></i></span>. Take note of the <code>Constant Value</code> in the document, that&#39;s the restriction value you need to use.</p>
+<p>You can find a list of restrictions available from Google&#39;s official <a target="_blank" rel="noopener" href="https://developer.android.com/reference/android/os/UserManager#constants_1">document</a>. Take note of the <code>Constant Value</code> in the document, that&#39;s the restriction value you need to use.</p>
 <p>If you want to see what restriction you&#39;ve added, you can issue <code>adb shell dumpsys user</code>, this command will dump all the users on the current device and the restrictions if any.</p>
 <p>To switch to a different user, you can use <code>am switch-user USER_ID</code> or do so from the UI.</p>
 <p>The easiest way to delete an user is through the settings menu. Though you can also do so through the command: <code>pm remove-user USER_ID</code></p>

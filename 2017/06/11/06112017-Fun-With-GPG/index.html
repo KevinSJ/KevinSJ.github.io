@@ -28,7 +28,7 @@
 <meta property="og:description" content="Fun with GPGThis week, I was having making some great progress in understanding how GPG works either locally or through email. The original intention to do all this was because I would like my router">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2017-06-11T04:33:06.000Z">
-<meta property="article:modified_time" content="2023-08-27T11:01:27.180Z">
+<meta property="article:modified_time" content="2022-08-28T03:26:39.535Z">
 <meta property="article:author" content="KevinSJ">
 <meta property="article:tag" content="Notes">
 <meta name="twitter:card" content="summary">
@@ -210,7 +210,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 08-27-2023 23:01:27" itemprop="dateModified" datetime="2023-08-27T23:01:27+12:00">08-27-2023</time>
+      <time title="Modified: 08-28-2022 15:26:39" itemprop="dateModified" datetime="2022-08-28T15:26:39+12:00">08-28-2022</time>
     </span>
 
   
@@ -236,7 +236,7 @@
 <p>Here is my original script, it simply uses the mailx program that installed on the router and sends the email through SMTP. Looks quite simple, it pretty much is the same as the script I have shown in the previous post:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/sh</span></span><br><span class="line"></span><br><span class="line">SMTP_SERVER=YOUR_EMAIL_SMTP</span><br><span class="line">MESSAGE=&quot;Hello!\n\n \tThis is a notification from transmission, $TR_TORRENT_NAME has been completed on $TR_TIME_LOCALTIME\n\n Thanks!&quot;</span><br><span class="line">SENDER=&quot;YOUR_EMAIL_USER_NAME&quot;</span><br><span class="line">RECEPIENT=&quot;EMAIL_TO_RECEIVE&quot;</span><br><span class="line"></span><br><span class="line">printf &quot;$MESSAGE&quot;|mailx -vr $SENDER -s &quot;[Transmission] Torrent Has Been Downloaded&quot; -S smtp=$SMTP_SERVER -S smtp-use-starttls -S smtp-auth=login -S smtp-auth-user=$SENDER -S smtp-auth-password=&quot;YOUR_EMAIL_PASSWORD&quot; -S ssl-verify=ignore $RECEPIENT</span><br></pre></td></tr></table></figure>
 
-<p> A little more explanation here, there are two variables preset by Transmission. $TR_TORRENT_NAME, is the name of the torrent that has just been finished. $TR_TIME_LOCALTIME is the time when the download was finished. There were several other environment variables set by transmission also. Here is a list of them<span class="exturl" data-url="aHR0cHM6Ly90cmFjLnRyYW5zbWlzc2lvbmJ0LmNvbS93aWtpL1NjcmlwdHM=">^1<i class="fa fa-external-link-alt"></i></span><br>Note: The meaning of this variable are not explicitly documented in the wiki, and I guess the meaning based on my understanding.</p>
+<p> A little more explanation here, there are two variables preset by Transmission. $TR_TORRENT_NAME, is the name of the torrent that has just been finished. $TR_TIME_LOCALTIME is the time when the download was finished. There were several other environment variables set by transmission also. Here is a list of them<a target="_blank" rel="noopener" href="https://trac.transmissionbt.com/wiki/Scripts">^1</a><br>Note: The meaning of this variable are not explicitly documented in the wiki, and I guess the meaning based on my understanding.</p>
 <table>
 <thead>
 <tr>

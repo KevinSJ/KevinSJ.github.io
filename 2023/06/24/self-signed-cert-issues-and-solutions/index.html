@@ -28,12 +28,12 @@
 <meta property="og:description" content="Recently, I&#39;ve encounter several situations where I have to deal with self-signed certificate. As this is such a common issue, I&#39;ve decided to write this article to document my learnings and f">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-06-24T06:11:32.000Z">
-<meta property="article:modified_time" content="2023-08-27T11:01:27.188Z">
+<meta property="article:modified_time" content="2023-07-04T10:45:42.014Z">
 <meta property="article:author" content="KevinSJ">
 <meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Python">
 <meta property="article:tag" content="MacOS">
 <meta property="article:tag" content="Docker">
-<meta property="article:tag" content="Python">
 <meta property="article:tag" content="Node.JS">
 <meta property="article:tag" content="Colima">
 <meta property="article:tag" content="Self-signed Certificate">
@@ -217,7 +217,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 08-27-2023 23:01:27" itemprop="dateModified" datetime="2023-08-27T23:01:27+12:00">08-27-2023</time>
+      <time title="Modified: 07-04-2023 22:45:42" itemprop="dateModified" datetime="2023-07-04T22:45:42+12:00">07-04-2023</time>
     </span>
 
   
@@ -267,7 +267,7 @@
 
 
 <h5 id="Using-self-signed-certificate-with-Docker-Colima"><a href="#Using-self-signed-certificate-with-Docker-Colima" class="headerlink" title="Using self-signed certificate with Docker&#x2F;Colima"></a>Using self-signed certificate with Docker&#x2F;Colima</h5><p>This is something I encountered recently, our internal Docker registry uses self-signed certificate, this turned out to be quite a challenge. I had to find ways to add the certificate Colima host machine for this to work correctly.<br>Here&#39;s the command I ran:<br><code>colima ssh -- sudo sh -c &quot;openssl s_client -showcerts -connect our-internal-url:443 &lt;/dev/null 2&gt;/dev/null|openssl x509 -outform PEM &gt; /usr/local/share/ca-certificates/internal.crt &amp;&amp; update-ca-certificates &amp;&amp; cat /var/run/docker.pid | xargs kill&quot;</code><br>This will download the certificate and install in the certificate storage in the colima VM in one go.</p>
-<h4 id="References"><a href="#References" class="headerlink" title="References"></a>References</h4><p><span class="exturl" data-url="aHR0cHM6Ly9naXN0LmdpdGh1Yi5jb20vamtyZW1zZXIvYTgxNDMzODQwNDliMTcxZDRlNjRjNWFlYjZkYTQ3OTM=">https://gist.github.com/jkremser/a8143384049b171d4e64c5aeb6da4793<i class="fa fa-external-link-alt"></i></span></p>
+<h4 id="References"><a href="#References" class="headerlink" title="References"></a>References</h4><p><a target="_blank" rel="noopener" href="https://gist.github.com/jkremser/a8143384049b171d4e64c5aeb6da4793">https://gist.github.com/jkremser/a8143384049b171d4e64c5aeb6da4793</a></p>
 <ul>
 <li>Some of the code in this article was generated using ChatGPT.</li>
 </ul>
@@ -315,9 +315,9 @@
 
           <div class="post-tags">
               <a href="/tags/Linux/" rel="tag"># Linux</a>
+              <a href="/tags/Python/" rel="tag"># Python</a>
               <a href="/tags/MacOS/" rel="tag"># MacOS</a>
               <a href="/tags/Docker/" rel="tag"># Docker</a>
-              <a href="/tags/Python/" rel="tag"># Python</a>
               <a href="/tags/Node-JS/" rel="tag"># Node.JS</a>
               <a href="/tags/Colima/" rel="tag"># Colima</a>
               <a href="/tags/Self-signed-Certificate/" rel="tag"># Self-signed Certificate</a>
