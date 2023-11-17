@@ -29,15 +29,6 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/notes/index.html</loc>
-    
-    <lastmod>2023-11-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://jiangsc.me/tags/index.html</loc>
     
     <lastmod>2023-11-17</lastmod>
@@ -47,7 +38,7 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/2020/12/26/Automating-Zoom-with-Alfred-and-Apple-Scripts/</loc>
+    <loc>https://jiangsc.me/notes/index.html</loc>
     
     <lastmod>2023-11-17</lastmod>
     
@@ -390,6 +381,15 @@
   
   <url>
     <loc>https://jiangsc.me/2019/10/12/Automating-Android-data-saver-with-tasker/</loc>
+    
+    <lastmod>2023-11-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/2020/12/26/Automating-Zoom-with-Alfred-and-Apple-Scripts/</loc>
     
     <lastmod>2023-11-17</lastmod>
     
