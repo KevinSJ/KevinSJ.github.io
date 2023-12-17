@@ -126,13 +126,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-count">38</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">98</span>
+        <span class="site-state-item-count">101</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -163,6 +163,172 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://jiangsc.me/2023/12/08/self-hosting-nebula-traefik/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="KevinSJ">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
+      <meta itemprop="description" content="A blog about all things tech.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Kevin Jiang's Technical Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/12/08/self-hosting-nebula-traefik/" class="post-title-link" itemprop="url">Advanced Selfhosting with Nebula & Traefik</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 12-08-2023 22:34:49" itemprop="dateCreated datePublished" datetime="2023-12-08T22:34:49+13:00">12-08-2023</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="firestore-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>This article is a continuation of my previous article on Traefik, which you can find <a href="/2023/07/14/Easy-Self-Hosting-with-Traefik-Proxy">here</a>. Previously, I went through some examples of how I used Traefik so this article would assume you have the basic knowledge of Traefik, if you are not comfortable with it, feel free to go back to my article or read the official documentation <span class="exturl" data-url="aHR0cHM6Ly90cmFlZmlrLmlvL3RyYWVmaWsv">from traefik<i class="fa fa-external-link-alt"></i></span>.</p>
+<h2 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h2><p>I&#39;ve been hosting some apps in my local home network using Raspberry Pi for a while now, and I&#39;ve also hosted some apps on Google Cloud.</p>
+<p>Whenever I want to access things on Raspberry Pi while not at home, I would have to use <span class="exturl" data-url="aHR0cHM6Ly9uZWJ1bGEuZGVmaW5lZC5uZXQvZG9jcy8=">Nebula<i class="fa fa-external-link-alt"></i></span> which is a tool for overlay network. I would have to connect to the VPN, and then access the applications.</p>
+<p>This proves to be inconvenient, and not easy to use. One day, I started to play around with the idea of putting things together with Traefik, and it worked so well and drives me to write this article.</p>
+<h2 id="Why-hosting-things-separately"><a href="#Why-hosting-things-separately" class="headerlink" title="Why hosting things separately?"></a>Why hosting things separately?</h2><p>Some may wonder, why I would host things in both Raspberry Pi and GCP. Well, the main reason for this is cost efficiency and data privacy&#x2F;security.</p>
+<p>You can use whatever CPU and storage you want within your local network without incurring monthly costs, and you would have the added benefits of having data on premise.</p>
+<h2 id="Nebula-setup"><a href="#Nebula-setup" class="headerlink" title="Nebula setup"></a>Nebula setup</h2><p>As mentioned previously, Nebula is a mesh network tool. Here are some instuctrtion on setting it up.</p>
+<h3 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h3><ul>
+<li>A server with public IP (this is a MUST, doesn&#39;t need a domain), so you can use the free Google Cloud VPS.</li>
+<li>A client that&#39;s connected to internet</li>
+</ul>
+<h3 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h3><ul>
+<li><p>Download and extract the nebula binary</p>
+  <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -O - https://github.com/slackhq/nebula/releases/latest/download/nebula-linux-amd64.tar.gz | tar xzvf -</span><br></pre></td></tr></table></figure>
+<p>  This will download the tar.gz file and extract the content to the current working directory.</p>
+</li>
+<li><p>Download and extract the Nebula sample config file</p>
+  <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -O https://github.com/slackhq/nebula/raw/master/examples/config.yml</span><br></pre></td></tr></table></figure></li>
+<li><p>You will get two binaries and a config file after the commands above:</p>
+  <figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">├── nebula &lt;-- this is needed for both the client and server</span><br><span class="line">├── nebula-cert &lt;-- this is the program used to genreate both root CA and client</span><br><span class="line">├── config.yaml &lt;-- this is a Nebula sample config file</span><br></pre></td></tr></table></figure></li>
+<li><p>Create a Root CA authority using command:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nebula-cert ca <span class="string">&#x27;Awesome Inc.&#x27;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>Create a client using command:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nebula-cert sign -name <span class="string">&#x27;client-name&#x27;</span> \</span><br><span class="line">    -ip <span class="string">&quot;ip address&quot;</span> \</span><br><span class="line">    -<span class="built_in">groups</span> <span class="string">&quot;group-name&quot;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>Setup the server (this is the machine with public IP address, it will become so called Light House in Nebula concept)</p>
+<ul>
+<li>Download or transfer the nebula binary to the server with public IP.</li>
+<li>Copy the config file and rename it to config-lighthouse.yaml</li>
+<li>Follow what&#39;s in the config file and modify the file so that it&#39;s suitable for the lighthouse.</li>
+<li>Create a config folder at <code>/etc/nebula</code>, copy <code>ca.crt</code> to the folder.</li>
+<li>Create a host key and certificate using  <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./nebula-cert sign \</span><br><span class="line">            -name <span class="string">&quot;lighthouse1&quot;</span> \</span><br><span class="line">            -ip <span class="string">&quot;192.168.100.1/24&quot;</span></span><br></pre></td></tr></table></figure></li>
+<li>The command above will create <code>lighthouse1.crt</code> and <code>lighthouse1.key</code>, copy both of them to <code>/etc/nebula</code>, name them as <code>host.crt</code> and <code>host.key</code></li>
+<li>Start the service using  <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./nebula -conifg /etc/nebula/config.yaml</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>Setup the client</p>
+<ul>
+<li>Create a host key and certificate using  <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./nebula-cert sign \</span><br><span class="line">            -name <span class="string">&quot;device1&quot;</span> \</span><br><span class="line">            -ip <span class="string">&quot;192.168.100.101/24&quot;</span></span><br></pre></td></tr></table></figure></li>
+<li>The command above will create <code>device1.crt</code> and <code>device1.key</code>,  copy both of them to <code>/etc/nebula</code>, name them as <code>host.crt</code> and <code>host.key</code></li>
+<li>Use the same command used in setup server to connect to the client:  <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./nebula -conifg /etc/nebula/config.yaml</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>Tun setup<br>For both client and server-side, you will need to enable tun.<br>As described by Wikipedia:</p>
+<blockquote>
+<p>In computer networking, TUN and TAP are kernel virtual network devices. Being network devices supported entirely in software, they differ from ordinary network devices which are backed by physical network adapters.<br>In short, Tun is like a virtual network card for Linux.<br>To enable tun in Nebula, you need to set the <code>tun.disable</code> to <code>false</code> which is the default. You can check the <span class="exturl" data-url="aHR0cHM6Ly9uZWJ1bGEuZGVmaW5lZC5uZXQvZG9jcy9jb25maWcvdHVuLyN0dW5kaXNhYmxlZA==">Nebula documentation<i class="fa fa-external-link-alt"></i></span> for more information on this.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="Docker-setup"><a href="#Docker-setup" class="headerlink" title="Docker setup"></a>Docker setup</h2><p>The setup on Docker will also be two parts, the client and server.</p>
+<h3 id="Client-I-m-using-Raspberry-Pi-running-ArchLinux"><a href="#Client-I-m-using-Raspberry-Pi-running-ArchLinux" class="headerlink" title="Client (I&#39;m using Raspberry Pi running ArchLinux)"></a>Client (I&#39;m using Raspberry Pi running ArchLinux)</h3><p>Here is a updated Docker Compose file based on the one used in previous article:</p>
+<figure class="highlight yaml"><figcaption><span>Client Traefik Docker Compose file</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&#x27;3&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">reverse-proxy:</span></span><br><span class="line">    <span class="comment"># The official v2 Traefik docker image</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">traefik:v2.10</span></span><br><span class="line">    <span class="attr">cap_add:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">NET_ADMIN</span></span><br><span class="line">    <span class="attr">devices:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">/dev/net/tun</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Enables the web UI and tells Traefik to listen to docker</span></span><br><span class="line">    <span class="attr">command:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;--log.level=DEBUG&quot;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;--api.dashboard=true&quot;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;--accesslog&quot;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;--entrypoints.web.address=:80&quot;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;--entrypoints.websecure.address=:443&quot;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;--entrypoints.websecure.forwardedHeaders.trustedIPs=127.0.0.1/32,10.0.0.0/8,192.168.0.0/16,172.16.0.0/12&quot;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;--providers.docker=true&quot;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;--providers.docker.exposedByDefault=false&quot;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;--providers.docker.network=traefik-proxy&quot;</span></span><br><span class="line">    <span class="attr">networks:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;traefik-proxy&quot;</span></span><br><span class="line">    <span class="attr">labels:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;traefik.enable=true&quot;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;traefik.http.routers.dashboard.rule=Host(`example.domain.com`)&quot;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;traefik.http.routers.dashboard.tls=true&quot;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;traefik.http.routers.dashboard.service=api@internal&quot;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;traefik.http.routers.dashboard.middlewares=auth&quot;</span></span><br><span class="line">      <span class="comment"># Check</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;traefik.http.middlewares.auth.basicauth.users=YOUR USERNAME AND PASSWORD&quot;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;traefik.port=8080&quot;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;traefik.ping=true&quot;</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="comment"># The HTTP port</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;80:80&quot;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;443:443&quot;</span></span><br><span class="line">      <span class="comment"># The Web UI (enabled by --api.insecure=true)</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;8080:8080&quot;</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="comment"># So that Traefik can listen to the Docker events</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">/var/run/docker.sock:/var/run/docker.sock:ro</span></span><br><span class="line"><span class="comment">#Docker Networks</span></span><br><span class="line"><span class="attr">networks:</span></span><br><span class="line">  <span class="attr">traefik-proxy:</span></span><br><span class="line">    <span class="attr">external:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>The part to note is the following:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">cap_add:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">NET_ADMIN</span></span><br><span class="line"><span class="attr">devices:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">/dev/net/tun</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>cap_add</code> is used to specify additional container capabilities for Docker container. It is part of <span class="exturl" data-url="aHR0cHM6Ly9tYW43Lm9yZy9saW51eC9tYW4tcGFnZXMvbWFuNy9jYXBhYmlsaXRpZXMuNy5odG1s">Linux<i class="fa fa-external-link-alt"></i></span>, here, I specify the <code>CAP_NET_ADMIN</code> capability which is <span class="exturl" data-url="aHR0cHM6Ly9tYW43Lm9yZy9saW51eC9tYW4tcGFnZXMvbWFuNy9jYXBhYmlsaXRpZXMuNy5odG1sIzp+OnRleHQ9bWtub2QoMikuLSxDQVBfTkVUX0FETUlOLC1QZXJmb3JtJTIwdmFyaW91cyUyMG5ldHdvcms=">used to specify rights related to network<i class="fa fa-external-link-alt"></i></span></li>
+<li><code>devices</code> is used to specify the device the Docker container will have access to. Here, we are specifying <code>/dev/net/tun</code>, this is the dev&#x2F;net&#x2F;tun</li>
+</ul>
+<h3 id="Server-GCP-server-that-s-setup-as-Nebula-lighthouse"><a href="#Server-GCP-server-that-s-setup-as-Nebula-lighthouse" class="headerlink" title="Server (GCP server that&#39;s setup as Nebula lighthouse)"></a>Server (GCP server that&#39;s setup as Nebula lighthouse)</h3><p>The Traefik config for the server side will be similar to what the client looks like, we will reuse the Docker file for client with some modification.</p>
+<figure class="highlight yaml"><figcaption><span>Server Traefik Docker Compose file</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&#x27;3&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">reverse-proxy:</span></span><br><span class="line">    <span class="comment"># The official v2 Traefik docker image</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">traefik:v2.10</span></span><br><span class="line">    <span class="attr">cap_add:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">NET_ADMIN</span></span><br><span class="line">    <span class="attr">devices:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">/dev/net/tun</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Enables the web UI and tells Traefik to listen to docker</span></span><br><span class="line">    <span class="attr">command:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;--log.level=DEBUG&quot;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;--api.dashboard=true&quot;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;--accesslog&quot;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;--entrypoints.web.address=:80&quot;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;--entrypoints.websecure.address=:443&quot;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;--entrypoints.websecure.forwardedHeaders.trustedIPs=127.0.0.1/32,10.0.0.0/8,192.168.0.0/16,172.16.0.0/12&quot;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;--providers.docker=true&quot;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;--providers.docker.exposedByDefault=false&quot;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;--providers.docker.network=traefik-proxy&quot;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;--providers.file.directory=./confs.d&quot;</span></span><br><span class="line">    <span class="attr">networks:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;traefik-proxy&quot;</span></span><br><span class="line">    <span class="attr">labels:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;traefik.enable=true&quot;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;traefik.http.routers.dashboard.rule=Host(`example.domain.com`)&quot;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;traefik.http.routers.dashboard.tls=true&quot;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;traefik.http.routers.dashboard.service=api@internal&quot;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;traefik.http.routers.dashboard.middlewares=auth&quot;</span></span><br><span class="line">      <span class="comment"># Check</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;traefik.http.middlewares.auth.basicauth.users=YOUR USERNAME AND PASSWORD&quot;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;traefik.port=8080&quot;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;traefik.ping=true&quot;</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="comment"># The HTTP port</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;80:80&quot;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;443:443&quot;</span></span><br><span class="line">      <span class="comment"># The Web UI (enabled by --api.insecure=true)</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;8080:8080&quot;</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="comment"># So that Traefik can listen to the Docker events</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">/var/run/docker.sock:/var/run/docker.sock:ro</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./confs.d:/confs.d:ro</span></span><br><span class="line"><span class="comment">#Docker Networks</span></span><br><span class="line"><span class="attr">networks:</span></span><br><span class="line">  <span class="attr">traefik-proxy:</span></span><br><span class="line">    <span class="attr">external:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>I&#39;ve made several modifications.</p>
+<ul>
+<li>Added the <code>--providers.file.directory=./confs.d</code> part to the command, this is so that we can put the configuration related to raspberry pi in a separate file.</li>
+<li>Added one more mountpoint to the Docker container as in <code>./confs.d:/confs.d:ro</code></li>
+</ul>
+<p>Now, we will go through what&#39;s in the <code>confs.d</code> folder. At the moment, there&#39;s only one file in it, I named it <code>reverse-to-pi.toml</code>.</p>
+<figure class="highlight yaml"><figcaption><span>reverse_to_pi_toml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">http</span>]</span><br><span class="line">    [<span class="string">http.routers</span>]</span><br><span class="line">       <span class="comment"># Define a connection between requests and services</span></span><br><span class="line">       [<span class="string">http.routers.to-pi</span>]</span><br><span class="line">        <span class="string">rule</span> <span class="string">=</span> <span class="string">&quot;Host(`somedomain.example.com`)&quot;</span></span><br><span class="line">        <span class="string">tls</span> <span class="string">=</span> <span class="literal">true</span></span><br><span class="line">        <span class="comment"># If the rule matches, applies the middleware</span></span><br><span class="line">        <span class="string">middlewares</span> <span class="string">=</span> [<span class="string">&quot;test-user&quot;</span>]</span><br><span class="line">        <span class="comment"># If the rule matches, forward to the pi service (declared below)</span></span><br><span class="line">        <span class="string">service</span> <span class="string">=</span> <span class="string">&quot;pi&quot;</span></span><br><span class="line"></span><br><span class="line">    [<span class="string">http.middlewares</span>]</span><br><span class="line">      <span class="comment"># Define an authentication mechanism</span></span><br><span class="line">      [<span class="string">http.middlewares.test-user.basicAuth</span>]</span><br><span class="line">        <span class="string">users</span> <span class="string">=</span> [<span class="string">&quot;USERNAME AND PASSWORD HASH&quot;</span>]</span><br><span class="line"></span><br><span class="line">    [<span class="string">http.services</span>]</span><br><span class="line">      <span class="comment"># Define how to reach an existing service on our infrastructure</span></span><br><span class="line">      [<span class="string">http.services.pi.loadBalancer</span>]</span><br><span class="line">           <span class="string">passHostHeader</span> <span class="string">=</span> <span class="literal">true</span></span><br><span class="line">           <span class="string">serversTransport</span> <span class="string">=</span> <span class="string">&quot;transport&quot;</span></span><br><span class="line">      [[<span class="string">http.services.pi.loadBalancer.servers</span>]]</span><br><span class="line">           <span class="string">url</span> <span class="string">=</span> <span class="string">&quot;your_nebula_client_ip&quot;</span></span><br><span class="line">    [<span class="string">http.serversTransports.transport</span>]</span><br><span class="line">      <span class="string">disableHTTP2</span> <span class="string">=</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p>The above configuration would essentially treat the Nebula client as a loadbalancer back-end, and the current Traefik instance would essentially act as a reverse proxy to raspberry pi when the specific domain matches. Because the loadbalancer at this level is set to forward host header, the traffic would be forwarded to that instance and that Traefik instance will route the traffic to the container that matches the given domain.</p>
+<h2 id="Bonus-Cloudflare-CDN"><a href="#Bonus-Cloudflare-CDN" class="headerlink" title="Bonus: Cloudflare CDN"></a>Bonus: Cloudflare CDN</h2><h3 id="Cloudflare"><a href="#Cloudflare" class="headerlink" title="Cloudflare"></a>Cloudflare</h3><p>As a bonus, one can also setup the CloudFlare to act as a CDN and DNS server to provide some additional security.<br>Here are some ideas on how to utilize Cloudflare in this case:</p>
+<ul>
+<li>The DNS infrastructure (i.e. domain name) can be managed completely by Terraform, so that you don&#39;t have to manually manage the domains of all self-hosted app.</li>
+<li>Cloudflare can provide SSL certificates, so you don&#39;t need to worry about managing those stuff yourself.</li>
+<li>Cloudflare can provide some basic WAF, so unwanted traffic can be blocked.</li>
+</ul>
+<h2 id="Future-Improvements-GitHub-Actions-Forward-Auth-and-more"><a href="#Future-Improvements-GitHub-Actions-Forward-Auth-and-more" class="headerlink" title="Future Improvements: GitHub Actions, Forward Auth and more?"></a>Future Improvements: GitHub Actions, Forward Auth and more?</h2><p>While this is a complete solution, and something I&#39;ve been running for months without any issue, it has room for improvements.</p>
+<h3 id="GitHub-Actions"><a href="#GitHub-Actions" class="headerlink" title="GitHub Actions"></a>GitHub Actions</h3><p>As an experimenting exercise, GitHub Action could be used to manage the infrastructure -- whenever there&#39;s a new self-hosted app added, the infrastructure would be automatically populated and deployed through Terraform.</p>
+<h3 id="Forward-Auth"><a href="#Forward-Auth" class="headerlink" title="Forward Auth"></a>Forward Auth</h3><p>Currently, the authentication is only HTTP basic auth, which is not secure at all. The idea to improve this would be implementing <span class="exturl" data-url="aHR0cHM6Ly9kb2MudHJhZWZpay5pby90cmFlZmlrL21pZGRsZXdhcmVzL2h0dHAvZm9yd2FyZGF1dGgv">forward auth<i class="fa fa-external-link-alt"></i></span> so the infrastructure is more secure. Some candidates to choose from, include:</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuYXV0aGVsaWEuY29tL2ludGVncmF0aW9uL3Byb3hpZXMvdHJhZWZpay8=">Authelia<i class="fa fa-external-link-alt"></i></span>, Apache-2.0, Go, 18.1k stars as of writing</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9nb2F1dGhlbnRpay5pby9kb2NzL3Byb3ZpZGVycy9wcm94eS9zZXJ2ZXJfdHJhZWZpaw==">Authentik<i class="fa fa-external-link-alt"></i></span>, MIT, Python, 5.3k stars as of writing</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9kb2MudHJhZWZpay5pby90cmFlZmlrLWh1Yi9hdXRoL2tleWNsb2FrLw==">KeyCloak<i class="fa fa-external-link-alt"></i></span>, Apache-2.0, Java, 18.4k stars as of writing.<br>I&#39;m leaning towards Authelia at the moment, but haven&#39;t got spare time to try it out.</li>
+</ul>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>By combining the power of Nebula and Traefik, we are essentially opening another possibility of self hosting. Doing it this way would provide several benefits:</p>
+<ul>
+<li><strong>Cost Saving</strong>: The public facing server (or the Nebula lighthouse) can essentially be a free tier instance that does nothing but routing traffic between the two Traefik instance.</li>
+<li><strong>Data Retention</strong>: You don&#39;t need to worry about your data.</li>
+<li><strong>Secure &amp; Fast</strong>: By using Cloudflare, the whole infrastructure has relatively good security as well as speed.</li>
+</ul>
+<hr>
+<h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><p><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLmRvY2tlci5jb20vY29tcG9zZS9jb21wb3NlLWZpbGUvMDUtc2VydmljZXMvI2NhcF9hZGQ=">https://docs.docker.com/compose/compose-file/05-services/#cap_add<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9kb2MudHJhZWZpay5pby90cmFlZmlrL21pZGRsZXdhcmVzL2h0dHAvZm9yd2FyZGF1dGgv">https://doc.traefik.io/traefik/middlewares/http/forwardauth/<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9nb2F1dGhlbnRpay5pby9kb2NzL3Byb3ZpZGVycy9wcm94eS9zZXJ2ZXJfdHJhZWZpaw==">https://goauthentik.io/docs/providers/proxy/server_traefik<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly93d3cuYXV0aGVsaWEuY29tL2ludGVncmF0aW9uL3Byb3hpZXMvdHJhZWZpay8=">https://www.authelia.com/integration/proxies/traefik/<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvVFVOL1RBUA==">https://en.wikipedia.org/wiki/TUN/TAP<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -906,89 +1072,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2023/02/11/mobile-dev-cli-tips-1/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://jiangsc.me/2023/02/08/Cli-tips-create-azure-devops-pr/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="KevinSJ">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
-      <meta itemprop="description" content="A blog about all things tech.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Kevin Jiang's Technical Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/02/08/Cli-tips-create-azure-devops-pr/" class="post-title-link" itemprop="url">CLI tips: create PR for Azure DevOps from CLI</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 02-08-2023 21:04:27" itemprop="dateCreated datePublished" datetime="2023-02-08T21:04:27+13:00">02-08-2023</time>
-    </span>
-
-  
-    <span class="post-meta-item" title="Views">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">Views: </span>
-      <span class="firestore-visitors-count"></span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="Motivation-Slow-and-confusing-web-interface"><a href="#Motivation-Slow-and-confusing-web-interface" class="headerlink" title="Motivation: Slow and confusing web interface"></a>Motivation: Slow and confusing web interface</h3><p>Azure DevOps, probably one of the worst tools you can get for a your software team, I hated it with passion. The reason that company chooses it over any other software is probably because they can get a decent enough discount when bundled with the M$&#39;s shitty Outlook, Teams, and office suite.<br>If I could, I would give Azure DevOps&#39;s web interface and overall experience a 0 out of 10: it is slow, difficult to navigate, and way behind what you would get from GitHub or GitLab.<br>Enough for the ranting, in short, I hate Azure DevOps&#39; web interface, therefore, I prefer to use the CLI to interact with it.</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/02/08/Cli-tips-create-azure-devops-pr/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>

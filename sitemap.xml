@@ -11,60 +11,6 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/2017/06/11/06112017-Fun-With-GPG/</loc>
-    
-    <lastmod>2023-12-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/2023/03/11/2023-03-11-technical-postmortem/</loc>
-    
-    <lastmod>2023-12-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/2021/07/10/Advanced-VirtualBox-Auto-start-virtualbox-on-Windows/</loc>
-    
-    <lastmod>2023-12-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/2021/04/17/Android-ADB-and-user-management/</loc>
-    
-    <lastmod>2023-12-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/2019/10/12/Automating-Android-data-saver-with-tasker/</loc>
-    
-    <lastmod>2023-12-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/2020/12/26/Automating-Zoom-with-Alfred-and-Apple-Scripts/</loc>
-    
-    <lastmod>2023-12-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://jiangsc.me/2018/06/24/Automating-things-on-Android-with-Tasker/</loc>
     
     <lastmod>2023-12-17</lastmod>
@@ -317,6 +263,15 @@
   </url>
   
   <url>
+    <loc>https://jiangsc.me/2023/12/08/self-hosting-nebula-traefik/</loc>
+    
+    <lastmod>2023-12-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://jiangsc.me/2023/06/24/self-signed-cert-issues-and-solutions/</loc>
     
     <lastmod>2023-12-17</lastmod>
@@ -344,6 +299,15 @@
   </url>
   
   <url>
+    <loc>https://jiangsc.me/gallery/index.html</loc>
+    
+    <lastmod>2023-12-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://jiangsc.me/about/index.html</loc>
     
     <lastmod>2023-12-17</lastmod>
@@ -353,7 +317,52 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/gallery/index.html</loc>
+    <loc>https://jiangsc.me/2017/06/11/06112017-Fun-With-GPG/</loc>
+    
+    <lastmod>2023-12-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/2023/03/11/2023-03-11-technical-postmortem/</loc>
+    
+    <lastmod>2023-12-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/2021/07/10/Advanced-VirtualBox-Auto-start-virtualbox-on-Windows/</loc>
+    
+    <lastmod>2023-12-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/2021/04/17/Android-ADB-and-user-management/</loc>
+    
+    <lastmod>2023-12-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/2019/10/12/Automating-Android-data-saver-with-tasker/</loc>
+    
+    <lastmod>2023-12-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/2020/12/26/Automating-Zoom-with-Alfred-and-Apple-Scripts/</loc>
     
     <lastmod>2023-12-17</lastmod>
     
@@ -995,6 +1004,27 @@
   
   <url>
     <loc>https://jiangsc.me/tags/Practice/</loc>
+    <lastmod>2023-12-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/tags/Nebula/</loc>
+    <lastmod>2023-12-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/tags/Cloudflare/</loc>
+    <lastmod>2023-12-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/tags/Reverse-proxy/</loc>
     <lastmod>2023-12-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
