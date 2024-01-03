@@ -28,7 +28,7 @@
 <meta property="og:description" content="This is the third article about NeoVim tips, if you are interested in other part of this, please check here and here   Motivation: The need for a clean and organized environment file.Quite often in a">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-12-27T05:31:10.000Z">
-<meta property="article:modified_time" content="2024-01-03T04:37:42.221Z">
+<meta property="article:modified_time" content="2024-01-03T23:20:12.023Z">
 <meta property="article:author" content="KevinSJ">
 <meta property="article:tag" content="Tips">
 <meta property="article:tag" content="Vim">
@@ -231,6 +231,8 @@
 <h3 id="Motivation-The-need-for-a-clean-and-organized-environment-file"><a href="#Motivation-The-need-for-a-clean-and-organized-environment-file" class="headerlink" title="Motivation: The need for a clean and organized environment file."></a>Motivation: The need for a clean and organized environment file.</h3><p>Quite often in a project, a developer will have to deal with a lot of environment variables and&#x2F;or environment files. However, they could also be the part that&#39;s least maintained in the entire codebase. As an example, sometimes, a feature flag could be added to the environment file, but when the feature goes live, people would fail to remove them. As time gets by, there will be <strong>A LOT</strong> of this kind of variables in the environment file.</p>
 <p>As it is the end of the year, and I really couldn&#39;t finish much dev work with the amount of time left for the new year, I opt to deal with this issue with the intention to create a clean and organized environment file.</p>
 <h3 id="Overview-What-s-in-an-environment-file"><a href="#Overview-What-s-in-an-environment-file" class="headerlink" title="Overview: What&#39;s in an environment file"></a>Overview: What&#39;s in an environment file</h3><p>Before I get into the problem I&#39;m trying to solve, it is important to understand the problem we are trying to solve. For the project I&#39;m working on, we have two kinds of environment files, one of which is only used locally, the other one is used by the Kubernetes platform and is used at runtime. Here&#39;s an example of what they look like:</p>
+<span id="more"></span>
+
 <figure class="highlight sh"><figcaption><span>local_env_file.env</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">A_SERVICE               = http://abcdefg.tld</span><br><span class="line">PORT                    = 53100</span><br><span class="line">B_SERVICE               = http://bcdefg.tld</span><br><span class="line">FEATURE_FLAG_AAA        = <span class="literal">true</span></span><br><span class="line">C_SERVICE               = http://cdefg.tld</span><br><span class="line">FEATURE_FLAG_CCC_UNUSED = <span class="literal">true</span></span><br><span class="line">D_SERVICE               = http://defg.tld</span><br></pre></td></tr></table></figure>
 
 
