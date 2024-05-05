@@ -209,6 +209,15 @@
   </url>
   
   <url>
+    <loc>https://jiangsc.me/2024/05/05/linux-user-notes-3/</loc>
+    
+    <lastmod>2024-05-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://jiangsc.me/2023/10/14/macos-automation-bluetooth-disconnect/</loc>
     
     <lastmod>2024-05-05</lastmod>
@@ -950,6 +959,13 @@
   
   <url>
     <loc>https://jiangsc.me/tags/rofi/</loc>
+    <lastmod>2024-05-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/tags/Latex/</loc>
     <lastmod>2024-05-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
