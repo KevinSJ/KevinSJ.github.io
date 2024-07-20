@@ -11,6 +11,60 @@
   </url>
   
   <url>
+    <loc>https://jiangsc.me/2018/06/24/Automating-things-on-Android-with-Tasker/</loc>
+    
+    <lastmod>2024-07-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/2018/03/24/AutomatingStuffWithGoogleAppScripts/</loc>
+    
+    <lastmod>2024-07-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/2023/02/08/Cli-tips-create-azure-devops-pr/</loc>
+    
+    <lastmod>2024-07-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/2019/05/28/Converting-QEMU-VM-to-VirtualBox-VM/</loc>
+    
+    <lastmod>2024-07-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/2023/07/14/Easy-Self-Hosting-with-Traefik-Proxy/</loc>
+    
+    <lastmod>2024-07-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/2021/12/02/Fixing-issue-on-Xorg-and-VNC/</loc>
+    
+    <lastmod>2024-07-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://jiangsc.me/2023/01/30/GO-Split-long-text-by-byte-count/</loc>
     
     <lastmod>2024-07-20</lastmod>
@@ -137,6 +191,15 @@
   </url>
   
   <url>
+    <loc>https://jiangsc.me/2024/07/20/iOS-date-formatter-and-locale/</loc>
+    
+    <lastmod>2024-07-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://jiangsc.me/2024/07/07/ios-http-streaming-issue/</loc>
     
     <lastmod>2024-07-20</lastmod>
@@ -182,7 +245,7 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/2023/10/14/macos-automation-bluetooth-disconnect/</loc>
+    <loc>https://jiangsc.me/2023/02/11/mobile-dev-cli-tips-1/</loc>
     
     <lastmod>2024-07-20</lastmod>
     
@@ -191,7 +254,7 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/2023/02/11/mobile-dev-cli-tips-1/</loc>
+    <loc>https://jiangsc.me/2023/10/14/macos-automation-bluetooth-disconnect/</loc>
     
     <lastmod>2024-07-20</lastmod>
     
@@ -345,60 +408,6 @@
   
   <url>
     <loc>https://jiangsc.me/2020/12/26/Automating-Zoom-with-Alfred-and-Apple-Scripts/</loc>
-    
-    <lastmod>2024-07-20</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/2018/06/24/Automating-things-on-Android-with-Tasker/</loc>
-    
-    <lastmod>2024-07-20</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/2018/03/24/AutomatingStuffWithGoogleAppScripts/</loc>
-    
-    <lastmod>2024-07-20</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/2023/02/08/Cli-tips-create-azure-devops-pr/</loc>
-    
-    <lastmod>2024-07-20</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/2019/05/28/Converting-QEMU-VM-to-VirtualBox-VM/</loc>
-    
-    <lastmod>2024-07-20</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/2023/07/14/Easy-Self-Hosting-with-Traefik-Proxy/</loc>
-    
-    <lastmod>2024-07-20</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/2021/12/02/Fixing-issue-on-Xorg-and-VNC/</loc>
     
     <lastmod>2024-07-20</lastmod>
     
@@ -934,6 +943,27 @@
   </url>
   
   <url>
+    <loc>https://jiangsc.me/tags/Swift/</loc>
+    <lastmod>2024-07-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/tags/Date-Formatter/</loc>
+    <lastmod>2024-07-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/tags/Cookie/</loc>
+    <lastmod>2024-07-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://jiangsc.me/tags/HTTP-streaming/</loc>
     <lastmod>2024-07-20</lastmod>
     <changefreq>weekly</changefreq>
@@ -1018,20 +1048,6 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/tags/MacOS/</loc>
-    <lastmod>2024-07-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/tags/Automator/</loc>
-    <lastmod>2024-07-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://jiangsc.me/tags/Command-line/</loc>
     <lastmod>2024-07-20</lastmod>
     <changefreq>weekly</changefreq>
@@ -1040,6 +1056,20 @@
   
   <url>
     <loc>https://jiangsc.me/tags/Moible-App-Development/</loc>
+    <lastmod>2024-07-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/tags/MacOS/</loc>
+    <lastmod>2024-07-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/tags/Automator/</loc>
     <lastmod>2024-07-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
