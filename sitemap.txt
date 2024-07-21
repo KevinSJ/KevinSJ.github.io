@@ -25,8 +25,8 @@ https://jiangsc.me/2023/07/29/js-ts-module-resolution-and-alias/
 https://jiangsc.me/2022/07/22/linux-user-notes-1/
 https://jiangsc.me/2022/09/17/linux-user-notes-2/
 https://jiangsc.me/2024/05/05/linux-user-notes-3/
-https://jiangsc.me/2023/02/11/mobile-dev-cli-tips-1/
 https://jiangsc.me/2023/10/14/macos-automation-bluetooth-disconnect/
+https://jiangsc.me/2023/02/11/mobile-dev-cli-tips-1/
 https://jiangsc.me/2022/05/21/neovim-tricks-1/
 https://jiangsc.me/2022/10/29/neovim-tricks-2/
 https://jiangsc.me/2023/12/27/neovim-tricks-3/
@@ -134,10 +134,10 @@ https://jiangsc.me/tags/xdg-open/
 https://jiangsc.me/tags/polybar/
 https://jiangsc.me/tags/rofi/
 https://jiangsc.me/tags/Latex/
-https://jiangsc.me/tags/Command-line/
-https://jiangsc.me/tags/Moible-App-Development/
 https://jiangsc.me/tags/MacOS/
 https://jiangsc.me/tags/Automator/
+https://jiangsc.me/tags/Command-line/
+https://jiangsc.me/tags/Moible-App-Development/
 https://jiangsc.me/tags/Vim/
 https://jiangsc.me/tags/NeoVim/
 https://jiangsc.me/tags/nvim/
