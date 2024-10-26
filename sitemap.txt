@@ -1,5 +1,6 @@
 https://jiangsc.me/notes/index.html
 https://jiangsc.me/notes/notes-for-2024-10-26.html
+https://jiangsc.me/notes/notes-for-2024-10-27.html
 https://jiangsc.me/tags/index.html
 https://jiangsc.me/2018/06/24/Automating-things-on-Android-with-Tasker/
 https://jiangsc.me/2018/03/24/AutomatingStuffWithGoogleAppScripts/

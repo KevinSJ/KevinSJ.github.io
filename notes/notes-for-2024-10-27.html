@@ -20,31 +20,31 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"jiangsc.me","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.21.0","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Yesterday morning, when I woke up, I faced a serious issue on my laptop which has Manjaro Linux installed -- the X server can not be started. Locating the problemIt took me some time to get my head ar">
+    <meta name="description" content="TEST">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="Fixing issue on Xorg and VNC">
-<meta property="og:url" content="https://jiangsc.me/2021/12/02/Fixing-issue-on-Xorg-and-VNC/index.html">
+<meta property="og:title" content="Weekly Notes for 2024-10-27">
+<meta property="og:url" content="https://jiangsc.me/notes/notes-for-2024-10-27.html">
 <meta property="og:site_name" content="Kevin Jiang&#39;s Technical Blog">
-<meta property="og:description" content="Yesterday morning, when I woke up, I faced a serious issue on my laptop which has Manjaro Linux installed -- the X server can not be started. Locating the problemIt took me some time to get my head ar">
+<meta property="og:description" content="TEST">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-12-02T09:48:35.000Z">
-<meta property="article:modified_time" content="2024-10-26T11:17:59.622Z">
+<meta property="article:published_time" content="2024-10-26T11:00:00.000Z">
+<meta property="article:modified_time" content="2024-10-26T11:17:59.778Z">
 <meta property="article:author" content="Kevin Jiang">
+<meta property="article:tag" content="Tech">
+<meta property="article:tag" content="Programming">
 <meta property="article:tag" content="Linux">
-<meta property="article:tag" content="Arch Linux">
-<meta property="article:tag" content="Xorg">
-<meta property="article:tag" content="TigerVNC">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://jiangsc.me/2021/12/02/Fixing-issue-on-Xorg-and-VNC/">
+<link rel="canonical" href="https://jiangsc.me/notes/notes-for-2024-10-27">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://jiangsc.me/2021/12/02/Fixing-issue-on-Xorg-and-VNC/","path":"2021/12/02/Fixing-issue-on-Xorg-and-VNC/","title":"Fixing issue on Xorg and VNC"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":true,"permalink":"https://jiangsc.me/notes/notes-for-2024-10-27.html","path":"notes/notes-for-2024-10-27.html","title":"Weekly Notes for 2024-10-27"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Fixing issue on Xorg and VNC | Kevin Jiang's Technical Blog</title>
+<title>Weekly Notes for 2024-10-27 | Kevin Jiang's Technical Blog
+</title>
   
 
 
@@ -118,7 +118,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Locating-the-problem"><span class="nav-number">1.</span> <span class="nav-text">Locating the problem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution"><span class="nav-number">2.</span> <span class="nav-text">Solution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Findings-and-thoughts"><span class="nav-number">3.</span> <span class="nav-text">Findings and thoughts</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#TEST"><span class="nav-number">1.</span> <span class="nav-text">TEST</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -171,140 +171,35 @@
 
     </div>
 
-    <div class="main-inner post posts-expand">
+    <div class="main-inner page posts-expand">
 
 
-  
+    
+    
+    
+    <div class="post-block" lang="en"><header class="post-header">
 
+<h1 class="post-title" itemprop="name headline">Weekly Notes for 2024-10-27
+</h1>
 
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://jiangsc.me/2021/12/02/Fixing-issue-on-Xorg-and-VNC/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Kevin Jiang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
-      <meta itemprop="description" content="A blog about all things tech.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Fixing issue on Xorg and VNC | Kevin Jiang's Technical Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          Fixing issue on Xorg and VNC
-        </h1>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 12-02-2021 22:48:35" itemprop="dateCreated datePublished" datetime="2021-12-02T22:48:35+13:00">12-02-2021</time>
-    </span>
-
-  
-    <span class="post-meta-item" title="Views">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">Views: </span>
-      <span class="firestore-visitors-count"></span>
-    </span>
+<div class="post-meta-container">
 </div>
 
-        </div>
-      </header>
+</header>
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody"><p>Yesterday morning, when I woke up, I faced a serious issue on my laptop which has Manjaro Linux installed -- the X server can not be started.</p>
-<h3 id="Locating-the-problem"><a href="#Locating-the-problem" class="headerlink" title="Locating the problem"></a>Locating the problem</h3><p>It took me some time to get my head around and locate the root cause. The first thing I tried is obviously force reboot several times, it turned out this did not help at all! Reboot will not solve everything.™<br>The next thing I tried was the fallback initramfs mode. I don&#39;t really understand what it does, but tried it anyway. And unfortunately, that does not work either.<br>At this point,the only option left for me to try is recovery mode. And it turned out to be working correctly. As root user in the recovery mode, I issued the following command <code>systemctl set-default multi-user.target</code>, this makes the tty the default target rather than the graphical interface. Another reboot, and I got into the terminal.<br>Once in terminal, I immediately tried <code>startx</code>, this failed due to some wired permission issue, and with <code>sudo startx</code>, the command failed as well. Looking at the Xorg log, I noticed that the start process stops at: <code>(II) Initializing extension VNC</code>.</p>
-<span id="more"></span>
-<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p>The obvious solution at this point is to uninstall the VNC module that is causing the issue, so <code>sudo pacman --remove --recursive tigervnc</code> was the way to go. And it did fix the issue. So what I had to do was reset it back to graphical interface start with <code>systemctl set-default graphical.target</code>.</p>
-<h3 id="Findings-and-thoughts"><a href="#Findings-and-thoughts" class="headerlink" title="Findings and thoughts"></a>Findings and thoughts</h3><p>By doing some more research online, I have found that this issue was actually solved by TigerVNC as can be seen from <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1RpZ2VyVk5DL3RpZ2Vydm5jL2lzc3Vlcy8xMzcz">this<i class="fa fa-external-link-alt"></i></span> closed issue. The issue that most likely to have happened here is that Arch Linux package builder did not provide the up-to-date build for the package which resulted in the package does not included the updated dependencies from the X server.</p>
-
+      
+      
+      
+      <div class="post-body">
+          <h3 id="TEST"><a href="#TEST" class="headerlink" title="TEST"></a>TEST</h3>
+      </div>
+      
+      
+      
     </div>
 
     
     
-    
-
-    <footer class="post-footer">
-          
-
-<div class="post-copyright">
-<ul>
-  <li class="post-copyright-author">
-      <strong>Post author:  </strong>Kevin Jiang
-  </li>
-  <li class="post-copyright-link">
-      <strong>Post link: </strong>
-      <a href="https://jiangsc.me/2021/12/02/Fixing-issue-on-Xorg-and-VNC/" title="Fixing issue on Xorg and VNC">https://jiangsc.me/2021/12/02/Fixing-issue-on-Xorg-and-VNC/</a>
-  </li>
-  <li class="post-copyright-license">
-      <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</span> unless stating additionally.
-  </li>
-</ul>
-</div>
-
-          <div class="followme">
-  <span>Welcome to my other publishing channels</span>
-
-  <div class="social-list">
-
-      <div class="social-item">
-          <a target="_blank" class="social-link" href="/atom.xml">
-            <span class="icon">
-              <i class="fa fa-rss"></i>
-            </span>
-
-            <span class="label">RSS</span>
-          </a>
-      </div>
-  </div>
-</div>
-
-          <div class="post-tags">
-              <a href="/tags/Linux/" rel="tag"># Linux</a>
-              <a href="/tags/Arch-Linux/" rel="tag"># Arch Linux</a>
-              <a href="/tags/Xorg/" rel="tag"># Xorg</a>
-              <a href="/tags/TigerVNC/" rel="tag"># TigerVNC</a>
-          </div>
-
-        
-
-          <div class="post-nav">
-            <div class="post-nav-item">
-                <a href="/2021/08/14/OpenType-Font-and-Font-Family/" rel="prev" title="OpenType Font and Font Family">
-                  <i class="fa fa-angle-left"></i> OpenType Font and Font Family
-                </a>
-            </div>
-            <div class="post-nav-item">
-                <a href="/2022/03/06/hide-phone-number-when-making-calls/" rel="next" title="Hide Phone Number when making calls">
-                  Hide Phone Number when making calls <i class="fa fa-angle-right"></i>
-                </a>
-            </div>
-          </div>
-    </footer>
-  </article>
-</div>
-
-
-
-
 
 
 </div>
