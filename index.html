@@ -127,13 +127,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-count">43</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">111</span>
+        <span class="site-state-item-count">109</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -235,7 +235,8 @@
 
 <p>Nowadays, it&#39;s quite common for an iOS or Android app to include a webview, and at the company I worked in, we have a similar setup -- the app would hand over to a webview and the user would continue their journey in the web. Recently, an incident related to this particular functionality was reported to us.</p>
 <h2 id="What-happened"><a href="#What-happened" class="headerlink" title="What happened"></a>What happened</h2><p>To explain things better, I&#39;ve created this sequence diagram below that represents a working scenario:</p>
-<pre class="mermaid">
+<pre>
+<code class="mermaid">
 sequenceDiagram
 APP-&gt;&gt;webview: set a token as cookie in the webview.
 destroy APP
@@ -245,6 +246,7 @@ Web App-&gt;&gt;Web App: Grab the token from cookie.
 Web App-&gt;&gt;Backend: Check if this token is valid.
 Backend-&gt;&gt;Web App: This is a valid token, authentication successful.
 Web App-&gt;&gt;webview: Go to xxxx.
+</code>
 </pre>
           <!--noindex-->
             <div class="post-button">
@@ -543,7 +545,7 @@ Web App-&gt;&gt;webview: Go to xxxx.
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://jiangsc.me/2024/03/03/firebase-and-gcp-storage-permission/">
+    <link itemprop="mainEntityOfPage" href="https://jiangsc.me/2023/12/27/neovim-tricks-3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -561,7 +563,7 @@ Web App-&gt;&gt;webview: Go to xxxx.
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/03/03/firebase-and-gcp-storage-permission/" class="post-title-link" itemprop="url">Firebase store and Google Cloud Storage Permissions</a>
+          <a href="/2023/12/27/neovim-tricks-3/" class="post-title-link" itemprop="url">Solving Repeatative Problem with Vim</a>
         </h2>
 
         <div class="post-meta-container">
@@ -572,7 +574,7 @@ Web App-&gt;&gt;webview: Go to xxxx.
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 03-03-2024 16:31:20" itemprop="dateCreated datePublished" datetime="2024-03-03T16:31:20+13:00">03-03-2024</time>
+      <time title="Created: 12-27-2023 18:31:10" itemprop="dateCreated datePublished" datetime="2023-12-27T18:31:10+13:00">12-27-2023</time>
     </span>
 
   
@@ -592,7 +594,20 @@ Web App-&gt;&gt;webview: Go to xxxx.
     
     
     <div class="post-body" itemprop="articleBody">
-          
+          <div class="note info"><p>This is the third article about NeoVim tips, if you are interested in other part of this, please check <a href="/2022/05/21/neovim-tricks-1/">here</a> and <a href="/2022/10/29/neovim-tricks-2">here</a></p>
+</div>
+
+<h3 id="Motivation-The-need-for-a-clean-and-organized-environment-file"><a href="#Motivation-The-need-for-a-clean-and-organized-environment-file" class="headerlink" title="Motivation: The need for a clean and organized environment file."></a>Motivation: The need for a clean and organized environment file.</h3><p>Quite often in a project, a developer will have to deal with a lot of environment variables and&#x2F;or environment files. However, they could also be the part that&#39;s least maintained in the entire codebase. As an example, sometimes, a feature flag could be added to the environment file, but when the feature goes live, people would fail to remove them. As time gets by, there will be <strong>A LOT</strong> of this kind of variables in the environment file.</p>
+<p>As it is the end of the year, and I really couldn&#39;t finish much dev work with the amount of time left for the new year, I opt to deal with this issue with the intention to create a clean and organized environment file.</p>
+<h3 id="Overview-What-s-in-an-environment-file"><a href="#Overview-What-s-in-an-environment-file" class="headerlink" title="Overview: What&#39;s in an environment file"></a>Overview: What&#39;s in an environment file</h3><p>Before I get into the problem I&#39;m trying to solve, it is important to understand the problem we are trying to solve. For the project I&#39;m working on, we have two kinds of environment files, one of which is only used locally, the other one is used by the Kubernetes platform and is used at runtime. Here&#39;s an example of what they look like:</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/12/27/neovim-tricks-3/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
