@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="9g-E_K0GEppNWOItj0YYJV_1UbSLdVFrKOhHSPLkJcM">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"jiangsc.me","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.21.0","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="TL;DR  As a general rule (and as documented by Apple), developers should avoid setting a fixed date format, if the date is user-visible. When working with fixed format date, developer should be settin">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Notes on iOS Date Formatter: Issues and Fixes">
+<meta property="og:url" content="https://jiangsc.me/2024/07/20/iOS-date-formatter-and-locale/index.html">
+<meta property="og:site_name" content="Kevin Jiang&#39;s Technical Blog">
+<meta property="og:description" content="TL;DR  As a general rule (and as documented by Apple), developers should avoid setting a fixed date format, if the date is user-visible. When working with fixed format date, developer should be settin">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-07-20T00:58:50.000Z">
+<meta property="article:modified_time" content="2024-07-20T05:45:36.291Z">
+<meta property="article:author" content="Kevin Jiang">
+<meta property="article:tag" content="Notes">
+<meta property="article:tag" content="iOS">
+<meta property="article:tag" content="Swift">
+<meta property="article:tag" content="Date Formatter">
+<meta property="article:tag" content="Cookie">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://jiangsc.me/2024/07/20/iOS-date-formatter-and-locale/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://jiangsc.me/2024/07/20/iOS-date-formatter-and-locale/","path":"2024/07/20/iOS-date-formatter-and-locale/","title":"Notes on iOS Date Formatter: Issues and Fixes"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Notes on iOS Date Formatter: Issues and Fixes | Kevin Jiang's Technical Blog</title>
+  
+
+
+
+
+
+
+  <script async defer data-website-id="c4ed80eb-6e46-4603-a114-34b3a0f3eb10" src="https://u-a.jiangsc.me/script.js"></script>
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Kevin Jiang's Technical Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Kevin Jiang's Technical Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-gallery"><a href="/gallery/" rel="section"><i class="fa fa-image fa-fw"></i>Gallery</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#What-happened"><span class="nav-number">1.</span> <span class="nav-text">What happened</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Investigation-and-Root-Cause-Analysis"><span class="nav-number">2.</span> <span class="nav-text">Investigation and Root Cause Analysis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solutions"><span class="nav-number">3.</span> <span class="nav-text">Solutions</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Completely-remove-the-need-to-format-the-date-in-APP"><span class="nav-number">3.1.</span> <span class="nav-text">Completely remove the need to format the date in APP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Refactor-to-use-the-Date-style"><span class="nav-number">3.2.</span> <span class="nav-text">Refactor to use the Date.style</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fix-the-existing-code-by-adding-a-fix-locale-and-timezone"><span class="nav-number">3.3.</span> <span class="nav-text">Fix the existing code by adding a fix locale (and timezone)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lessons-Learnt"><span class="nav-number">4.</span> <span class="nav-text">Lessons Learnt</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#References"><span class="nav-number">4.1.</span> <span class="nav-text">References</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Kevin Jiang</p>
+  <div class="site-description" itemprop="description">A blog about all things tech.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">111</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2tldmluc2o=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;kevinsj"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly93d3cubGlua2VkaW4uY29tL2luL2tldnNq" title="LinkedIn → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;kevsj"><i class="fab fa-linkedin fa-fw"></i>LinkedIn</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRsYWIuY29tL2tldmluc2o=" title="GitLab → https:&#x2F;&#x2F;gitlab.com&#x2F;kevinsj"><i class="fab fa-gitlab fa-fw"></i>GitLab</span>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></span>
+  </div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="Back to top">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://jiangsc.me/2024/07/20/iOS-date-formatter-and-locale/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Kevin Jiang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
+      <meta itemprop="description" content="A blog about all things tech.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Notes on iOS Date Formatter: Issues and Fixes | Kevin Jiang's Technical Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Notes on iOS Date Formatter: Issues and Fixes
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 07-20-2024 12:58:50" itemprop="dateCreated datePublished" datetime="2024-07-20T12:58:50+12:00">07-20-2024</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="firestore-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><details class="note primary"><summary><p>TL;DR</p>
+</summary>
+<p><strong>As a general rule (and as <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYXBwbGUuY29tL2xpYnJhcnkvYXJjaGl2ZS9xYS9xYTE0ODAvX2luZGV4Lmh0bWw=">documented by Apple<i class="fa fa-external-link-alt"></i></span>), developers should avoid setting a fixed date format, if the date is user-visible. When working with fixed format date, developer should be setting the locale and timezone to avoid any potential issues that might be caused by using client side locale or timezone.</strong></p>
+
+</details>
+
+
+<p>Nowadays, it&#39;s quite common for an iOS or Android app to include a webview, and at the company I worked in, we have a similar setup -- the app would hand over to a webview and the user would continue their journey in the web. Recently, an incident related to this particular functionality was reported to us.</p>
+<h2 id="What-happened"><a href="#What-happened" class="headerlink" title="What happened"></a>What happened</h2><p>To explain things better, I&#39;ve created this sequence diagram below that represents a working scenario:</p>
+<pre class="mermaid">
+sequenceDiagram
+APP-&gt;&gt;webview: set a token as cookie in the webview.
+destroy APP
+webview-&gt;&gt;APP: cookie is set.
+webview-&gt;&gt;Web App: Attempted to redirect to xxxx using the cookie.
+Web App-&gt;&gt;Web App: Grab the token from cookie.
+Web App-&gt;&gt;Backend: Check if this token is valid.
+Backend-&gt;&gt;Web App: This is a valid token, authentication successful.
+Web App-&gt;&gt;webview: Go to xxxx.
+</pre>
+<span id="more"></span>
+<p>In the incident, however, the user is unable to proceed to xxxx, because the web app was sending an empty token to the Backend, causing the Backend to reject it.</p>
+<h2 id="Investigation-and-Root-Cause-Analysis"><a href="#Investigation-and-Root-Cause-Analysis" class="headerlink" title="Investigation and Root Cause Analysis"></a>Investigation and Root Cause Analysis</h2><p>We need to be able to reproduce the issue first before we can further our investigation into this. However, this turned out to be a tricky one as none of the devs were able to reproduce the issue on their device or simulator.</p>
+<p>The iOS devs tend to think this is related to the web app or the Backend itself, or a rare bug in iOS webview. With the help from a web developer, we added a log so we can see how often this issue happens in production.</p>
+<p>A week after that, we realized the issue is not just impacting 2 or 3 users but a lot more. So we decided to have another look at the App source code.</p>
+<p>Here&#39;s the relevant part of the code:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> dateFormatter <span class="operator">=</span> <span class="type">DateFormatter</span>()</span><br><span class="line">dateFormatter.dateFormat <span class="operator">=</span> <span class="string">&quot;E, dd MMM yyyy HH:mm:ss Z&quot;</span></span><br><span class="line"><span class="keyword">let</span> cookieExpireDate <span class="operator">=</span> dateFormatter.date(from: setup.cookieExpires) <span class="operator">??</span> <span class="type">Date</span>(timeIntervalSinceNow: <span class="number">1</span>)</span><br><span class="line"><span class="keyword">let</span> httpCookieProperties: [<span class="type">HTTPCookiePropertyKey</span> : <span class="keyword">Any</span>] <span class="operator">=</span> [</span><br><span class="line">    .domain: urlComponents.host <span class="operator">??</span> <span class="string">&quot;&quot;</span>,</span><br><span class="line">    .path: urlComponents.path,</span><br><span class="line">    .name: setup.cookieName,</span><br><span class="line">    .value: accessToken,</span><br><span class="line">    .secure: urlComponents.scheme <span class="operator">??</span> <span class="string">&quot;&quot;</span>,</span><br><span class="line">    .expires: cookieExpireDate</span><br><span class="line">]</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> cookie <span class="operator">=</span> <span class="type">HTTPCookie</span>(properties: httpCookieProperties) &#123;</span><br><span class="line">    webView.configuration.websiteDataStore.httpCookieStore.setCookie(cookie) &#123;</span><br></pre></td></tr></table></figure>
+<p>To people who are not familiar with Swift, this may not mean anything. However, it&#39;s not difficult to guess what this part of the code is doing. It first setup a formatter, and then use that formatter to create an expiry date (from the date it gets from the Backend) as the cookie. And then the cookie was given to the webview to set to the cookieStore.</p>
+<p>What could go wrong here? My first instinct is where the cookieExpireDate is set. The fallback is set to 1 second, that is definitely too short, but that may not be the issue.</p>
+<p>I subsequently looked up the dateFormatter online, among the documentation provide by Apple[^1], there&#39;s a link to a technical FAQ[^2]. This was the key to finding the root cause. I will quote part of the FAQ document here:</p>
+<blockquote>
+<p>[...]<br>Q:  I&#39;m using NSDateFormatter to parse an Internet-style date, but this fails for some users in some regions. I&#39;ve set a specific date format string; shouldn&#39;t that force NSDateFormatter to work independently of the user&#39;s region settings?<br>A: No. While setting a date format string will appear to work for most users, it&#39;s not the right solution to this problem. There are many places where format strings behave in unexpected ways. For example:<br>A user can change their calendar (using System Preferences &gt; Language &amp; Region &gt; Calendar on OS X, or Settings &gt; General &gt; International &gt; Calendar on iOS). In that case NSDateFormatter will treat the numbers in the string you parse as if they were in the user&#39;s chosen calendar. For example, if the user selects the Buddhist calendar, parsing the year &quot;2010&quot; will yield an NSDate in 1467, because the year 2010 on the Buddhist calendar was the year 1467 on the (Gregorian) calendar that we use day-to-day.<br>[...]<br>On the other hand, if you&#39;re working with fixed-format dates, you should first set the locale of the date formatter to something appropriate for your fixed format. In most cases the best locale to choose is &quot;en_US_POSIX&quot;, a locale that&#39;s specifically designed to yield US English results regardless of both user and system preferences. &quot;en_US_POSIX&quot; is also invariant in time (if the US, at some point in the future, changes the way it formats dates, &quot;en_US&quot; will change to reflect the new behaviour, but &quot;en_US_POSIX&quot; will not), and between machines (&quot;en_US_POSIX&quot; works the same on iOS as it does on OS X, and as it it does on other platforms).</p>
+</blockquote>
+<p>Upon reading this, I immediately set my simulator to use Buddhist calendar, and<br>not surprisingly, I was able to reproduce the issue. Setting a breakpoint in<br>the code, I saw the cookieExpireDate had a year 1481 in it. This caused the<br>webview to ignore this cookie, and led to all the subsequent issues.</p>
+<h2 id="Solutions"><a href="#Solutions" class="headerlink" title="Solutions"></a>Solutions</h2><p>There are several ways of fixing this issue, however, I do want to note first, Apple <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYXBwbGUuY29tL2RvY3VtZW50YXRpb24vZm91bmRhdGlvbi9kYXRlZm9ybWF0dGVyIzI1MjgyNjE=">no longer recommends using DateFormatter in Swift<i class="fa fa-external-link-alt"></i></span>. With this in mind, the solutions can be one of the following:</p>
+<h3 id="Completely-remove-the-need-to-format-the-date-in-APP"><a href="#Completely-remove-the-need-to-format-the-date-in-APP" class="headerlink" title="Completely remove the need to format the date in APP"></a>Completely remove the need to format the date in APP</h3><p>To me, this is the optimal solution, the app should not handle the formatting of the date -- it should take whatever it got from the App Backend (assuming App Backend is sending the correct format).</p>
+<h3 id="Refactor-to-use-the-Date-style"><a href="#Refactor-to-use-the-Date-style" class="headerlink" title="Refactor to use the Date.style"></a>Refactor to use the Date.style</h3><p>I will skip this part as I&#39;m not proficient enough in Swift to give the correct code.</p>
+<h3 id="Fix-the-existing-code-by-adding-a-fix-locale-and-timezone"><a href="#Fix-the-existing-code-by-adding-a-fix-locale-and-timezone" class="headerlink" title="Fix the existing code by adding a fix locale (and timezone)"></a>Fix the existing code by adding a fix locale (and timezone)</h3><p>The updated code would be</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> dateFormatter <span class="operator">=</span> <span class="type">DateFormatter</span>()</span><br><span class="line">dateFormatter.locale <span class="operator">=</span> <span class="type">Locale</span>(identifier: <span class="string">&quot;en_US_POSIX&quot;</span>)</span><br><span class="line">dateFormatter.timezone <span class="operator">=</span> <span class="type">Timezone</span>(identifier: <span class="string">&quot;UTC&quot;</span>)</span><br><span class="line"><span class="keyword">let</span> cookieExpireDate <span class="operator">=</span> dateFormatter.date(from: setup.cookieExpires) <span class="operator">??</span> <span class="type">Date</span>(timeIntervalSinceNow: <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<p>Unfortunately fixing only this part does not mean we are done. To be on the safe side of things, we had to search through our codebase and see whether we are using similar patterns to set the format elsewhere.</p>
+<h2 id="Lessons-Learnt"><a href="#Lessons-Learnt" class="headerlink" title="Lessons Learnt"></a>Lessons Learnt</h2><p>This is the first incident related to Date in my career. As a developer, whenever we are doing anything related to date or timezone, we need to be extra careful, this is especially true for the frontend.</p>
+<ul>
+<li><p>Frontend (web, mobile, etc.) clients could be using different locale and timezone.<strong>As a general rule (and as <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYXBwbGUuY29tL2xpYnJhcnkvYXJjaGl2ZS9xYS9xYTE0ODAvX2luZGV4Lmh0bWw=">documented by Apple<i class="fa fa-external-link-alt"></i></span>), developers should avoid setting a fixed date format, if the date is user-visible. When working with fixed format date, developer should be setting the locale and timezone to avoid any potential issues that might be caused by using client side locale or timezone.</strong></p>
+</li>
+<li><p>Checking the documentation of the API will always provide some good leads for debugging.</p>
+</li>
+</ul>
+<hr>
+<h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYXBwbGUuY29tL2RvY3VtZW50YXRpb24vZm91bmRhdGlvbi9kYXRlZm9ybWF0dGVyIzI1MjgyNjE=">https://developer.apple.com/documentation/foundation/dateformatter#2528261<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYXBwbGUuY29tL2xpYnJhcnkvYXJjaGl2ZS9xYS9xYTE0ODAvX2luZGV4Lmh0bWw=">https://developer.apple.com/library/archive/qa/qa1480/_index.html<i class="fa fa-external-link-alt"></i></span><br>[^1]:<span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYXBwbGUuY29tL2RvY3VtZW50YXRpb24vZm91bmRhdGlvbi9kYXRlZm9ybWF0dGVyIzI1MjgyNjE=">https://developer.apple.com/documentation/foundation/dateformatter#2528261<i class="fa fa-external-link-alt"></i></span><br>[^2]:<span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYXBwbGUuY29tL2xpYnJhcnkvYXJjaGl2ZS9xYS9xYTE0ODAvX2luZGV4Lmh0bWw=">https://developer.apple.com/library/archive/qa/qa1480/_index.html<i class="fa fa-external-link-alt"></i></span></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>Post author:  </strong>Kevin Jiang
+  </li>
+  <li class="post-copyright-link">
+      <strong>Post link: </strong>
+      <a href="https://jiangsc.me/2024/07/20/iOS-date-formatter-and-locale/" title="Notes on iOS Date Formatter: Issues and Fixes">https://jiangsc.me/2024/07/20/iOS-date-formatter-and-locale/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</span> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+          <div class="followme">
+  <span>Welcome to my other publishing channels</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Notes/" rel="tag"># Notes</a>
+              <a href="/tags/iOS/" rel="tag"># iOS</a>
+              <a href="/tags/Swift/" rel="tag"># Swift</a>
+              <a href="/tags/Date-Formatter/" rel="tag"># Date Formatter</a>
+              <a href="/tags/Cookie/" rel="tag"># Cookie</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/07/07/ios-http-streaming-issue/" rel="prev" title="Fixing iOS HTTP Video Playback Issues">
+                  <i class="fa fa-angle-left"></i> Fixing iOS HTTP Video Playback Issues
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2017 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Kevin Jiang</span>
+  </div>
+  <div class="powered-by">Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL0tldmluU0o=" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.3.0/pdfobject.min.js","integrity":"sha256-JJZNsid68vnh3/zyj0lY9BN5ynxVX/12XgOa1TlaYN0="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.1/mermaid.min.js","integrity":"sha256-YbM1pG3wWnzhyYN49g5fPnen+2CKEFaZfopkkwSpNtY="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+
+
+  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/10.13.1/firebase-app-compat.js" integrity="sha256-7rbzO720n5u7kECmcdVLacW6cCRHp4pCxJ3qljsmAm8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/10.13.1/firebase-firestore-compat.js" integrity="sha256-XEP1DXy0gbkgjmlLmNJBgjH2EpbmHPAr5oTrIJHEfm4=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="firestore" type="application/json">{"enable":true,"collection":"blog_view","apiKey":"AIzaSyAwkI10aTDM2430EyQhtAz5X04hk16ozRc","projectId":"blog-269be"}</script>
+  <script src="/js/third-party/statistics/firestore.js"></script>
+
+
+
+
+<script src="https://unpkg.com/live2d-widget@^3.1.3/lib/L2Dwidget.min.js"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false}});</script></body>
+</html>

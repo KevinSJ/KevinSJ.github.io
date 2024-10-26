@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="9g-E_K0GEppNWOItj0YYJV_1UbSLdVFrKOhHSPLkJcM">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"jiangsc.me","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.21.0","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="This is the third article about NeoVim tips, if you are interested in other part of this, please check here and here   Motivation: The need for a clean and organized environment file.Quite often in a">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Solving Repeatative Problem with Vim">
+<meta property="og:url" content="https://jiangsc.me/2023/12/27/neovim-tricks-3/index.html">
+<meta property="og:site_name" content="Kevin Jiang&#39;s Technical Blog">
+<meta property="og:description" content="This is the third article about NeoVim tips, if you are interested in other part of this, please check here and here   Motivation: The need for a clean and organized environment file.Quite often in a">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-12-27T05:31:10.000Z">
+<meta property="article:modified_time" content="2024-01-03T23:19:50.243Z">
+<meta property="article:author" content="Kevin Jiang">
+<meta property="article:tag" content="Tips">
+<meta property="article:tag" content="Vim">
+<meta property="article:tag" content="NeoVim">
+<meta property="article:tag" content="nvim">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://jiangsc.me/2023/12/27/neovim-tricks-3/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://jiangsc.me/2023/12/27/neovim-tricks-3/","path":"2023/12/27/neovim-tricks-3/","title":"Solving Repeatative Problem with Vim"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Solving Repeatative Problem with Vim | Kevin Jiang's Technical Blog</title>
+  
+
+
+
+
+
+
+  <script async defer data-website-id="c4ed80eb-6e46-4603-a114-34b3a0f3eb10" src="https://u-a.jiangsc.me/script.js"></script>
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Kevin Jiang's Technical Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Kevin Jiang's Technical Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-gallery"><a href="/gallery/" rel="section"><i class="fa fa-image fa-fw"></i>Gallery</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Motivation-The-need-for-a-clean-and-organized-environment-file"><span class="nav-number">1.</span> <span class="nav-text">Motivation: The need for a clean and organized environment file.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Overview-What-s-in-an-environment-file"><span class="nav-number">2.</span> <span class="nav-text">Overview: What&#39;s in an environment file</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Implementation"><span class="nav-number">3.</span> <span class="nav-text">Implementation</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Organizing-services-and-feature-flags"><span class="nav-number">3.1.</span> <span class="nav-text">Organizing services and feature flags</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Removing-unused-services-and-feature-flags"><span class="nav-number">4.</span> <span class="nav-text">Removing unused services and feature flags</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Conclusion"><span class="nav-number">5.</span> <span class="nav-text">Conclusion</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Kevin Jiang</p>
+  <div class="site-description" itemprop="description">A blog about all things tech.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">111</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2tldmluc2o=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;kevinsj"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly93d3cubGlua2VkaW4uY29tL2luL2tldnNq" title="LinkedIn → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;kevsj"><i class="fab fa-linkedin fa-fw"></i>LinkedIn</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRsYWIuY29tL2tldmluc2o=" title="GitLab → https:&#x2F;&#x2F;gitlab.com&#x2F;kevinsj"><i class="fab fa-gitlab fa-fw"></i>GitLab</span>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></span>
+  </div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="Back to top">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://jiangsc.me/2023/12/27/neovim-tricks-3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Kevin Jiang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
+      <meta itemprop="description" content="A blog about all things tech.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Solving Repeatative Problem with Vim | Kevin Jiang's Technical Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Solving Repeatative Problem with Vim
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 12-27-2023 18:31:10" itemprop="dateCreated datePublished" datetime="2023-12-27T18:31:10+13:00">12-27-2023</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="firestore-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><div class="note info"><p>This is the third article about NeoVim tips, if you are interested in other part of this, please check <a href="/2022/05/21/neovim-tricks-1/">here</a> and <a href="/2022/10/29/neovim-tricks-2">here</a></p>
+</div>
+
+<h3 id="Motivation-The-need-for-a-clean-and-organized-environment-file"><a href="#Motivation-The-need-for-a-clean-and-organized-environment-file" class="headerlink" title="Motivation: The need for a clean and organized environment file."></a>Motivation: The need for a clean and organized environment file.</h3><p>Quite often in a project, a developer will have to deal with a lot of environment variables and&#x2F;or environment files. However, they could also be the part that&#39;s least maintained in the entire codebase. As an example, sometimes, a feature flag could be added to the environment file, but when the feature goes live, people would fail to remove them. As time gets by, there will be <strong>A LOT</strong> of this kind of variables in the environment file.</p>
+<p>As it is the end of the year, and I really couldn&#39;t finish much dev work with the amount of time left for the new year, I opt to deal with this issue with the intention to create a clean and organized environment file.</p>
+<h3 id="Overview-What-s-in-an-environment-file"><a href="#Overview-What-s-in-an-environment-file" class="headerlink" title="Overview: What&#39;s in an environment file"></a>Overview: What&#39;s in an environment file</h3><p>Before I get into the problem I&#39;m trying to solve, it is important to understand the problem we are trying to solve. For the project I&#39;m working on, we have two kinds of environment files, one of which is only used locally, the other one is used by the Kubernetes platform and is used at runtime. Here&#39;s an example of what they look like:</p>
+<span id="more"></span>
+
+<figure class="highlight sh"><figcaption><span>local_env_file.env</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">A_SERVICE               = http://abcdefg.tld</span><br><span class="line">PORT                    = 53100</span><br><span class="line">B_SERVICE               = http://bcdefg.tld</span><br><span class="line">FEATURE_FLAG_AAA        = <span class="literal">true</span></span><br><span class="line">C_SERVICE               = http://cdefg.tld</span><br><span class="line">FEATURE_FLAG_CCC_UNUSED = <span class="literal">true</span></span><br><span class="line">D_SERVICE               = http://defg.tld</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight yaml"><figcaption><span>helm_values.env.yaml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">-</span> <span class="attr">name:</span> <span class="string">A_SERVICE</span></span><br><span class="line">  <span class="attr">value:</span> <span class="string">http://abcdefg.tld</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">name:</span> <span class="string">PORT</span></span><br><span class="line">  <span class="attr">value:</span> <span class="number">53100</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">name:</span> <span class="string">B_SERVICE</span></span><br><span class="line">  <span class="attr">value:</span> <span class="string">http://bcdefg.tld</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">name:</span> <span class="string">FEATURE_FLAG_AAA</span></span><br><span class="line">  <span class="attr">value:</span> <span class="literal">true</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">name:</span> <span class="string">C_SERVICE</span></span><br><span class="line">  <span class="attr">value:</span> <span class="string">http://cdefg.tld</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">name:</span> <span class="string">FEATURE_FLAG_CCC_UNUSED</span></span><br><span class="line">  <span class="attr">value:</span> <span class="literal">true</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">name:</span> <span class="string">D_SERVICE</span></span><br><span class="line">  <span class="attr">value:</span> <span class="string">http://defg.tld</span></span><br></pre></td></tr></table></figure>
+
+<p>This is only a short snippet of the file, the whole file would be around 200 lines. Obviously, this kind of long file is not maintainable and it could also become source of unexpected bugs&#x2F;failures if not dealt with carefully. To avoid this kind of issues, I have decided to make things cleaner and more organized, here are the expected end result after I&#39;ve done the clean up:</p>
+<figure class="highlight sh"><figcaption><span>local_env_file_CLEANED.env</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">PORT                    = 53100</span><br><span class="line">+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span><br><span class="line">+                              SERVICES                               +</span><br><span class="line">+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span><br><span class="line">A_SERVICE               = http://abcdefg.tld</span><br><span class="line">B_SERVICE               = http://bcdefg.tld</span><br><span class="line">C_SERVICE               = http://cdefg.tld</span><br><span class="line">+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span><br><span class="line">+                            FEATURE_FLAGS                            +</span><br><span class="line">+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span><br><span class="line">FEATURE_FLAG_AAA        = <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight yaml"><figcaption><span>helm_values.env.yaml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">-</span> <span class="attr">name:</span> <span class="string">PORT</span></span><br><span class="line">  <span class="attr">value:</span> <span class="number">53100</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">name:</span> <span class="string">A_SERVICE</span></span><br><span class="line">  <span class="attr">value:</span> <span class="string">http://abcdefg.tld</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">name:</span> <span class="string">B_SERVICE</span></span><br><span class="line">  <span class="attr">value:</span> <span class="string">http://bcdefg.tld</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">name:</span> <span class="string">C_SERVICE</span></span><br><span class="line">  <span class="attr">value:</span> <span class="string">http://cdefg.tld</span></span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> <span class="attr">name:</span> <span class="string">FEATURE_FLAG_AAA</span></span><br><span class="line">  <span class="attr">value:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>You might not agree with the format I did, but it is obviously much more organized than its previous state. And also note the unused feature flags and services are both removed.</p>
+<h3 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h3><p>Once I&#39;ve defined the end state, I went and started implementing it. To be honest, it look much difficult than it looked. I will break things by steps, so it&#39;s easier to explain.</p>
+<h4 id="Organizing-services-and-feature-flags"><a href="#Organizing-services-and-feature-flags" class="headerlink" title="Organizing services and feature flags"></a>Organizing services and feature flags</h4><p>This might be the easiest task of all. You would first need to find all the lines that contains FEATURE_FLAGS or SERVICES. Then you would need to copy them all to a <strong>single</strong> register and paste them all out together.</p>
+<p>What I did, for the <code>.env</code> file: clear the <code>b</code> register first with <code>qbq</code>, then do <code>:g/FEATURE_FLAG/:norm &quot;Bdd</code>, then go to the end of the file with <code>G</code> and paste with <code>&quot;Bp</code></p>
+<p>Similarly, for the <code>helm_values</code> file, you can slightly modify the command used above to: <code>:g/FEATURE_FLAG/:norm &quot;B2dd</code>. This is because in the yaml file we have, the name and value are on separate lines.</p>
+<h3 id="Removing-unused-services-and-feature-flags"><a href="#Removing-unused-services-and-feature-flags" class="headerlink" title="Removing unused services and feature flags"></a>Removing unused services and feature flags</h3><p>This is the most tedious part. It would be much ideal if this could be done as part of the regular release or clean up process. However, I still opt to do it with some not-so-intuitive VIM scripting.</p>
+<p>To understand how to solve this, we need to clearly understand an unused variable is a variable that&#39;s not appeared in the code base. To me, this means <strong>you won&#39;t be able to find any usage for the variable by doing a code search</strong>. Based on this criteria, we can come up with some Vim script:</p>
+<ul>
+<li>For a env file:<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:g!/^#/<span class="keyword">let</span> <span class="keyword">x</span> = <span class="built_in">system</span>(<span class="string">&#x27;rg -t &quot;js&quot; -t &quot;ts&quot; -l --count-matches &#x27;</span> . <span class="built_in">shellescape</span>(<span class="built_in">expand</span>(<span class="string">&quot;&lt;cword&gt;&quot;</span>)) .. <span class="string">&#x27;|grep &quot;&quot; -c&#x27;</span>)|<span class="keyword">if</span> <span class="keyword">x</span>==<span class="number">0</span> |<span class="keyword">delete</span>|<span class="keyword">endif</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>It looks complex, but it does what it meant to do. Let&#39;s break it down to see what it does step-by-step:</p>
+<ul>
+<li><code>:g</code> this is the typical Vim <code>:global</code> command where it would apply a series of ex commands on lines that matches the following pattern.</li>
+<li><code>!/^#/</code> this is the regex we are looking for. In this case, it means any lines that <strong>do not</strong> start with a <code>#</code> or hash sign.</li>
+<li><code>let x = system(&#39;xxxxx&#39;)</code> this is defining a vim variable called x, and assign the output of the command <code>xxxx</code> to variable x.</li>
+<li><code>rg -t &quot;js&quot; -t &quot;ts&quot; -l --count-matches &#39; . shellescape(expand(&quot;&lt;cword&gt;&quot;)) .. &#39;</code> this is running <code>rg</code> command in a shell, you can actually replace this with <code>grep</code> but I find <code>rg</code> to be much more efficient.<ul>
+<li>For <code>rg</code>, I used the following flags:<ul>
+<li><code>-t</code> argument would tell <code>rg</code> which type of file to look for</li>
+<li><code>-l</code> argument means &#39;Print only the paths with at least one match and suppress match contents&#39;.</li>
+<li><code>--count-matches</code> means suppresses  normal  output and shows the number of individual matches of the given patterns for each file searched.</li>
+</ul>
+</li>
+<li>Notice the <code>.</code> immediately following the single quote, that is used for concatenating commands.</li>
+<li><code>shellescape()</code> function is used for escaping {string} for use as a shell command argument.</li>
+<li><code>expand()</code> function, is used to expand expand wildcards and the following special keywords in {string}. When combined with <cword> <code>expand(&lt;cword&gt;)</code>, it would expand to word under the cursor.</li>
+<li><code>|grep &quot;&quot; -c</code> this <bar> character that follows removes the new line or empty character from the rg output, note this is still part of the shell command sequence.</li>
+<li><code>|if x==0 |delete|endif</code>, this is the final part of the command, it&#39;s straightforward: it&#39;s checking whether <code>x</code> is equal to 0. <code>x</code> is the variable we used to store the count of matches, so if the match is equal to 0, we delete the current line and end the if statement.</li>
+</ul>
+</li>
+</ul>
+<p>I have to admit, this is a relatively counter-intuitive command, but it&#39;s quite convenient to use. Depending on the size of your file and  CPU speed of your computer, your VIM might freeze for a short while, as it is executing some heavy I&#x2F;O command under the hood.</p>
+<ul>
+<li>For a <code>yaml</code> file:<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:g/name: \([A-Z].*\)/<span class="keyword">let</span> <span class="keyword">x</span> = <span class="built_in">system</span>(<span class="string">&#x27;rg -t &quot;js&quot; -t &quot;ts&quot; -l --count-matches &#x27;</span> . <span class="built_in">shellescape</span>(<span class="built_in">matchstr</span>(<span class="built_in">getline</span>(<span class="string">&#x27;.&#x27;</span>), <span class="string">&#x27;\&lt;\u.\+\&gt;&#x27;</span>)) .. <span class="string">&#x27;|grep &quot;&quot; -c&#x27;</span>)|<span class="keyword">if</span> <span class="keyword">x</span>==<span class="number">0</span> |<span class="keyword">delete</span> <span class="number">2</span>|<span class="keyword">endif</span></span><br></pre></td></tr></table></figure>
+Again, I will explain this one as well, most of the things are the same.</li>
+<li>For the pattern part, I switched to use <code>name: \([A-Z].*\)</code>, this would match the line that contains <code>name</code> and also capture whatever comes after the <code>name</code> part.</li>
+<li>Inside the <code>shellescape</code> function, I switched to use <code>matchstr()</code> function which returns the matched string. In this case, it matching <code>getline(&#39;.&#39;)</code> against pattern <code>&#39;\&lt;\u.\+\&gt;&#39;</code> which is any upper case character.</li>
+<li>All the other part of the command remain the same, except <code>delete 2</code>, this is because for the yaml file, I would like to delete both the name and value which consists of two lines.</li>
+</ul>
+<h3 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h3><p>In this article, I explore the use of shell command in combination with Vim to solve some the repetitive task of finding and deleting unused variables in a file inside a project.</p>
+<hr>
+<p>References:</p>
+<ul>
+<li>man rg(1)</li>
+<li>VIM:<ul>
+<li>:help :g</li>
+<li>:help system()</li>
+<li>:help shellescape()</li>
+<li>:help expand()</li>
+<li>:help matchstr()</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>Post author:  </strong>Kevin Jiang
+  </li>
+  <li class="post-copyright-link">
+      <strong>Post link: </strong>
+      <a href="https://jiangsc.me/2023/12/27/neovim-tricks-3/" title="Solving Repeatative Problem with Vim">https://jiangsc.me/2023/12/27/neovim-tricks-3/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</span> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+          <div class="followme">
+  <span>Welcome to my other publishing channels</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Tips/" rel="tag"># Tips</a>
+              <a href="/tags/Vim/" rel="tag"># Vim</a>
+              <a href="/tags/NeoVim/" rel="tag"># NeoVim</a>
+              <a href="/tags/nvim/" rel="tag"># nvim</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/12/08/self-hosting-nebula-traefik/" rel="prev" title="Advanced Selfhosting with Nebula & Traefik">
+                  <i class="fa fa-angle-left"></i> Advanced Selfhosting with Nebula & Traefik
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/03/03/firebase-and-gcp-storage-permission/" rel="next" title="Firebase store and Google Cloud Storage Permissions">
+                  Firebase store and Google Cloud Storage Permissions <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2017 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Kevin Jiang</span>
+  </div>
+  <div class="powered-by">Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL0tldmluU0o=" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.3.0/pdfobject.min.js","integrity":"sha256-JJZNsid68vnh3/zyj0lY9BN5ynxVX/12XgOa1TlaYN0="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.1/mermaid.min.js","integrity":"sha256-YbM1pG3wWnzhyYN49g5fPnen+2CKEFaZfopkkwSpNtY="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+
+
+  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/10.13.1/firebase-app-compat.js" integrity="sha256-7rbzO720n5u7kECmcdVLacW6cCRHp4pCxJ3qljsmAm8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/10.13.1/firebase-firestore-compat.js" integrity="sha256-XEP1DXy0gbkgjmlLmNJBgjH2EpbmHPAr5oTrIJHEfm4=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="firestore" type="application/json">{"enable":true,"collection":"blog_view","apiKey":"AIzaSyAwkI10aTDM2430EyQhtAz5X04hk16ozRc","projectId":"blog-269be"}</script>
+  <script src="/js/third-party/statistics/firestore.js"></script>
+
+
+
+
+<script src="https://unpkg.com/live2d-widget@^3.1.3/lib/L2Dwidget.min.js"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false}});</script></body>
+</html>

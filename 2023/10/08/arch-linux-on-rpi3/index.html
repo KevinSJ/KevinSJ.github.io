@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="9g-E_K0GEppNWOItj0YYJV_1UbSLdVFrKOhHSPLkJcM">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"jiangsc.me","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.21.0","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="I&#39;m a big fan of Arch Linux for its simplicity, and ease to use. However, sometimes it can be the source of headache. This week, I upgraded the Arch Linux on my Raspberry Pi 3 with latest packages">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Lessons Learnt on Breaking and Reinstalling Arch Linux on Raspberry Pi">
+<meta property="og:url" content="https://jiangsc.me/2023/10/08/arch-linux-on-rpi3/index.html">
+<meta property="og:site_name" content="Kevin Jiang&#39;s Technical Blog">
+<meta property="og:description" content="I&#39;m a big fan of Arch Linux for its simplicity, and ease to use. However, sometimes it can be the source of headache. This week, I upgraded the Arch Linux on my Raspberry Pi 3 with latest packages">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-10-08T04:59:16.000Z">
+<meta property="article:modified_time" content="2023-10-09T10:42:06.558Z">
+<meta property="article:author" content="Kevin Jiang">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="QEMU">
+<meta property="article:tag" content="Arch Linux">
+<meta property="article:tag" content="Raspberry Pi">
+<meta property="article:tag" content="Raspberry Pi 3">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://jiangsc.me/2023/10/08/arch-linux-on-rpi3/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://jiangsc.me/2023/10/08/arch-linux-on-rpi3/","path":"2023/10/08/arch-linux-on-rpi3/","title":"Lessons Learnt on Breaking and Reinstalling Arch Linux on Raspberry Pi"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Lessons Learnt on Breaking and Reinstalling Arch Linux on Raspberry Pi | Kevin Jiang's Technical Blog</title>
+  
+
+
+
+
+
+
+  <script async defer data-website-id="c4ed80eb-6e46-4603-a114-34b3a0f3eb10" src="https://u-a.jiangsc.me/script.js"></script>
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Kevin Jiang's Technical Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Kevin Jiang's Technical Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-gallery"><a href="/gallery/" rel="section"><i class="fa fa-image fa-fw"></i>Gallery</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Initial-Investigation-and-Thoughts"><span class="nav-number">1.</span> <span class="nav-text">Initial Investigation and Thoughts</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Attempted-Solution-with-Chroot"><span class="nav-number">2.</span> <span class="nav-text">Attempted Solution with Chroot</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reinstallation-of-ArchLinux-on-Raspberry"><span class="nav-number">3.</span> <span class="nav-text">Reinstallation of ArchLinux on Raspberry</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Lessons-Learnt"><span class="nav-number">3.1.</span> <span class="nav-text">Lessons Learnt</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#References"><span class="nav-number">3.1.1.</span> <span class="nav-text">References:</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Kevin Jiang</p>
+  <div class="site-description" itemprop="description">A blog about all things tech.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">111</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2tldmluc2o=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;kevinsj"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly93d3cubGlua2VkaW4uY29tL2luL2tldnNq" title="LinkedIn → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;kevsj"><i class="fab fa-linkedin fa-fw"></i>LinkedIn</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRsYWIuY29tL2tldmluc2o=" title="GitLab → https:&#x2F;&#x2F;gitlab.com&#x2F;kevinsj"><i class="fab fa-gitlab fa-fw"></i>GitLab</span>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></span>
+  </div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="Back to top">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://jiangsc.me/2023/10/08/arch-linux-on-rpi3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Kevin Jiang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
+      <meta itemprop="description" content="A blog about all things tech.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Lessons Learnt on Breaking and Reinstalling Arch Linux on Raspberry Pi | Kevin Jiang's Technical Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Lessons Learnt on Breaking and Reinstalling Arch Linux on Raspberry Pi
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 10-08-2023 17:59:16" itemprop="dateCreated datePublished" datetime="2023-10-08T17:59:16+13:00">10-08-2023</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="firestore-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>I&#39;m a big fan of Arch Linux for its simplicity, and ease to use. However, sometimes it can be the source of headache. This week, I upgraded the Arch Linux on my Raspberry Pi 3 with latest packages with the following command <code>yay -Syu --noconfirm</code> (WARNING: you shouldn&#39;t be doing this). When I finished upgrade, my Raspberry Pi 3 stopped working. And I had to spend quite a lot of time getting things back to normal.</p>
+<h2 id="Initial-Investigation-and-Thoughts"><a href="#Initial-Investigation-and-Thoughts" class="headerlink" title="Initial Investigation and Thoughts"></a>Initial Investigation and Thoughts</h2><p>Since I don&#39;t have any clue on what happened at all. I first tried whether SSH still works... And I got can&#39;t find zsh. That is indeed a bad sign, I can&#39;t do anything 😞. Next thing I did was reboot. And things got even worse -- I can&#39;t even SSH now, refused to connect at port 22 😢.</p>
+<p>At this point, I had no choice but to connect the Pi to an external monitor. It didn&#39;t help. While I could see the bootloader start screen, the kernel seems broken, so machine did not start.</p>
+<span id="more"></span>
+<h2 id="Attempted-Solution-with-Chroot"><a href="#Attempted-Solution-with-Chroot" class="headerlink" title="Attempted Solution with Chroot"></a>Attempted Solution with Chroot</h2><p>Next, my plan is to pull the MicroSD card out and try if I can get chroot to work. I am expecting this to be difficult cause Raspberry Pi is ARM based, and my laptop is not. It turned out to be really difficult because I wasn&#39;t familiar with how chroot and mounting works.</p>
+<p>To chroot into an ARM-based machine (in this case aarch64 architecture), you would normally need an ARM based machine. If you really want to do it from a x86_64 architecture machine, you would have to setup some kind of emulation. In this case, I&#39;m using QEMU, which is a pretty standard tool for emulation on Linux. Here&#39;s the steps I followed:</p>
+<ul>
+<li>Install QEMU related packages:<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S qemu-user-static qemu-user-static-binfmt</span><br></pre></td></tr></table></figure>
+These two packages are both necessary. According to <span class="exturl" data-url="aHR0cHM6Ly93aWtpLmFyY2hsaW51eC5vcmcvdGl0bGUvUUVNVSNEZXRhaWxzX29uX3BhY2thZ2VzX2F2YWlsYWJsZV9pbl9BcmNoX0xpbnV4" title="https://wiki.archlinux.org/title/QEMU#Details_on_packages_available_in_Arch_Linux">ArchLinux Wiki<i class="fa fa-external-link-alt"></i></span>, the first <code>qemu-user-static</code> provides user mode emulation, this would avoid the need to setup a full blown virtual machine to run the binaries. Instead, it would run the binary with static translation.</li>
+<li>You would also need to install some cross-compiling libraries:<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S aarch64-linux-gnu-glibc</span><br></pre></td></tr></table></figure></li>
+<li>Insert your MicroSD card to your machine, mount the <code>/boot</code> partition and the <code>/</code> (root) partition, can be something like below, you would need to run as root:<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo mount --<span class="built_in">mkdir</span> /dev/sdX2 /mnt/sdcard/</span><br><span class="line">sudo mount --<span class="built_in">mkdir</span> /dev/sdX1 /mnt/sdcard/boot</span><br></pre></td></tr></table></figure></li>
+<li>Once this is done, you can follow the steps <span class="exturl" data-url="aHR0cHM6Ly93aWtpLmFyY2hsaW51eC5vcmcvdGl0bGUvUUVNVSNDaHJvb3RpbmdfaW50b19hcm0vYXJtNjRfZW52aXJvbm1lbnRfZnJvbV94ODZfNjQ=" title="https://wiki.archlinux.org/title/QEMU#Chrooting_into_arm/arm64_environment_from_x86_64">here<i class="fa fa-external-link-alt"></i></span>. I went with the <code>arch-chroot</code> route:<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo arch-chroot /mnt/sdcard</span><br></pre></td></tr></table></figure>
+However, I kept getting <code>/lib/ld-linux-aarch64.so.1 does not exist</code>, when I ran the command above. Initially, I was thinking it was my host machine that has the issue, so I copied the file <code>ld-linux-aarch64.so.1</code> from <code>/usr/aarch64-linux-gnu/lib/ld-linux-aarch64.so.1</code>. And it still didn&#39;t work. I had spent almost one hour on this before I realized, the issue lies with my <code>chroot</code> and <strong>not</strong> my host machine. I had to do create a symbolic link from <code>/usr/lib</code> to <code>/lib</code> in the <code>chroot</code> (i.e. the sdcard file system). This time, I got <code>segmentation fault</code> when I did the chroot.</li>
+</ul>
+<p>At this point, I might as well reinstall the whole ArchLinux. But before that I did a backup using the <code>rsync</code>:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># backup is important!</span></span><br><span class="line">sudo rsync -av /mnt/sdcard ~/rpi_bak</span><br></pre></td></tr></table></figure>
+
+<h2 id="Reinstallation-of-ArchLinux-on-Raspberry"><a href="#Reinstallation-of-ArchLinux-on-Raspberry" class="headerlink" title="Reinstallation of ArchLinux on Raspberry"></a>Reinstallation of ArchLinux on Raspberry</h2><p>Reinstalling the ArchLinux on Raspberry Pi 3 actually felt easier than on x86_64 machine(because it is actually <span class="exturl" data-url="aHR0cHM6Ly9hcmNobGludXhhcm0ub3JnLw==" title="https://archlinuxarm.org/">ArchLinux Arm<i class="fa fa-external-link-alt"></i></span> which is a port of ArchLinux for Arm devices). You can follow the guide <span class="exturl" data-url="aHR0cHM6Ly9hcmNobGludXhhcm0ub3JnL3BsYXRmb3Jtcy9hcm12OC9icm9hZGNvbS9yYXNwYmVycnktcGktMw==" title="https://archlinuxarm.org/platforms/armv8/broadcom/raspberry-pi-3">from ArchLinux Arm<i class="fa fa-external-link-alt"></i></span>. I would recommend setting the boot partition to be <strong>more</strong> than 200MB, 400MB would be ideal.</p>
+<p>Once you are done with installation, I would recommend <strong>not</strong> to put your MicroSD card back to your Raspberry yet. Instead, you should chroot into the mounted folder and start installing some packages. If you are following the guide from ArchLinux Arm, you can do:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># mount boot and root again if you have unmounted</span></span><br><span class="line">sudo mount /dev/sdX2 ./root</span><br><span class="line"><span class="comment"># this ensures the boot drive is properly mounted.</span></span><br><span class="line">sudo mount /dev/sdX1 ./root/boot</span><br><span class="line">sudo arch-chroot ./root</span><br></pre></td></tr></table></figure>
+<p>You are now acting as the root user for the newly initiated ArchLinux installation. You can start by populating the keys:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pacman-key --init</span><br><span class="line">pacman-key --populate archlinuxarm</span><br></pre></td></tr></table></figure>
+<p>Once you are done with that, you would have the chance to install some necessary software, I would recommend at least install <code>sudo</code>, <code>git</code>, <code>wget</code>, <code>zsh</code>. For me, I copied all my files from my previous installation, so:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rsync -av ~/rpi_bak/sdcard/home/alarm/ ~/rpi-staging/root/home/alarm/</span><br></pre></td></tr></table></figure>
+
+<p>Once this is done, I thought I&#39;m ready to put this MicroSD to my Raspberry Pi and things would get back to normal. However, things still didn&#39;t work as expected: the machine booted, but it had no Ethernet or WiFi access. I also noticed the lights were blinking wrongly. This made me think the whole situation had something to do with kernel. So, I had to plug the MicroSD back to my laptop and switch the kernel and install the <code>linux-rpi</code> <span class="exturl" data-url="aHR0cHM6Ly9hcmNobGludXhhcm0ub3JnL3BhY2thZ2VzL2FhcmNoNjQvbGludXgtcnBp" title="https://archlinuxarm.org/packages/aarch64/linux-rpi">package<i class="fa fa-external-link-alt"></i></span>.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S linux-rpi</span><br></pre></td></tr></table></figure>
+<p>This package is RPi Foundation patched Linux kernel and modules which turned out to solve the issue. You would be asked if you want to replace the current kernel and the u-boot. Go ahead and say yes. Now, if you had followed the official guide from ArchLinux Arm, you would get an error, because 200MB on the boot drive is not enough for installing a second kernel package when the current kernel is present (this is the reason I recommend using more than 200MB on boot partition). For me, I had to delete some files from the <code>/boot/dtbs</code> folder (which I don&#39;t recommend doing). This folder is for device tree blobs, so there might be unexpected consequences for deleting random files. </p>
+<p>After rebooting and start using the kernel from RPi Foundation, everything would work as expected. I continued with some housekeeping tasks:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># install cron</span></span><br><span class="line">sudo pacman -S cronie &amp;&amp; sudo systemctl <span class="built_in">enable</span> --now cronie</span><br><span class="line"></span><br><span class="line"><span class="comment"># set the hostname</span></span><br><span class="line">hostnamectl hostname raspberrypi</span><br><span class="line"></span><br><span class="line"><span class="comment"># set timezone</span></span><br><span class="line">sudo timedatectl set-timezone Pacific/Auckland</span><br><span class="line"></span><br><span class="line"><span class="comment"># add the default user to sudoer</span></span><br><span class="line">sudo visudo</span><br><span class="line"><span class="comment"># Add the following lines:</span></span><br><span class="line"><span class="comment"># alarm ALL=(ALL:ALL) ALL</span></span><br><span class="line"><span class="comment"># Defaults:alarm !authenticate</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># set locale to utf-8</span></span><br><span class="line">localectl set-locale LANG=en_US.UTF-8</span><br></pre></td></tr></table></figure>
+
+<p>I also compiled the aur helper from my laptop and transferred it RPi -- it just takes forever to compile things on RPi. For doing this you would need to get the PKGBUILD file for the package you want to build and run: <code>CARCH=aarch64 makepkg -Cf</code></p>
+<h3 id="Lessons-Learnt"><a href="#Lessons-Learnt" class="headerlink" title="Lessons Learnt"></a>Lessons Learnt</h3><p>Honestly, I would rather not go through this process again. I did learnt a lot though:</p>
+<ul>
+<li>Don&#39;t ever run things with <code>--no-confirm</code>, it is so dangerous, especially on a rolling release distro like Arch</li>
+<li>I was surprised I can run chroot on the aarch64 with x86_64 machine, this turned out to be the magic of <code>qemu-user-static</code> and <code>qemu-user-static-binfmt</code>. The binfmt is particularly interesting, Wikipedia would provide <span class="exturl" data-url="aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvQmluZm10X21pc2M=" title="https://en.wikipedia.org/wiki/Binfmt_misc">better explanation<i class="fa fa-external-link-alt"></i></span> than I do. Basically, Linux knows to use aarch64 related emulation when you are inside the chroot -- there&#39;s a mapping from the binary format to the interpreter at runtime. For example, I had this <code>/usr/lib/binfmt.d/qemu-aarch64-static.conf</code> file which contains<br><code>:qemu-aarch64:M::\x7fELF\x02\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\xb7\x00:\xff\xff\xff\xff\xff\xff\xff\x00\xff\xff\xff\xff\xff\xff\xff\xff\xfe\xff\xff\xff:/usr/bin/qemu-aarch64-static:FP</code><br><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3FlbXUvcWVtdS9ibG9iL2YzMTE2MGM3ZDFiODljZmI0ZGQ0MDAxYTIzNTc1YjQyMTQxY2IwZWMvcWVtdS1kb2MudGV4aSNMMjU5MA==" title="https://github.com/qemu/qemu/blob/f31160c7d1b89cfb4dd4001a23575b42141cb0ec/qemu-doc.texi#L2590">This would allow QEMU execute programs for other processor architectures as if they were native binaries.<i class="fa fa-external-link-alt"></i></span></li>
+<li>Setting up a system through chroot is much easier than doing things over SSH, this is especially true if you are dealing with Raspberry Pi or something that&#39;s not powerful enough.</li>
+</ul>
+<hr>
+<h4 id="References"><a href="#References" class="headerlink" title="References:"></a>References:</h4><p><span class="exturl" data-url="aHR0cHM6Ly93aWtpLmFyY2hsaW51eC5vcmcvdGl0bGUvUUVNVSNEZXRhaWxzX29uX3BhY2thZ2VzX2F2YWlsYWJsZV9pbl9BcmNoX0xpbnV4">https://wiki.archlinux.org/title/QEMU#Details_on_packages_available_in_Arch_Linux<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly93aWtpLmFyY2hsaW51eC5vcmcvdGl0bGUvUUVNVSNDaHJvb3RpbmdfaW50b19hcm0vYXJtNjRfZW52aXJvbm1lbnRfZnJvbV94ODZfNjQ=">https://wiki.archlinux.org/title/QEMU#Chrooting_into_arm/arm64_environment_from_x86_64<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9hcmNobGludXhhcm0ub3JnL3BsYXRmb3Jtcy9hcm12OC9icm9hZGNvbS9yYXNwYmVycnktcGktMw==">https://archlinuxarm.org/platforms/armv8/broadcom/raspberry-pi-3<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvQmluZm10X21pc2M=">https://en.wikipedia.org/wiki/Binfmt_misc<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3FlbXUvcWVtdS9ibG9iL2YzMTE2MGM3ZDFiODljZmI0ZGQ0MDAxYTIzNTc1YjQyMTQxY2IwZWMvcWVtdS1kb2MudGV4aSNMMjU5MA==">https://github.com/qemu/qemu/blob/f31160c7d1b89cfb4dd4001a23575b42141cb0ec/qemu-doc.texi#L2590<i class="fa fa-external-link-alt"></i></span></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>Post author:  </strong>Kevin Jiang
+  </li>
+  <li class="post-copyright-link">
+      <strong>Post link: </strong>
+      <a href="https://jiangsc.me/2023/10/08/arch-linux-on-rpi3/" title="Lessons Learnt on Breaking and Reinstalling Arch Linux on Raspberry Pi">https://jiangsc.me/2023/10/08/arch-linux-on-rpi3/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</span> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+          <div class="followme">
+  <span>Welcome to my other publishing channels</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+              <a href="/tags/QEMU/" rel="tag"># QEMU</a>
+              <a href="/tags/Arch-Linux/" rel="tag"># Arch Linux</a>
+              <a href="/tags/Raspberry-Pi/" rel="tag"># Raspberry Pi</a>
+              <a href="/tags/Raspberry-Pi-3/" rel="tag"># Raspberry Pi 3</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/07/29/js-ts-module-resolution-and-alias/" rel="prev" title="JavaScript, TypeScript, Module Resolution and Module Alias">
+                  <i class="fa fa-angle-left"></i> JavaScript, TypeScript, Module Resolution and Module Alias
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/10/14/macos-automation-bluetooth-disconnect/" rel="next" title="Automation on MacOS -- Automatically Disconnecting Bluetooth Headset">
+                  Automation on MacOS -- Automatically Disconnecting Bluetooth Headset <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2017 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Kevin Jiang</span>
+  </div>
+  <div class="powered-by">Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL0tldmluU0o=" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.3.0/pdfobject.min.js","integrity":"sha256-JJZNsid68vnh3/zyj0lY9BN5ynxVX/12XgOa1TlaYN0="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.1/mermaid.min.js","integrity":"sha256-YbM1pG3wWnzhyYN49g5fPnen+2CKEFaZfopkkwSpNtY="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+
+
+  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/10.13.1/firebase-app-compat.js" integrity="sha256-7rbzO720n5u7kECmcdVLacW6cCRHp4pCxJ3qljsmAm8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/10.13.1/firebase-firestore-compat.js" integrity="sha256-XEP1DXy0gbkgjmlLmNJBgjH2EpbmHPAr5oTrIJHEfm4=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="firestore" type="application/json">{"enable":true,"collection":"blog_view","apiKey":"AIzaSyAwkI10aTDM2430EyQhtAz5X04hk16ozRc","projectId":"blog-269be"}</script>
+  <script src="/js/third-party/statistics/firestore.js"></script>
+
+
+
+
+<script src="https://unpkg.com/live2d-widget@^3.1.3/lib/L2Dwidget.min.js"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false}});</script></body>
+</html>

@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
 <meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
-
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -16,9 +16,9 @@
 
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"jiangsc.me","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.17.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"jiangsc.me","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.21.0","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="This article is a continuation for my previous article on setting up Linux on this specific laptop, which I&#39;ve been using daily for a little over a month. My distro is Arch Linux, so this article">
 <meta property="og:type" content="blog">
@@ -29,7 +29,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-06-03T01:17:20.000Z">
 <meta property="article:modified_time" content="2023-07-04T10:22:01.068Z">
-<meta property="article:author" content="KevinSJ">
+<meta property="article:author" content="Kevin Jiang">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="ArchLinux">
 <meta property="article:tag" content="AMD">
@@ -53,6 +53,7 @@
 
 
 
+  <script async defer data-website-id="c4ed80eb-6e46-4603-a114-34b3a0f3eb10" src="https://u-a.jiangsc.me/script.js"></script>
 
 
   <noscript>
@@ -124,41 +125,45 @@
 
         <div class="site-overview-wrap sidebar-panel">
           <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">KevinSJ</p>
+  <p class="site-author-name" itemprop="name">Kevin Jiang</p>
   <div class="site-description" itemprop="description">A blog about all things tech.</div>
 </div>
 <div class="site-state-wrap animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-count">45</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">95</span>
+        <span class="site-state-item-count">111</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
 </div>
   <div class="links-of-author animated">
       <span class="links-of-author-item">
-        <a href="https://github.com/kevinsj" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;kevinsj" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2tldmluc2o=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;kevinsj"><i class="fab fa-github fa-fw"></i>GitHub</span>
       </span>
       <span class="links-of-author-item">
-        <a href="https://www.linkedin.com/in/kevsj" title="LinkedIn → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;kevsj" rel="noopener me" target="_blank"><i class="fab fa-linkedin fa-fw"></i>LinkedIn</a>
+        <span class="exturl" data-url="aHR0cHM6Ly93d3cubGlua2VkaW4uY29tL2luL2tldnNq" title="LinkedIn → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;kevsj"><i class="fab fa-linkedin fa-fw"></i>LinkedIn</span>
       </span>
       <span class="links-of-author-item">
-        <a href="https://gitlab.com/kevinsj" title="GitLab → https:&#x2F;&#x2F;gitlab.com&#x2F;kevinsj" rel="noopener me" target="_blank"><i class="fab fa-gitlab fa-fw"></i>GitLab</a>
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRsYWIuY29tL2tldmluc2o=" title="GitLab → https:&#x2F;&#x2F;gitlab.com&#x2F;kevinsj"><i class="fab fa-gitlab fa-fw"></i>GitLab</span>
       </span>
   </div>
   <div class="cc-license animated" itemprop="license">
-    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></span>
   </div>
 
         </div>
       </div>
+        <div class="back-to-top animated" role="button" aria-label="Back to top">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
     </div>
 
     
@@ -182,7 +187,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="KevinSJ">
+      <meta itemprop="name" content="Kevin Jiang">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -208,13 +213,6 @@
       <span class="post-meta-item-text">Posted on</span>
 
       <time title="Created: 06-03-2023 13:17:20" itemprop="dateCreated datePublished" datetime="2023-06-03T13:17:20+12:00">06-03-2023</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 07-04-2023 22:22:01" itemprop="dateModified" datetime="2023-07-04T22:22:01+12:00">07-04-2023</time>
     </span>
 
   
@@ -248,7 +246,7 @@
 
 <p><del>This was the issue that bothered me most, I just needed it to work correctly as this is my daily driver laptop and it&#39;s important to have the microphone work correctly.</del></p>
 <ul>
-<li><strong>Root cause:</strong> I had to search all over the internet to find a proper solution for this. And what helped me in the end was <a target="_blank" rel="noopener" href="https://bbs.archlinux.org/viewtopic.php?pid=2058087#p2058087">this Arch Linux forum post</a>. Based on the discussion there, the root cause seems to be my specific laptop model is not in the quirk list, and lots of people there was having this same issue. The suggested solution in that forum post is to modify the source code directly.</li>
+<li><strong>Root cause:</strong> I had to search all over the internet to find a proper solution for this. And what helped me in the end was <span class="exturl" data-url="aHR0cHM6Ly9iYnMuYXJjaGxpbnV4Lm9yZy92aWV3dG9waWMucGhwP3BpZD0yMDU4MDg3I3AyMDU4MDg3">this Arch Linux forum post<i class="fa fa-external-link-alt"></i></span>. Based on the discussion there, the root cause seems to be my specific laptop model is not in the quirk list, and lots of people there was having this same issue. The suggested solution in that forum post is to modify the source code directly.</li>
 </ul>
 <h4 id="Solution-Modify-the-source-code-and-recompile-the-kernel"><a href="#Solution-Modify-the-source-code-and-recompile-the-kernel" class="headerlink" title="Solution: Modify the source code and recompile the kernel"></a><del>Solution: Modify the source code and recompile the kernel</del></h4><p><del>I assume this is a big ask for most Linux user, but I will still go through what I did. I had submitted the patch to Linux kernel by the time this article is published, so hopefully when someone find this article from major search engines, this is no longer an issue.</del><br><del>Here is what I did:</del></p>
 <ul>
@@ -259,7 +257,7 @@
 </div>
 <figure class="highlight patch"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">diff --git a/sound/soc/amd/yc/acp6x-mach.c b/sound/soc/amd/yc/acp6x-mach.c</span></span><br><span class="line"><span class="comment">index 4406a5def..246299a17 100644</span></span><br><span class="line"><span class="comment">--- a/sound/soc/amd/yc/acp6x-mach.c</span></span><br><span class="line"><span class="comment">+++ b/sound/soc/amd/yc/acp6x-mach.c</span></span><br><span class="line"><span class="meta">@@ -171,6 +171,13 @@</span> static const struct dmi_system_id yc_acp_quirk_table[] = &#123;</span><br><span class="line"> 			DMI_MATCH(DMI_PRODUCT_NAME, &quot;21CL&quot;),</span><br><span class="line"> 		&#125;</span><br><span class="line"> 	&#125;,</span><br><span class="line"><span class="addition">+	&#123;</span></span><br><span class="line"><span class="addition">+		.driver_data = &amp;acp6x_card,</span></span><br><span class="line"><span class="addition">+		.matches = &#123;</span></span><br><span class="line"><span class="addition">+			DMI_MATCH(DMI_BOARD_VENDOR, &quot;LENOVO&quot;),</span></span><br><span class="line"><span class="addition">+			DMI_MATCH(DMI_PRODUCT_NAME, &quot;21EF&quot;),</span></span><br><span class="line"><span class="addition">+		&#125;</span></span><br><span class="line"><span class="addition">+	&#125;,</span></span><br><span class="line"> 	&#123;</span><br><span class="line"> 		.driver_data = &amp;acp6x_card,</span><br><span class="line"> 		.matches = &#123;</span><br></pre></td></tr></table></figure>
 <ul>
-<li><del>Follow the <a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Kernel/Arch_build_system">Linux Kernel building guide for Arch Linux using Arch Build System</a> to recompile the kernel, just remember to apply the patch using the method detailed in the guide <strong>BEFORE</strong> you started compiling.</del></li>
+<li><del>Follow the <span class="exturl" data-url="aHR0cHM6Ly93aWtpLmFyY2hsaW51eC5vcmcvdGl0bGUvS2VybmVsL0FyY2hfYnVpbGRfc3lzdGVt">Linux Kernel building guide for Arch Linux using Arch Build System<i class="fa fa-external-link-alt"></i></span> to recompile the kernel, just remember to apply the patch using the method detailed in the guide <strong>BEFORE</strong> you started compiling.</del></li>
 <li>Once you have installed and boot into the newly compiled kernel, you will notice your Pulse Audio profile will only have <code>Play Hi-Fi Audio</code> left.</li>
 <li>If you are using Pulse Audio only, you will need to edit <code>/etc/pulse/default.pa</code> and add <code>load-module module-udev-detect use_ucm=0</code></li>
 <li>If you are using Pipewire, you will need to edit <code>sudo vim /usr/share/wireplumber/main.lua.d/50-alsa-config.lua</code>, in this file, find and replace the following line (it should be true by default):<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- Use UCM instead of profile when available. Can be</span></span><br><span class="line"><span class="comment">-- disabled to skip trying to use the UCM profile.</span></span><br><span class="line">[<span class="string">&quot;api.alsa.use-ucm&quot;</span>] = <span class="literal">false</span>,</span><br></pre></td></tr></table></figure>
@@ -287,7 +285,7 @@ You will need to reboot again to make sure these files take effects.</li>
 <div class="note success"><p>I added an additional kernel parameter of <code>amd_pstate=active</code>.</p>
 </div>
 <p>On kernel 6.3+, this will set the CPU to use <code>amd_pstate_epp</code>, on earlier versions, this will make the system use <code>amd_pstate</code> as scaling driver. Note that scaling driver is different from CPU governor. If you want to use <code>amd_pstate</code> on 6.3 and above, you need to set <code>amd_pstate=passive</code> instead of active<br>You can verify you are indeed using the driver by running <code>sudo cpupower --cpu all frequency-info --human</code>, you will be able to see the driver as <code>driver: amd_pstate_epp</code></p>
-<h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><p><a target="_blank" rel="noopener" href="https://bbs.archlinux.org/viewtopic.php?pid=2058087">https://bbs.archlinux.org/viewtopic.php?pid=2058087</a><br><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Kernel/Arch_build_system">https://wiki.archlinux.org/title/Kernel/Arch_build_system</a><br><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Patching_packages#Applying_patches">https://wiki.archlinux.org/title/Patching_packages#Applying_patches</a><br><a target="_blank" rel="noopener" href="https://old.reddit.com/r/archlinux/comments/1381g2g/amd_pstate_epp_scaling_driver_available_with/">https://old.reddit.com/r/archlinux/comments/1381g2g/amd_pstate_epp_scaling_driver_available_with/</a></p>
+<h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><p><span class="exturl" data-url="aHR0cHM6Ly9iYnMuYXJjaGxpbnV4Lm9yZy92aWV3dG9waWMucGhwP3BpZD0yMDU4MDg3">https://bbs.archlinux.org/viewtopic.php?pid=2058087<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly93aWtpLmFyY2hsaW51eC5vcmcvdGl0bGUvS2VybmVsL0FyY2hfYnVpbGRfc3lzdGVt">https://wiki.archlinux.org/title/Kernel/Arch_build_system<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly93aWtpLmFyY2hsaW51eC5vcmcvdGl0bGUvUGF0Y2hpbmdfcGFja2FnZXMjQXBwbHlpbmdfcGF0Y2hlcw==">https://wiki.archlinux.org/title/Patching_packages#Applying_patches<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9vbGQucmVkZGl0LmNvbS9yL2FyY2hsaW51eC9jb21tZW50cy8xMzgxZzJnL2FtZF9wc3RhdGVfZXBwX3NjYWxpbmdfZHJpdmVyX2F2YWlsYWJsZV93aXRoLw==">https://old.reddit.com/r/archlinux/comments/1381g2g/amd_pstate_epp_scaling_driver_available_with/<i class="fa fa-external-link-alt"></i></span></p>
 
     </div>
 
@@ -301,14 +299,14 @@ You will need to reboot again to make sure these files take effects.</li>
 <div class="post-copyright">
 <ul>
   <li class="post-copyright-author">
-      <strong>Post author:  </strong>KevinSJ
+      <strong>Post author:  </strong>Kevin Jiang
   </li>
   <li class="post-copyright-link">
       <strong>Post link: </strong>
       <a href="https://jiangsc.me/2023/06/03/thinkpad-neo-14-issue-fix/" title="Fixing issues on Thinkpad Neo 14 running Linux">https://jiangsc.me/2023/06/03/thinkpad-neo-14-issue-fix/</a>
   </li>
   <li class="post-copyright-license">
-      <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+      <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</span> unless stating additionally.
   </li>
 </ul>
 </div>
@@ -369,23 +367,27 @@ You will need to reboot again to make sure these files take effects.</li>
 
   <div class="copyright">
     &copy; 2017 – 
-    <span itemprop="copyrightYear">2023</span>
+    <span itemprop="copyrightYear">2024</span>
     <span class="with-love">
       <i class="fa fa-heart"></i>
     </span>
-    <span class="author" itemprop="copyrightHolder">KevinSJ</span>
+    <span class="author" itemprop="copyrightHolder">Kevin Jiang</span>
+  </div>
+  <div class="powered-by">Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span>
   </div>
 
     </div>
   </footer>
 
   
-  <div class="back-to-top" role="button" aria-label="Back to top">
-    <i class="fa fa-arrow-up fa-lg"></i>
-    <span>0%</span>
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
   </div>
+  <div class="sidebar-dimmer"></div>
 
-  <a href="https://github.com/KevinSJ" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL0tldmluU0o=" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
 
 <noscript>
   <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
@@ -394,15 +396,15 @@ You will need to reboot again to make sure these files take effects.</li>
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.8/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
 
   
-  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.12/pdfobject.min.js","integrity":"sha256-g2xji1rlE3KsGVClvuxTbcR0Kn2+wtQADSff2Tbb4zA="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.3.0/pdfobject.min.js","integrity":"sha256-JJZNsid68vnh3/zyj0lY9BN5ynxVX/12XgOa1TlaYN0="},"url":"/lib/pdf/web/viewer.html"}</script>
   <script src="/js/third-party/tags/pdf.js"></script>
 
-  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.2.3/mermaid.min.js","integrity":"sha256-JFptYy4KzJ5OQP+Q9fubNf3cxpPPmZKqUOovyEONKrQ="}}</script>
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.1/mermaid.min.js","integrity":"sha256-YbM1pG3wWnzhyYN49g5fPnen+2CKEFaZfopkkwSpNtY="}}</script>
   <script src="/js/third-party/tags/mermaid.js"></script>
 
 
@@ -411,15 +413,13 @@ You will need to reboot again to make sure these files take effects.</li>
 
   
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.23.0/firebase-app-compat.js" integrity="sha256-FYa4Xn7MJlI18eIkwawbRKLz7bGeUODtNpSR+bsjlHg=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.23.0/firebase-firestore-compat.js" integrity="sha256-sgbLcRGF3ph6N+ymg9zoy9kFQDWBvJlCd0GbGMKBH0c=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/10.13.1/firebase-app-compat.js" integrity="sha256-7rbzO720n5u7kECmcdVLacW6cCRHp4pCxJ3qljsmAm8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/10.13.1/firebase-firestore-compat.js" integrity="sha256-XEP1DXy0gbkgjmlLmNJBgjH2EpbmHPAr5oTrIJHEfm4=" crossorigin="anonymous"></script>
   <script class="next-config" data-name="firestore" type="application/json">{"enable":true,"collection":"blog_view","apiKey":"AIzaSyAwkI10aTDM2430EyQhtAz5X04hk16ozRc","projectId":"blog-269be"}</script>
   <script src="/js/third-party/statistics/firestore.js"></script>
 
 
 
-<script class="next-config" data-name="exif" type="application/json">"{Make} {Model} {DateTimeOriginal} {FocalLength}mm f/{FNumber} {ExposureTime}s"</script>
-<script src="https://fastly.jsdelivr.net/npm/exif-js@2/exif.min.js"></script>
-<script src="/lib/exif.js"></script>
+
 <script src="https://unpkg.com/live2d-widget@^3.1.3/lib/L2Dwidget.min.js"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false}});</script></body>
 </html>
