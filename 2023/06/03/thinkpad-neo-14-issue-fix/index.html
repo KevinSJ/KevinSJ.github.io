@@ -16,9 +16,9 @@
 
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"jiangsc.me","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.21.0","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"jiangsc.me","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.22.0","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="This article is a continuation for my previous article on setting up Linux on this specific laptop, which I&#39;ve been using daily for a little over a month. My distro is Arch Linux, so this article">
 <meta property="og:type" content="blog">
@@ -28,7 +28,7 @@
 <meta property="og:description" content="This article is a continuation for my previous article on setting up Linux on this specific laptop, which I&#39;ve been using daily for a little over a month. My distro is Arch Linux, so this article">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-06-03T01:17:20.000Z">
-<meta property="article:modified_time" content="2025-02-07T04:42:37.170Z">
+<meta property="article:modified_time" content="2025-02-08T00:30:58.015Z">
 <meta property="article:author" content="Kevin Jiang">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="ArchLinux">
@@ -39,7 +39,6 @@
 
 
 <link rel="canonical" href="https://jiangsc.me/2023/06/03/thinkpad-neo-14-issue-fix/">
-
 
 
 <script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://jiangsc.me/2023/06/03/thinkpad-neo-14-issue-fix/","path":"2023/06/03/thinkpad-neo-14-issue-fix/","title":"Fixing issues on Thinkpad Neo 14 running Linux"}</script>
@@ -260,9 +259,10 @@
 <li><del>Follow the <span class="exturl" data-url="aHR0cHM6Ly93aWtpLmFyY2hsaW51eC5vcmcvdGl0bGUvS2VybmVsL0FyY2hfYnVpbGRfc3lzdGVt">Linux Kernel building guide for Arch Linux using Arch Build System<i class="fa fa-external-link-alt"></i></span> to recompile the kernel, just remember to apply the patch using the method detailed in the guide <strong>BEFORE</strong> you started compiling.</del></li>
 <li>Once you have installed and boot into the newly compiled kernel, you will notice your Pulse Audio profile will only have <code>Play Hi-Fi Audio</code> left.</li>
 <li>If you are using Pulse Audio only, you will need to edit <code>/etc/pulse/default.pa</code> and add <code>load-module module-udev-detect use_ucm=0</code></li>
-<li>If you are using Pipewire, you will need to edit <code>sudo vim /usr/share/wireplumber/main.lua.d/50-alsa-config.lua</code>, in this file, find and replace the following line (it should be true by default):<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- Use UCM instead of profile when available. Can be</span></span><br><span class="line"><span class="comment">-- disabled to skip trying to use the UCM profile.</span></span><br><span class="line">[<span class="string">&quot;api.alsa.use-ucm&quot;</span>] = <span class="literal">false</span>,</span><br></pre></td></tr></table></figure>
-You will need to reboot again to make sure these files take effects.</li>
+<li>If you are using Pipewire, you will need to edit <code>sudo vim /usr/share/wireplumber/main.lua.d/50-alsa-config.lua</code>, in this file, find and replace the following line (it should be true by default):</li>
 </ul>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- Use UCM instead of profile when available. Can be</span></span><br><span class="line"><span class="comment">-- disabled to skip trying to use the UCM profile.</span></span><br><span class="line">[<span class="string">&quot;api.alsa.use-ucm&quot;</span>] = <span class="literal">false</span>,</span><br></pre></td></tr></table></figure>
+<p>You will need to reboot again to make sure these files take effects.</p>
 <p>Like I said in the beginning, fixing this is not trivial, but hopefully, my patch to the kernel will already fix this issue by the time someone finds and reads this article.</p>
 <h3 id="Issue-2-Wake-from-sleep-takes-more-than-10-seconds"><a href="#Issue-2-Wake-from-sleep-takes-more-than-10-seconds" class="headerlink" title="Issue 2: Wake from sleep takes more than 10 seconds"></a>Issue 2: Wake from sleep takes more than 10 seconds</h3><p>This was also one of the bigger issues for me. On my previous Intel laptop, the wake from sleep&#x2F;suspend would take less than 5 seconds. On this machine, it would take more than 15 seconds, sometimes 20 seconds. This is getting really annoying especially because I put the laptop into sleep quite often.</p>
 <ul>
@@ -404,7 +404,7 @@ You will need to reboot again to make sure these files take effects.</li>
   <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.3.0/pdfobject.min.js","integrity":"sha256-JJZNsid68vnh3/zyj0lY9BN5ynxVX/12XgOa1TlaYN0="},"url":"/lib/pdf/web/viewer.html"}</script>
   <script src="/js/third-party/tags/pdf.js"></script>
 
-  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.1/mermaid.min.js","integrity":"sha256-YbM1pG3wWnzhyYN49g5fPnen+2CKEFaZfopkkwSpNtY="}}</script>
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.min.js","integrity":"sha256-G8ouPAnw4zzMbnAenHnVz6h9XpKbNdOkrqTh7AadyHs="}}</script>
   <script src="/js/third-party/tags/mermaid.js"></script>
 
 
@@ -413,8 +413,8 @@ You will need to reboot again to make sure these files take effects.</li>
 
   
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/10.13.1/firebase-app-compat.js" integrity="sha256-7rbzO720n5u7kECmcdVLacW6cCRHp4pCxJ3qljsmAm8=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/10.13.1/firebase-firestore-compat.js" integrity="sha256-XEP1DXy0gbkgjmlLmNJBgjH2EpbmHPAr5oTrIJHEfm4=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/11.1.0/firebase-app-compat.js" integrity="sha256-k2eD8Bl04gp35v4S01cNbO+3UeLK6mVqpOyUJz4aXzY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/11.1.0/firebase-firestore-compat.js" integrity="sha256-r1EpenNle+MZs+KB73PFJnrmIF3k29t5XGrSqfZ9PPw=" crossorigin="anonymous"></script>
   <script class="next-config" data-name="firestore" type="application/json">{"enable":true,"collection":"blog_view","apiKey":"AIzaSyAwkI10aTDM2430EyQhtAz5X04hk16ozRc","projectId":"blog-269be"}</script>
   <script src="/js/third-party/statistics/firestore.js"></script>
 

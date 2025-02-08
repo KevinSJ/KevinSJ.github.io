@@ -16,9 +16,9 @@
 
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"jiangsc.me","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.21.0","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"jiangsc.me","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.22.0","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="⚠ This article requires Rooted Android phones, please follow the instructions with caution. BackgroundSince Android 5, the Android system have added the capability of multi-user, the aim is most likel">
 <meta property="og:type" content="blog">
@@ -28,7 +28,7 @@
 <meta property="og:description" content="⚠ This article requires Rooted Android phones, please follow the instructions with caution. BackgroundSince Android 5, the Android system have added the capability of multi-user, the aim is most likel">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-04-17T04:24:17.000Z">
-<meta property="article:modified_time" content="2025-02-07T04:42:37.166Z">
+<meta property="article:modified_time" content="2025-02-08T00:30:58.012Z">
 <meta property="article:author" content="Kevin Jiang">
 <meta property="article:tag" content="Android">
 <meta property="article:tag" content="ADB">
@@ -36,7 +36,6 @@
 
 
 <link rel="canonical" href="https://jiangsc.me/2021/04/17/Android-ADB-and-user-management/">
-
 
 
 <script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://jiangsc.me/2021/04/17/Android-ADB-and-user-management/","path":"2021/04/17/Android-ADB-and-user-management/","title":"Android ADB and user management"}</script>
@@ -233,12 +232,13 @@
 <h3 id="Problem-to-Solve"><a href="#Problem-to-Solve" class="headerlink" title="Problem to Solve"></a>Problem to Solve</h3><p>There are several problems I&#39;m aiming to solve with the restricted profile: </p>
 <ul>
 <li>I want to focus on things that actually matter rather than spending too much time on my phone, I would like my phone to be without any apps that can disturb or distract me when I want to focus. But I don&#39;t want to uninstall certain apps, as they are necessary in order to keep in touch with my family and friends.</li>
-<li>I want to install certain apps that can track me into a separate space, a space where it is impossible for them to track me using the microphone, camera, or location.<span id="more"></span></li>
+<li>I want to install certain apps that can track me into a separate space, a space where it is impossible for them to track me using the microphone, camera, or location.</li>
 </ul>
+<span id="more"></span>
 <h3 id="Solutions"><a href="#Solutions" class="headerlink" title="Solutions"></a>Solutions</h3><p>Well, as an Android user that also owns an iOS device, I have to say Apple have done a good job in many of the things I mentioned above. For example, my first problem can be solved in the iOS setting natively. Android does have something similar called digital wellbeing, but since it is from Google, I&#39;m not that comfortable installing it on to my phone. </p>
 <p>Anyway, I feel like the restricted profile is still a good solution to my problem on Android.</p>
 <h3 id="How-to"><a href="#How-to" class="headerlink" title="How to?"></a>How to?</h3><p>So in Android shell, there&#39;s something called pm. This command can be used to create a new user.<br>Here is part of the help doc that I&#39;m interested in:</p>
-<p><code>create-user [--profileOf USER_ID] [--managed] [--restricted] [--ephemeral] [--guest] USER_NAME         Create a new user with the given USER_NAME, printing the new user identifier of the user.</code></p>
+<p><code>create-user [--profileOf USER_ID] [--managed] [--restricted] [--ephemeral] [--guest] USER_NAME 		Create a new user with the given USER_NAME, printing the new user identifier of the user.</code></p>
 <p>That is, command <code>pm create-user</code> can be used to create user on your Android phone. Assuming you have access to Android adb, issuing<br><code>adb shell pm create-user --restricted test</code> will create a user named test with restricted profile, the command will show the userid of the newly created user, will be referenced as <code>$userId</code> in the following.</p>
 <p>Once the user has been created, you can manage the list of the users it will have access to in the settings, this is in Settings&#x2F;Multi-user. </p>
 <p>To me, I want impose more restrictions on the user, there is indeed a way to do so:</p>
@@ -368,7 +368,7 @@
   <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.3.0/pdfobject.min.js","integrity":"sha256-JJZNsid68vnh3/zyj0lY9BN5ynxVX/12XgOa1TlaYN0="},"url":"/lib/pdf/web/viewer.html"}</script>
   <script src="/js/third-party/tags/pdf.js"></script>
 
-  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.1/mermaid.min.js","integrity":"sha256-YbM1pG3wWnzhyYN49g5fPnen+2CKEFaZfopkkwSpNtY="}}</script>
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.min.js","integrity":"sha256-G8ouPAnw4zzMbnAenHnVz6h9XpKbNdOkrqTh7AadyHs="}}</script>
   <script src="/js/third-party/tags/mermaid.js"></script>
 
 
@@ -377,8 +377,8 @@
 
   
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/10.13.1/firebase-app-compat.js" integrity="sha256-7rbzO720n5u7kECmcdVLacW6cCRHp4pCxJ3qljsmAm8=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/10.13.1/firebase-firestore-compat.js" integrity="sha256-XEP1DXy0gbkgjmlLmNJBgjH2EpbmHPAr5oTrIJHEfm4=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/11.1.0/firebase-app-compat.js" integrity="sha256-k2eD8Bl04gp35v4S01cNbO+3UeLK6mVqpOyUJz4aXzY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/11.1.0/firebase-firestore-compat.js" integrity="sha256-r1EpenNle+MZs+KB73PFJnrmIF3k29t5XGrSqfZ9PPw=" crossorigin="anonymous"></script>
   <script class="next-config" data-name="firestore" type="application/json">{"enable":true,"collection":"blog_view","apiKey":"AIzaSyAwkI10aTDM2430EyQhtAz5X04hk16ozRc","projectId":"blog-269be"}</script>
   <script src="/js/third-party/statistics/firestore.js"></script>
 
