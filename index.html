@@ -126,13 +126,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">46</span>
+          <span class="site-state-item-count">47</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">114</span>
+        <span class="site-state-item-count">116</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -167,6 +167,88 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://jiangsc.me/2025/03/09/notes-2025-03-09/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Kevin Jiang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
+      <meta itemprop="description" content="A blog about all things tech.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Kevin Jiang's Technical Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/03/09/notes-2025-03-09/" class="post-title-link" itemprop="url">Week of 2025-03-09</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 03-09-2025 18:34:11" itemprop="dateCreated datePublished" datetime="2025-03-09T18:34:11+13:00">03-09-2025</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="firestore-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="Interesting-Videos-Watched"><a href="#Interesting-Videos-Watched" class="headerlink" title="Interesting Videos Watched"></a>Interesting Videos Watched</h2><p>This week, I watched a couple of interesting videos on CCC (Chaos Computing Club). They are mostly about Kubernetes and Ops side of things, and I found them to be quite interesting and highly recommend watching them if you are interested in the topic or just want to learn something new.</p>
+<h3 id="Embracing-Karpenter-to-scale-optimize-upgrade-Kubernetes"><a href="#Embracing-Karpenter-to-scale-optimize-upgrade-Kubernetes" class="headerlink" title="Embracing Karpenter to scale, optimize &amp; upgrade Kubernetes"></a><span class="exturl" data-url="aHR0cHM6Ly9tZWRpYS5jY2MuZGUvdi9naGVudDIwMjUtNjE0LWVtYnJhY2luZy1rYXJwZW50ZXItdG8tc2NhbGUtb3B0aW1pemUtdXBncmFkZS1rdWJlcm5ldGVz">Embracing Karpenter to scale, optimize &amp; upgrade Kubernetes<i class="fa fa-external-link-alt"></i></span></h3><p><strong>Recommendation</strong>: ⭐⭐⭐⭐⭐</p>
+<p><strong>Takeaways</strong>: While I&#39;m still not a big fan of Kubernetes. This video is interesting cause it is about a tool that solves an interesting problem in Kubernetes space: scaling. The author first present some basic definition for Kubernetes and also mentioned the current de-facto solution for scaling in k8s is cluster auto scaler. The issue with cluster auto scaler is that it is not able to scale based on the compute needs (i.e. it is only able to launch a given type of predefined resources), and it is not able to consolidate under utilized resources.<br>He then present a software called <span class="exturl" data-url="aHR0cHM6Ly9rYXJwZW50ZXIuc2gv">Karpenter<i class="fa fa-external-link-alt"></i></span> which looks quite promising -- it can scale different type of instances to handle current resource needs, it can also consolidate pods onto different and underutilized cluster.</p>
+<h3 id="Running-Kubernetes-on-small-scale-lessons-learned-on-operating-small-scale-clusters"><a href="#Running-Kubernetes-on-small-scale-lessons-learned-on-operating-small-scale-clusters" class="headerlink" title="Running Kubernetes on small scale - lessons learned on operating &quot;small scale&quot; clusters"></a><span class="exturl" data-url="aHR0cHM6Ly9tZWRpYS5jY2MuZGUvdi9naGVudDIwMjUtNjc5LXJ1bm5pbmcta3ViZXJuZXRlcy1vbi1zbWFsbC1zY2FsZS1sZXNzb25zLWxlYXJuZWQtb24tb3BlcmF0aW5nLXNtYWxsLXNjYWxlLWNsdXN0ZXJz">Running Kubernetes on small scale - lessons learned on operating &quot;small scale&quot; clusters<i class="fa fa-external-link-alt"></i></span></h3><p><strong>Recommendation</strong>: ⭐⭐⭐⭐⭐</p>
+<p><strong>Takeaways</strong>: In this talk, the author shared some of the things he learnt from working with Kubernetes. This also includes some of the best practices I think is very important for developer to learn. I highly recommend watching this.</p>
+<h2 id="Articles-Read"><a href="#Articles-Read" class="headerlink" title="Articles Read"></a>Articles Read</h2><h3 id="The-Balatro-Timeline-—-LocalThunk"><a href="#The-Balatro-Timeline-—-LocalThunk" class="headerlink" title="The Balatro Timeline — LocalThunk"></a><span class="exturl" data-url="aHR0cHM6Ly9sb2NhbHRodW5rLmNvbS9ibG9nL2JhbGF0cm8tdGltZWxpbmUtM2Fhcmg=">The Balatro Timeline — LocalThunk<i class="fa fa-external-link-alt"></i></span></h3><p><strong>Takeaways</strong>: This article is written by the author of Balatro, one of the best games in recent days. The article details how he got the idea of Balatro and how he brought the game to life.</p>
+<h3 id="Great-software-design-looks-underwhelming"><a href="#Great-software-design-looks-underwhelming" class="headerlink" title="Great software design looks underwhelming"></a><span class="exturl" data-url="aHR0cHM6Ly93d3cuc2VhbmdvZWRlY2tlLmNvbS9ncmVhdC1zb2Z0d2FyZS1kZXNpZ24v">Great software design looks underwhelming<i class="fa fa-external-link-alt"></i></span></h3><p><strong>Takeaways</strong>: Software shouldn&#39;t be intentionally complex. I definitely agree with this idea.</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -534,91 +616,6 @@ Web App-&gt;&gt;webview: Go to xxxx.
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2024/07/20/iOS-date-formatter-and-locale/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://jiangsc.me/2024/07/07/ios-http-streaming-issue/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Kevin Jiang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
-      <meta itemprop="description" content="A blog about all things tech.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Kevin Jiang's Technical Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/07/07/ios-http-streaming-issue/" class="post-title-link" itemprop="url">Fixing iOS HTTP Video Playback Issues</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 07-07-2024 14:54:09" itemprop="dateCreated datePublished" datetime="2024-07-07T14:54:09+12:00">07-07-2024</time>
-    </span>
-
-  
-    <span class="post-meta-item" title="Views">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">Views: </span>
-      <span class="firestore-visitors-count"></span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Last Thursday afternoon, we received an email from a colleague in our company, she mentioned the video in our app was not playing correctly. And what&#39;s strange about this is, the issue only impacted iOS users and not Android users, this usually indicates the problem is not with our app (or the back-end). The subsequent investigation on this turned out to be very interesting.</p>
-<h2 id="Locating-the-issue"><a href="#Locating-the-issue" class="headerlink" title="Locating the issue"></a>Locating the issue</h2><p>We suspected this was a issue with media codec at first: iOS does not offer the variety of codecs that are supported on Android, therefore, would be much easier to get into an issue like this. However, the person reported this issue also mentioned the video was working fine a few days ago, so it&#39;s highly unlikely this is the source of the issue.</p>
-<p>The next step was to look through the logs. We discovered there were quite a lot of errors thrown on connection reset from our identity gateway. This turned out to be a red herring -- we played the video in Android and the same error appeared.</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2024/07/07/ios-http-streaming-issue/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
