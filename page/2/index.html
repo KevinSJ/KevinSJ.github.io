@@ -126,13 +126,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">47</span>
+          <span class="site-state-item-count">48</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">116</span>
+        <span class="site-state-item-count">119</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -167,6 +167,110 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://jiangsc.me/2024/07/20/iOS-date-formatter-and-locale/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Kevin Jiang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
+      <meta itemprop="description" content="A blog about all things tech.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Kevin Jiang's Technical Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/07/20/iOS-date-formatter-and-locale/" class="post-title-link" itemprop="url">Notes on iOS Date Formatter: Issues and Fixes</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 07-20-2024 12:58:50" itemprop="dateCreated datePublished" datetime="2024-07-20T12:58:50+12:00">07-20-2024</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="firestore-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <details class="note primary"><summary><p>TL;DR</p>
+</summary>
+<p><strong>As a general rule (and as <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYXBwbGUuY29tL2xpYnJhcnkvYXJjaGl2ZS9xYS9xYTE0ODAvX2luZGV4Lmh0bWw=">documented by Apple<i class="fa fa-external-link-alt"></i></span>), developers should avoid setting a fixed date format, if the date is user-visible. When working with fixed format date, developer should be setting the locale and timezone to avoid any potential issues that might be caused by using client side locale or timezone.</strong></p>
+
+</details>
+
+
+<p>Nowadays, it&#39;s quite common for an iOS or Android app to include a webview, and at the company I worked in, we have a similar setup -- the app would hand over to a webview and the user would continue their journey in the web. Recently, an incident related to this particular functionality was reported to us.</p>
+<h2 id="What-happened"><a href="#What-happened" class="headerlink" title="What happened"></a>What happened</h2><p>To explain things better, I&#39;ve created this sequence diagram below that represents a working scenario:</p>
+<pre>
+<code class="mermaid">
+sequenceDiagram
+APP-&gt;&gt;webview: set a token as cookie in the webview.
+destroy APP
+webview-&gt;&gt;APP: cookie is set.
+webview-&gt;&gt;Web App: Attempted to redirect to xxxx using the cookie.
+Web App-&gt;&gt;Web App: Grab the token from cookie.
+Web App-&gt;&gt;Backend: Check if this token is valid.
+Backend-&gt;&gt;Web App: This is a valid token, authentication successful.
+Web App-&gt;&gt;webview: Go to xxxx.
+</code>
+</pre>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2024/07/20/iOS-date-formatter-and-locale/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -498,94 +602,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2023/12/27/neovim-tricks-3/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://jiangsc.me/2023/12/08/self-hosting-nebula-traefik/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Kevin Jiang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
-      <meta itemprop="description" content="A blog about all things tech.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Kevin Jiang's Technical Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/12/08/self-hosting-nebula-traefik/" class="post-title-link" itemprop="url">Advanced Selfhosting with Nebula & Traefik</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 12-08-2023 22:34:49" itemprop="dateCreated datePublished" datetime="2023-12-08T22:34:49+13:00">12-08-2023</time>
-    </span>
-
-  
-    <span class="post-meta-item" title="Views">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">Views: </span>
-      <span class="firestore-visitors-count"></span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>This article is a continuation of my previous article on Traefik, which you can find <a href="/2023/07/14/Easy-Self-Hosting-with-Traefik-Proxy">here</a>. Previously, I went through some examples of how I used Traefik so this article would assume you have the basic knowledge of Traefik, if you are not comfortable with it, feel free to go back to my article or read the official documentation <span class="exturl" data-url="aHR0cHM6Ly90cmFlZmlrLmlvL3RyYWVmaWsv">from traefik<i class="fa fa-external-link-alt"></i></span>.</p>
-<h2 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h2><p>I&#39;ve been hosting some apps in my local home network using Raspberry Pi for a while now, and I&#39;ve also hosted some apps on Google Cloud.</p>
-<p>Whenever I want to access things on Raspberry Pi while not at home, I would have to use <span class="exturl" data-url="aHR0cHM6Ly9uZWJ1bGEuZGVmaW5lZC5uZXQvZG9jcy8=">Nebula<i class="fa fa-external-link-alt"></i></span> which is a tool for overlay network. I would have to connect to the VPN, and then access the applications.</p>
-<p>This proves to be inconvenient, and not easy to use. One day, I started to play around with the idea of putting things together with Traefik, and it worked so well and drives me to write this article.</p>
-<h2 id="Why-hosting-things-separately"><a href="#Why-hosting-things-separately" class="headerlink" title="Why hosting things separately?"></a>Why hosting things separately?</h2><p>Some may wonder, why I would host things in both Raspberry Pi and GCP. Well, the main reason for this is cost efficiency and data privacy&#x2F;security.</p>
-<p>You can use whatever CPU and storage you want within your local network without incurring monthly costs, and you would have the added benefits of having data on premise.</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/12/08/self-hosting-nebula-traefik/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
