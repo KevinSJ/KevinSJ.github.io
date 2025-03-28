@@ -236,56 +236,14 @@
 <li><strong>When debugging JavaScript, ensure you use a Firefox-based browser</strong>: We should use Firefox.</li>
 <li><strong>Encrypted communications and stealthy data collection</strong>: This suggests hidden or obfuscated behavior.</li>
 </ul>
-<h2 id="First-Look"><a href="#First-Look" class="headerlink" title="First Look"></a>First Look</h2><p>To get started, we paste the URL into the browser. The challenge specifically mentions using Firefox, so let&#39;s go with that. After launching Firefox, I took my first look at the website. It does seem quite <em>innocent</em>, right?</p>
-<p><img data-src="/2025/03/26/tales-of-the-brave-write-up/2025-03-25_22-55.png"></p>
-<p>It&#39;s just a form with some checkboxes—what harm can it do? Let&#39;s try interacting with it by filling out the form and clicking some random checkboxes.</p>
-<p><img data-src="/2025/03/26/tales-of-the-brave-write-up/Tales_of_the_brave_1.png"></p>
-<p>Then I submitted it:</p>
-<p><img data-src="/2025/03/26/tales-of-the-brave-write-up/2025-03-25_22-56.png"></p>
-<p>Hmm, nothing happened—except for this pop-up.</p>
-<h2 id="Digging-into-the-JavaScript"><a href="#Digging-into-the-JavaScript" class="headerlink" title="Digging into the JavaScript"></a>Digging into the JavaScript</h2><p>You wouldn&#39;t expect to get the flag in a popup for a <em>hard</em> challenge, would you? Let&#39;s inspect the HTML code.</p>
-<p><img data-src="/2025/03/26/tales-of-the-brave-write-up/2025-03-26_10-17.png"></p>
-<p>The webpage loads two JavaScript files: <code>index.js</code> and <code>crypto-js.js</code>. Since <code>crypto-js.js</code> is loaded from Cloudflare, it’s likely a standard library. So let’s focus on <code>index.js</code>.</p>
-<p>This is heavily obfuscated code—no wonder it’s a <em>hard</em> challenge.<br><img data-src="/2025/03/26/tales-of-the-brave-write-up/2025-03-25_23-08_1.png"><br><img data-src="/2025/03/26/tales-of-the-brave-write-up/2025-03-26_10-52.png"></p>
-<p>Let&#39;s take a deep breath and analyze what it does. The first line defines a variable:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> _$_9b39;</span><br></pre></td></tr></table></figure>
-
-<p>We don’t need to understand <em>how</em> it&#39;s defined—just its value. Since it&#39;s in the global scope, we can execute <code>window._$_9b39</code> in the console to retrieve it:<br><img data-src="/2025/03/26/tales-of-the-brave-write-up/2025-03-26_10-43.png"></p>
-<p>Now that we understand the variable definitions, let&#39;s see how they interact with the eval() function. According to MDN, <code>eval()</code> evaluates JavaScript code represented as a string and returns its result.</p>
-<p>The key part of the parameter being evaluated can be rewritten as:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">CryptoJS</span>[<span class="string">&quot;AES&quot;</span>][<span class="string">&quot;decrypt&quot;</span>]</span><br><span class="line">.<span class="title function_">toString</span>(<span class="title class_">CryptoJS</span>[<span class="string">&quot;enc&quot;</span>][<span class="string">&quot;Utf8&quot;</span>])</span><br></pre></td></tr></table></figure>
-
-<p>CryptoJS provides an example of AES decryption:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Decrypt</span></span><br><span class="line"><span class="keyword">var</span> bytes = <span class="title class_">CryptoJS</span>.<span class="property">AES</span>.<span class="title function_">decrypt</span>(ciphertext, <span class="string">&#x27;secret key 123&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> originalText = bytes.<span class="title function_">toString</span>(<span class="title class_">CryptoJS</span>.<span class="property">enc</span>.<span class="property">Utf8</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(originalText); <span class="comment">// &#x27;my message&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<p>Setting up a breakpoint at the <code>.toString</code> function in <code>crypto-js.js</code> and stepping through it with a debugger helps us understand its purpose.</p>
-<p><img data-src="/2025/03/26/tales-of-the-brave-write-up/2025-03-26_13-58.png"></p>
-<p>The decrypted result is an unformatted script passed to <code>eval()</code>. We can format it manually or step through the debugger. I chose the latter and formatted the code in the debugger. Here’s the beautified version:<br><img data-src="/2025/03/26/tales-of-the-brave-write-up/2025-03-26_14-07.png"></p>
-<h2 id="Cracking-the-Telegram-Bot"><a href="#Cracking-the-Telegram-Bot" class="headerlink" title="Cracking the Telegram Bot"></a>Cracking the Telegram Bot</h2><p>To forward a message to a Telegram chat, we first need a chat ID. But before that, we must identify the bot’s username. Telegram provides an API for retrieving bot info:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://api.telegram.org/bot&#123;token&#125;/getMe</span><br></pre></td></tr></table></figure>
-
-<p>Replacing <code>&#123;token&#125;</code> with our retrieved token reveals the bot’s username:<br><img data-src="/2025/03/26/tales-of-the-brave-write-up/20250326172821.png"><br>Next, we create a chat with the bot and obtain the chat ID using:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://api.telegram.org/bot&#123;token&#125;/getUpdates</span><br></pre></td></tr></table></figure>
-<p><img data-src="/2025/03/26/tales-of-the-brave-write-up/20250326173810.png"><br>Entering the <code>chat.id</code> into the description field sends a message, but I encountered an error in the console initially:</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span><span class="attr">&quot;ok&quot;</span><span class="punctuation">:</span><span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span><span class="attr">&quot;error_code&quot;</span><span class="punctuation">:</span><span class="number">403</span><span class="punctuation">,</span><span class="attr">&quot;description&quot;</span><span class="punctuation">:</span><span class="string">&quot;Forbidden: bot is not a member of the channel chat&quot;</span><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="HTB-Ticket"><a href="#HTB-Ticket" class="headerlink" title="HTB Ticket"></a>HTB Ticket</h3><p>Since this error was on Telegram’s side, I opened a ticket with HTB on Discord.<br><img data-src="/2025/03/26/tales-of-the-brave-write-up/2025-03-26_17-46_1.png"><br>HTB quickly resolved the issue, but the bot sent an expired invite link.<br><img data-src="/2025/03/26/tales-of-the-brave-write-up/20250326181115.png"><br>HTB staff confirmed the link <em>should</em> be expired. Looking for alternative clues, I forwarded message IDs from 6 to 12 and got a zip file with a password. Extracting it yielded a Windows binary: <code>Brave.exe</code>.<br><img data-src="/2025/03/26/tales-of-the-brave-write-up/2025-03-26_18-12.png"></p>
-<h2 id="Tricking-Brave-exe-for-the-Flag"><a href="#Tricking-Brave-exe-for-the-Flag" class="headerlink" title="Tricking Brave.exe for the Flag"></a>Tricking <code>Brave.exe</code> for the Flag</h2><p>Reversing the binary seemed necessary, but I lacked the tools. Fortunately, Carl (Spymky) from my team stepped in. He loaded it in Ghidra but made little progress. Switching to dynamic analysis, he considered online sandboxes like <span class="exturl" data-url="aHR0cHM6Ly9hbnkucnVuLw==">Any.Run<i class="fa fa-external-link-alt"></i></span> and <span class="exturl" data-url="aHR0cHM6Ly93d3cuam9lc2FuZGJveC5jb20v">Joe Sandbox<i class="fa fa-external-link-alt"></i></span> but opted for a local VM with Wireshark.</p>
-<p>Installing the Brave browser and running <code>Brave.exe</code> revealed this:</p>
-<p><img data-src="/2025/03/26/tales-of-the-brave-write-up/2025-03-26_18-52.png"></p>
-<p>The binary accessed <code>zolsc2s65u.htb</code>, a non-public domain. Adding this to the <code>hosts</code> file solved the issue:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1 zolsc2s65u.htb</span><br></pre></td></tr></table></figure>
-
-<p>Running the binary again, Wireshark captured traffic to port <code>31337</code>. I spun up a web server:</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -m http.server 31337</span><br></pre></td></tr></table></figure>
-
-<p>Filtering HTTP traffic revealed a <code>POST</code> request with a Bearer token.</p>
-<p><img data-src="/2025/03/26/tales-of-the-brave-write-up/2025-03-26_22-24.png"></p>
-<p>Decoding it in CyberChef uncovered the <strong>flag!</strong> 🎉🥳</p>
-<p><img data-src="/2025/03/26/tales-of-the-brave-write-up/20250327090002.png"></p>
-<h2 id="Acknowledgment"><a href="#Acknowledgment" class="headerlink" title="Acknowledgment"></a>Acknowledgment</h2><p>Special thanks to Carl (Spymky) from my team for helping analyze <code>Brave.exe</code>!</p>
-<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>This was my first CTF, but definitely not my last. Debugging skills played a crucial role in solving this challenge. CTFs are challenging yet rewarding, requiring patience and tenacity. I hope you found this write-up insightful and learned something new!</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2025/03/26/tales-of-the-brave-write-up/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
