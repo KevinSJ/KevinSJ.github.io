@@ -119,7 +119,7 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/2023/12/08/self-hosting-nebula-traefik/</loc>
+    <loc>https://jiangsc.me/2023/06/24/self-signed-cert-issues-and-solutions/</loc>
     
     <lastmod>2025-05-19</lastmod>
     
@@ -128,7 +128,7 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/2023/06/24/self-signed-cert-issues-and-solutions/</loc>
+    <loc>https://jiangsc.me/2023/12/08/self-hosting-nebula-traefik/</loc>
     
     <lastmod>2025-05-19</lastmod>
     
@@ -146,124 +146,7 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/2024/07/07/ios-http-streaming-issue/</loc>
-    
-    <lastmod>2025-05-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/2023/07/29/js-ts-module-resolution-and-alias/</loc>
-    
-    <lastmod>2025-05-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/2022/07/22/linux-user-notes-1/</loc>
-    
-    <lastmod>2025-05-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/2022/09/17/linux-user-notes-2/</loc>
-    
-    <lastmod>2025-05-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/2024/05/05/linux-user-notes-3/</loc>
-    
-    <lastmod>2025-05-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/2023/10/14/macos-automation-bluetooth-disconnect/</loc>
-    
-    <lastmod>2025-05-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/2025/02/08/mobile-dev-cli-tips-2/</loc>
-    
-    <lastmod>2025-05-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/2023/02/11/mobile-dev-cli-tips-1/</loc>
-    
-    <lastmod>2025-05-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/2022/05/21/neovim-tricks-1/</loc>
-    
-    <lastmod>2025-05-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/2021/08/14/OpenType-Font-and-Font-Family/</loc>
-    
-    <lastmod>2025-05-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/2021/05/09/Postgres-JavaScript-and-sorting/</loc>
-    
-    <lastmod>2025-05-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/2020/11/26/Solving-practical-problems-with-Jq-2020-11-26/</loc>
-    
-    <lastmod>2025-05-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://jiangsc.me/2023/05/07/Tips-for-Setting-Up-Linux-on-AMD-based-Thinkpad/</loc>
-    
-    <lastmod>2025-05-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/2021/02/27/Terraform-version-constraint-and-debugging/</loc>
     
     <lastmod>2025-05-19</lastmod>
     
@@ -335,6 +218,87 @@
   </url>
   
   <url>
+    <loc>https://jiangsc.me/2024/07/07/ios-http-streaming-issue/</loc>
+    
+    <lastmod>2025-05-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/2023/07/29/js-ts-module-resolution-and-alias/</loc>
+    
+    <lastmod>2025-05-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/2022/07/22/linux-user-notes-1/</loc>
+    
+    <lastmod>2025-05-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/2024/05/05/linux-user-notes-3/</loc>
+    
+    <lastmod>2025-05-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/2022/09/17/linux-user-notes-2/</loc>
+    
+    <lastmod>2025-05-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/2023/10/14/macos-automation-bluetooth-disconnect/</loc>
+    
+    <lastmod>2025-05-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/2025/02/08/mobile-dev-cli-tips-2/</loc>
+    
+    <lastmod>2025-05-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/2023/02/11/mobile-dev-cli-tips-1/</loc>
+    
+    <lastmod>2025-05-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/2022/05/21/neovim-tricks-1/</loc>
+    
+    <lastmod>2025-05-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://jiangsc.me/2018/06/24/Automating-things-on-Android-with-Tasker/</loc>
     
     <lastmod>2025-05-19</lastmod>
@@ -398,7 +362,7 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/2021/06/30/IELTS-exam-and-experience/</loc>
+    <loc>https://jiangsc.me/2021/01/24/Lessons-Learnt-On-Deploying-GO-Lambda-Application-on-AWS/</loc>
     
     <lastmod>2025-05-19</lastmod>
     
@@ -407,7 +371,7 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/2021/01/24/Lessons-Learnt-On-Deploying-GO-Lambda-Application-on-AWS/</loc>
+    <loc>https://jiangsc.me/2021/06/30/IELTS-exam-and-experience/</loc>
     
     <lastmod>2025-05-19</lastmod>
     
@@ -425,7 +389,7 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/2024/12/18/2024-year-review/</loc>
+    <loc>https://jiangsc.me/2021/08/14/OpenType-Font-and-Font-Family/</loc>
     
     <lastmod>2025-05-19</lastmod>
     
@@ -434,7 +398,25 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/2021/07/10/Advanced-VirtualBox-Auto-start-virtualbox-on-Windows/</loc>
+    <loc>https://jiangsc.me/2021/05/09/Postgres-JavaScript-and-sorting/</loc>
+    
+    <lastmod>2025-05-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/2020/11/26/Solving-practical-problems-with-Jq-2020-11-26/</loc>
+    
+    <lastmod>2025-05-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/2021/02/27/Terraform-version-constraint-and-debugging/</loc>
     
     <lastmod>2025-05-19</lastmod>
     
@@ -480,6 +462,24 @@
   
   <url>
     <loc>https://jiangsc.me/2023/03/11/2023-03-11-technical-postmortem/</loc>
+    
+    <lastmod>2025-05-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/2024/12/18/2024-year-review/</loc>
+    
+    <lastmod>2025-05-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/2021/07/10/Advanced-VirtualBox-Auto-start-virtualbox-on-Windows/</loc>
     
     <lastmod>2025-05-19</lastmod>
     
@@ -777,20 +777,6 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/tags/IELTS/</loc>
-    <lastmod>2025-05-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/tags/Preparation/</loc>
-    <lastmod>2025-05-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://jiangsc.me/tags/Lambda/</loc>
     <lastmod>2025-05-19</lastmod>
     <changefreq>weekly</changefreq>
@@ -813,6 +799,20 @@
   
   <url>
     <loc>https://jiangsc.me/tags/Deployment/</loc>
+    <lastmod>2025-05-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/tags/IELTS/</loc>
+    <lastmod>2025-05-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/tags/Preparation/</loc>
     <lastmod>2025-05-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -889,34 +889,6 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/tags/ArchLinux/</loc>
-    <lastmod>2025-05-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/tags/AMD/</loc>
-    <lastmod>2025-05-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/tags/Thinkpad/</loc>
-    <lastmod>2025-05-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/tags/Neo-14/</loc>
-    <lastmod>2025-05-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://jiangsc.me/tags/Terraform/</loc>
     <lastmod>2025-05-19</lastmod>
     <changefreq>weekly</changefreq>
@@ -939,6 +911,34 @@
   
   <url>
     <loc>https://jiangsc.me/tags/debug/</loc>
+    <lastmod>2025-05-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/tags/ArchLinux/</loc>
+    <lastmod>2025-05-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/tags/AMD/</loc>
+    <lastmod>2025-05-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/tags/Thinkpad/</loc>
+    <lastmod>2025-05-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/tags/Neo-14/</loc>
     <lastmod>2025-05-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1127,6 +1127,13 @@
   </url>
   
   <url>
+    <loc>https://jiangsc.me/tags/Latex/</loc>
+    <lastmod>2025-05-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://jiangsc.me/tags/xdg-open/</loc>
     <lastmod>2025-05-19</lastmod>
     <changefreq>weekly</changefreq>
@@ -1142,13 +1149,6 @@
   
   <url>
     <loc>https://jiangsc.me/tags/rofi/</loc>
-    <lastmod>2025-05-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/tags/Latex/</loc>
     <lastmod>2025-05-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1232,27 +1232,6 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/tags/Nebula/</loc>
-    <lastmod>2025-05-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/tags/Cloudflare/</loc>
-    <lastmod>2025-05-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/tags/Reverse-proxy/</loc>
-    <lastmod>2025-05-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://jiangsc.me/tags/Docker/</loc>
     <lastmod>2025-05-19</lastmod>
     <changefreq>weekly</changefreq>
@@ -1289,6 +1268,27 @@
   
   <url>
     <loc>https://jiangsc.me/tags/TLS/</loc>
+    <lastmod>2025-05-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/tags/Nebula/</loc>
+    <lastmod>2025-05-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/tags/Cloudflare/</loc>
+    <lastmod>2025-05-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/tags/Reverse-proxy/</loc>
     <lastmod>2025-05-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
