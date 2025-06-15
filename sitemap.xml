@@ -11,7 +11,7 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/notes/notes-for-2024-10-26.html</loc>
+    <loc>https://jiangsc.me/notes/index.html</loc>
     
     <lastmod>2025-06-15</lastmod>
     
@@ -29,7 +29,25 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/notes/index.html</loc>
+    <loc>https://jiangsc.me/notes/notes-for-2024-10-26.html</loc>
+    
+    <lastmod>2025-06-15</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/about/index.html</loc>
+    
+    <lastmod>2025-06-15</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/gallery/index.html</loc>
     
     <lastmod>2025-06-15</lastmod>
     
@@ -56,7 +74,7 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/about/index.html</loc>
+    <loc>https://jiangsc.me/2023/02/11/mobile-dev-cli-tips-1/</loc>
     
     <lastmod>2025-06-15</lastmod>
     
@@ -65,7 +83,7 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/gallery/index.html</loc>
+    <loc>https://jiangsc.me/2025/02/08/mobile-dev-cli-tips-2/</loc>
     
     <lastmod>2025-06-15</lastmod>
     
@@ -155,6 +173,24 @@
   </url>
   
   <url>
+    <loc>https://jiangsc.me/2021/05/09/Postgres-JavaScript-and-sorting/</loc>
+    
+    <lastmod>2025-06-15</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/2020/11/26/Solving-practical-problems-with-Jq-2020-11-26/</loc>
+    
+    <lastmod>2025-06-15</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://jiangsc.me/2023/05/07/Tips-for-Setting-Up-Linux-on-AMD-based-Thinkpad/</loc>
     
     <lastmod>2025-06-15</lastmod>
@@ -164,7 +200,7 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/2022/10/05/android-emulator-carrier-simulation/</loc>
+    <loc>https://jiangsc.me/2021/02/27/Terraform-version-constraint-and-debugging/</loc>
     
     <lastmod>2025-06-15</lastmod>
     
@@ -174,6 +210,15 @@
   
   <url>
     <loc>https://jiangsc.me/2021/01/24/Upgrade-openwrt-on-Linksys-WRT1200AC-with-extroot/</loc>
+    
+    <lastmod>2025-06-15</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/2022/10/05/android-emulator-carrier-simulation/</loc>
     
     <lastmod>2025-06-15</lastmod>
     
@@ -254,7 +299,7 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/2022/09/17/linux-user-notes-2/</loc>
+    <loc>https://jiangsc.me/2024/05/05/linux-user-notes-3/</loc>
     
     <lastmod>2025-06-15</lastmod>
     
@@ -263,7 +308,7 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/2024/05/05/linux-user-notes-3/</loc>
+    <loc>https://jiangsc.me/2022/09/17/linux-user-notes-2/</loc>
     
     <lastmod>2025-06-15</lastmod>
     
@@ -282,24 +327,6 @@
   
   <url>
     <loc>https://jiangsc.me/2023/10/14/macos-automation-bluetooth-disconnect/</loc>
-    
-    <lastmod>2025-06-15</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/2023/02/11/mobile-dev-cli-tips-1/</loc>
-    
-    <lastmod>2025-06-15</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/2025/02/08/mobile-dev-cli-tips-2/</loc>
     
     <lastmod>2025-06-15</lastmod>
     
@@ -371,6 +398,15 @@
   </url>
   
   <url>
+    <loc>https://jiangsc.me/2021/06/30/IELTS-exam-and-experience/</loc>
+    
+    <lastmod>2025-06-15</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://jiangsc.me/2021/01/24/Lessons-Learnt-On-Deploying-GO-Lambda-Application-on-AWS/</loc>
     
     <lastmod>2025-06-15</lastmod>
@@ -389,15 +425,6 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/2021/06/30/IELTS-exam-and-experience/</loc>
-    
-    <lastmod>2025-06-15</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://jiangsc.me/2021/08/14/OpenType-Font-and-Font-Family/</loc>
     
     <lastmod>2025-06-15</lastmod>
@@ -407,7 +434,7 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/2021/05/09/Postgres-JavaScript-and-sorting/</loc>
+    <loc>https://jiangsc.me/2021/07/10/Advanced-VirtualBox-Auto-start-virtualbox-on-Windows/</loc>
     
     <lastmod>2025-06-15</lastmod>
     
@@ -416,16 +443,7 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/2020/11/26/Solving-practical-problems-with-Jq-2020-11-26/</loc>
-    
-    <lastmod>2025-06-15</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/2021/02/27/Terraform-version-constraint-and-debugging/</loc>
+    <loc>https://jiangsc.me/2021/04/17/Android-ADB-and-user-management/</loc>
     
     <lastmod>2025-06-15</lastmod>
     
@@ -452,6 +470,15 @@
   </url>
   
   <url>
+    <loc>https://jiangsc.me/2024/12/18/2024-year-review/</loc>
+    
+    <lastmod>2025-06-15</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://jiangsc.me/2017/06/11/06112017-Fun-With-GPG/</loc>
     
     <lastmod>2025-06-15</lastmod>
@@ -462,33 +489,6 @@
   
   <url>
     <loc>https://jiangsc.me/2023/03/11/2023-03-11-technical-postmortem/</loc>
-    
-    <lastmod>2025-06-15</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/2024/12/18/2024-year-review/</loc>
-    
-    <lastmod>2025-06-15</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/2021/07/10/Advanced-VirtualBox-Auto-start-virtualbox-on-Windows/</loc>
-    
-    <lastmod>2025-06-15</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/2021/04/17/Android-ADB-and-user-management/</loc>
     
     <lastmod>2025-06-15</lastmod>
     
@@ -535,20 +535,6 @@
   
   <url>
     <loc>https://jiangsc.me/tags/JavaScript/</loc>
-    <lastmod>2025-06-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/tags/Review/</loc>
-    <lastmod>2025-06-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/tags/Yearly/</loc>
     <lastmod>2025-06-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -619,6 +605,20 @@
   
   <url>
     <loc>https://jiangsc.me/tags/OS-X/</loc>
+    <lastmod>2025-06-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/tags/Review/</loc>
+    <lastmod>2025-06-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/tags/Yearly/</loc>
     <lastmod>2025-06-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -786,6 +786,20 @@
   </url>
   
   <url>
+    <loc>https://jiangsc.me/tags/IELTS/</loc>
+    <lastmod>2025-06-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/tags/Preparation/</loc>
+    <lastmod>2025-06-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://jiangsc.me/tags/Lambda/</loc>
     <lastmod>2025-06-15</lastmod>
     <changefreq>weekly</changefreq>
@@ -808,20 +822,6 @@
   
   <url>
     <loc>https://jiangsc.me/tags/Deployment/</loc>
-    <lastmod>2025-06-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/tags/IELTS/</loc>
-    <lastmod>2025-06-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/tags/Preparation/</loc>
     <lastmod>2025-06-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -898,34 +898,6 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/tags/Terraform/</loc>
-    <lastmod>2025-06-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/tags/Kubernetes/</loc>
-    <lastmod>2025-06-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/tags/Version-constraint/</loc>
-    <lastmod>2025-06-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/tags/debug/</loc>
-    <lastmod>2025-06-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://jiangsc.me/tags/ArchLinux/</loc>
     <lastmod>2025-06-15</lastmod>
     <changefreq>weekly</changefreq>
@@ -954,21 +926,28 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/tags/Emulator/</loc>
+    <loc>https://jiangsc.me/tags/Terraform/</loc>
     <lastmod>2025-06-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://jiangsc.me/tags/Android-Development/</loc>
+    <loc>https://jiangsc.me/tags/Kubernetes/</loc>
     <lastmod>2025-06-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://jiangsc.me/tags/Carrier-Simulation/</loc>
+    <loc>https://jiangsc.me/tags/Version-constraint/</loc>
+    <lastmod>2025-06-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/tags/debug/</loc>
     <lastmod>2025-06-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -997,6 +976,27 @@
   
   <url>
     <loc>https://jiangsc.me/tags/WRT1200AC/</loc>
+    <lastmod>2025-06-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/tags/Emulator/</loc>
+    <lastmod>2025-06-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/tags/Android-Development/</loc>
+    <lastmod>2025-06-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/tags/Carrier-Simulation/</loc>
     <lastmod>2025-06-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1136,6 +1136,13 @@
   </url>
   
   <url>
+    <loc>https://jiangsc.me/tags/Latex/</loc>
+    <lastmod>2025-06-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://jiangsc.me/tags/xdg-open/</loc>
     <lastmod>2025-06-15</lastmod>
     <changefreq>weekly</changefreq>
@@ -1157,13 +1164,6 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/tags/Latex/</loc>
-    <lastmod>2025-06-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://jiangsc.me/tags/dmenu/</loc>
     <lastmod>2025-06-15</lastmod>
     <changefreq>weekly</changefreq>
@@ -1178,20 +1178,6 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/tags/MacOS/</loc>
-    <lastmod>2025-06-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/tags/Automator/</loc>
-    <lastmod>2025-06-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://jiangsc.me/tags/Command-line/</loc>
     <lastmod>2025-06-15</lastmod>
     <changefreq>weekly</changefreq>
@@ -1200,6 +1186,20 @@
   
   <url>
     <loc>https://jiangsc.me/tags/Moible-App-Development/</loc>
+    <lastmod>2025-06-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/tags/MacOS/</loc>
+    <lastmod>2025-06-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/tags/Automator/</loc>
     <lastmod>2025-06-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
