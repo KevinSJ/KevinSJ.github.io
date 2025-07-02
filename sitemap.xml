@@ -11,15 +11,6 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/notes/index.html</loc>
-    
-    <lastmod>2025-07-02</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://jiangsc.me/notes/notes-for-2024-10-26.html</loc>
     
     <lastmod>2025-07-02</lastmod>
@@ -30,6 +21,33 @@
   
   <url>
     <loc>https://jiangsc.me/notes/notes-for-2024-10-27.html</loc>
+    
+    <lastmod>2025-07-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/notes/index.html</loc>
+    
+    <lastmod>2025-07-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/about/index.html</loc>
+    
+    <lastmod>2025-07-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/gallery/index.html</loc>
     
     <lastmod>2025-07-02</lastmod>
     
@@ -56,7 +74,7 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/about/index.html</loc>
+    <loc>https://jiangsc.me/2022/05/21/neovim-tricks-1/</loc>
     
     <lastmod>2025-07-02</lastmod>
     
@@ -65,7 +83,16 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/gallery/index.html</loc>
+    <loc>https://jiangsc.me/2022/10/29/neovim-tricks-2/</loc>
+    
+    <lastmod>2025-07-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/2023/12/27/neovim-tricks-3/</loc>
     
     <lastmod>2025-07-02</lastmod>
     
@@ -128,15 +155,6 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/2023/10/08/arch-linux-on-rpi3/</loc>
-    
-    <lastmod>2025-07-02</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://jiangsc.me/2024/06/08/cjs-esm-imports-in-typescript-node/</loc>
     
     <lastmod>2025-07-02</lastmod>
@@ -191,15 +209,6 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/2022/07/22/linux-user-notes-1/</loc>
-    
-    <lastmod>2025-07-02</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://jiangsc.me/2022/09/17/linux-user-notes-2/</loc>
     
     <lastmod>2025-07-02</lastmod>
@@ -236,6 +245,15 @@
   </url>
   
   <url>
+    <loc>https://jiangsc.me/2022/07/22/linux-user-notes-1/</loc>
+    
+    <lastmod>2025-07-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://jiangsc.me/2023/02/11/mobile-dev-cli-tips-1/</loc>
     
     <lastmod>2025-07-02</lastmod>
@@ -254,33 +272,6 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/2022/05/21/neovim-tricks-1/</loc>
-    
-    <lastmod>2025-07-02</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/2022/10/29/neovim-tricks-2/</loc>
-    
-    <lastmod>2025-07-02</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/2023/12/27/neovim-tricks-3/</loc>
-    
-    <lastmod>2025-07-02</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://jiangsc.me/2018/06/24/Automating-things-on-Android-with-Tasker/</loc>
     
     <lastmod>2025-07-02</lastmod>
@@ -290,7 +281,7 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/2018/03/24/AutomatingStuffWithGoogleAppScripts/</loc>
+    <loc>https://jiangsc.me/2023/02/08/Cli-tips-create-azure-devops-pr/</loc>
     
     <lastmod>2025-07-02</lastmod>
     
@@ -299,7 +290,7 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/2023/02/08/Cli-tips-create-azure-devops-pr/</loc>
+    <loc>https://jiangsc.me/2018/03/24/AutomatingStuffWithGoogleAppScripts/</loc>
     
     <lastmod>2025-07-02</lastmod>
     
@@ -435,6 +426,15 @@
   
   <url>
     <loc>https://jiangsc.me/2025/06/20/arch-linux-on-rock-4c-plus/</loc>
+    
+    <lastmod>2025-07-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/2023/10/08/arch-linux-on-rpi3/</loc>
     
     <lastmod>2025-07-02</lastmod>
     
@@ -634,20 +634,6 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/tags/Google-App-Scripts/</loc>
-    <lastmod>2025-07-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/tags/Gmail/</loc>
-    <lastmod>2025-07-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://jiangsc.me/tags/Linux/</loc>
     <lastmod>2025-07-02</lastmod>
     <changefreq>weekly</changefreq>
@@ -670,6 +656,20 @@
   
   <url>
     <loc>https://jiangsc.me/tags/Tips/</loc>
+    <lastmod>2025-07-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/tags/Google-App-Scripts/</loc>
+    <lastmod>2025-07-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/tags/Gmail/</loc>
     <lastmod>2025-07-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1131,34 +1131,6 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/tags/Manjaro-Linux/</loc>
-    <lastmod>2025-07-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/tags/Dual-monitor/</loc>
-    <lastmod>2025-07-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/tags/systemd/</loc>
-    <lastmod>2025-07-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/tags/udev/</loc>
-    <lastmod>2025-07-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://jiangsc.me/tags/xdg-open/</loc>
     <lastmod>2025-07-02</lastmod>
     <changefreq>weekly</changefreq>
@@ -1209,6 +1181,34 @@
   
   <url>
     <loc>https://jiangsc.me/tags/Automator/</loc>
+    <lastmod>2025-07-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/tags/Manjaro-Linux/</loc>
+    <lastmod>2025-07-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/tags/Dual-monitor/</loc>
+    <lastmod>2025-07-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/tags/systemd/</loc>
+    <lastmod>2025-07-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/tags/udev/</loc>
     <lastmod>2025-07-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
