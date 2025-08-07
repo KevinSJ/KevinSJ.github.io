@@ -11,15 +11,6 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/notes/index.html</loc>
-    
-    <lastmod>2025-08-07</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://jiangsc.me/notes/notes-for-2024-10-26.html</loc>
     
     <lastmod>2025-08-07</lastmod>
@@ -29,7 +20,25 @@
   </url>
   
   <url>
+    <loc>https://jiangsc.me/notes/index.html</loc>
+    
+    <lastmod>2025-08-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://jiangsc.me/notes/notes-for-2024-10-27.html</loc>
+    
+    <lastmod>2025-08-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/2023/06/03/thinkpad-neo-14-issue-fix/</loc>
     
     <lastmod>2025-08-07</lastmod>
     
@@ -65,34 +74,7 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/2023/06/03/thinkpad-neo-14-issue-fix/</loc>
-    
-    <lastmod>2025-08-07</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/2025/02/08/mobile-dev-cli-tips-2/</loc>
-    
-    <lastmod>2025-08-07</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/2022/05/21/neovim-tricks-1/</loc>
-    
-    <lastmod>2025-08-07</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/2022/10/29/neovim-tricks-2/</loc>
+    <loc>https://jiangsc.me/2023/12/27/neovim-tricks-3/</loc>
     
     <lastmod>2025-08-07</lastmod>
     
@@ -102,15 +84,6 @@
   
   <url>
     <loc>https://jiangsc.me/2025/03/09/notes-2025-03-09/</loc>
-    
-    <lastmod>2025-08-07</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/2023/12/27/neovim-tricks-3/</loc>
     
     <lastmod>2025-08-07</lastmod>
     
@@ -156,33 +129,6 @@
   
   <url>
     <loc>https://jiangsc.me/2025/03/26/tales-of-the-brave-write-up/</loc>
-    
-    <lastmod>2025-08-07</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/2023/05/07/Tips-for-Setting-Up-Linux-on-AMD-based-Thinkpad/</loc>
-    
-    <lastmod>2025-08-07</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/2021/01/24/Upgrade-openwrt-on-Linksys-WRT1200AC-with-extroot/</loc>
-    
-    <lastmod>2025-08-07</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/2022/10/05/android-emulator-carrier-simulation/</loc>
     
     <lastmod>2025-08-07</lastmod>
     
@@ -317,6 +263,33 @@
   </url>
   
   <url>
+    <loc>https://jiangsc.me/2025/02/08/mobile-dev-cli-tips-2/</loc>
+    
+    <lastmod>2025-08-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/2022/05/21/neovim-tricks-1/</loc>
+    
+    <lastmod>2025-08-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/2022/10/29/neovim-tricks-2/</loc>
+    
+    <lastmod>2025-08-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://jiangsc.me/2018/06/24/Automating-things-on-Android-with-Tasker/</loc>
     
     <lastmod>2025-08-07</lastmod>
@@ -443,7 +416,7 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/2021/04/17/Android-ADB-and-user-management/</loc>
+    <loc>https://jiangsc.me/2023/05/07/Tips-for-Setting-Up-Linux-on-AMD-based-Thinkpad/</loc>
     
     <lastmod>2025-08-07</lastmod>
     
@@ -452,7 +425,7 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/2019/10/12/Automating-Android-data-saver-with-tasker/</loc>
+    <loc>https://jiangsc.me/2021/01/24/Upgrade-openwrt-on-Linksys-WRT1200AC-with-extroot/</loc>
     
     <lastmod>2025-08-07</lastmod>
     
@@ -461,7 +434,7 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/2020/12/26/Automating-Zoom-with-Alfred-and-Apple-Scripts/</loc>
+    <loc>https://jiangsc.me/2022/10/05/android-emulator-carrier-simulation/</loc>
     
     <lastmod>2025-08-07</lastmod>
     
@@ -498,6 +471,33 @@
   
   <url>
     <loc>https://jiangsc.me/2021/07/10/Advanced-VirtualBox-Auto-start-virtualbox-on-Windows/</loc>
+    
+    <lastmod>2025-08-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/2021/04/17/Android-ADB-and-user-management/</loc>
+    
+    <lastmod>2025-08-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/2019/10/12/Automating-Android-data-saver-with-tasker/</loc>
+    
+    <lastmod>2025-08-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/2020/12/26/Automating-Zoom-with-Alfred-and-Apple-Scripts/</loc>
     
     <lastmod>2025-08-07</lastmod>
     
@@ -1341,6 +1341,20 @@
   </url>
   
   <url>
+    <loc>https://jiangsc.me/tags/flexget/</loc>
+    <lastmod>2025-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/tags/raspberrypi/</loc>
+    <lastmod>2025-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://jiangsc.me/tags/CTF/</loc>
     <lastmod>2025-08-07</lastmod>
     <changefreq>weekly</changefreq>
@@ -1356,20 +1370,6 @@
   
   <url>
     <loc>https://jiangsc.me/tags/HTB/</loc>
-    <lastmod>2025-08-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/tags/flexget/</loc>
-    <lastmod>2025-08-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/tags/raspberrypi/</loc>
     <lastmod>2025-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
