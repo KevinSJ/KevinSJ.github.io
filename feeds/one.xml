@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
+  <channel>
+    <title>One Podcast</title>
+    <link>https://m.wufazhuce.com/</link>
+    <description>Podcast from One 一个</description>
+    <language>zh-cn</language>
+    <item>
+      <title>所有人都觉得“过去”好一点</title>
+      <enclosure url="http://music.wufazhuce.com/lixd667ey8v5KQcYeieaqzj8I1Oh" type="audio/mpeg" />
+    </item>
+    <item>
+      <title>可可西里-朗读者-马晓橙</title>
+      <enclosure url="http://music.wufazhuce.com/li0-U56rRflknTh3TUpd2IhqRptq" type="audio/mpeg" />
+    </item>
+  </channel>
+</rss>
