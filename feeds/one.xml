@@ -3,6 +3,7 @@
   <channel>
     <title>One Podcast</title>
     <link>https://m.wufazhuce.com/</link>
+    <itunes:image>https://image.wufazhuce.com/radio_banner_1125_600.jpg</itunes:image>
     <description>Podcast from One 一个</description>
     <language>zh-cn</language>
     <item>
