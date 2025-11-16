@@ -7,9 +7,19 @@
     <description>Podcast from One 一个</description>
     <language>zh-cn</language>
     <item>
-      <title>到底聊点啥｜时代的眼泪马晓橙、李荟莹</title>
-      <enclosure url="http://music.wufazhuce.com/lmBnFz1zZGbhzgNG_ldtok6-gPyD" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/Fs0MdnaCOZP7hNFywy1XLEbgvMbM?imageView2/1/w/475/h/304/q/95</itunes:image>
+      <title>野孩子-朗读者-闯先生</title>
+      <enclosure url="http://music.wufazhuce.com/lgR-IllxHH1EVBE2f15aDOrBbqu1" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FkUesXScS0uTr1SKraPNTZUdOgIi</itunes:image>
+    </item>
+    <item>
+      <title>忧伤漂浮-朗读者-大卫</title>
+      <enclosure url="http://music.wufazhuce.com/ljnPfUVPZg7Ejb6pAb2sVFOpFiEj" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FnTJZRc4ZRNwUmsjkSme8DSAfVNo</itunes:image>
+    </item>
+    <item>
+      <title>转校生-朗读者-三笙</title>
+      <enclosure url="http://music.wufazhuce.com/lqAX2Sj2evnLA3THIeQrqyShpSkM" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/Fo9qdbHAuDfc4Tmc9mFtZvNq1BeD</itunes:image>
     </item>
   </channel>
 </rss>
