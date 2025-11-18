@@ -7,9 +7,14 @@
     <description>Podcast from One 一个</description>
     <language>zh-cn</language>
     <item>
-      <title>用什么才能留住你李荟莹</title>
-      <enclosure url="http://music.wufazhuce.com/lvcG2pr1qpzVlhy6OCEtqBF_f8um" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/Fnf8uQrAV9dtvGMfqAjoJoT107w-?imageView2/1/w/475/h/304/q/95</itunes:image>
+      <title>当你开始“怀疑一切”，一切开始不同马晓橙</title>
+      <enclosure url="http://music.wufazhuce.com/lpg9c_hapzyrwqlZllTFmzqmRVpP" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/Fg70X0lnlWlLVvRZ4st3CGcePBOd?imageView2/1/w/475/h/304/q/95</itunes:image>
+    </item>
+    <item>
+      <title>火车上的提琴手-朗读者-李荟莹</title>
+      <enclosure url="http://music.wufazhuce.com/lrXMbAsWXpGWKS7ZtKQ8m4epgizS" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FpxCSJ5CGwW5Qrcl1m6mvxJrIOPp</itunes:image>
     </item>
   </channel>
 </rss>
