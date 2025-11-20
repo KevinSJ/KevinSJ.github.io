@@ -7,14 +7,9 @@
     <description>Podcast from One 一个</description>
     <language>zh-cn</language>
     <item>
-      <title>明明在身边，距离却遥远李荟莹</title>
-      <enclosure url="http://music.wufazhuce.com/loOD4Z19wylqRUbnBAHlLb-KJvVH" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/Fvj3mRzphtai4PDgignJPuLMHe1e?imageView2/1/w/475/h/304/q/95</itunes:image>
-    </item>
-    <item>
-      <title>教委大院-朗读者-闯先生</title>
-      <enclosure url="http://music.wufazhuce.com/lkkkrubb-dX31TzKuRkvprioVLL9" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FnKLO_kJyipNG3epJ6kh5HIylsRQ</itunes:image>
+      <title>所有人都在等另一只靴子落地马晓橙</title>
+      <enclosure url="http://music.wufazhuce.com/lrH5Vm32I2jzv5RcYUzw9OAtERDs" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FhzVLy9Du7k3jsDXw9vLdL0y_LTb?imageView2/1/w/475/h/304/q/95</itunes:image>
     </item>
   </channel>
 </rss>
