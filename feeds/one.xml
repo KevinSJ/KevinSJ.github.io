@@ -7,9 +7,14 @@
     <description>Podcast from One 一个</description>
     <language>zh-cn</language>
     <item>
-      <title>你眼中的别人，才是你自己李荟莹</title>
-      <enclosure url="http://music.wufazhuce.com/lqtq7VkwhPk_OMefJTXqRHKTjbjV" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FrLLpYuWCoQQ-sBQCoeTA8J_8Nbw?imageView2/1/w/475/h/304/q/95</itunes:image>
+      <title>婚姻故事，冷暖自知赟赟</title>
+      <enclosure url="http://music.wufazhuce.com/lvQ_I7kvMm-gFHZjl6HxSJSDvAeY" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FnQs7TzCQ7RUUr12nonxbyagy-y0?imageView2/1/w/475/h/304/q/95</itunes:image>
+    </item>
+    <item>
+      <title>游龙戏凤-朗读者-李荟莹</title>
+      <enclosure url="http://music.wufazhuce.com/llSlOydNPpuXp3tG72tDvd3BXKIG" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/Fos2cOAp1_BQDVWIOhnK_GCO0wQ_</itunes:image>
     </item>
   </channel>
 </rss>
