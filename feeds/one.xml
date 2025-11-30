@@ -7,14 +7,19 @@
     <description>Podcast from One 一个</description>
     <language>zh-cn</language>
     <item>
-      <title>到底聊点啥｜App失物招领处马晓橙、李荟莹</title>
-      <enclosure url="http://music.wufazhuce.com/lqlCPy8V68t4lCTSkLUpPtI4GLrL" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FiO4Qo5mqgAczjY8NeL0WkULQr2i?imageView2/1/w/475/h/304/q/95</itunes:image>
+      <title>人海-朗读者-闯先生</title>
+      <enclosure url="http://music.wufazhuce.com/ljl89WKSoXj3X_YM5lbnUspAM9aa" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FiXZbeCvMv9cyJYu1azQY6zuNO7d</itunes:image>
     </item>
     <item>
-      <title>落进木东河的雨-朗读者-大卫</title>
-      <enclosure url="http://music.wufazhuce.com/lg7NmBSNJHTRPINkEdMO8cwYghAc" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/Fv3pQF887iKWbnnxe1beL_Ropfp1</itunes:image>
+      <title>敢爱敢分离-朗读者-大卫</title>
+      <enclosure url="http://music.wufazhuce.com/llzg4qjsND6VyaxT1UnRj9TAIo9V" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FsM03KLwnYIP6lIVNBAaVwh5HyVJ</itunes:image>
+    </item>
+    <item>
+      <title>摇滚乐、电影和书-朗读者-李荟莹</title>
+      <enclosure url="http://music.wufazhuce.com/lnMB4V9HZ7ynQRRonmoP_xVg_eEV" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/Fi3nCz9wOyGAGlB7GpAGXNfsxWL9</itunes:image>
     </item>
   </channel>
 </rss>
