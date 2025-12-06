@@ -7,14 +7,9 @@
     <description>Podcast from One 一个</description>
     <language>zh-cn</language>
     <item>
-      <title>如果美好可以「安可」李荟莹</title>
-      <enclosure url="http://music.wufazhuce.com/lsgK2xE30_yfv6BwDR7haG3pqF1-" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/Fol6IvKRdCRzs1JE0-5b60rhMKRC?imageView2/1/w/475/h/304/q/95</itunes:image>
-    </item>
-    <item>
-      <title>蝴蝶-朗读者-李荟莹</title>
-      <enclosure url="http://music.wufazhuce.com/lqZG_KuuwhkUlF2sU--soZbjEaCt" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FudiBwTIsuwIcIu2GHIy56XKMJEX</itunes:image>
+      <title>为了不哭大声笑赟赟</title>
+      <enclosure url="http://music.wufazhuce.com/lgkN22kR3zwcOXVlMrklzdI3BjGT" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FtMSsWXAtnHRbqOnSOBcOoZTXANt?imageView2/1/w/475/h/304/q/95</itunes:image>
     </item>
   </channel>
 </rss>
