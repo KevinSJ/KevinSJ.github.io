@@ -7,9 +7,14 @@
     <description>Podcast from One 一个</description>
     <language>zh-cn</language>
     <item>
-      <title>为了不哭大声笑赟赟</title>
-      <enclosure url="http://music.wufazhuce.com/lgkN22kR3zwcOXVlMrklzdI3BjGT" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FtMSsWXAtnHRbqOnSOBcOoZTXANt?imageView2/1/w/475/h/304/q/95</itunes:image>
+      <title>我承认，我不喜欢了大卫</title>
+      <enclosure url="http://music.wufazhuce.com/lgOtwydUzrc3UEO3Wj482yIZpQSs" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FlTXFLniy9zRvcVStlDAB3zFoj85?imageView2/1/w/475/h/304/q/95</itunes:image>
+    </item>
+    <item>
+      <title>倦鸟-朗读者-李荟莹</title>
+      <enclosure url="http://music.wufazhuce.com/lsGnidKChrxvhXhZ38RhIhYuz8-6" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/Fhc-0NO8gQjLelMHbQf1loAAc2nc</itunes:image>
     </item>
   </channel>
 </rss>
