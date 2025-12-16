@@ -7,9 +7,14 @@
     <description>Podcast from One 一个</description>
     <language>zh-cn</language>
     <item>
-      <title>谁明白逛文具店的快乐？李荟莹</title>
-      <enclosure url="http://music.wufazhuce.com/ln0LFghrugk65nj9EH9TH13n_DZP" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FnvFsLVSSgWhWbqwaC5jNR-fCNk_?imageView2/1/w/475/h/304/q/95</itunes:image>
+      <title>廉价的“青旅”住满“特别的灵魂”马晓橙</title>
+      <enclosure url="http://music.wufazhuce.com/luRqc05xPC6RJBg2F-qhS9o7bXdI" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FtLiW6UlRUJY9Aa2PSGREUxodAwq?imageView2/1/w/475/h/304/q/95</itunes:image>
+    </item>
+    <item>
+      <title>雨夜卡塔-朗读者-闯先生</title>
+      <enclosure url="http://music.wufazhuce.com/liE73bLo47SeOkRmYx47CgUbFbng" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FlnE1nMSOzhuGqTmtjHNaEdw928W</itunes:image>
     </item>
   </channel>
 </rss>
