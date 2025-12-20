@@ -38,24 +38,6 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/gallery/index.html</loc>
-    
-    <lastmod>2025-12-20</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/2023/06/03/thinkpad-neo-14-issue-fix/</loc>
-    
-    <lastmod>2025-12-20</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://jiangsc.me/2017/03/12/%E5%9C%A8%E6%A0%91%E8%8E%93%E6%B4%BE%E4%B8%8A%E9%83%A8%E7%BD%B2flexget%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E8%BF%BD%E7%95%AA/</loc>
     
     <lastmod>2025-12-20</lastmod>
@@ -66,6 +48,24 @@
   
   <url>
     <loc>https://jiangsc.me/about/index.html</loc>
+    
+    <lastmod>2025-12-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/gallery/index.html</loc>
+    
+    <lastmod>2025-12-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/2023/06/03/thinkpad-neo-14-issue-fix/</loc>
     
     <lastmod>2025-12-20</lastmod>
     
@@ -101,7 +101,7 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/2020/09/14/pitfall-of-jsonencode-in-terraform/</loc>
+    <loc>https://jiangsc.me/2020/11/15/practice-with-vim-I/</loc>
     
     <lastmod>2025-12-20</lastmod>
     
@@ -110,7 +110,7 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/2020/11/15/practice-with-vim-I/</loc>
+    <loc>https://jiangsc.me/2020/09/14/pitfall-of-jsonencode-in-terraform/</loc>
     
     <lastmod>2025-12-20</lastmod>
     
@@ -164,6 +164,15 @@
   </url>
   
   <url>
+    <loc>https://jiangsc.me/2023/10/08/arch-linux-on-rpi3/</loc>
+    
+    <lastmod>2025-12-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://jiangsc.me/2024/06/08/cjs-esm-imports-in-typescript-node/</loc>
     
     <lastmod>2025-12-20</lastmod>
@@ -182,7 +191,7 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/2023/10/08/arch-linux-on-rpi3/</loc>
+    <loc>https://jiangsc.me/2022/03/06/hide-phone-number-when-making-calls/</loc>
     
     <lastmod>2025-12-20</lastmod>
     
@@ -191,7 +200,7 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/2022/03/06/hide-phone-number-when-making-calls/</loc>
+    <loc>https://jiangsc.me/2024/07/20/iOS-date-formatter-and-locale/</loc>
     
     <lastmod>2025-12-20</lastmod>
     
@@ -210,15 +219,6 @@
   
   <url>
     <loc>https://jiangsc.me/2023/07/29/js-ts-module-resolution-and-alias/</loc>
-    
-    <lastmod>2025-12-20</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/2024/07/20/iOS-date-formatter-and-locale/</loc>
     
     <lastmod>2025-12-20</lastmod>
     
@@ -1026,6 +1026,20 @@
   </url>
   
   <url>
+    <loc>https://jiangsc.me/tags/Raspberry-Pi/</loc>
+    <lastmod>2025-12-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/tags/Raspberry-Pi-3/</loc>
+    <lastmod>2025-12-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://jiangsc.me/tags/TypeScript/</loc>
     <lastmod>2025-12-20</lastmod>
     <changefreq>weekly</changefreq>
@@ -1054,20 +1068,6 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/tags/Raspberry-Pi/</loc>
-    <lastmod>2025-12-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/tags/Raspberry-Pi-3/</loc>
-    <lastmod>2025-12-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://jiangsc.me/tags/tips/</loc>
     <lastmod>2025-12-20</lastmod>
     <changefreq>weekly</changefreq>
@@ -1076,6 +1076,27 @@
   
   <url>
     <loc>https://jiangsc.me/tags/iOS/</loc>
+    <lastmod>2025-12-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/tags/Swift/</loc>
+    <lastmod>2025-12-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/tags/Date-Formatter/</loc>
+    <lastmod>2025-12-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/tags/Cookie/</loc>
     <lastmod>2025-12-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1104,27 +1125,6 @@
   
   <url>
     <loc>https://jiangsc.me/tags/Module/</loc>
-    <lastmod>2025-12-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/tags/Swift/</loc>
-    <lastmod>2025-12-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/tags/Date-Formatter/</loc>
-    <lastmod>2025-12-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/tags/Cookie/</loc>
     <lastmod>2025-12-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1264,14 +1264,14 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/tags/Pitfalls/</loc>
+    <loc>https://jiangsc.me/tags/Practice/</loc>
     <lastmod>2025-12-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://jiangsc.me/tags/Practice/</loc>
+    <loc>https://jiangsc.me/tags/Pitfalls/</loc>
     <lastmod>2025-12-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
