@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.1">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="9g-E_K0GEppNWOItj0YYJV_1UbSLdVFrKOhHSPLkJcM">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"jiangsc.me","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.26.0","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="Recently, I finished working on a project that deals with mTLS in Java, more specifically, it was to setup mTLS to connect to a message queue. After quite a lot of effort, I finally got everything wor">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Notes on mTLS and Java">
+<meta property="og:url" content="https://jiangsc.me/2025/12/17/tls-certs-and-java/index.html">
+<meta property="og:site_name" content="Kevin Jiang&#39;s Technical Blog">
+<meta property="og:description" content="Recently, I finished working on a project that deals with mTLS in Java, more specifically, it was to setup mTLS to connect to a message queue. After quite a lot of effort, I finally got everything wor">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-12-17T07:58:06.000Z">
+<meta property="article:modified_time" content="2025-12-23T04:52:14.666Z">
+<meta property="article:author" content="Kevin Jiang">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="TLS">
+<meta property="article:tag" content="keystore">
+<meta property="article:tag" content="mTLS">
+<meta property="article:tag" content="tls">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://jiangsc.me/2025/12/17/tls-certs-and-java/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://jiangsc.me/2025/12/17/tls-certs-and-java/","path":"2025/12/17/tls-certs-and-java/","title":"Notes on mTLS and Java"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Notes on mTLS and Java | Kevin Jiang's Technical Blog</title>
+  
+
+
+
+
+
+
+  <script async defer data-website-id="c4ed80eb-6e46-4603-a114-34b3a0f3eb10" src="https://u-a.jiangsc.me/script.js"></script>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.3.1/pdfobject.min.js","integrity":"sha256-jI72I8ZLVflVOisZIOaLvRew3tyvzeu6aZXFm7P7dEo="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js" defer></script>
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.10.1/mermaid.min.js","integrity":"sha256-BmQmdWDS8X2OTbrwELWK366LV6escyWhHHe0XCTU/Hk="}}</script>
+  <script src="/js/third-party/tags/mermaid.js" defer></script>
+
+
+
+
+
+  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/12.2.1/firebase-app-compat.js" integrity="sha256-d21UgtIcA6c6qwr8nWk6lxs/KrpbWhknQN7qBjWA2Kk=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/12.2.1/firebase-firestore-compat.js" integrity="sha256-leHatffkFuVGIg7ABaA5BDsqsEUtktL4tftb3OdQfg0=" crossorigin="anonymous" defer></script>
+  <script class="next-config" data-name="firestore" type="application/json">{"enable":true,"collection":"blog_view","apiKey":"AIzaSyAwkI10aTDM2430EyQhtAz5X04hk16ozRc","projectId":"blog-269be"}</script>
+  <script src="/js/third-party/statistics/firestore.js" defer></script>
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Kevin Jiang's Technical Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Kevin Jiang's Technical Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-gallery"><a href="/gallery/" rel="section"><i class="fa fa-image fa-fw"></i>Gallery</a></li><li class="menu-item menu-item-notes"><a href="/notes/" rel="section"><i class="fa fa-book fa-fw"></i>Notes</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#TLS"><span class="nav-number">1.</span> <span class="nav-text">TLS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-keystore-and-keytool"><span class="nav-number">2.</span> <span class="nav-text">Java keystore and keytool</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Using-Java-keystore-for-mTLS-authentication"><span class="nav-number">3.</span> <span class="nav-text">Using Java keystore for mTLS authentication</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tips-Caveats-and-Issues"><span class="nav-number">4.</span> <span class="nav-text">Tips, Caveats and Issues</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#References"><span class="nav-number">4.1.</span> <span class="nav-text">References</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Kevin Jiang</p>
+  <div class="site-description" itemprop="description">A blog about all things tech.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">127</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2tldmluc2o=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;kevinsj"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly93d3cubGlua2VkaW4uY29tL2luL2tldnNq" title="LinkedIn → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;kevsj"><i class="fab fa-linkedin fa-fw"></i>LinkedIn</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRsYWIuY29tL2tldmluc2o=" title="GitLab → https:&#x2F;&#x2F;gitlab.com&#x2F;kevinsj"><i class="fab fa-gitlab fa-fw"></i>GitLab</span>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></span>
+  </div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="Back to top">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://jiangsc.me/2025/12/17/tls-certs-and-java/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Kevin Jiang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
+      <meta itemprop="description" content="A blog about all things tech.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Notes on mTLS and Java | Kevin Jiang's Technical Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Notes on mTLS and Java
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 12-17-2025 20:58:06" itemprop="dateCreated datePublished" datetime="2025-12-17T20:58:06+13:00">12-17-2025</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="firestore-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>Recently, I finished working on a project that deals with mTLS in Java, more specifically, it was to setup mTLS to connect to a message queue. After quite a lot of effort, I finally got everything working correctly. Hopefully this article can be helpful to readers seeking help on this topic.</p>
+<h2 id="TLS"><a href="#TLS" class="headerlink" title="TLS"></a>TLS</h2><p>To understand what mTLS or mutual TLS is, we first need to understand what TLS is. TLS stands for Transport Layer Security, it is the defector protocol to provide communications security over the network.</p>
+<p>The best place to understand this is through the TLS standards document. According to the TLS 1.3 standards document or rfc8446<sup><span class="exturl" data-url="aHR0cHM6Ly9kYXRhdHJhY2tlci5pZXRmLm9yZy9kb2MvaHRtbC9yZmM4NDQ2">1<i class="fa fa-external-link-alt"></i></span></sup>:</p>
+<span id="more"></span>
+
+<blockquote>
+<p>[...]<br>TLS allows client&#x2F;server applications to communicate over the Internet in a way that is designed to prevent eavesdropping, tampering, and message forgery.<br>[...]<br>The primary purpose of TLS protocol is to provide a secure channel between two communicating peers.</p>
+</blockquote>
+<p>To conform to the TLS protocol, this specific secure channel should provide authentication, confidentiality and integrity. For the server side of this secure channel, authentication is mandatory; while for client side, authentication is optional. Data sent through the channel after establishment is only visible to the endpoints, and the data can not be modified by attackers without detection.</p>
+<p>The TLS protocol consists of two main components: the handshake protocol and the record protocol. The RFC document described the handshake protocol in detail:</p>
+<blockquote>
+<p>[...]<br>The handshake protocol is used to negotiate the security parameters of a connection.<br>[...]<br>The TLS handshake is an Authenticated Key Exchange (AKE) protocol which is intended to provide both one-way authenticated (server-only) and mutually authenticated (client and server) functionality.</p>
+</blockquote>
+<p>The handshake process can be divided into three phases: Key Exchange, Server Parameters and Authentication. The process starts with a <code>ClientHello</code> message described below.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">uint16 ProtocolVersion;</span><br><span class="line">opaque Random[<span class="number">32</span>];</span><br><span class="line"></span><br><span class="line">uint8 CipherSuite[<span class="number">2</span>];    <span class="comment">/* Cryptographic suite selector */</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    ProtocolVersion legacy_version = <span class="number">0x0303</span>;    <span class="comment">/* TLS v1.2 */</span></span><br><span class="line">    Random random;</span><br><span class="line">    opaque legacy_session_id&lt;<span class="number">0.</span><span class="number">.32</span>&gt;;</span><br><span class="line">    CipherSuite cipher_suites&lt;<span class="number">2.</span><span class="number">.2</span>^<span class="number">16</span><span class="number">-2</span>&gt;;</span><br><span class="line">    opaque legacy_compression_methods&lt;<span class="number">1.</span><span class="number">.2</span>^<span class="number">8</span><span class="number">-1</span>&gt;;</span><br><span class="line">    Extension extensions&lt;<span class="number">8.</span><span class="number">.2</span>^<span class="number">16</span><span class="number">-1</span>&gt;;</span><br><span class="line">&#125; ClientHello;</span><br></pre></td></tr></table></figure>
+<p>The server will respond to this message with a <code>ServerHello</code> message, if it is able to negotiate:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    ProtocolVersion legacy_version = <span class="number">0x0303</span>;    <span class="comment">/* TLS v1.2 */</span></span><br><span class="line">    Random random;</span><br><span class="line">    opaque legacy_session_id_echo&lt;<span class="number">0.</span><span class="number">.32</span>&gt;;</span><br><span class="line">    CipherSuite cipher_suite;</span><br><span class="line">    uint8 legacy_compression_method = <span class="number">0</span>;</span><br><span class="line">    Extension extensions&lt;<span class="number">6.</span><span class="number">.2</span>^<span class="number">16</span><span class="number">-1</span>&gt;;</span><br><span class="line">&#125; ServerHello;</span><br></pre></td></tr></table></figure>
+<p>This completes the Key Exchange phase of the handshake. Immediately following the <code>ServerHello</code> message, the server will send the <code>EncryptedExtensions</code>, and optionally <code>CertificateRequest</code> if the server requires client-based authentication.</p>
+<p>That is the end of the server parameters phase and the start of authentication phase.</p>
+<p>The start of the authentication phase will be a <code>Certificate</code> message from the server, and the client will also send a <code>Certificate</code> message if it has received a <code>CertificateRequest</code> message previously. Most notably, the <code>Certificate</code> presented by both the server and the client must be of <code>X509</code> type. And the RFC specifically mentioned scenarios where a <code>bad_certificate</code> alert will be sent:</p>
+<blockquote>
+<p> Any endpoint receiving any certificate which it would need to validate using any signature algorithm using an MD5 hash MUST abort the handshake with a &quot;bad_certificate&quot; alert. SHA-1 is deprecated, and it is RECOMMENDED that any endpoint receiving any certificate which it would need to validate using any signature algorithm using a SHA-1 hash abort the handshake with a &quot;bad_certificate&quot; alert.  For clarity, this means that endpoints can accept these algorithms for certificates that are self-signed or are trust anchors.</p>
+</blockquote>
+<p>The <code>CertificateVerifiy</code> message follows the <code>Certificate</code> message, and is used to provide explicit proof that an endpoint possesses the private key corresponding to its certificate. This is achieved by providing a signature signed using the private key and the other party verify the signature using the public key.</p>
+<p>In typical HTTPS (or HTTP over TLS) communication, the HTTP client would also act as TLS client, the client can only initiate HTTP request once the TLS handshake has been completed <sup><span class="exturl" data-url="aHR0cHM6Ly9kYXRhdHJhY2tlci5pZXRmLm9yZy9kb2MvaHRtbC9yZmMyODE4">2<i class="fa fa-external-link-alt"></i></span></sup>. However, in mutual TLS setting, as mentioned above, the client will need to provide certificate to authenticate itself as well.</p>
+<h2 id="Java-keystore-and-keytool"><a href="#Java-keystore-and-keytool" class="headerlink" title="Java keystore and keytool"></a>Java keystore and <code>keytool</code></h2><p>For developers who have used Java before, keystore shouldn&#39;t be an unfamiliar concept. It is used to store keys and certificates. A keystore can have two distinct kind of entries: key entry and Trusted certificate entries.</p>
+<p>A key entry can contain a private key, an X.509 certificate (can be v1, v2, or v3) containing the public key that matches this entry&#39;s private key. Optionally, one or more CA certificates that belong to the preceding certificate&#39;s trust chain<sup><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLnJlZGhhdC5jb20vZW4vZG9jdW1lbnRhdGlvbi9yZWRfaGF0X2FtcS82LjMvaHRtbC9zZWN1cml0eV9ndWlkZS9zc2wtamF2YWtleXN0b3Jlcw==">3<i class="fa fa-external-link-alt"></i></span></sup>.</p>
+<p>Note that a private key entry can have its own password, this can cause issue if that password is different from the one for keyStorePassword. It&#39;s better to always set them to the same or just remove the password from the privateKey before adding it to the keystore.</p>
+<p><code>keytool</code> is bundled with JDK and can be use to create a new keystore or manipulate an existing keystore. Here are some commands that is commonly used:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Check <span class="built_in">which</span> certificates are <span class="keyword">in</span> a Java keystore</span></span><br><span class="line">keytool -list -v -keystore keystore.jks</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Delete a certificate from a Java Keytool keystore</span></span><br><span class="line">keytool -delete -alias mydomain -keystore keystore.jks</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Import a root or intermediate CA certificate to an existing Java keystore</span></span><br><span class="line">keytool -import -trustcacerts -alias root -file Thawte.crt -keystore keystore.jks</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Changing password <span class="keyword">for</span> an entry <span class="keyword">in</span> the keystore</span></span><br><span class="line">keytool -keypasswd -alias &lt;key_name&gt; -keystore keystore.jks</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Changing password <span class="keyword">for</span> the keystore itself</span></span><br><span class="line">keytool -storepasswd -keystore my.keystore</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">import PKCS12 keystore to existing jks keystore.</span></span><br><span class="line">keytool -importkeystore -srckeystore keystore.pkcs12 \</span><br><span class="line">        -destkeystore keystore.jks -deststoretype JKS \</span><br><span class="line">        -noprompt -storepass password</span><br></pre></td></tr></table></figure>
+
+<h2 id="Using-Java-keystore-for-mTLS-authentication"><a href="#Using-Java-keystore-for-mTLS-authentication" class="headerlink" title="Using Java keystore for mTLS authentication"></a>Using Java keystore for mTLS authentication</h2><p>To setup mTLS in a normal Spring boot based Java application for server authentication, we can follow the article <span class="exturl" data-url="aHR0cHM6Ly9zcHJpbmcuaW8vYmxvZy8yMDIzLzA2LzA3L3NlY3VyaW5nLXNwcmluZy1ib290LWFwcGxpY2F0aW9ucy13aXRoLXNzbA==">here<i class="fa fa-external-link-alt"></i></span>. To put it in short, we will need to create a keystore, put it inside the classpath and then provide it in the <code>application.yaml</code> file like below:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">ssl:</span></span><br><span class="line">    <span class="attr">bundle:</span></span><br><span class="line">      <span class="attr">jks:</span></span><br><span class="line">        <span class="attr">server:</span></span><br><span class="line">          <span class="attr">key:</span></span><br><span class="line">            <span class="attr">alias:</span> <span class="string">&quot;server&quot;</span></span><br><span class="line">          <span class="attr">keystore:</span></span><br><span class="line">            <span class="attr">location:</span> <span class="string">&quot;classpath:server.p12&quot;</span></span><br><span class="line">            <span class="attr">password:</span> <span class="string">&quot;secret&quot;</span></span><br><span class="line">            <span class="attr">type:</span> <span class="string">&quot;PKCS12&quot;</span></span><br><span class="line">      <span class="attr">pem:</span></span><br><span class="line">        <span class="attr">client:</span></span><br><span class="line">          <span class="attr">truststore:</span></span><br><span class="line">            <span class="attr">certificate:</span> <span class="string">&quot;classpath:client.crt&quot;</span></span><br></pre></td></tr></table></figure>
+<p>For setting up mTLS connection to message queues, if it&#39;s an up-to-date application, we should use the programmatic way to load the certificates from a specified location and create a custom SSLContext and SSLSocketFactory that uses the SSLContext.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Source - https://stackoverflow.com/q</span></span><br><span class="line"><span class="comment">// Posted by Tito, modified by community. See post &#x27;Timeline&#x27; for change history</span></span><br><span class="line"><span class="comment">// Retrieved 2025-12-23, License - CC BY-SA 4.0</span></span><br><span class="line"><span class="keyword">private</span> SSLSocketFactory <span class="title function_">createSSLFactory</span><span class="params">()</span> &#123;</span><br><span class="line">  <span class="type">KeyStore</span> <span class="variable">keyStore</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">  <span class="type">TrustManagerFactory</span> <span class="variable">tmf</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">  <span class="type">SSLContext</span> <span class="variable">ctx</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    keyStore = KeyStore.getInstance(KeyStore.getDefaultType());</span><br><span class="line">    <span class="type">InputStream</span> <span class="variable">is</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    is = SSLConnection.class.getResourceAsStream(<span class="string">&quot;/&quot;</span> + <span class="string">&quot;my-keystore&quot;</span>);</span><br><span class="line">    keyStore.load(is, <span class="string">&quot;changeit&quot;</span>.toCharArray());</span><br><span class="line">    tmf = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());</span><br><span class="line">    tmf.init(keyStore);</span><br><span class="line">    ctx = SSLContext.getInstance(<span class="string">&quot;TLSv1&quot;</span>);</span><br><span class="line">    ctx.init(<span class="literal">null</span>, tmf.getTrustManagers(), <span class="literal">null</span>);</span><br><span class="line">    <span class="type">SSLSocketFactory</span> <span class="variable">factory</span> <span class="operator">=</span> ctx.getSocketFactory();</span><br><span class="line">    <span class="keyword">return</span> factory;</span><br><span class="line">  &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">    <span class="comment">// exception handling</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>For legacy applications where creating and using the custom SSLSocketFactory is difficult, we can use the system properties to tell Java where to find keystore and truststore:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">System.setProperty(<span class="string">&quot;javax.net.ssl.keyStore&quot;</span>,<span class="string">&quot;clientKeyStore.key&quot;</span>);</span><br><span class="line">System.setProperty(<span class="string">&quot;javax.net.ssl.keyStorePassword&quot;</span>,<span class="string">&quot;qwerty&quot;</span>);</span><br><span class="line">System.setProperty(<span class="string">&quot;javax.net.ssl.trustStore&quot;</span>,<span class="string">&quot;clientTrustStore.key&quot;</span>);</span><br><span class="line">System.setProperty(<span class="string">&quot;javax.net.ssl.trustStorePassword&quot;</span>,<span class="string">&quot;qwerty&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>or</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -Djavax.net.ssl.keystore=clientKeyStore.key -Djavax.net.ssl.keyStorePassword=qwerty -Djavax.net.ssl.truststore=clientTrustStore.key -Djavax.net.ssl.trustStorePassword=qwerty</span><br></pre></td></tr></table></figure>
+
+<h2 id="Tips-Caveats-and-Issues"><a href="#Tips-Caveats-and-Issues" class="headerlink" title="Tips, Caveats and Issues"></a>Tips, Caveats and Issues</h2><p>Dealing with TLS and certificate is not a pleasant experience, especially when it involves Java and keystore, so I would like to share some tips and caveats I encountered during the process:</p>
+<ul>
+<li>Useful OpenSSL commands:</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Calculate the md5 of the modulus of the public key</span></span><br><span class="line">openssl x509 -noout -modulus -in cert.pem|openssl md5</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Calculate the md5 of the modulus of the RSA key</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">The result of the <span class="built_in">command</span> below should be EXACTLY the same as the one above.</span></span><br><span class="line">openssl rsa -noout -modulus -in cert.key|openssl md5</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Inspect the existing certificate, <span class="keyword">if</span> using the cert <span class="keyword">for</span> mTLS, the output should contain TLS Client Authentication <span class="keyword">in</span> the X509v3 extenstions/X509v3 Extended Key Usage section.</span></span><br><span class="line">openssl x509 -noout -text -in cert.crt</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Remove the password from private key. REMEMBER TO REMOVE THE UNPROTECTED PRIVATE KEY AFTER USE!</span></span><br><span class="line">openssl rsa -in original.key -out new.key -passin pass:your_original_passphrase</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Debugging: I added <code>-Djavax.net.debug=ssl:keymanager:trustmanager:session -Djava.security.debug=certpath</code> while I was debugging the certificate related issue, it is quite verbose logging but was quite helpful.</li>
+<li>Java Keystore certificate selection: What happens if a Java keystore has multiple private key entries and we use the method described above to set keystore? The answer is complicated, but it is documented <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0pldEJyYWlucy9qZGs4dV9qZGsvYmxvYi85NDMxOGY5MTg1NzU3Y2MzM2QyYjhkNTI3ZDM2YmUyNmFjNmI3NTgyL3NyYy9zaGFyZS9jbGFzc2VzL3N1bi9zZWN1cml0eS9zc2wvWDUwOUtleU1hbmFnZXJJbXBsLmphdmEjTDM1MC1MMzYy">here<i class="fa fa-external-link-alt"></i></span>. In short, better to avoid this issue by only having one private key per keystore.</li>
+<li>Certificate used for mTLS authentication: Ideally, a certificate should have <code>clientAuth</code> in its extended usage section to be used for mTLS (though this may not always be an issue).</li>
+<li>If you encounter bad_certificate error, this is likely you are using a certificate that requires MD5 or SHA-1 as signature algorithm.</li>
+<li>If you encounter password error when accessing the keystore, it could be you give the wrong keystore password, or it could also be your private key has a different password from the keystore password which is not supported by Java.</li>
+</ul>
+<hr>
+<h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><p><span class="exturl" data-url="aHR0cHM6Ly9kYXRhdHJhY2tlci5pZXRmLm9yZy9kb2MvaHRtbC9yZmM4NDQ2">https://datatracker.ietf.org/doc/html/rfc8446<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLm9yYWNsZS5jb20vamF2YXNlLzgvZG9jcy9hcGkvamF2YS9zZWN1cml0eS9LZXlTdG9yZS5odG1s">https://docs.oracle.com/javase/8/docs/api/java/security/KeyStore.html<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLnJlZGhhdC5jb20vZW4vZG9jdW1lbnRhdGlvbi9yZWRfaGF0X2FtcS82LjMvaHRtbC9zZWN1cml0eV9ndWlkZS9zc2wtamF2YWtleXN0b3Jlcw==">https://docs.redhat.com/en/documentation/red_hat_amq/6.3/html/security_guide/ssl-javakeystores<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLnNwcmluZy5pby9zcHJpbmctYm9vdC9yZWZlcmVuY2UvZmVhdHVyZXMvc3NsLmh0bWwjZmVhdHVyZXMuc3Ns">https://docs.spring.io/spring-boot/reference/features/ssl.html#features.ssl<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLnJlZGhhdC5jb20vZW4vZG9jdW1lbnRhdGlvbi9yZWRfaGF0X2pib3NzX2RhdGFfdmlydHVhbGl6YXRpb24vNi4yL2h0bWwvc2VjdXJpdHlfZ3VpZGUvY3JlYXRlX2FfcHJpdmF0ZXB1YmxpY19rZXlfcGFpcl93aXRoX2tleXRvb2w=">https://docs.redhat.com/en/documentation/red_hat_jboss_data_virtualization/6.2/html/security_guide/create_a_privatepublic_key_pair_with_keytool<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9zdGFja292ZXJmbG93LmNvbS9xLzIxMDA2MTU1">https://stackoverflow.com/q/21006155<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLnJlZGhhdC5jb20vZW4vZG9jdW1lbnRhdGlvbi9yZWRfaGF0X2FtcS82LjIvaHRtbC9zZWN1cml0eV9ndWlkZS9zc2wtc3lzcHJvcHM=">https://docs.redhat.com/en/documentation/red_hat_amq/6.2/html/security_guide/ssl-sysprops<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLm9yYWNsZS5jb20vamF2YWRiLzEwLjguMy4wL2FkbWluZ3VpZGUvY2FkbWluc3NsY2xpZW50Lmh0bWw=">https://docs.oracle.com/javadb/10.8.3.0/adminguide/cadminsslclient.html<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9jb2xpbnBhaWNlLmJsb2cvMjAyMC8wNC8wNS91c2luZy1qYXZhLWRqYXZheC1uZXQtZGVidWctdG8tZXhhbWluZS1kYXRhLWZsb3dzLWluY2x1ZGluZy10bHMv">https://colinpaice.blog/2020/04/05/using-java-djavax-net-debug-to-examine-data-flows-including-tls/<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9zdGFja292ZXJmbG93LmNvbS9xdWVzdGlvbnMvMjg4OTIzOC9rZXlzdG9yZS1jaGFuZ2UtcGFzc3dvcmRz">https://stackoverflow.com/questions/2889238/keystore-change-passwords<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9zdGFja292ZXJmbG93LmNvbS9xdWVzdGlvbnMvMjUyMzk1ODcvd2hhdC1pcy10aGUtc2lnbmlmaWNhbmNlLW9mLWtleS1wYXNzd29yZC1pbi1rZXlzdG9yZS11c2luZy1rZXl0b29s">https://stackoverflow.com/questions/25239587/what-is-the-significance-of-key-password-in-keystore-using-keytool<i class="fa fa-external-link-alt"></i></span></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>Post author:  </strong>Kevin Jiang
+  </li>
+  <li class="post-copyright-link">
+      <strong>Post link: </strong>
+      <a href="https://jiangsc.me/2025/12/17/tls-certs-and-java/" title="Notes on mTLS and Java">https://jiangsc.me/2025/12/17/tls-certs-and-java/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</span> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+          <div class="followme">
+  <span>Welcome to my other publishing channels</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/TLS/" rel="tag"># TLS</a>
+              <a href="/tags/tls/" rel="tag"># tls</a>
+              <a href="/tags/mTLS/" rel="tag"># mTLS</a>
+              <a href="/tags/Java/" rel="tag"># Java</a>
+              <a href="/tags/keystore/" rel="tag"># keystore</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/06/20/arch-linux-on-rock-4c-plus/" rel="prev" title="Notes on Installing Arch Linux on Rock 4C+">
+                  <i class="fa fa-angle-left"></i> Notes on Installing Arch Linux on Rock 4C+
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2017 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Kevin Jiang</span>
+  </div>
+  <div class="powered-by">Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL0tldmluU0o=" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+<script src="https://unpkg.com/live2d-widget@^3.1.3/lib/L2Dwidget.min.js"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false}});</script></body>
+</html>

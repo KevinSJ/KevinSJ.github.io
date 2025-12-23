@@ -153,13 +153,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-count">51</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">123</span>
+        <span class="site-state-item-count">127</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -194,6 +194,91 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://jiangsc.me/2023/10/08/arch-linux-on-rpi3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Kevin Jiang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
+      <meta itemprop="description" content="A blog about all things tech.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | Kevin Jiang's Technical Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/10/08/arch-linux-on-rpi3/" class="post-title-link" itemprop="url">Lessons Learnt on Breaking and Reinstalling Arch Linux on Raspberry Pi</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 10-08-2023 17:59:16" itemprop="dateCreated datePublished" datetime="2023-10-08T17:59:16+13:00">10-08-2023</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="firestore-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>I&#39;m a big fan of Arch Linux for its simplicity, and ease to use. However, sometimes it can be the source of headache. This week, I upgraded the Arch Linux on my Raspberry Pi 3 with latest packages with the following command <code>yay -Syu --noconfirm</code> (WARNING: you shouldn&#39;t be doing this). When I finished upgrade, my Raspberry Pi 3 stopped working. And I had to spend quite a lot of time getting things back to normal.</p>
+<h2 id="Initial-Investigation-and-Thoughts"><a href="#Initial-Investigation-and-Thoughts" class="headerlink" title="Initial Investigation and Thoughts"></a>Initial Investigation and Thoughts</h2><p>Since I don&#39;t have any clue on what happened at all. I first tried whether SSH still works... And I got can&#39;t find zsh. That is indeed a bad sign, I can&#39;t do anything 😞. Next thing I did was reboot. And things got even worse -- I can&#39;t even SSH now, refused to connect at port 22 😢.</p>
+<p>At this point, I had no choice but to connect the Pi to an external monitor. It didn&#39;t help. While I could see the bootloader start screen, the kernel seems broken, so machine did not start.</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/10/08/arch-linux-on-rpi3/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -538,92 +623,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://jiangsc.me/2023/05/07/Tips-for-Setting-Up-Linux-on-AMD-based-Thinkpad/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Kevin Jiang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
-      <meta itemprop="description" content="A blog about all things tech.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | Kevin Jiang's Technical Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/05/07/Tips-for-Setting-Up-Linux-on-AMD-based-Thinkpad/" class="post-title-link" itemprop="url">Tips for Setting Up Linux on AMD based Thinkpad</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 05-07-2023 22:01:51" itemprop="dateCreated datePublished" datetime="2023-05-07T22:01:51+12:00">05-07-2023</time>
-    </span>
-
-  
-    <span class="post-meta-item" title="Views">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">Views: </span>
-      <span class="firestore-visitors-count"></span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Recently, I bought a new laptop, it is a <span class="exturl" data-url="aHR0cHM6Ly93d3cubm90ZWJvb2tjaGVjay5uZXQvVGhpbmtQYWQtTmVvLTE0LUxlbm92by1sYXVuY2hlcy1uZXctQ2hpbmEtZXhjbHVzaXZlLTE0LWluY2gtVGhpbmtQYWQuNjE2Njc5LjAuaHRtbA==">Lenovo Thinkpad Neo14<i class="fa fa-external-link-alt"></i></span>. This is an exclusive model for the Chinese market. I was quite happy with the build quality and the look of it, only thing I dislike is it came pre-installed with Windows 11 which bundled many different kind of useless software.</p>
-<p>To me, on the second day of getting the laptop, I start installing Linux on it. More specifically, I installed Arch Linux.</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/05/07/Tips-for-Setting-Up-Linux-on-AMD-based-Thinkpad/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="Previous page" aria-label="Previous page" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" title="Next page" aria-label="Next page" href="/page/5/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" title="Previous page" aria-label="Previous page" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" title="Next page" aria-label="Next page" href="/page/5/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>

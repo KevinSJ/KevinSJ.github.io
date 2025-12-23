@@ -28,7 +28,7 @@
 <meta property="og:description" content="TL;DR  As a general rule (and as documented by Apple), developers should avoid setting a fixed date format, if the date is user-visible. When working with fixed format date, developer should be settin">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-07-20T00:58:50.000Z">
-<meta property="article:modified_time" content="2025-12-23T03:10:07.425Z">
+<meta property="article:modified_time" content="2025-12-23T04:52:14.590Z">
 <meta property="article:author" content="Kevin Jiang">
 <meta property="article:tag" content="Cookie">
 <meta property="article:tag" content="Date Formatter">
@@ -158,13 +158,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-count">51</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">123</span>
+        <span class="site-state-item-count">127</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -288,7 +288,7 @@ Web App-&gt;&gt;webview: Go to xxxx.
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> dateFormatter <span class="operator">=</span> <span class="type">DateFormatter</span>()</span><br><span class="line">dateFormatter.dateFormat <span class="operator">=</span> <span class="string">&quot;E, dd MMM yyyy HH:mm:ss Z&quot;</span></span><br><span class="line"><span class="keyword">let</span> cookieExpireDate <span class="operator">=</span> dateFormatter.date(from: setup.cookieExpires) <span class="operator">??</span> <span class="type">Date</span>(timeIntervalSinceNow: <span class="number">1</span>)</span><br><span class="line"><span class="keyword">let</span> httpCookieProperties: [<span class="type">HTTPCookiePropertyKey</span> : <span class="keyword">Any</span>] <span class="operator">=</span> [</span><br><span class="line">    .domain: urlComponents.host <span class="operator">??</span> <span class="string">&quot;&quot;</span>,</span><br><span class="line">    .path: urlComponents.path,</span><br><span class="line">    .name: setup.cookieName,</span><br><span class="line">    .value: accessToken,</span><br><span class="line">    .secure: urlComponents.scheme <span class="operator">??</span> <span class="string">&quot;&quot;</span>,</span><br><span class="line">    .expires: cookieExpireDate</span><br><span class="line">]</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> cookie <span class="operator">=</span> <span class="type">HTTPCookie</span>(properties: httpCookieProperties) &#123;</span><br><span class="line">    webView.configuration.websiteDataStore.httpCookieStore.setCookie(cookie) &#123;</span><br></pre></td></tr></table></figure>
 <p>To people who are not familiar with Swift, this may not mean anything. However, it&#39;s not difficult to guess what this part of the code is doing. It first setup a formatter, and then use that formatter to create an expiry date (from the date it gets from the Backend) as the cookie. And then the cookie was given to the webview to set to the cookieStore.</p>
 <p>What could go wrong here? My first instinct is where the cookieExpireDate is set. The fallback is set to 1 second, that is definitely too short, but that may not be the issue.</p>
-<p>I subsequently looked up the dateFormatter online, among the documentation provide by Apple[^1], there&#39;s a link to a technical FAQ[^2]. This was the key to finding the root cause. I will quote part of the FAQ document here:</p>
+<p>I subsequently looked up the dateFormatter online, among the documentation provide by Apple<sup><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYXBwbGUuY29tL2RvY3VtZW50YXRpb24vZm91bmRhdGlvbi9kYXRlZm9ybWF0dGVyIzI1MjgyNjE=">1<i class="fa fa-external-link-alt"></i></span></sup>, there&#39;s a link to a technical FAQ<sup><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYXBwbGUuY29tL2xpYnJhcnkvYXJjaGl2ZS9xYS9xYTE0ODAvX2luZGV4Lmh0bWw=">2<i class="fa fa-external-link-alt"></i></span></sup>. This was the key to finding the root cause. I will quote part of the FAQ document here:</p>
 <blockquote>
 <p>[...]<br>Q:  I&#39;m using NSDateFormatter to parse an Internet-style date, but this fails for some users in some regions. I&#39;ve set a specific date format string; shouldn&#39;t that force NSDateFormatter to work independently of the user&#39;s region settings?<br>A: No. While setting a date format string will appear to work for most users, it&#39;s not the right solution to this problem. There are many places where format strings behave in unexpected ways. For example:<br>A user can change their calendar (using System Preferences &gt; Language &amp; Region &gt; Calendar on OS X, or Settings &gt; General &gt; International &gt; Calendar on iOS). In that case NSDateFormatter will treat the numbers in the string you parse as if they were in the user&#39;s chosen calendar. For example, if the user selects the Buddhist calendar, parsing the year &quot;2010&quot; will yield an NSDate in 1467, because the year 2010 on the Buddhist calendar was the year 1467 on the (Gregorian) calendar that we use day-to-day.<br>[...]<br>On the other hand, if you&#39;re working with fixed-format dates, you should first set the locale of the date formatter to something appropriate for your fixed format. In most cases the best locale to choose is &quot;en_US_POSIX&quot;, a locale that&#39;s specifically designed to yield US English results regardless of both user and system preferences. &quot;en_US_POSIX&quot; is also invariant in time (if the US, at some point in the future, changes the way it formats dates, &quot;en_US&quot; will change to reflect the new behaviour, but &quot;en_US_POSIX&quot; will not), and between machines (&quot;en_US_POSIX&quot; works the same on iOS as it does on OS X, and as it it does on other platforms).</p>
 </blockquote>
@@ -307,7 +307,7 @@ Web App-&gt;&gt;webview: Go to xxxx.
 </li>
 </ul>
 <hr>
-<h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYXBwbGUuY29tL2RvY3VtZW50YXRpb24vZm91bmRhdGlvbi9kYXRlZm9ybWF0dGVyIzI1MjgyNjE=">https://developer.apple.com/documentation/foundation/dateformatter#2528261<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYXBwbGUuY29tL2xpYnJhcnkvYXJjaGl2ZS9xYS9xYTE0ODAvX2luZGV4Lmh0bWw=">https://developer.apple.com/library/archive/qa/qa1480/_index.html<i class="fa fa-external-link-alt"></i></span><br>[^1]:<span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYXBwbGUuY29tL2RvY3VtZW50YXRpb24vZm91bmRhdGlvbi9kYXRlZm9ybWF0dGVyIzI1MjgyNjE=">https://developer.apple.com/documentation/foundation/dateformatter#2528261<i class="fa fa-external-link-alt"></i></span><br>[^2]:<span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYXBwbGUuY29tL2xpYnJhcnkvYXJjaGl2ZS9xYS9xYTE0ODAvX2luZGV4Lmh0bWw=">https://developer.apple.com/library/archive/qa/qa1480/_index.html<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYXBwbGUuY29tL2RvY3VtZW50YXRpb24vZm91bmRhdGlvbi9kYXRlZm9ybWF0dGVyIzI1MjgyNjE=">https://developer.apple.com/documentation/foundation/dateformatter#2528261<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYXBwbGUuY29tL2xpYnJhcnkvYXJjaGl2ZS9xYS9xYTE0ODAvX2luZGV4Lmh0bWw=">https://developer.apple.com/library/archive/qa/qa1480/_index.html<i class="fa fa-external-link-alt"></i></span></p>
 
     </div>
 
