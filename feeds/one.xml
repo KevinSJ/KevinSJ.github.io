@@ -7,14 +7,9 @@
     <description>Podcast from One 一个</description>
     <language>zh-cn</language>
     <item>
-      <title>错了，就另起一行马晓橙</title>
-      <enclosure url="http://music.wufazhuce.com/lpjqan9qPtxsBkv74b7S8qK2SGr8" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/Fv0wcIuX4uceSxAXef2Xkin1AaTb?imageView2/1/w/475/h/304/q/95</itunes:image>
-    </item>
-    <item>
-      <title>虎山公园-朗读者-闯先生</title>
-      <enclosure url="http://music.wufazhuce.com/lrc-z0nG160f6apZr5Mklleh8LF9" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FoVOpzZEAkUPYcF35rln0k5s0Fx4</itunes:image>
+      <title>老派新年计划之必要李荟莹</title>
+      <enclosure url="http://music.wufazhuce.com/luowM-yinL6s2z19_ceS-FMqV05K" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FtMjzE-cBxE1nowVnSwrH3AAiRSW?imageView2/1/w/475/h/304/q/95</itunes:image>
     </item>
   </channel>
 </rss>
