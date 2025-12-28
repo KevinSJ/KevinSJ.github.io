@@ -7,14 +7,19 @@
     <description>Podcast from One 一个</description>
     <language>zh-cn</language>
     <item>
-      <title>到底聊点啥｜2025年终总结马晓橙、李荟莹</title>
-      <enclosure url="http://music.wufazhuce.com/lrDULkH1krl2ko4A2FJEtItDF0bP" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FmlJ8b5oMyU9_1w5nxw2-JgbPw8S?imageView2/1/w/475/h/304/q/95</itunes:image>
+      <title>出走-朗读者-马晓橙</title>
+      <enclosure url="http://music.wufazhuce.com/lpx7HxYpmCkGcDZqk1Tzy8Tt2TIx" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/Fvbo61Az2SzNUn3ur2g6k5uFBdWp</itunes:image>
     </item>
     <item>
-      <title>失物-朗读者-三笙</title>
-      <enclosure url="http://music.wufazhuce.com/lmVPZaERAdT0eZiNCzCmFRUiFkVa" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FjC1MO6VVyLmYJZIOebAjXwIPcSk</itunes:image>
+      <title>薛定谔在隔壁-朗读者-闯先生</title>
+      <enclosure url="http://music.wufazhuce.com/lqo7ICNbWzWwkh2tAU2cY7ElKIO1" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/Frplp305rUNYUQJQrZFjNT-uCbE_</itunes:image>
+    </item>
+    <item>
+      <title>好梦头盔-朗读者-大卫</title>
+      <enclosure url="http://music.wufazhuce.com/liv2ShQvvfNPiHeI16kPVPaDbWlu" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FuGVlt7mOBs1ivIx6Y5ysQlJCWKS</itunes:image>
     </item>
   </channel>
 </rss>
