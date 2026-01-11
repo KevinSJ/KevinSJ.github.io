@@ -7,14 +7,24 @@
     <description>Podcast from One 一个</description>
     <language>zh-cn</language>
     <item>
-      <title>到底聊点啥｜关于生活的35个问题马晓橙、李荟莹</title>
-      <enclosure url="http://music.wufazhuce.com/lgpa1KsQuPoHzN4rWD2hcad6g01Z" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/Fh8CZRt5khRFzrF81aw_oQkYlt9R?imageView2/1/w/475/h/304/q/95</itunes:image>
+      <title>心迹-大卫</title>
+      <enclosure url="http://music.wufazhuce.com/lrKxEWO1PWv3fc2lCrggPa_SC7I8" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/Fh3rNpKXU54MGxAMtdlUK3R4HDfz</itunes:image>
     </item>
     <item>
-      <title>表哥要去少林寺-朗读者-李荟莹</title>
-      <enclosure url="http://music.wufazhuce.com/liYzoU4ZLwTkUO5EHnB5kjML2kmA" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/Fnng9Xz4j202onHaNdWnNU0r0BGn</itunes:image>
+      <title>脂肪苦难-朗读者—大卫</title>
+      <enclosure url="http://music.wufazhuce.com/luP_n7z0HYsSJIIG970_3c2ACcuJ" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FsCnayVTOA5_rpkG46hiLVpj-ET3</itunes:image>
+    </item>
+    <item>
+      <title>请不要在25岁死去-朗读者-李荟莹</title>
+      <enclosure url="http://music.wufazhuce.com/lkJk6QlSqXPJs4nbuoLCN6d0nwWo" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/Fq2tGrHnNcZa8g3xIlp1_7rLOTgF</itunes:image>
+    </item>
+    <item>
+      <title>失耳-朗读者：闯先生</title>
+      <enclosure url="http://music.wufazhuce.com/lnQwQkpN5PN4AwdIAQ4xR46fsoWZ" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FokppWKqS6MS1noqqlWTLorTs2gS</itunes:image>
     </item>
   </channel>
 </rss>
