@@ -7,24 +7,14 @@
     <description>Podcast from One 一个</description>
     <language>zh-cn</language>
     <item>
-      <title>心迹-大卫</title>
-      <enclosure url="http://music.wufazhuce.com/lrKxEWO1PWv3fc2lCrggPa_SC7I8" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/Fh3rNpKXU54MGxAMtdlUK3R4HDfz</itunes:image>
+      <title>原来，这样也没关系李荟莹</title>
+      <enclosure url="http://music.wufazhuce.com/lqrKbVC_Zuj0X-j-mlB7Mk7sFUn9" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FhmAoukmGabD0fjKl7-eE3WpFPEc?imageView2/1/w/475/h/304/q/95</itunes:image>
     </item>
     <item>
-      <title>脂肪苦难-朗读者—大卫</title>
-      <enclosure url="http://music.wufazhuce.com/luP_n7z0HYsSJIIG970_3c2ACcuJ" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FsCnayVTOA5_rpkG46hiLVpj-ET3</itunes:image>
-    </item>
-    <item>
-      <title>请不要在25岁死去-朗读者-李荟莹</title>
-      <enclosure url="http://music.wufazhuce.com/lkJk6QlSqXPJs4nbuoLCN6d0nwWo" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/Fq2tGrHnNcZa8g3xIlp1_7rLOTgF</itunes:image>
-    </item>
-    <item>
-      <title>失耳-朗读者：闯先生</title>
-      <enclosure url="http://music.wufazhuce.com/lnQwQkpN5PN4AwdIAQ4xR46fsoWZ" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FokppWKqS6MS1noqqlWTLorTs2gS</itunes:image>
+      <title>一颗橘子味的橘子-朗读者-李荟莹</title>
+      <enclosure url="http://music.wufazhuce.com/ljQwYokxvTvUEpClGCEOYUV3toAe" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FvxbHK_iHqXGzhlbzUaP1TW4tdP7</itunes:image>
     </item>
   </channel>
 </rss>
