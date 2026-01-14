@@ -7,14 +7,14 @@
     <description>Podcast from One 一个</description>
     <language>zh-cn</language>
     <item>
-      <title>当配乐停下，命运开始说话马晓橙</title>
-      <enclosure url="http://music.wufazhuce.com/lr8tQGY1FH943VF9KAEq1ji8TZ1_" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/Frz2hQCdF30zCD8ea2nF2wvmQlF8?imageView2/1/w/475/h/304/q/95</itunes:image>
+      <title>再听一遍年度歌单（上）李荟莹</title>
+      <enclosure url="http://music.wufazhuce.com/lgmWG6VKyY8j41-PwB1XQnzRDGMP" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/Fj0Ghdhnz-qam1-rizFG5Vcp5xle?imageView2/1/w/475/h/304/q/95</itunes:image>
     </item>
     <item>
-      <title>燃烧的甲马-朗读者-大卫</title>
-      <enclosure url="http://music.wufazhuce.com/lnoobARRV6tvomsisxzdbw7quK4I" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/Fg_itUkpvPVDqTGThNYSeols773U</itunes:image>
+      <title>不方便的真相-朗读者-李荟莹</title>
+      <enclosure url="http://music.wufazhuce.com/lsM3XxGzD8SlyyOofqNH0KpThbiN" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/Fu_Tsr8dX16rrHAmtN0xeAC2jEip</itunes:image>
     </item>
   </channel>
 </rss>
