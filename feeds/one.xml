@@ -7,14 +7,14 @@
     <description>Podcast from One 一个</description>
     <language>zh-cn</language>
     <item>
-      <title>再听一遍年度歌单（上）李荟莹</title>
-      <enclosure url="http://music.wufazhuce.com/lgmWG6VKyY8j41-PwB1XQnzRDGMP" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/Fj0Ghdhnz-qam1-rizFG5Vcp5xle?imageView2/1/w/475/h/304/q/95</itunes:image>
+      <title>所有人都该坚定不移地相信自己马晓橙</title>
+      <enclosure url="http://music.wufazhuce.com/lgiXzn-4b4VWM1RtaohN-_TMtcJt" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FpEK8ztyXq8y_C9VmaOtSwQo4Z6v?imageView2/1/w/475/h/304/q/95</itunes:image>
     </item>
     <item>
-      <title>不方便的真相-朗读者-李荟莹</title>
-      <enclosure url="http://music.wufazhuce.com/lsM3XxGzD8SlyyOofqNH0KpThbiN" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/Fu_Tsr8dX16rrHAmtN0xeAC2jEip</itunes:image>
+      <title>另一种生命和时间-朗读者-大卫</title>
+      <enclosure url="http://music.wufazhuce.com/llO3Qxyvy7cruhQgVxYLPSCgnb4r" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FoKniUVHuPNoVJnNPdJdyDPBDhfH</itunes:image>
     </item>
   </channel>
 </rss>
