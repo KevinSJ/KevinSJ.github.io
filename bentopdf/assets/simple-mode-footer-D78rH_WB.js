@@ -1,1 +1,0 @@
-import"./version-Dw8ZKLCV.js";import"./main-Da82M_MD.js";function e(){localStorage.getItem("fullWidthMode")!=="false"&&o()}function o(t){document.querySelectorAll("#tool-uploader").forEach(l=>{l.classList.remove("max-w-2xl","max-w-4xl","max-w-5xl")})}typeof document<"u"&&(document.readyState==="loading"?document.addEventListener("DOMContentLoaded",e):e());
