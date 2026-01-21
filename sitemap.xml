@@ -164,7 +164,7 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/2025/05/11/linux-user-notes-4/</loc>
+    <loc>https://jiangsc.me/2024/05/05/linux-user-notes-3/</loc>
     
     <lastmod>2026-01-21</lastmod>
     
@@ -173,7 +173,7 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/2024/05/05/linux-user-notes-3/</loc>
+    <loc>https://jiangsc.me/2025/05/11/linux-user-notes-4/</loc>
     
     <lastmod>2026-01-21</lastmod>
     
@@ -191,15 +191,6 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/2025/02/08/mobile-dev-cli-tips-2/</loc>
-    
-    <lastmod>2026-01-21</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://jiangsc.me/2023/02/11/mobile-dev-cli-tips-1/</loc>
     
     <lastmod>2026-01-21</lastmod>
@@ -209,7 +200,7 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/2022/05/21/neovim-tricks-1/</loc>
+    <loc>https://jiangsc.me/2025/02/08/mobile-dev-cli-tips-2/</loc>
     
     <lastmod>2026-01-21</lastmod>
     
@@ -218,7 +209,7 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/2023/12/27/neovim-tricks-3/</loc>
+    <loc>https://jiangsc.me/2022/05/21/neovim-tricks-1/</loc>
     
     <lastmod>2026-01-21</lastmod>
     
@@ -245,7 +236,7 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/2020/11/15/practice-with-vim-I/</loc>
+    <loc>https://jiangsc.me/2023/12/27/neovim-tricks-3/</loc>
     
     <lastmod>2026-01-21</lastmod>
     
@@ -263,7 +254,7 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/2019/05/28/Converting-QEMU-VM-to-VirtualBox-VM/</loc>
+    <loc>https://jiangsc.me/2020/11/15/practice-with-vim-I/</loc>
     
     <lastmod>2026-01-21</lastmod>
     
@@ -273,6 +264,15 @@
   
   <url>
     <loc>https://jiangsc.me/2023/07/14/Easy-Self-Hosting-with-Traefik-Proxy/</loc>
+    
+    <lastmod>2026-01-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/2021/12/02/Fixing-issue-on-Xorg-and-VNC/</loc>
     
     <lastmod>2026-01-21</lastmod>
     
@@ -291,15 +291,6 @@
   
   <url>
     <loc>https://jiangsc.me/2021/06/30/IELTS-exam-and-experience/</loc>
-    
-    <lastmod>2026-01-21</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/2021/12/02/Fixing-issue-on-Xorg-and-VNC/</loc>
     
     <lastmod>2026-01-21</lastmod>
     
@@ -389,7 +380,7 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/2025/06/20/arch-linux-on-rock-4c-plus/</loc>
+    <loc>https://jiangsc.me/2023/10/08/arch-linux-on-rpi3/</loc>
     
     <lastmod>2026-01-21</lastmod>
     
@@ -398,7 +389,7 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/2023/10/08/arch-linux-on-rpi3/</loc>
+    <loc>https://jiangsc.me/2025/06/20/arch-linux-on-rock-4c-plus/</loc>
     
     <lastmod>2026-01-21</lastmod>
     
@@ -452,6 +443,15 @@
   </url>
   
   <url>
+    <loc>https://jiangsc.me/2019/05/28/Converting-QEMU-VM-to-VirtualBox-VM/</loc>
+    
+    <lastmod>2026-01-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://jiangsc.me/2017/06/11/06112017-Fun-With-GPG/</loc>
     
     <lastmod>2026-01-21</lastmod>
@@ -497,7 +497,7 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/2020/12/26/Automating-Zoom-with-Alfred-and-Apple-Scripts/</loc>
+    <loc>https://jiangsc.me/2019/10/12/Automating-Android-data-saver-with-tasker/</loc>
     
     <lastmod>2026-01-21</lastmod>
     
@@ -506,7 +506,7 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/2019/10/12/Automating-Android-data-saver-with-tasker/</loc>
+    <loc>https://jiangsc.me/2020/12/26/Automating-Zoom-with-Alfred-and-Apple-Scripts/</loc>
     
     <lastmod>2026-01-21</lastmod>
     
@@ -608,6 +608,20 @@
   </url>
   
   <url>
+    <loc>https://jiangsc.me/tags/Tasker/</loc>
+    <lastmod>2026-01-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/tags/Data-Saver/</loc>
+    <lastmod>2026-01-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://jiangsc.me/tags/Zoom/</loc>
     <lastmod>2026-01-21</lastmod>
     <changefreq>weekly</changefreq>
@@ -623,20 +637,6 @@
   
   <url>
     <loc>https://jiangsc.me/tags/OS-X/</loc>
-    <lastmod>2026-01-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/tags/Tasker/</loc>
-    <lastmod>2026-01-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/tags/Data-Saver/</loc>
     <lastmod>2026-01-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -741,6 +741,27 @@
   </url>
   
   <url>
+    <loc>https://jiangsc.me/tags/Arch-Linux/</loc>
+    <lastmod>2026-01-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/tags/Xorg/</loc>
+    <lastmod>2026-01-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/tags/TigerVNC/</loc>
+    <lastmod>2026-01-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://jiangsc.me/tags/GO/</loc>
     <lastmod>2026-01-21</lastmod>
     <changefreq>weekly</changefreq>
@@ -791,27 +812,6 @@
   
   <url>
     <loc>https://jiangsc.me/tags/Preparation/</loc>
-    <lastmod>2026-01-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/tags/Arch-Linux/</loc>
-    <lastmod>2026-01-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/tags/Xorg/</loc>
-    <lastmod>2026-01-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/tags/TigerVNC/</loc>
     <lastmod>2026-01-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1021,20 +1021,6 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/tags/Single-Board-Computer/</loc>
-    <lastmod>2026-01-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/tags/Rock-4C/</loc>
-    <lastmod>2026-01-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://jiangsc.me/tags/Raspberry-Pi/</loc>
     <lastmod>2026-01-21</lastmod>
     <changefreq>weekly</changefreq>
@@ -1043,6 +1029,20 @@
   
   <url>
     <loc>https://jiangsc.me/tags/Raspberry-Pi-3/</loc>
+    <lastmod>2026-01-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/tags/Single-Board-Computer/</loc>
+    <lastmod>2026-01-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/tags/Rock-4C/</loc>
     <lastmod>2026-01-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1189,6 +1189,13 @@
   </url>
   
   <url>
+    <loc>https://jiangsc.me/tags/Latex/</loc>
+    <lastmod>2026-01-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://jiangsc.me/tags/dmenu/</loc>
     <lastmod>2026-01-21</lastmod>
     <changefreq>weekly</changefreq>
@@ -1197,13 +1204,6 @@
   
   <url>
     <loc>https://jiangsc.me/tags/desktop-entry/</loc>
-    <lastmod>2026-01-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/tags/Latex/</loc>
     <lastmod>2026-01-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1273,14 +1273,14 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/tags/Practice/</loc>
+    <loc>https://jiangsc.me/tags/Pitfalls/</loc>
     <lastmod>2026-01-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://jiangsc.me/tags/Pitfalls/</loc>
+    <loc>https://jiangsc.me/tags/Practice/</loc>
     <lastmod>2026-01-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
