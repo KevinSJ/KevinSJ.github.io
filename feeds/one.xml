@@ -7,14 +7,14 @@
     <description>Podcast from One 一个</description>
     <language>zh-cn</language>
     <item>
-      <title>爱过马晓橙</title>
-      <enclosure url="http://music.wufazhuce.com/loVG9dE19jGUy0aX_91O2jWn_40h" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/Fkw61UkqAzmJ1zl6-n-6ng8bI6UP?imageView2/1/w/475/h/304/q/95</itunes:image>
+      <title>失去声音后的第七天李荟莹</title>
+      <enclosure url="http://music.wufazhuce.com/lsw8kk_bVp-QOP4LWfY8zX7YpxY6" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FszIKrSoz6RELbK2Mf8nwLNKl9vH?imageView2/1/w/475/h/304/q/95</itunes:image>
     </item>
     <item>
-      <title>遗失的钥匙-朗读者-闯先生</title>
-      <enclosure url="http://music.wufazhuce.com/ljpF-Ig7_W942_kEBytN5lRss1gK" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FpGZ8xe5O0KBgzz6uKiD6EWk2qgt</itunes:image>
+      <title>水鬼摸哨-朗读者-马晓橙</title>
+      <enclosure url="http://music.wufazhuce.com/liX-8rFLz5nfUDzlMgeb18bGzixd" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/Fpfo98GgMCHhk_zTi96Jjybq4FvC</itunes:image>
     </item>
   </channel>
 </rss>
