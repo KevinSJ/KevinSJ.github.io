@@ -153,13 +153,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-count">52</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">127</span>
+        <span class="site-state-item-count">131</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -194,6 +194,91 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://jiangsc.me/2023/01/30/GO-Split-long-text-by-byte-count/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Kevin Jiang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
+      <meta itemprop="description" content="A blog about all things tech.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | Kevin Jiang's Technical Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/01/30/GO-Split-long-text-by-byte-count/" class="post-title-link" itemprop="url">Go: Split Long Text By Byte Count</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 01-30-2023 13:04:19" itemprop="dateCreated datePublished" datetime="2023-01-30T13:04:19+13:00">01-30-2023</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="firestore-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="Motivation-Need-to-split-text"><a href="#Motivation-Need-to-split-text" class="headerlink" title="Motivation: Need to split text"></a>Motivation: Need to split text</h3><p>I&#39;m not a professional GO developer, but I do like GO, I have taught myself some Go by contributing to open source projects, and since then GO has become my language of choice for personal projects.</p>
+<p>Recently, I have encountered an interesting problem when working on one of my personal projects. For this project, I need to split a long text by <strong>byte</strong> count. The eventual result is an array of strings in which each of element is <strong>less or equal</strong> to the byte size that&#39;s passed in.</p>
+<h3 id="Naive-Wrong-approach-Split-by-number-of-characters"><a href="#Naive-Wrong-approach-Split-by-number-of-characters" class="headerlink" title="Naive&#x2F;Wrong approach: Split by number of characters"></a>Naive&#x2F;Wrong approach: Split by number of characters</h3>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/01/30/GO-Split-long-text-by-byte-count/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -522,92 +607,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2022/07/22/linux-user-notes-1/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://jiangsc.me/2022/05/21/neovim-tricks-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Kevin Jiang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
-      <meta itemprop="description" content="A blog about all things tech.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | Kevin Jiang's Technical Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/05/21/neovim-tricks-1/" class="post-title-link" itemprop="url">Tips for using NeoVim as devtool - 1</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 05-21-2022 15:14:02" itemprop="dateCreated datePublished" datetime="2022-05-21T15:14:02+12:00">05-21-2022</time>
-    </span>
-
-  
-    <span class="post-meta-item" title="Views">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">Views: </span>
-      <span class="firestore-visitors-count"></span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>As a developer, one of the most important things is to find the right tool to write code with. To me, that means this tool needs to be lightweight, portable, and most importantly reliable.</p>
-<h3 id="Why-VSCode-is-not-for-me"><a href="#Why-VSCode-is-not-for-me" class="headerlink" title="Why VSCode is not for me"></a>Why VSCode is not for me</h3><p>VSCode, aka Visual Studio Code, is a code editor developed by Microsoft. It is based on top of the Atom editor that was previously developed by GitHub. As a full stack developer whose main language is JavaScript&#x2F;TypeScript, I was told to use VSCode when I joined the company. However, as a long-time vim user, I still use the vim mappings when I am using VSCode. This is all done through plugin&#x2F;extensions. This seems to be okay at first, but over time, I really find VSCode annoying to use and I simply can&#39;t tolerate it.</p>
-<p>The first thing is that contrary to most popular belief, VSCode is <strong>NOT</strong> an open source product. Yes, part of the source of VSCode <strong>is</strong> open-sourced, but the VSCode you downloaded from Microsoft website is not. They have put some proprietary stuff into the end product and I&#39;m not a big fan of that. There are ways to get around this, namely, there are several truly open source edition of VSCode, the one I used to use is called VSCodium, but then you will lose access to the extensions market provided by Microsoft.</p>
-<p>Another thing that annoys me is that VSCode or any product that based on VSCode is just too slow and resource intensive -- they are just an electron app running on another Chromium based browser. Having one Chrome is enough for me, so thank you Microsoft (I tried to avoid electron based apps as much as possible, for example, I use web version of Teams, rather than the app one)</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/05/21/neovim-tricks-1/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
