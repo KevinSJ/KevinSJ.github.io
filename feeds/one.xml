@@ -7,9 +7,14 @@
     <description>Podcast from One 一个</description>
     <language>zh-cn</language>
     <item>
-      <title>所有人都该有所保留马晓橙</title>
-      <enclosure url="http://music.wufazhuce.com/lrqW520TzKMOuhBPzijoFTzywP1E" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FgHp-4oCzvMIJDeivFr_VyN7HpQO?imageView2/1/w/475/h/304/q/95</itunes:image>
+      <title>如果你也听过这些歌李荟莹</title>
+      <enclosure url="http://music.wufazhuce.com/lrSCdY7vrzuPI4TdpaG-xXOrWK-g" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FgdGqYw0QPfPjWb73xiz_h6BhwXo?imageView2/1/w/475/h/304/q/95</itunes:image>
+    </item>
+    <item>
+      <title>一百美元宝贝-朗读者-闯先生</title>
+      <enclosure url="http://music.wufazhuce.com/lu4FC9Ix0fbXY6NPpf-lTNitMvPN" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FuzUlCQSG80W-2n_GzeWEitE217H</itunes:image>
     </item>
   </channel>
 </rss>
