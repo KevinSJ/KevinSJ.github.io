@@ -1,0 +1,10 @@
+import{d as h,a0 as x,r as N,i as n,o as r,c as s,k as o,w as p,a as _,l as e,m as O,a7 as w,a8 as C,ad as Y,a_ as B,G as I}from"./index-0c1fde36.js";import{_ as R}from"./c-monaco-editor.vue_vue_type_script_setup_true_lang-735b1924.js";import{c as S}from"./index-5b5f25c4.js";import{_ as T}from"./TextareaCopyable-59231e95.js";import{N as V}from"./Alert-a9fb131b.js";import{_ as A}from"./Divider-5fc425b0.js";import"./editor.main-9e6d3164.js";import"./index-a6f01dde.js";import"./index-2709bfd9.js";import"./index-84e3bf78.js";import"./public-api-a830925a.js";import"./base64-ae7cf34b.js";import"./downloadBase64-508288e2.js";import"./index-6fddb70d.js";import"./index-cfd4d427.js";import"./Copy-ef9ec73c.js";import"./Scrollbar-54724e22.js";const D={relative:"","w-full":""},E={key:0},oe=h({__name:"docker-compose-to-kubernetes",setup(L){const{t:l}=x(),t=N(`version: '3.3'
+services:
+    nginx:
+        ports:
+            - '80:80'
+        volumes:
+            - '/var/run/docker.sock:/tmp/docker.sock:ro'
+        restart: always
+        image: nginx`),m=n(()=>{try{return{kubeYaml:S(t.value.trim()),errors:[]}}catch(i){return{kubeYaml:"#see error messages",errors:i.toString().split(`
+`)}}}),c=n(()=>m.value.errors),d=n(()=>m.value.kubeYaml),k={automaticLayout:!0,formatOnType:!0,formatOnPaste:!0};return(i,u)=>{const f=R,v=B,g=V,y=A;return r(),s("div",null,[o(v,{label:e(l)("tools.docker-compose-to-kubernetes.texts.label-paste-your-docker-compose-file-content")},{default:p(()=>[_("div",D,[o(f,{value:e(t),"onUpdate:value":u[0]||(u[0]=a=>O(t)?t.value=a:null),theme:"vs-dark",language:"yaml",height:"250px",options:k},null,8,["value"])])]),_:1},8,["label"]),e(c).length>0?(r(),s("div",E,[o(g,{title:e(l)("tools.docker-compose-to-kubernetes.texts.title-the-following-errors-occured"),type:"error","mt-5":""},{default:p(()=>[_("ul",null,[(r(!0),s(w,null,C(e(c),(a,b)=>(r(),s("li",{key:b},I(a),1))),128))])]),_:1},8,["title"])])):Y("",!0),o(y),o(T,{value:e(d),language:"yaml","copy-placement":"outside"},null,8,["value"])])}}});export{oe as default};
