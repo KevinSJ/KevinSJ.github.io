@@ -7,14 +7,19 @@
     <description>Podcast from One 一个</description>
     <language>zh-cn</language>
     <item>
-      <title>到底聊点啥｜没有人不需要鸡汤马晓橙、李荟莹</title>
-      <enclosure url="http://music.wufazhuce.com/lpXviiYB1H6UEpIefhDA91mdzWkY" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/Fp-coVuGA6V7ntjfZkx1V8x9lieM?imageView2/1/w/475/h/304/q/95</itunes:image>
+      <title>反方向的复兴号-朗读者-李荟莹</title>
+      <enclosure url="http://music.wufazhuce.com/ljIg1Qa_0HiMimvXVd9eym9qH7B8" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FkLUNUIJXH1X_wQjepnSCD47g9VB</itunes:image>
     </item>
     <item>
-      <title>下雨-朗读者-大卫</title>
-      <enclosure url="http://music.wufazhuce.com/lj-FyFhVXZxES_htghQx3FRl48b8" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FnkGcPA1212jKnOb9rG7z9E805Eb</itunes:image>
+      <title>小镇病人-朗读者-马晓橙</title>
+      <enclosure url="http://music.wufazhuce.com/lkBE6CZM5ay9uyGIAFRRFgsCl7AW" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/Fv2fgzlVt42wEnKQ0hx9MBiOfoLn</itunes:image>
+    </item>
+    <item>
+      <title>欢迎回家-朗读者-闯先生</title>
+      <enclosure url="http://music.wufazhuce.com/lqBWapATcasYKAZ78cmqIM6FDmhB" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FkLTRBk-PMr2iIv_IfeuSRbGLFyk</itunes:image>
     </item>
   </channel>
 </rss>
