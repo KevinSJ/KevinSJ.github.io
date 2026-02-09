@@ -7,19 +7,14 @@
     <description>Podcast from One 一个</description>
     <language>zh-cn</language>
     <item>
-      <title>反方向的复兴号-朗读者-李荟莹</title>
-      <enclosure url="http://music.wufazhuce.com/ljIg1Qa_0HiMimvXVd9eym9qH7B8" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FkLUNUIJXH1X_wQjepnSCD47g9VB</itunes:image>
+      <title>冰箱里最后一颗鸡蛋李荟莹</title>
+      <enclosure url="http://music.wufazhuce.com/lr20WW4wHnpyvmE_l7p1OLoKo4_h" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FmsC0_FmUb2Mwpv1v1lidl0gqq6-?imageView2/1/w/475/h/304/q/95</itunes:image>
     </item>
     <item>
-      <title>小镇病人-朗读者-马晓橙</title>
-      <enclosure url="http://music.wufazhuce.com/lkBE6CZM5ay9uyGIAFRRFgsCl7AW" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/Fv2fgzlVt42wEnKQ0hx9MBiOfoLn</itunes:image>
-    </item>
-    <item>
-      <title>欢迎回家-朗读者-闯先生</title>
-      <enclosure url="http://music.wufazhuce.com/lqBWapATcasYKAZ78cmqIM6FDmhB" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FkLTRBk-PMr2iIv_IfeuSRbGLFyk</itunes:image>
+      <title>婚礼龙套指南-朗读者-闯先生</title>
+      <enclosure url="http://music.wufazhuce.com/lr58HybOQZ0yP5qQgfYDszhSofZN" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FnLFBslzdvvxHPas19mXl4G8MPvy</itunes:image>
     </item>
   </channel>
 </rss>
