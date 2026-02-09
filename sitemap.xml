@@ -20,15 +20,6 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/notes/index.html</loc>
-    
-    <lastmod>2026-02-09</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://jiangsc.me/notes/notes-for-2024-10-26.html</loc>
     
     <lastmod>2026-02-09</lastmod>
@@ -39,6 +30,15 @@
   
   <url>
     <loc>https://jiangsc.me/notes/notes-for-2024-10-27.html</loc>
+    
+    <lastmod>2026-02-09</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/notes/index.html</loc>
     
     <lastmod>2026-02-09</lastmod>
     
@@ -65,15 +65,6 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/2025/12/17/tls-certs-and-java/</loc>
-    
-    <lastmod>2026-02-09</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://jiangsc.me/2017/03/12/%E5%9C%A8%E6%A0%91%E8%8E%93%E6%B4%BE%E4%B8%8A%E9%83%A8%E7%BD%B2flexget%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E8%BF%BD%E7%95%AA/</loc>
     
     <lastmod>2026-02-09</lastmod>
@@ -83,7 +74,34 @@
   </url>
   
   <url>
+    <loc>https://jiangsc.me/2025/12/17/tls-certs-and-java/</loc>
+    
+    <lastmod>2026-02-09</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://jiangsc.me/about/index.html</loc>
+    
+    <lastmod>2026-02-09</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/2025/05/11/linux-user-notes-4/</loc>
+    
+    <lastmod>2026-02-09</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/2023/10/14/macos-automation-bluetooth-disconnect/</loc>
     
     <lastmod>2026-02-09</lastmod>
     
@@ -192,6 +210,24 @@
   
   <url>
     <loc>https://jiangsc.me/2025/03/26/tales-of-the-brave-write-up/</loc>
+    
+    <lastmod>2026-02-09</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/2021/08/14/OpenType-Font-and-Font-Family/</loc>
+    
+    <lastmod>2026-02-09</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/2021/05/09/Postgres-JavaScript-and-sorting/</loc>
     
     <lastmod>2026-02-09</lastmod>
     
@@ -344,24 +380,6 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/2025/05/11/linux-user-notes-4/</loc>
-    
-    <lastmod>2026-02-09</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/2023/10/14/macos-automation-bluetooth-disconnect/</loc>
-    
-    <lastmod>2026-02-09</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://jiangsc.me/2018/06/24/Automating-things-on-Android-with-Tasker/</loc>
     
     <lastmod>2026-02-09</lastmod>
@@ -452,7 +470,7 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/2021/08/14/OpenType-Font-and-Font-Family/</loc>
+    <loc>https://jiangsc.me/2023/03/11/2023-03-11-technical-postmortem/</loc>
     
     <lastmod>2026-02-09</lastmod>
     
@@ -461,7 +479,7 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/2021/05/09/Postgres-JavaScript-and-sorting/</loc>
+    <loc>https://jiangsc.me/2024/12/18/2024-year-review/</loc>
     
     <lastmod>2026-02-09</lastmod>
     
@@ -507,24 +525,6 @@
   
   <url>
     <loc>https://jiangsc.me/2017/06/11/06112017-Fun-With-GPG/</loc>
-    
-    <lastmod>2026-02-09</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/2023/03/11/2023-03-11-technical-postmortem/</loc>
-    
-    <lastmod>2026-02-09</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/2024/12/18/2024-year-review/</loc>
     
     <lastmod>2026-02-09</lastmod>
     
@@ -1417,6 +1417,20 @@
   </url>
   
   <url>
+    <loc>https://jiangsc.me/tags/flexget/</loc>
+    <lastmod>2026-02-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/tags/raspberrypi/</loc>
+    <lastmod>2026-02-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://jiangsc.me/tags/tls/</loc>
     <lastmod>2026-02-09</lastmod>
     <changefreq>weekly</changefreq>
@@ -1439,20 +1453,6 @@
   
   <url>
     <loc>https://jiangsc.me/tags/keystore/</loc>
-    <lastmod>2026-02-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/tags/flexget/</loc>
-    <lastmod>2026-02-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/tags/raspberrypi/</loc>
     <lastmod>2026-02-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
