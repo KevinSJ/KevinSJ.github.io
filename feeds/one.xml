@@ -7,14 +7,14 @@
     <description>Podcast from One 一个</description>
     <language>zh-cn</language>
     <item>
-      <title>聊聊《奋斗》马晓橙</title>
-      <enclosure url="http://music.wufazhuce.com/lo8nl8nTUldIWeuehprLC0mIkiFs" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FqXIPs5ymNloQAFdzw8f4q42zxkA?imageView2/1/w/475/h/304/q/95</itunes:image>
+      <title>每个人都有一条购物路线李荟莹</title>
+      <enclosure url="http://music.wufazhuce.com/lp8gS4Ht6zTJ2INbX9BQfgizhdUk" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/Fs90EQs5wgdvfuSeDpZ-bJKkS0FA?imageView2/1/w/475/h/304/q/95</itunes:image>
     </item>
     <item>
-      <title>悲欢离合-朗读者-李荟莹</title>
-      <enclosure url="http://music.wufazhuce.com/lgUPWOE_k7Bqmag1wNBgfZv4wmFZ" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FmkvDME9bpn8NrpWcoqLpcpeTF-b</itunes:image>
+      <title>三角形究竟有几个-朗读者-李荟莹</title>
+      <enclosure url="http://music.wufazhuce.com/ltkGvNTJ0ar8Pbcf8GAMQjLvxIu6" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FnbLr3EKcjUzhjSgfCfb5CEE2K_R</itunes:image>
     </item>
   </channel>
 </rss>
