@@ -10,7 +10,7 @@
   <rights>All rights reserved 2026, Kevin Jiang</rights>
   <subtitle>A blog about all things tech.</subtitle>
   <title>Kevin Jiang's Technical Blog</title>
-  <updated>2026-02-15T04:00:54.659Z</updated>
+  <updated>2026-02-15T05:41:25.925Z</updated>
   <entry>
     <author>
       <name>Kevin Jiang</name>
@@ -34,7 +34,7 @@
 <p>Internet is an important tool in modern society, people use it every day to interact with each other. Censorship, as exists in other kind of medium, exist within the internet. As the internet grows and evolves over time, the internet censorship also evolves. Bambauer (2012) believed that during the early stage of censorship, which he referred to as Censorship v1.0, censorship on the internet is impossible. When the censorship was applied for the first time, which he referred to as Censorship v2.0, only a few countries applied this technology, and the content that were filtered were usually politically related. When more and more countries created their own censorship system and started to censor the internet, internet censorship evolves to become Censorship v3.0. At this stage, countries censored information regardless of their political system. The purpose is usually described as protecting citizens (p. 3). For western countries, information censored are usually related to child pornography, hate speech, and material that may violate copyright (Bambauer, 2012, p. 3). The internet censorship system in China, however, is described as something in stage 2. Bambauer (2012, p. 3) pointed out that that censorships are acceptable if citizens in these countries are notified. However, the situation is not the same in China. As one of the largest countries in the world, China has created the most sophisticated censorship system in the world. This system targets mainly at social media platforms.</p>]]>
     </summary>
     <title>Social media, Internet Censorship and Opinion Expression in China</title>
-    <updated>2026-02-15T04:00:54.659Z</updated>
+    <updated>2026-02-15T05:41:25.925Z</updated>
   </entry>
   <entry>
     <author>
@@ -57,7 +57,7 @@
 <p>The best place to understand this is through the TLS standards document. According to the TLS 1.3 standards document or rfc8446<sup><span class="exturl" data-url="aHR0cHM6Ly9kYXRhdHJhY2tlci5pZXRmLm9yZy9kb2MvaHRtbC9yZmM4NDQ2">1<i class="fa fa-external-link-alt"></i></span></sup>:</p>]]>
     </summary>
     <title>Notes on mTLS and Java</title>
-    <updated>2026-02-15T04:00:54.734Z</updated>
+    <updated>2026-02-15T05:41:26.000Z</updated>
   </entry>
   <entry>
     <author>
@@ -78,7 +78,7 @@
 <p>In this article, we will go through the process of installing ArchLinux on this Rock 4C+ single board computer.</p>]]>
     </summary>
     <title>Notes on Installing Arch Linux on Rock 4C+</title>
-    <updated>2026-02-15T04:00:54.658Z</updated>
+    <updated>2026-02-15T05:41:25.924Z</updated>
   </entry>
   <entry>
     <author>
@@ -99,7 +99,7 @@
       <![CDATA[<p>Recently, I found myself needing to run virtual machines quite often, however, with two different types of VMs managed by different hypervisors on my machine, I find it quite inefficient to click through multiple hoops in GUI just to launch a single VM. Therefore, decided to spend time to find ways to improve this workflow.</p>]]>
     </summary>
     <title>Optimizing workflow with rofi, dmenu and desktop entry</title>
-    <updated>2026-02-15T04:00:54.658Z</updated>
+    <updated>2026-02-15T05:41:25.924Z</updated>
   </entry>
   <entry>
     <author>
@@ -128,7 +128,7 @@
 </ul>]]>
     </summary>
     <title>Tales for the Brave Write-up (HTB Cyber Apocalypse CTF 2025)</title>
-    <updated>2026-02-15T04:00:54.659Z</updated>
+    <updated>2026-02-15T05:41:25.925Z</updated>
   </entry>
   <entry>
     <author>
@@ -147,7 +147,7 @@
       <![CDATA[<h2 id="Interesting-Videos-Watched"><a href="#Interesting-Videos-Watched" class="headerlink" title="Interesting Videos Watched"></a>Interest]]>
     </summary>
     <title>Week of 2025-03-09</title>
-    <updated>2026-02-15T04:00:54.659Z</updated>
+    <updated>2026-02-15T05:41:25.925Z</updated>
   </entry>
   <entry>
     <author>
@@ -155,8 +155,8 @@
     </author>
     <category term="Android" scheme="https://jiangsc.me/tags/Android/"/>
     <category term="CLI" scheme="https://jiangsc.me/tags/CLI/"/>
-    <category term="tips" scheme="https://jiangsc.me/tags/tips/"/>
     <category term="iOS" scheme="https://jiangsc.me/tags/iOS/"/>
+    <category term="tips" scheme="https://jiangsc.me/tags/tips/"/>
     <category term="Command line" scheme="https://jiangsc.me/tags/Command-line/"/>
     <category term="Moible App Development" scheme="https://jiangsc.me/tags/Moible-App-Development/"/>
     <content>
@@ -172,7 +172,7 @@
 <p>Quite often in my daily work, I need to run both the iOS simulator and Android emulator at the same time. This would normally mean I would have to have both XCode and Android Studio open and running. Though I&#39;m on a MacBook Pro with M1 Pro chip, the fact I need to open <strong>two very heavy IDEs</strong> at the same time plus two simulators is something I would rather not do. What&#39;s worse, I need to interact with both IDE to rebuild and redeploy the application to the simulator every time I switch the branch. Eventually, I decided to spend time and investigate how to automate this process.</p>]]>
     </summary>
     <title>Building and Deploying Apps From CLI</title>
-    <updated>2026-02-15T04:00:54.659Z</updated>
+    <updated>2026-02-15T05:41:25.924Z</updated>
   </entry>
   <entry>
     <author>
@@ -198,7 +198,7 @@
 <p>The rest of this article will focus on how I achieved the solution that solved both of this problem.</p>]]>
     </summary>
     <title>DNS for self hosted apps in homelab</title>
-    <updated>2026-02-15T04:00:54.658Z</updated>
+    <updated>2026-02-15T05:41:25.924Z</updated>
   </entry>
   <entry>
     <author>
@@ -216,7 +216,7 @@
       <![CDATA[<p>This is my first attempt in writing a review for the year. By writing this, I can hopefully provide myself with a clearer picture on what]]>
     </summary>
     <title>2024 Year in Review</title>
-    <updated>2026-02-15T04:00:54.656Z</updated>
+    <updated>2026-02-15T05:41:25.923Z</updated>
   </entry>
   <entry>
     <author>
@@ -258,7 +258,7 @@ Web App-&gt;&gt;webview: Go to xxxx.
 </pre>]]>
     </summary>
     <title>Notes on iOS Date Formatter: Issues and Fixes</title>
-    <updated>2026-02-15T04:00:54.658Z</updated>
+    <updated>2026-02-15T05:41:25.924Z</updated>
   </entry>
   <entry>
     <author>
@@ -280,7 +280,7 @@ Web App-&gt;&gt;webview: Go to xxxx.
 <p>The next step was to look through the logs. We discovered there were quite a lot of errors thrown on connection reset from our identity gateway. This turned out to be a red herring -- we played the video in Android and the same error appeared.</p>]]>
     </summary>
     <title>Fixing iOS HTTP Video Playback Issues</title>
-    <updated>2026-02-15T04:00:54.658Z</updated>
+    <updated>2026-02-15T05:41:25.924Z</updated>
   </entry>
   <entry>
     <author>
@@ -306,7 +306,7 @@ Web App-&gt;&gt;webview: Go to xxxx.
 <figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// usage.ts</span></span><br><span class="line"><span class="title function_">imoprt</span>(<span class="string">&#x27;./number.js&#x27;</span>).<span class="title function_">then</span>(<span class="function"><span class="params">imp</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(imp.<span class="property">default</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>]]>
     </summary>
     <title>CommonJS and ECMAScript Modules import in nodejs</title>
-    <updated>2026-02-15T04:00:54.658Z</updated>
+    <updated>2026-02-15T05:41:25.924Z</updated>
   </entry>
   <entry>
     <author>
@@ -333,7 +333,7 @@ Web App-&gt;&gt;webview: Go to xxxx.
 <p>Well, to be honest, this error message wasn&#39;t helpful <strong>at all</strong>. It still wasn&#39;t clear what the issue was. But it&#39;s still worth looking it up.</p>]]>
     </summary>
     <title>Lesssons Learnt from Fixing broken Xetex on Arch Linux</title>
-    <updated>2026-02-15T04:00:54.658Z</updated>
+    <updated>2026-02-15T05:41:25.924Z</updated>
   </entry>
   <entry>
     <author>
@@ -358,7 +358,7 @@ Web App-&gt;&gt;webview: Go to xxxx.
 <h3 id="Overview-What-s-in-an-environment-file"><a href="#Overview-What-s-in-an-environment-file" class="headerlink" title="Overview: What&#39;s in an environment file"></a>Overview: What&#39;s in an environment file</h3><p>Before I get into the problem I&#39;m trying to solve, it is important to understand the problem we are trying to solve. For the project I&#39;m working on, we have two kinds of environment files, one of which is only used locally, the other one is used by the Kubernetes platform and is used at runtime. Here&#39;s an example of what they look like:</p>]]>
     </summary>
     <title>Solving Repeatative Problem with Vim</title>
-    <updated>2026-02-15T04:00:54.659Z</updated>
+    <updated>2026-02-15T05:41:25.925Z</updated>
   </entry>
   <entry>
     <author>
@@ -387,7 +387,7 @@ Web App-&gt;&gt;webview: Go to xxxx.
     <title>
       <![CDATA[Advanced Selfhosting with Nebula & Traefik]]>
     </title>
-    <updated>2026-02-15T04:00:54.659Z</updated>
+    <updated>2026-02-15T05:41:25.925Z</updated>
   </entry>
   <entry>
     <author>
@@ -407,7 +407,7 @@ Web App-&gt;&gt;webview: Go to xxxx.
       <![CDATA[<h3 id="Motivation-The-Need-to-Remember-to-Disconnect-Bluetooth"><a href="#Motivation-The-Need-to-Remember-to-Disconnect-Bluetooth" class="headerlink" title="Motivation: The Need to Remember to Disconnect Bluetooth"></a>Motivation: The Need to Remember to Disconnect Bluetooth</h3><p>I usually wear my Bluetooth headset at work, this is necessary because I need to talk to people or attend meetings online. One of the things that annoys me is I have to remember to turn off my headset every time I leave my workplace, otherwise because the Bluetooth is not disconnected automatically when the Mac goes to sleep, I will find a headphone with very low battery the next day. If the Bluetooth is disconnected, the headphone will turn itself off in 5 mins, so it all comes down to remembering to disconnect Bluetooth on the laptop, or to turn off the battery on the headphone. This annoys me so much that I eventually decided to spend time to solve this problem.</p>]]>
     </summary>
     <title>Automation on MacOS -- Automatically Disconnecting Bluetooth Headset</title>
-    <updated>2026-02-15T04:00:54.658Z</updated>
+    <updated>2026-02-15T05:41:25.924Z</updated>
   </entry>
   <entry>
     <author>
@@ -430,7 +430,7 @@ Web App-&gt;&gt;webview: Go to xxxx.
 <p>At this point, I had no choice but to connect the Pi to an external monitor. It didn&#39;t help. While I could see the bootloader start screen, the kernel seems broken, so machine did not start.</p>]]>
     </summary>
     <title>Lessons Learnt on Breaking and Reinstalling Arch Linux on Raspberry Pi</title>
-    <updated>2026-02-15T04:00:54.658Z</updated>
+    <updated>2026-02-15T05:41:25.924Z</updated>
   </entry>
   <entry>
     <author>
@@ -451,7 +451,7 @@ Web App-&gt;&gt;webview: Go to xxxx.
 <p>When a PR was merged and deployed into one of the test environments, the container would not start and went into a crash loop state. This obviously is not a good sign. The initial step was checking the logs emitted from within the container. This revealed the cause of the crash was an imported module (imported with non-relative path) can not be found in one of the JavaScript file.</p>]]>
     </summary>
     <title>JavaScript, TypeScript, Module Resolution and Module Alias</title>
-    <updated>2026-02-15T04:00:54.658Z</updated>
+    <updated>2026-02-15T05:41:25.924Z</updated>
   </entry>
   <entry>
     <author>
@@ -473,7 +473,7 @@ Web App-&gt;&gt;webview: Go to xxxx.
 <h3 id="What-is-Traefik"><a href="#What-is-Traefik" class="headerlink" title="What is Traefik?"></a>What is Traefik?</h3><p>By definition, Traefik is a reverse proxy and load balancer <span class="exturl" data-url="aHR0cHM6Ly90cmFlZmlrLmlvL3RyYWVmaWsv">^1<i class="fa fa-external-link-alt"></i></span>. It is a member of the CNCF (Cloud Native Computing Foundation) foundation, the community version of this application is written in Go, open-sourced under MIT license, and hosted on GitHub. <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3RyYWVmaWsvdHJhZWZpaw==">^2<i class="fa fa-external-link-alt"></i></span></p>]]>
     </summary>
     <title>Easy Self Hosting with Traefik proxy</title>
-    <updated>2026-02-15T04:00:54.658Z</updated>
+    <updated>2026-02-15T05:41:25.924Z</updated>
   </entry>
   <entry>
     <author>
@@ -498,6 +498,6 @@ Web App-&gt;&gt;webview: Go to xxxx.
 <p>This article will start by explaining what is a SSL certificate, and what is a self-signed certificate. From there, I will detail the problems I encountered recently on self-signed certificate, and how I solved them.</p>]]>
     </summary>
     <title>Self-signed certificate, issues and solutions</title>
-    <updated>2026-02-15T04:00:54.659Z</updated>
+    <updated>2026-02-15T05:41:25.925Z</updated>
   </entry>
 </feed>
