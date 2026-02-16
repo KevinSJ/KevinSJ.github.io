@@ -7,14 +7,14 @@
     <description>Podcast from One 一个</description>
     <language>zh-cn</language>
     <item>
-      <title>第1天 | 今天，你出发了吗？闯先生</title>
-      <enclosure url="http://music.wufazhuce.com/lnhzeG2XiGqYmIBNAGvgrXJxtAyA" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FrRmPTIurU9kyc6WezYgJtwuyRt7?imageView2/1/w/475/h/304/q/95</itunes:image>
+      <title>第2天 | 荟莹，你该怎么办？马晓橙、李荟莹</title>
+      <enclosure url="http://music.wufazhuce.com/lrNvI3d3zspbKBwZGnjh54XW8NTc" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FpY-_GN1nOEb1wcg0FxvNVRNY8C-?imageView2/1/w/475/h/304/q/95</itunes:image>
     </item>
     <item>
-      <title>年兽-朗读者-闯先生</title>
-      <enclosure url="http://music.wufazhuce.com/lmqALNfGNP8sPQlJPoBrxso0t5Fr" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/Flvxxp_Pc8nZFvJUO7wfHafkepCA</itunes:image>
+      <title>我与裸露画面的不完全编年史-朗读者-马晓橙</title>
+      <enclosure url="http://music.wufazhuce.com/ls725K-QCnspFNB8rmkY6l1rze0b" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FhrbHJOrO17GCDFbF8V0hEzeV7aI</itunes:image>
     </item>
   </channel>
 </rss>
