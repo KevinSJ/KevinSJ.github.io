@@ -7,9 +7,14 @@
     <description>Podcast from One 一个</description>
     <language>zh-cn</language>
     <item>
-      <title>第6天 | 春节限定：女主播换人了马晓橙</title>
-      <enclosure url="http://music.wufazhuce.com/lmOb01kiiFtu3dnzAfo-NtlI-Td8" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FliQb2edYqz6HRv7dW350UG6H04p?imageView2/1/w/475/h/304/q/95</itunes:image>
+      <title>第7天 | 年和年味，都消散了一半闯先生、大卫</title>
+      <enclosure url="http://music.wufazhuce.com/lsxPPoAdh9mcyRyw7ODDUFlX4u6L" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FjcZOVK17L2RvMxknXFPWDbq2jK7?imageView2/1/w/475/h/304/q/95</itunes:image>
+    </item>
+    <item>
+      <title>移步换景-朗读者-大卫</title>
+      <enclosure url="http://music.wufazhuce.com/lu4W656x5liO7CyPWRBg6rS-tNuF" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FqwskoE6AlBoRdaln0ajIZwi7g7u</itunes:image>
     </item>
   </channel>
 </rss>
