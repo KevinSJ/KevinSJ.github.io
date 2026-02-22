@@ -7,14 +7,19 @@
     <description>Podcast from One 一个</description>
     <language>zh-cn</language>
     <item>
-      <title>第7天 | 年和年味，都消散了一半闯先生、大卫</title>
-      <enclosure url="http://music.wufazhuce.com/lsxPPoAdh9mcyRyw7ODDUFlX4u6L" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FjcZOVK17L2RvMxknXFPWDbq2jK7?imageView2/1/w/475/h/304/q/95</itunes:image>
+      <title>回锅肉偶书-朗读者-闯先生</title>
+      <enclosure url="http://music.wufazhuce.com/lszEk-3_AfGx1DVXpsmN1oxU71SO" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FiTU6FJz1Ynz1BJaS-CVhR3JhxOK</itunes:image>
     </item>
     <item>
-      <title>移步换景-朗读者-大卫</title>
-      <enclosure url="http://music.wufazhuce.com/lu4W656x5liO7CyPWRBg6rS-tNuF" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FqwskoE6AlBoRdaln0ajIZwi7g7u</itunes:image>
+      <title>等得来重逢，等不回青春-朗读者-大卫</title>
+      <enclosure url="http://music.wufazhuce.com/lpfmzHPUaqtjCvohomv9dUtduG6K" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FqkYjXx2Z3dMP1516QozPlAy_oPP</itunes:image>
+    </item>
+    <item>
+      <title>我上过荒废的兴趣班-朗读者-大卫</title>
+      <enclosure url="http://music.wufazhuce.com/lsmkzNK8z0zV9qlZ0R6gl69AiRiT" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FiMGixQLwZc3OpZ4gPXFPs8OqTIC</itunes:image>
     </item>
   </channel>
 </rss>
