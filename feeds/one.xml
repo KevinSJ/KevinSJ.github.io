@@ -7,19 +7,14 @@
     <description>Podcast from One 一个</description>
     <language>zh-cn</language>
     <item>
-      <title>回锅肉偶书-朗读者-闯先生</title>
-      <enclosure url="http://music.wufazhuce.com/lszEk-3_AfGx1DVXpsmN1oxU71SO" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FiTU6FJz1Ynz1BJaS-CVhR3JhxOK</itunes:image>
+      <title>第9天 | 晓橙，你该怎么办？马晓橙、李荟莹</title>
+      <enclosure url="http://music.wufazhuce.com/ll3G0Dg-ILOOC01v2OqyyGu8t0tA" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FkQpc1WN2dRROp2MLVUhtHTWIdEu?imageView2/1/w/475/h/304/q/95</itunes:image>
     </item>
     <item>
-      <title>等得来重逢，等不回青春-朗读者-大卫</title>
-      <enclosure url="http://music.wufazhuce.com/lpfmzHPUaqtjCvohomv9dUtduG6K" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FqkYjXx2Z3dMP1516QozPlAy_oPP</itunes:image>
-    </item>
-    <item>
-      <title>我上过荒废的兴趣班-朗读者-大卫</title>
-      <enclosure url="http://music.wufazhuce.com/lsmkzNK8z0zV9qlZ0R6gl69AiRiT" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FiMGixQLwZc3OpZ4gPXFPs8OqTIC</itunes:image>
+      <title>拐角处的小熊洞-朗读者-闯先生</title>
+      <enclosure url="http://music.wufazhuce.com/ll5puJUJbpT1hDsiRHtkA0VsCDXt" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FlubD48IuZqzHRjIFC185NPDEILB</itunes:image>
     </item>
   </channel>
 </rss>
