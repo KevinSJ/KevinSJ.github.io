@@ -7,9 +7,14 @@
     <description>Podcast from One 一个</description>
     <language>zh-cn</language>
     <item>
-      <title>所有的记忆都是潮湿的李荟莹</title>
-      <enclosure url="http://music.wufazhuce.com/luafqhAq7EuGwA2xUvOhYkdXMKW9" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FtrsyII1Hso0kAOMgG6cDUZG3V6Z?imageView2/1/w/475/h/304/q/95</itunes:image>
+      <title>系好安全带再出发马晓橙</title>
+      <enclosure url="http://music.wufazhuce.com/lvnW9DRF0TN28dVrDdedPbdem52R" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FsBFrYJTSe0-H0a-od4CxbhXz0zL?imageView2/1/w/475/h/304/q/95</itunes:image>
+    </item>
+    <item>
+      <title>过敏-朗读者-大卫</title>
+      <enclosure url="http://music.wufazhuce.com/lvCwUYH3nz3XWEzFdAuF0vAdjfmN" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FkpxvIoR2suLxIOozLdGpGQ1whAH</itunes:image>
     </item>
   </channel>
 </rss>
