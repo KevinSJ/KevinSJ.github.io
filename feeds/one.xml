@@ -7,14 +7,9 @@
     <description>Podcast from One 一个</description>
     <language>zh-cn</language>
     <item>
-      <title>如何成为三条龙马晓橙</title>
-      <enclosure url="http://music.wufazhuce.com/lpvRGS6tq0CpvoxJzP8qP2H3F8kJ" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/Fgv595YT-n1S1Cg95TIoSjvgaO7h?imageView2/1/w/475/h/304/q/95</itunes:image>
-    </item>
-    <item>
-      <title>吻上云间-朗读者-三笙</title>
-      <enclosure url="http://music.wufazhuce.com/lhrq2IyJMw8gyZN0dWgLKLcY20mc" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/Fgenc4XUXVO6I_IurjmwWpZjwU2t</itunes:image>
+      <title>年龄是一种感觉李荟莹</title>
+      <enclosure url="http://music.wufazhuce.com/ls6oiUViuNvWLp5XZxwNttrszycE" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/Fu4kBglr7AId9oltVce4PVJAP77h?imageView2/1/w/475/h/304/q/95</itunes:image>
     </item>
   </channel>
 </rss>
