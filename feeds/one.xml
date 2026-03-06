@@ -7,14 +7,9 @@
     <description>Podcast from One 一个</description>
     <language>zh-cn</language>
     <item>
-      <title>该去哪里生活马晓橙</title>
-      <enclosure url="http://music.wufazhuce.com/lsYuTZ-VF35Z2xXki3XKVuO7of-o" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FglBb8Th25qlUnYk48FkLSpTw_37?imageView2/1/w/475/h/304/q/95</itunes:image>
-    </item>
-    <item>
-      <title>召唤术-朗读者-闯先生</title>
-      <enclosure url="http://music.wufazhuce.com/lsHDFKbXnluVw3TiCt-wNlpItTGE" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/Fi9AtXEz0mt9BWEKjT-9bXGpUfE0</itunes:image>
+      <title>其实我们并不了解彼此李荟莹</title>
+      <enclosure url="http://music.wufazhuce.com/lkY9bIvR99UCa1erLNbAFPQAUplD" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/Fn4dpub30U02XVUmGVlyqWpQYhC_?imageView2/1/w/475/h/304/q/95</itunes:image>
     </item>
   </channel>
 </rss>
