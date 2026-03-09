@@ -7,19 +7,14 @@
     <description>Podcast from One 一个</description>
     <language>zh-cn</language>
     <item>
-      <title>一次约会-朗读者-大卫</title>
-      <enclosure url="http://music.wufazhuce.com/lgcdkPATVJ9Y5W-f4TdSp12-dRyT" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FlDwcVdRqqbmDtuYyEs-1qijWjtK</itunes:image>
+      <title>不听音乐，怎么工作李荟莹</title>
+      <enclosure url="http://music.wufazhuce.com/llCIVAi4tIqWXYRgcRxCHkY98I88" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/Ftnj1FsPXwHqJPsIfxjmFxh8Of1K?imageView2/1/w/475/h/304/q/95</itunes:image>
     </item>
     <item>
-      <title>情人如期相爱直到分开-朗读者-大卫</title>
-      <enclosure url="http://music.wufazhuce.com/lgeEEjBCdj3kxg0Tl2dEr4CjMC6Y" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FlyFJ_kv17uuQVkCStywXS_yK3Pe</itunes:image>
-    </item>
-    <item>
-      <title>丢伞艺术家-朗读者-大卫</title>
-      <enclosure url="http://music.wufazhuce.com/lvM2uVi4JjwUImwn_LzqDMMq9He8" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FkoooE-71v0r42pJmGKpoq3IcXhs</itunes:image>
+      <title>废墟穿越-朗读者-李荟莹</title>
+      <enclosure url="http://music.wufazhuce.com/lqau2HsmWthpN0GcNbFnTUHn5w_1" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FtVGL8CtsTjkXk69-QUjALaOddRB</itunes:image>
     </item>
   </channel>
 </rss>
