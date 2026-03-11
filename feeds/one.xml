@@ -7,14 +7,9 @@
     <description>Podcast from One 一个</description>
     <language>zh-cn</language>
     <item>
-      <title>耳中人马晓橙</title>
-      <enclosure url="http://music.wufazhuce.com/lkJEpF_brcnBpHGSVwxXmorwESP6" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/Ft_kf5l-zLiu6X465uOAJ2_PV8Wc?imageView2/1/w/475/h/304/q/95</itunes:image>
-    </item>
-    <item>
-      <title>会飞-朗读者-李荟莹</title>
-      <enclosure url="http://music.wufazhuce.com/lnlXnvSrdv8fTrBDuJrKCk6y3Dy_" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FifCGYiAtdtnzqGEM7XgHrbakZhR</itunes:image>
+      <title>身后事-朗读者-李荟莹</title>
+      <enclosure url="http://music.wufazhuce.com/louCAEDAcm8EPA6Te0-UAM3sgwRH" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FvkH4Fy5wUJETKEAggYI2o_6Euu7</itunes:image>
     </item>
   </channel>
 </rss>
