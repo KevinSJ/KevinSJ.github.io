@@ -7,9 +7,14 @@
     <description>Podcast from One 一个</description>
     <language>zh-cn</language>
     <item>
-      <title>为什么一定要放弃点什么马晓橙</title>
-      <enclosure url="http://music.wufazhuce.com/lnBbX5j6CGqISS3XLj0pmEaGKFpe" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FscpfcSwaFGcASjJmEPcF4YJ1IG8?imageView2/1/w/475/h/304/q/95</itunes:image>
+      <title>当不爱咖啡的人谈论咖啡李荟莹</title>
+      <enclosure url="http://music.wufazhuce.com/lsJwJjDG6wGUUjha_nC5jAwZH9lZ" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FhU1ZrkKJTetG9VYOKr4RykgfKiT?imageView2/1/w/475/h/304/q/95</itunes:image>
+    </item>
+    <item>
+      <title>全职太太的梦想-朗读者-三笙</title>
+      <enclosure url="http://music.wufazhuce.com/luOJdp57bfeeCi471OKGhpwxYWvH" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FpGLboJZx216w63Zu4ZUBxJUy6uk</itunes:image>
     </item>
   </channel>
 </rss>
