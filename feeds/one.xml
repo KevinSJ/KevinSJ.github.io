@@ -7,14 +7,14 @@
     <description>Podcast from One 一个</description>
     <language>zh-cn</language>
     <item>
-      <title>痛苦是无法比较的李荟莹</title>
-      <enclosure url="http://music.wufazhuce.com/loP-TBfINX25v7rJWlHaAKfHSWDB" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FiLFIT_dzf2bIFfpl49AZxAqp_7g?imageView2/1/w/475/h/304/q/95</itunes:image>
+      <title>点亮智慧人生马晓橙</title>
+      <enclosure url="http://music.wufazhuce.com/lmJXDg5mX58eDkBhP5BkTia9IR_8" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/Fmqy5BgfGcvx9zu8uY-Dak0OxKQ_?imageView2/1/w/475/h/304/q/95</itunes:image>
     </item>
     <item>
-      <title>仲夏夜奔-朗读者-马晓橙</title>
-      <enclosure url="http://music.wufazhuce.com/lsE8xKY05Gp4TvGNU-_XarLfJaG8" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/Fj3WloQ2_zSdSAt5S5u6Ftcn2fMz</itunes:image>
+      <title>猫无计-朗读者-大卫</title>
+      <enclosure url="http://music.wufazhuce.com/lmw1J_mOBXxVZSr-fKxdJBRVpVBH" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/Fii1cgQPcdFgmt7Fr3-rKNn-AXJb</itunes:image>
     </item>
   </channel>
 </rss>
