@@ -153,13 +153,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-count">53</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">131</span>
+        <span class="site-state-item-count">133</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -194,6 +194,94 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://jiangsc.me/2026/03/22/notes-upgrade-postgres-docker/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Kevin Jiang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
+      <meta itemprop="description" content="A blog about all things tech.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | Kevin Jiang's Technical Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2026/03/22/notes-upgrade-postgres-docker/" class="post-title-link" itemprop="url">Notes on Upgrading PostgreSQL Container</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 03-22-2026 19:10:57" itemprop="dateCreated datePublished" datetime="2026-03-22T19:10:57+13:00">03-22-2026</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="firestore-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>I have several applications I hosted on my Raspberry Pi 5, some of them use Postgres as DB. To simplify things, I gave each of them a Postgres container in their own Docker compose file. And I usually use the Alpine Docker image just to save some resources.</p>
+<p>Today, I realized I have too many different versions of Postgres containers, and most of them are not using the latest version of Postgres. So, I decided to upgrade them all to the latest version. The upgrade turned out to be quite successful -- I have not encountered any major issues after the upgrade, so I decide to create this post to document the process.</p>
+<h2 id="Existing-documentation"><a href="#Existing-documentation" class="headerlink" title="Existing documentation"></a>Existing documentation</h2><p>There are various articles around upgrading Postgres DB, but very few of them focuses on upgrading the Postgres container. I started with the Postgres official documentation:</p>
+<ul>
+<li><code>pg_dump</code> -- <span class="exturl" data-url="aHR0cHM6Ly93d3cucG9zdGdyZXNxbC5vcmcvZG9jcy8xNS9hcHAtcGdkdW1wLmh0bWw=">https://www.postgresql.org/docs/15/app-pgdump.html<i class="fa fa-external-link-alt"></i></span></li>
+<li><code>psql</code> -- <span class="exturl" data-url="aHR0cHM6Ly93d3cucG9zdGdyZXNxbC5vcmcvZG9jcy8xNS9hcHAtcHNxbC5odG1s">https://www.postgresql.org/docs/15/app-psql.html<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<h2 id="Upgrade-process"><a href="#Upgrade-process" class="headerlink" title="Upgrade process"></a>Upgrade process</h2><p>The first thing to do is to stop the existing docker compose stack and do a backup -- I ran command like <code>docker-compose down</code> to stop the docker compose project first.</p>
+<p>Then, I started the <code>db</code> container only in the compose project, I ran <code>docker compose up db -d</code>. Now I have an isolated db instance running with no connected clients. And it&#39;s time to create a dump.</p>
+<p>I ran <code>docker exec YOUR-DB-CONTAINER-NAME pg_dump -UYOUR_DB_USER_NAME -b &gt;&gt; YOUR_DUMP_FILE_NAME.sql</code>. Verify the dumped SQL file is what I expected and stopped the container.</p>
+<p>The next step is to remove the docker volume. This can be done by <code>docker volume rm YOUR-DB-VOLUME-NAME</code>. After this, I <code>cd</code> into the host directory to backup the actual DB directory. I did <code>mv db-folder db-foler.15 &amp;&amp; mkdir db-folder</code>.</p>
+<p>Once the backup is done, I changed the image tag to the latest version, and started the db container again. Notice this time, the version will be the latest postgres version. I also added the SQL dump file as part of the new container volume.</p>
+<p>Get into the db container by running <code>docker exec -it YOUR-DB-CONTAINER-NAME /bin/sh</code>. Once I got into the container, I executed the <code>psql -UYOUR_DB_USER_NAME -dYOUR_DB_NAME &lt; YOUR_DUMP_FILE_NAME</code>. Once this command is done, your db will be running the latest version of Postgres.</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -513,99 +601,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2025/05/11/linux-user-notes-4/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://jiangsc.me/2025/03/26/tales-of-the-brave-write-up/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Kevin Jiang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kevin Jiang's Technical Blog">
-      <meta itemprop="description" content="A blog about all things tech.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | Kevin Jiang's Technical Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/03/26/tales-of-the-brave-write-up/" class="post-title-link" itemprop="url">Tales for the Brave Write-up (HTB Cyber Apocalypse CTF 2025)</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 03-27-2025 09:06:39" itemprop="dateCreated datePublished" datetime="2025-03-27T09:06:39+13:00">03-27-2025</time>
-    </span>
-
-  
-    <span class="post-meta-item" title="Views">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">Views: </span>
-      <span class="firestore-visitors-count"></span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Hi there, thanks for reading this. My name is Sicong Jiang, and I&#39;m a software engineer based in Auckland, New Zealand. I&#39;m part of the <span class="exturl" data-url="aHR0cHM6Ly9jdGYuaGFja3RoZWJveC5jb20vdGVhbS9vdmVydmlldy8xOTM0NzI=">One Byte Bandits<i class="fa fa-external-link-alt"></i></span> team on HTB, and this is my first time participating in a CTF. I decided to challenge myself with a hard forensics challenge, and it turned out to be quite interesting. I hope you enjoy this journey of solving the <em>Tales of the Brave</em> challenge together.</p>
-<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Let&#39;s read through the instructions first:</p>
-<blockquote>
-<p><strong>Tales for the Brave</strong><br>In Eldoria, a once-innocent website called &quot;Tales for the Brave&quot; has become the focus of unsettling rumors. Some claim it may secretly trap unsuspecting visitors, leading them into a complex phishing scheme. Investigators report signs of encrypted communications and stealthy data collection beneath its friendly exterior. You must uncover the truth and protect Eldoria from a growing threat.<br><strong>When debugging JavaScript, ensure you use a Firefox-based browser.</strong></p>
-</blockquote>
-<p>There are several things to note here:</p>
-<ul>
-<li><strong>Once-innocent website</strong>: This challenge involves web security.</li>
-<li><strong>When debugging JavaScript, ensure you use a Firefox-based browser</strong>: We should use Firefox.</li>
-<li><strong>Encrypted communications and stealthy data collection</strong>: This suggests hidden or obfuscated behavior.</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2025/03/26/tales-of-the-brave-write-up/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
