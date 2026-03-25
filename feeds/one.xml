@@ -7,14 +7,14 @@
     <description>Podcast from One 一个</description>
     <language>zh-cn</language>
     <item>
-      <title>今日动物园马晓橙</title>
-      <enclosure url="http://music.wufazhuce.com/lpd4vFEwMK-gHUV07POd1S9rOAVc" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FvzXNAAefOirTYm2MrEsWFodd8pR?imageView2/1/w/475/h/304/q/95</itunes:image>
+      <title>如果你也跟不上时代李荟莹</title>
+      <enclosure url="http://music.wufazhuce.com/lh93zYzR9i-FXvfTkRm4l6ebBBY-" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FuBZi6yTdeRwpdSjiU8PCOkXbz1x?imageView2/1/w/475/h/304/q/95</itunes:image>
     </item>
     <item>
-      <title>丽丽说-朗读者-马晓橙</title>
-      <enclosure url="http://music.wufazhuce.com/lgULxYSBqp9ymkHeqFCi2yCK3cG1" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/Fkuy8CxM7Pf5mpAnQd_LWVtwqUcA</itunes:image>
+      <title>抱着白虎走过海洋-朗读者-闯先生</title>
+      <enclosure url="http://music.wufazhuce.com/lhujgFsKM5nRZZT7vK5bwJxwOPw0" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FirphFDQAqZXNuCO1fXLH38-o6Gx</itunes:image>
     </item>
   </channel>
 </rss>
