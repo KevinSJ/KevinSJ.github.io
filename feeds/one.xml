@@ -7,9 +7,14 @@
     <description>Podcast from One 一个</description>
     <language>zh-cn</language>
     <item>
-      <title>下雨天，允许自己发霉赟赟</title>
-      <enclosure url="http://music.wufazhuce.com/ls3PU9Cl5dA63_rLZVsddFRfyyOA" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/Frjka3oNQ85ElrwRXD1lotafnXG4?imageView2/1/w/475/h/304/q/95</itunes:image>
+      <title>有些事是需要一个终点的闯先生</title>
+      <enclosure url="http://music.wufazhuce.com/ltJ-o9I4YkswY_-R29mVoa-auQT9" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FreYG2Idq83WceBbOwWjFBhCnqiF?imageView2/1/w/475/h/304/q/95</itunes:image>
+    </item>
+    <item>
+      <title>失神的季节-朗读者-马晓橙</title>
+      <enclosure url="http://music.wufazhuce.com/lgu6gozCYwT84MwHoFgIat-BbySJ" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FuTFocDaGSRbMrBnlvQSwFE1ciQ_</itunes:image>
     </item>
   </channel>
 </rss>
