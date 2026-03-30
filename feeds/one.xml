@@ -7,14 +7,9 @@
     <description>Podcast from One 一个</description>
     <language>zh-cn</language>
     <item>
-      <title>有些事是需要一个终点的闯先生</title>
-      <enclosure url="http://music.wufazhuce.com/ltJ-o9I4YkswY_-R29mVoa-auQT9" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FreYG2Idq83WceBbOwWjFBhCnqiF?imageView2/1/w/475/h/304/q/95</itunes:image>
-    </item>
-    <item>
-      <title>失神的季节-朗读者-马晓橙</title>
-      <enclosure url="http://music.wufazhuce.com/lgu6gozCYwT84MwHoFgIat-BbySJ" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FuTFocDaGSRbMrBnlvQSwFE1ciQ_</itunes:image>
+      <title>收信快乐｜二十岁的眼泪李荟莹</title>
+      <enclosure url="http://music.wufazhuce.com/ltDMS2HCsX14zPOaVc3dAuHEY9FQ" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FhT50MnzTyBG39zooASiFwkiDc0h?imageView2/1/w/475/h/304/q/95</itunes:image>
     </item>
   </channel>
 </rss>
