@@ -1,0 +1,5 @@
+import{_ as a}from"./FormatTransformer-bc7b3ed5.js";import{d as i,a0 as l,aX as p,o as u,j as m,l as n}from"./index-0c1fde36.js";import{w as f}from"./defaults-4d6daddf.js";import"./TextareaCopyable-59231e95.js";import"./base64-ae7cf34b.js";import"./index-a6f01dde.js";import"./downloadBase64-508288e2.js";import"./index-6fddb70d.js";import"./index-cfd4d427.js";import"./Copy-ef9ec73c.js";import"./Scrollbar-54724e22.js";const c=`{
+	"hello": [
+		"world"
+	]
+}`,k=i({__name:"json-minify",setup(d){const{t}=l(),e=o=>f(()=>JSON.stringify(JSON.parseBigNum(o),null,0),""),s=[{validator:o=>o===""||p.parse(o),message:t("tools.json-minify.texts.message-provided-json-is-not-valid")}];return(o,_)=>{const r=a;return u(),m(r,{"input-label":n(t)("tools.json-minify.texts.input-label-your-raw-json"),"input-default":c,"input-placeholder":n(t)("tools.json-minify.texts.input-placeholder-paste-your-raw-json-here"),"output-label":n(t)("tools.json-minify.texts.output-label-minified-version-of-your-json"),"output-language":"json","input-validation-rules":s,transformer:e,"download-file-name":"output.json"},null,8,["input-label","input-placeholder","output-label"])}}});export{k as default};

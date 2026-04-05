@@ -1,0 +1,6 @@
+import{_ as a}from"./FormatTransformer-bc7b3ed5.js";import{d as l,a0 as i,aX as p,o as u,j as m,l as e}from"./index-0c1fde36.js";import{e as c}from"./index-6537bb1d.js";import{w as d}from"./defaults-4d6daddf.js";import"./TextareaCopyable-59231e95.js";import"./base64-ae7cf34b.js";import"./index-a6f01dde.js";import"./downloadBase64-508288e2.js";import"./index-6fddb70d.js";import"./index-cfd4d427.js";import"./Copy-ef9ec73c.js";import"./Scrollbar-54724e22.js";const f=`{
+  users: [
+    { id: 1, name: 'Alice', role: 'admin' },
+    { id: 2, name: 'Bob', role: 'user' }
+  ]
+}`,C=l({__name:"json-to-toon",setup(_){const{t}=i();function n(o){return d(()=>o===""?"":c(JSON.parseBigNum(o)),"")}const r=[{validator:o=>o===""||p.parse(o),message:t("tools.json-to-toon.texts.message-provided-json-is-not-valid")}];return(o,j)=>{const s=a;return u(),m(s,{"input-label":e(t)("tools.json-to-toon.texts.input-label-your-raw-json"),"input-default":f,"input-placeholder":e(t)("tools.json-to-toon.texts.input-placeholder-paste-your-raw-json-here"),"output-label":e(t)("tools.json-to-toon.texts.output-label-toon-version-of-your-json"),"input-validation-rules":r,transformer:n,"download-file-name":"output.toon"},null,8,["input-label","input-placeholder","output-label"])}}});export{C as default};
