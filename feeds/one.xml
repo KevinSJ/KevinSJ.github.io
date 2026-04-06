@@ -7,19 +7,14 @@
     <description>Podcast from One 一个</description>
     <language>zh-cn</language>
     <item>
-      <title>自由人-朗读者-李荟莹</title>
-      <enclosure url="http://music.wufazhuce.com/ln5V17LHFq5swnt5P4MfzdpZZvMZ" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/Fly8k7k8PY-KBX7CcxIta251hex6</itunes:image>
+      <title>那些几分钟写完的歌李荟莹</title>
+      <enclosure url="http://music.wufazhuce.com/ljnZOWP1UC8PiM6HuDyCDC1vWx7U" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FrOe9AEWeE_udJF7Zzxa9OTXJyEC?imageView2/1/w/475/h/304/q/95</itunes:image>
     </item>
     <item>
-      <title>替身-朗读者-李荟莹</title>
-      <enclosure url="http://music.wufazhuce.com/lsY_ucbJXPgVyYf8SlDXZxSFHNRN" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/Fv9-yopGz3gh8bv8qvXoBE6fCXH9</itunes:image>
-    </item>
-    <item>
-      <title>国贸大厦-朗读者-三笙</title>
-      <enclosure url="http://music.wufazhuce.com/lri2VChcWCfaaKnVOol81L105B_P" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FmTSCGIaUTqlExWU_tT0J04uKBp_</itunes:image>
+      <title>赛螃蟹-朗读者-马晓橙</title>
+      <enclosure url="http://music.wufazhuce.com/lseYDFuKoO91bzzGiezJmfLl388K" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FpJkRRQ2fbrQdmnUM_MZ5XVOWWBS</itunes:image>
     </item>
   </channel>
 </rss>
