@@ -7,9 +7,14 @@
     <description>Podcast from One 一个</description>
     <language>zh-cn</language>
     <item>
-      <title>于是我们戴上了面具大卫</title>
-      <enclosure url="http://music.wufazhuce.com/lm31yucX3G1JgbZcel3rq4JR29HE" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FjLsc06PQShb0OJUcXT7l5VmkMFU?imageView2/1/w/475/h/304/q/95</itunes:image>
+      <title>当我们羞于说寂寞李荟莹</title>
+      <enclosure url="http://music.wufazhuce.com/lqMzV470P-apXXZbO6v_kPiepacd" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FjFEKEnr4nli9xgDNH3cTzdvYlce?imageView2/1/w/475/h/304/q/95</itunes:image>
+    </item>
+    <item>
+      <title>阿司匹林发廊-朗读者-马晓橙</title>
+      <enclosure url="http://music.wufazhuce.com/lpLSGGayjc3whzrUL0sts1A_qDlm" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/Fu0A8svlm5DFHR0lD90Y_0cEArPx</itunes:image>
     </item>
   </channel>
 </rss>
