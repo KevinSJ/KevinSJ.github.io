@@ -7,9 +7,19 @@
     <description>Podcast from One 一个</description>
     <language>zh-cn</language>
     <item>
-      <title>到底聊点啥｜装修哪有不疯的马晓橙、李荟莹</title>
-      <enclosure url="http://music.wufazhuce.com/lio065Nj8lWYtzMmCde-JsB1Wsuw" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FnOoG9YB5SYcJtjLYqeM8khEE2ls?imageView2/1/w/475/h/304/q/95</itunes:image>
+      <title>清醒梦-朗读者-闯先生</title>
+      <enclosure url="http://music.wufazhuce.com/liulRAUrgiLVAzokJU0to9wSf0Zi" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/Fixaw9LZQki_lwxCM1jKPFaS-0pw</itunes:image>
+    </item>
+    <item>
+      <title>一个无法抵达的梦-朗读者-李荟莹</title>
+      <enclosure url="http://music.wufazhuce.com/luvcM8ay4FagVMtO2kT3lnVwCLva" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/Fu1FkDvCVYt22rUI2p9CB8q9O0cJ</itunes:image>
+    </item>
+    <item>
+      <title>梦的剪辑师-朗读者-大卫</title>
+      <enclosure url="http://music.wufazhuce.com/ltZpLE7Nnv6GOGKHZf_I2mrjK1W2" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FjI4K_BAB0M9gQocHhNQfysHWm_q</itunes:image>
     </item>
   </channel>
 </rss>
