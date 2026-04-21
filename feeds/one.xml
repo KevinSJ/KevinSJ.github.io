@@ -7,9 +7,14 @@
     <description>Podcast from One 一个</description>
     <language>zh-cn</language>
     <item>
-      <title>人日-朗读者-闯先生</title>
-      <enclosure url="http://music.wufazhuce.com/li2UB-CBc_ii_wkceVrshh4MVCA-" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FrN0ixJ4s_N0guwHBWUAnd-DSCQV</itunes:image>
+      <title>时间刚好，不多不少马晓橙</title>
+      <enclosure url="http://music.wufazhuce.com/ls54Cx8OVtLlBlXVSi2ZqWnNpEzS" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FhmQiqIs5ZCZKh907lcWMePOqsmI?imageView2/1/w/475/h/304/q/95</itunes:image>
+    </item>
+    <item>
+      <title>偶然的生活-朗读者-大卫</title>
+      <enclosure url="http://music.wufazhuce.com/lt46kDTWZaqFZoRiYcbCP2wzoYkX" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/Ftxe0tFNmmrPZJ3-jjNgqJpEQEe-</itunes:image>
     </item>
   </channel>
 </rss>
