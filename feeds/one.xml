@@ -7,9 +7,14 @@
     <description>Podcast from One 一个</description>
     <language>zh-cn</language>
     <item>
-      <title>当一个“四体不勤”的人开始接管身体赟赟</title>
-      <enclosure url="http://music.wufazhuce.com/lpgPl2D3Dg_ukvkClqDlKD-SYLCl" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/Fob7sr2he8SbZA_QH-TSENGielFT?imageView2/1/w/475/h/304/q/95</itunes:image>
+      <title>如果用一首歌来形容你闯先生</title>
+      <enclosure url="http://music.wufazhuce.com/lhvjde_tfWAM1QSb-kkFQak6Kvh8" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FuzSnBY27vX2I05wEsOlUyi-uSod?imageView2/1/w/475/h/304/q/95</itunes:image>
+    </item>
+    <item>
+      <title>八仙过海-朗读者-闯先生</title>
+      <enclosure url="http://music.wufazhuce.com/lpT_axMZoPU3eXQUEg-GT8M3DhuO" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/Fhcxf0HdNxhVAgQn11eZ7M7zwx9Q</itunes:image>
     </item>
   </channel>
 </rss>
