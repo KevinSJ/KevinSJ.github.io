@@ -7,14 +7,9 @@
     <description>Podcast from One 一个</description>
     <language>zh-cn</language>
     <item>
-      <title>到底聊点啥｜假如孩子这样，你能忍吗？马晓橙、李荟莹</title>
-      <enclosure url="http://music.wufazhuce.com/lnZF4tHuVxbYfg25yv-b3LbOozl0" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/Fm4UTAGUrI98Vw_rfCFfsBzlcA8h?imageView2/1/w/475/h/304/q/95</itunes:image>
-    </item>
-    <item>
-      <title>游客-朗读者-大卫</title>
-      <enclosure url="http://music.wufazhuce.com/lof97jJCgzp4oCZt-y2FYYatq7im" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FhEB_hHsBU8-sygFj4HXsJBEpVlP</itunes:image>
+      <title>偶尔治愈-朗读者-三笙</title>
+      <enclosure url="http://music.wufazhuce.com/ljnm7EM0oVh3y0QfnnTVIe8tKhJr" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FsWdUJp0tqiP_pHfzh6LGi9pcnER</itunes:image>
     </item>
   </channel>
 </rss>
