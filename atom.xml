@@ -10,7 +10,7 @@
   <rights>All rights reserved 2026, Kevin Jiang</rights>
   <subtitle>A blog about all things tech.</subtitle>
   <title>Kevin Jiang's Technical Blog</title>
-  <updated>2026-05-04T07:35:29.300Z</updated>
+  <updated>2026-05-04T08:25:39.117Z</updated>
   <entry>
     <author>
       <name>Kevin Jiang</name>
@@ -30,7 +30,7 @@
       <![CDATA[<p>I have several applications I hosted on my Raspberry Pi 5, some of them use Postgres as DB. To simplify things, I gave each of them a Pos]]>
     </summary>
     <title>Notes on Upgrading PostgreSQL Container</title>
-    <updated>2026-05-04T07:35:29.300Z</updated>
+    <updated>2026-05-04T08:25:39.117Z</updated>
   </entry>
   <entry>
     <author>
@@ -55,7 +55,7 @@
 <p>Internet is an important tool in modern society, people use it every day to interact with each other. Censorship, as exists in other kind of medium, exist within the internet. As the internet grows and evolves over time, the internet censorship also evolves. Bambauer (2012) believed that during the early stage of censorship, which he referred to as Censorship v1.0, censorship on the internet is impossible. When the censorship was applied for the first time, which he referred to as Censorship v2.0, only a few countries applied this technology, and the content that were filtered were usually politically related. When more and more countries created their own censorship system and started to censor the internet, internet censorship evolves to become Censorship v3.0. At this stage, countries censored information regardless of their political system. The purpose is usually described as protecting citizens (p. 3). For western countries, information censored are usually related to child pornography, hate speech, and material that may violate copyright (Bambauer, 2012, p. 3). The internet censorship system in China, however, is described as something in stage 2. Bambauer (2012, p. 3) pointed out that that censorships are acceptable if citizens in these countries are notified. However, the situation is not the same in China. As one of the largest countries in the world, China has created the most sophisticated censorship system in the world. This system targets mainly at social media platforms.</p>]]>
     </summary>
     <title>Social media, Internet Censorship and Opinion Expression in China</title>
-    <updated>2026-05-04T07:35:29.300Z</updated>
+    <updated>2026-05-04T08:25:39.118Z</updated>
   </entry>
   <entry>
     <author>
@@ -78,7 +78,7 @@
 <p>The best place to understand this is through the TLS standards document. According to the TLS 1.3 standards document or rfc8446<sup><span class="exturl" data-url="aHR0cHM6Ly9kYXRhdHJhY2tlci5pZXRmLm9yZy9kb2MvaHRtbC9yZmM4NDQ2">1<i class="fa fa-external-link-alt"></i></span></sup>:</p>]]>
     </summary>
     <title>Notes on mTLS and Java</title>
-    <updated>2026-05-04T07:35:29.370Z</updated>
+    <updated>2026-05-04T08:25:39.188Z</updated>
   </entry>
   <entry>
     <author>
@@ -99,7 +99,7 @@
 <p>In this article, we will go through the process of installing ArchLinux on this Rock 4C+ single board computer.</p>]]>
     </summary>
     <title>Notes on Installing Arch Linux on Rock 4C+</title>
-    <updated>2026-05-04T07:35:29.298Z</updated>
+    <updated>2026-05-04T08:25:39.116Z</updated>
   </entry>
   <entry>
     <author>
@@ -120,7 +120,7 @@
       <![CDATA[<p>Recently, I found myself needing to run virtual machines quite often, however, with two different types of VMs managed by different hypervisors on my machine, I find it quite inefficient to click through multiple hoops in GUI just to launch a single VM. Therefore, decided to spend time to find ways to improve this workflow.</p>]]>
     </summary>
     <title>Optimizing workflow with rofi, dmenu and desktop entry</title>
-    <updated>2026-05-04T07:35:29.299Z</updated>
+    <updated>2026-05-04T08:25:39.117Z</updated>
   </entry>
   <entry>
     <author>
@@ -149,7 +149,7 @@
 </ul>]]>
     </summary>
     <title>Tales for the Brave Write-up (HTB Cyber Apocalypse CTF 2025)</title>
-    <updated>2026-05-04T07:35:29.300Z</updated>
+    <updated>2026-05-04T08:25:39.118Z</updated>
   </entry>
   <entry>
     <author>
@@ -168,7 +168,7 @@
       <![CDATA[<h2 id="Interesting-Videos-Watched"><a href="#Interesting-Videos-Watched" class="headerlink" title="Interesting Videos Watched"></a>Interest]]>
     </summary>
     <title>Week of 2025-03-09</title>
-    <updated>2026-05-04T07:35:29.300Z</updated>
+    <updated>2026-05-04T08:25:39.117Z</updated>
   </entry>
   <entry>
     <author>
@@ -193,7 +193,7 @@
 <p>Quite often in my daily work, I need to run both the iOS simulator and Android emulator at the same time. This would normally mean I would have to have both XCode and Android Studio open and running. Though I&#39;m on a MacBook Pro with M1 Pro chip, the fact I need to open <strong>two very heavy IDEs</strong> at the same time plus two simulators is something I would rather not do. What&#39;s worse, I need to interact with both IDE to rebuild and redeploy the application to the simulator every time I switch the branch. Eventually, I decided to spend time and investigate how to automate this process.</p>]]>
     </summary>
     <title>Building and Deploying Apps From CLI</title>
-    <updated>2026-05-04T07:35:29.299Z</updated>
+    <updated>2026-05-04T08:25:39.117Z</updated>
   </entry>
   <entry>
     <author>
@@ -219,7 +219,7 @@
 <p>The rest of this article will focus on how I achieved the solution that solved both of this problem.</p>]]>
     </summary>
     <title>DNS for self hosted apps in homelab</title>
-    <updated>2026-05-04T07:35:29.299Z</updated>
+    <updated>2026-05-04T08:25:39.116Z</updated>
   </entry>
   <entry>
     <author>
@@ -237,7 +237,7 @@
       <![CDATA[<p>This is my first attempt in writing a review for the year. By writing this, I can hopefully provide myself with a clearer picture on what]]>
     </summary>
     <title>2024 Year in Review</title>
-    <updated>2026-05-04T07:35:29.297Z</updated>
+    <updated>2026-05-04T08:25:39.114Z</updated>
   </entry>
   <entry>
     <author>
@@ -279,7 +279,7 @@ Web App-&gt;&gt;webview: Go to xxxx.
 </pre>]]>
     </summary>
     <title>Notes on iOS Date Formatter: Issues and Fixes</title>
-    <updated>2026-05-04T07:35:29.299Z</updated>
+    <updated>2026-05-04T08:25:39.116Z</updated>
   </entry>
   <entry>
     <author>
@@ -301,14 +301,14 @@ Web App-&gt;&gt;webview: Go to xxxx.
 <p>The next step was to look through the logs. We discovered there were quite a lot of errors thrown on connection reset from our identity gateway. This turned out to be a red herring -- we played the video in Android and the same error appeared.</p>]]>
     </summary>
     <title>Fixing iOS HTTP Video Playback Issues</title>
-    <updated>2026-05-04T07:35:29.299Z</updated>
+    <updated>2026-05-04T08:25:39.116Z</updated>
   </entry>
   <entry>
     <author>
       <name>Kevin Jiang</name>
     </author>
-    <category term="Notes" scheme="https://jiangsc.me/tags/Notes/"/>
     <category term="JavaScript" scheme="https://jiangsc.me/tags/JavaScript/"/>
+    <category term="Notes" scheme="https://jiangsc.me/tags/Notes/"/>
     <category term="NodeJS" scheme="https://jiangsc.me/tags/NodeJS/"/>
     <category term="TypeScript" scheme="https://jiangsc.me/tags/TypeScript/"/>
     <content>
@@ -327,7 +327,7 @@ Web App-&gt;&gt;webview: Go to xxxx.
 <figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// usage.ts</span></span><br><span class="line"><span class="title function_">imoprt</span>(<span class="string">&#x27;./number.js&#x27;</span>).<span class="title function_">then</span>(<span class="function"><span class="params">imp</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(imp.<span class="property">default</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>]]>
     </summary>
     <title>CommonJS and ECMAScript Modules import in nodejs</title>
-    <updated>2026-05-04T07:35:29.299Z</updated>
+    <updated>2026-05-04T08:25:39.116Z</updated>
   </entry>
   <entry>
     <author>
@@ -354,7 +354,7 @@ Web App-&gt;&gt;webview: Go to xxxx.
 <p>Well, to be honest, this error message wasn&#39;t helpful <strong>at all</strong>. It still wasn&#39;t clear what the issue was. But it&#39;s still worth looking it up.</p>]]>
     </summary>
     <title>Lesssons Learnt from Fixing broken Xetex on Arch Linux</title>
-    <updated>2026-05-04T07:35:29.299Z</updated>
+    <updated>2026-05-04T08:25:39.117Z</updated>
   </entry>
   <entry>
     <author>
@@ -379,7 +379,7 @@ Web App-&gt;&gt;webview: Go to xxxx.
 <h3 id="Overview-What-s-in-an-environment-file"><a href="#Overview-What-s-in-an-environment-file" class="headerlink" title="Overview: What&#39;s in an environment file"></a>Overview: What&#39;s in an environment file</h3><p>Before I get into the problem I&#39;m trying to solve, it is important to understand the problem we are trying to solve. For the project I&#39;m working on, we have two kinds of environment files, one of which is only used locally, the other one is used by the Kubernetes platform and is used at runtime. Here&#39;s an example of what they look like:</p>]]>
     </summary>
     <title>Solving Repeatative Problem with Vim</title>
-    <updated>2026-05-04T07:35:29.300Z</updated>
+    <updated>2026-05-04T08:25:39.117Z</updated>
   </entry>
   <entry>
     <author>
@@ -408,7 +408,7 @@ Web App-&gt;&gt;webview: Go to xxxx.
     <title>
       <![CDATA[Advanced Selfhosting with Nebula & Traefik]]>
     </title>
-    <updated>2026-05-04T07:35:29.300Z</updated>
+    <updated>2026-05-04T08:25:39.117Z</updated>
   </entry>
   <entry>
     <author>
@@ -428,17 +428,17 @@ Web App-&gt;&gt;webview: Go to xxxx.
       <![CDATA[<h3 id="Motivation-The-Need-to-Remember-to-Disconnect-Bluetooth"><a href="#Motivation-The-Need-to-Remember-to-Disconnect-Bluetooth" class="headerlink" title="Motivation: The Need to Remember to Disconnect Bluetooth"></a>Motivation: The Need to Remember to Disconnect Bluetooth</h3><p>I usually wear my Bluetooth headset at work, this is necessary because I need to talk to people or attend meetings online. One of the things that annoys me is I have to remember to turn off my headset every time I leave my workplace, otherwise because the Bluetooth is not disconnected automatically when the Mac goes to sleep, I will find a headphone with very low battery the next day. If the Bluetooth is disconnected, the headphone will turn itself off in 5 mins, so it all comes down to remembering to disconnect Bluetooth on the laptop, or to turn off the battery on the headphone. This annoys me so much that I eventually decided to spend time to solve this problem.</p>]]>
     </summary>
     <title>Automation on MacOS -- Automatically Disconnecting Bluetooth Headset</title>
-    <updated>2026-05-04T07:35:29.299Z</updated>
+    <updated>2026-05-04T08:25:39.117Z</updated>
   </entry>
   <entry>
     <author>
       <name>Kevin Jiang</name>
     </author>
     <category term="Linux" scheme="https://jiangsc.me/tags/Linux/"/>
+    <category term="QEMU" scheme="https://jiangsc.me/tags/QEMU/"/>
     <category term="Arch Linux" scheme="https://jiangsc.me/tags/Arch-Linux/"/>
     <category term="Raspberry Pi" scheme="https://jiangsc.me/tags/Raspberry-Pi/"/>
     <category term="Raspberry Pi 3" scheme="https://jiangsc.me/tags/Raspberry-Pi-3/"/>
-    <category term="QEMU" scheme="https://jiangsc.me/tags/QEMU/"/>
     <content>
       <![CDATA[<p>I&#39;m a big fan of Arch Linux for its simplicity, and ease to use. However, sometimes it can be the source of headache. This week, I upgraded the Arch Linux on my Raspberry Pi 3 with latest packages with the following command <code>yay -Syu --noconfirm</code> (WARNING: you shouldn&#39;t be doing this). When I finished upgrade, my Raspberry Pi 3 stopped working. And I had to spend quite a lot of time getting things back to normal.</p><h2 id="Initial-Investigation-and-Thoughts"><a href="#Initial-Investigation-and-Thoughts" class="headerlink" title="Initial Investigation and Thoughts"></a>Initial Investigation and Thoughts</h2><p>Since I don&#39;t have any clue on what happened at all. I first tried whether SSH still works... And I got can&#39;t find zsh. That is indeed a bad sign, I can&#39;t do anything 😞. Next thing I did was reboot. And things got even worse -- I can&#39;t even SSH now, refused to connect at port 22 😢.</p><p>At this point, I had no choice but to connect the Pi to an external monitor. It didn&#39;t help. While I could see the bootloader start screen, the kernel seems broken, so machine did not start.</p><span id="more"></span><h2 id="Attempted-Solution-with-Chroot"><a href="#Attempted-Solution-with-Chroot" class="headerlink" title="Attempted Solution with Chroot"></a>Attempted Solution with Chroot</h2><p>Next, my plan is to pull the MicroSD card out and try if I can get chroot to work. I am expecting this to be difficult cause Raspberry Pi is ARM based, and my laptop is not. It turned out to be really difficult because I wasn&#39;t familiar with how chroot and mounting works.</p><p>To chroot into an ARM-based machine (in this case aarch64 architecture), you would normally need an ARM based machine. If you really want to do it from a x86_64 architecture machine, you would have to setup some kind of emulation. In this case, I&#39;m using QEMU, which is a pretty standard tool for emulation on Linux. Here&#39;s the steps I followed:</p><ul><li>Install QEMU related packages:</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S qemu-user-static qemu-user-static-binfmt</span><br></pre></td></tr></table></figure><p>These two packages are both necessary. According to <span class="exturl" data-url="aHR0cHM6Ly93aWtpLmFyY2hsaW51eC5vcmcvdGl0bGUvUUVNVSNEZXRhaWxzX29uX3BhY2thZ2VzX2F2YWlsYWJsZV9pbl9BcmNoX0xpbnV4" title="https:&#x2F;&#x2F;wiki.archlinux.org&#x2F;title&#x2F;QEMU#Details_on_packages_available_in_Arch_Linux">ArchLinux Wiki<i class="fa fa-external-link-alt"></i></span>, the first <code>qemu-user-static</code> provides user mode emulation, this would avoid the need to setup a full blown virtual machine to run the binaries. Instead, it would run the binary with static translation.</p><ul><li>You would also need to install some cross-compiling libraries:</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S aarch64-linux-gnu-glibc</span><br></pre></td></tr></table></figure><ul><li>Insert your MicroSD card to your machine, mount the <code>/boot</code> partition and the <code>/</code> (root) partition, can be something like below, you would need to run as root:</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo mount --<span class="built_in">mkdir</span> /dev/sdX2 /mnt/sdcard/</span><br><span class="line">sudo mount --<span class="built_in">mkdir</span> /dev/sdX1 /mnt/sdcard/boot</span><br></pre></td></tr></table></figure><ul><li>Once this is done, you can follow the steps <span class="exturl" data-url="aHR0cHM6Ly93aWtpLmFyY2hsaW51eC5vcmcvdGl0bGUvUUVNVSNDaHJvb3RpbmdfaW50b19hcm0vYXJtNjRfZW52aXJvbm1lbnRfZnJvbV94ODZfNjQ=" title="https:&#x2F;&#x2F;wiki.archlinux.org&#x2F;title&#x2F;QEMU#Chrooting_into_arm&#x2F;arm64_environment_from_x86_64">here<i class="fa fa-external-link-alt"></i></span>. I went with the <code>arch-chroot</code> route:</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo arch-chroot /mnt/sdcard</span><br></pre></td></tr></table></figure><p>However, I kept getting <code>/lib/ld-linux-aarch64.so.1 does not exist</code>, when I ran the command above. Initially, I was thinking it was my host machine that has the issue, so I copied the file <code>ld-linux-aarch64.so.1</code> from <code>/usr/aarch64-linux-gnu/lib/ld-linux-aarch64.so.1</code>. And it still didn&#39;t work. I had spent almost one hour on this before I realized, the issue lies with my <code>chroot</code> and <strong>not</strong> my host machine. I had to do create a symbolic link from <code>/usr/lib</code> to <code>/lib</code> in the <code>chroot</code> (i.e. the sdcard file system). This time, I got <code>segmentation fault</code> when I did the chroot.</p><p>At this point, I might as well reinstall the whole ArchLinux. But before that I did a backup using the <code>rsync</code>:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># backup is important!</span></span><br><span class="line">sudo rsync -av /mnt/sdcard ~/rpi_bak</span><br></pre></td></tr></table></figure><h2 id="Reinstallation-of-ArchLinux-on-Raspberry"><a href="#Reinstallation-of-ArchLinux-on-Raspberry" class="headerlink" title="Reinstallation of ArchLinux on Raspberry"></a>Reinstallation of ArchLinux on Raspberry</h2><p>Reinstalling the ArchLinux on Raspberry Pi 3 actually felt easier than on x86_64 machine(because it is actually <span class="exturl" data-url="aHR0cHM6Ly9hcmNobGludXhhcm0ub3JnLw==" title="https:&#x2F;&#x2F;archlinuxarm.org&#x2F;">ArchLinux Arm<i class="fa fa-external-link-alt"></i></span> which is a port of ArchLinux for Arm devices). You can follow the guide <span class="exturl" data-url="aHR0cHM6Ly9hcmNobGludXhhcm0ub3JnL3BsYXRmb3Jtcy9hcm12OC9icm9hZGNvbS9yYXNwYmVycnktcGktMw==" title="https:&#x2F;&#x2F;archlinuxarm.org&#x2F;platforms&#x2F;armv8&#x2F;broadcom&#x2F;raspberry-pi-3">from ArchLinux Arm<i class="fa fa-external-link-alt"></i></span>. I would recommend setting the boot partition to be <strong>more</strong> than 200MB, 400MB would be ideal.</p><p>Once you are done with installation, I would recommend <strong>not</strong> to put your MicroSD card back to your Raspberry yet. Instead, you should chroot into the mounted folder and start installing some packages. If you are following the guide from ArchLinux Arm, you can do:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># mount boot and root again if you have unmounted</span></span><br><span class="line">sudo mount /dev/sdX2 ./root</span><br><span class="line"><span class="comment"># this ensures the boot drive is properly mounted.</span></span><br><span class="line">sudo mount /dev/sdX1 ./root/boot</span><br><span class="line">sudo arch-chroot ./root</span><br></pre></td></tr></table></figure><p>You are now acting as the root user for the newly initiated ArchLinux installation. You can start by populating the keys:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pacman-key --init</span><br><span class="line">pacman-key --populate archlinuxarm</span><br></pre></td></tr></table></figure><p>Once you are done with that, you would have the chance to install some necessary software, I would recommend at least install <code>sudo</code>, <code>git</code>, <code>wget</code>, <code>zsh</code>. For me, I copied all my files from my previous installation, so:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rsync -av ~/rpi_bak/sdcard/home/alarm/ ~/rpi-staging/root/home/alarm/</span><br></pre></td></tr></table></figure><p>Once this is done, I thought I&#39;m ready to put this MicroSD to my Raspberry Pi and things would get back to normal. However, things still didn&#39;t work as expected: the machine booted, but it had no Ethernet or WiFi access. I also noticed the lights were blinking wrongly. This made me think the whole situation had something to do with kernel. So, I had to plug the MicroSD back to my laptop and switch the kernel and install the <code>linux-rpi</code> <span class="exturl" data-url="aHR0cHM6Ly9hcmNobGludXhhcm0ub3JnL3BhY2thZ2VzL2FhcmNoNjQvbGludXgtcnBp" title="https:&#x2F;&#x2F;archlinuxarm.org&#x2F;packages&#x2F;aarch64&#x2F;linux-rpi">package<i class="fa fa-external-link-alt"></i></span>.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S linux-rpi</span><br></pre></td></tr></table></figure><p>This package is RPi Foundation patched Linux kernel and modules which turned out to solve the issue. You would be asked if you want to replace the current kernel and the u-boot. Go ahead and say yes. Now, if you had followed the official guide from ArchLinux Arm, you would get an error, because 200MB on the boot drive is not enough for installing a second kernel package when the current kernel is present (this is the reason I recommend using more than 200MB on boot partition). For me, I had to delete some files from the <code>/boot/dtbs</code> folder (which I don&#39;t recommend doing). This folder is for device tree blobs, so there might be unexpected consequences for deleting random files. </p><p>After rebooting and start using the kernel from RPi Foundation, everything would work as expected. I continued with some housekeeping tasks:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># install cron</span></span><br><span class="line">sudo pacman -S cronie &amp;&amp; sudo systemctl <span class="built_in">enable</span> --now cronie</span><br><span class="line"></span><br><span class="line"><span class="comment"># set the hostname</span></span><br><span class="line">hostnamectl hostname raspberrypi</span><br><span class="line"></span><br><span class="line"><span class="comment"># set timezone</span></span><br><span class="line">sudo timedatectl set-timezone Pacific/Auckland</span><br><span class="line"></span><br><span class="line"><span class="comment"># add the default user to sudoer</span></span><br><span class="line">sudo visudo</span><br><span class="line"><span class="comment"># Add the following lines:</span></span><br><span class="line"><span class="comment"># alarm ALL=(ALL:ALL) ALL</span></span><br><span class="line"><span class="comment"># Defaults:alarm !authenticate</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># set locale to utf-8</span></span><br><span class="line">localectl set-locale LANG=en_US.UTF-8</span><br></pre></td></tr></table></figure><p>I also compiled the aur helper from my laptop and transferred it RPi -- it just takes forever to compile things on RPi. For doing this you would need to get the PKGBUILD file for the package you want to build and run: <code>CARCH=aarch64 makepkg -Cf</code></p><h3 id="Lessons-Learnt"><a href="#Lessons-Learnt" class="headerlink" title="Lessons Learnt"></a>Lessons Learnt</h3><p>Honestly, I would rather not go through this process again. I did learnt a lot though:</p><ul><li>Don&#39;t ever run things with <code>--no-confirm</code>, it is so dangerous, especially on a rolling release distro like Arch</li><li>I was surprised I can run chroot on the aarch64 with x86_64 machine, this turned out to be the magic of <code>qemu-user-static</code> and <code>qemu-user-static-binfmt</code>. The binfmt is particularly interesting, Wikipedia would provide <span class="exturl" data-url="aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvQmluZm10X21pc2M=" title="https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Binfmt_misc">better explanation<i class="fa fa-external-link-alt"></i></span> than I do. Basically, Linux knows to use aarch64 related emulation when you are inside the chroot -- there&#39;s a mapping from the binary format to the interpreter at runtime. For example, I had this <code>/usr/lib/binfmt.d/qemu-aarch64-static.conf</code> file which contains<br><code>:qemu-aarch64:M::\x7fELF\x02\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\xb7\x00:\xff\xff\xff\xff\xff\xff\xff\x00\xff\xff\xff\xff\xff\xff\xff\xff\xfe\xff\xff\xff:/usr/bin/qemu-aarch64-static:FP</code><br><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3FlbXUvcWVtdS9ibG9iL2YzMTE2MGM3ZDFiODljZmI0ZGQ0MDAxYTIzNTc1YjQyMTQxY2IwZWMvcWVtdS1kb2MudGV4aSNMMjU5MA==" title="https:&#x2F;&#x2F;github.com&#x2F;qemu&#x2F;qemu&#x2F;blob&#x2F;f31160c7d1b89cfb4dd4001a23575b42141cb0ec&#x2F;qemu-doc.texi#L2590">This would allow QEMU execute programs for other processor architectures as if they were native binaries.<i class="fa fa-external-link-alt"></i></span></li><li>Setting up a system through chroot is much easier than doing things over SSH, this is especially true if you are dealing with Raspberry Pi or something that&#39;s not powerful enough.</li></ul><hr><h4 id="References"><a href="#References" class="headerlink" title="References:"></a>References:</h4><p><span class="exturl" data-url="aHR0cHM6Ly93aWtpLmFyY2hsaW51eC5vcmcvdGl0bGUvUUVNVSNEZXRhaWxzX29uX3BhY2thZ2VzX2F2YWlsYWJsZV9pbl9BcmNoX0xpbnV4">https://wiki.archlinux.org/title/QEMU#Details_on_packages_available_in_Arch_Linux<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly93aWtpLmFyY2hsaW51eC5vcmcvdGl0bGUvUUVNVSNDaHJvb3RpbmdfaW50b19hcm0vYXJtNjRfZW52aXJvbm1lbnRfZnJvbV94ODZfNjQ=">https://wiki.archlinux.org/title/QEMU#Chrooting_into_arm/arm64_environment_from_x86_64<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9hcmNobGludXhhcm0ub3JnL3BsYXRmb3Jtcy9hcm12OC9icm9hZGNvbS9yYXNwYmVycnktcGktMw==">https://archlinuxarm.org/platforms/armv8/broadcom/raspberry-pi-3<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvQmluZm10X21pc2M=">https://en.wikipedia.org/wiki/Binfmt_misc<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3FlbXUvcWVtdS9ibG9iL2YzMTE2MGM3ZDFiODljZmI0ZGQ0MDAxYTIzNTc1YjQyMTQxY2IwZWMvcWVtdS1kb2MudGV4aSNMMjU5MA==">https://github.com/qemu/qemu/blob/f31160c7d1b89cfb4dd4001a23575b42141cb0ec/qemu-doc.texi#L2590<i class="fa fa-external-link-alt"></i></span></p>]]>
     </content>
@@ -451,7 +451,7 @@ Web App-&gt;&gt;webview: Go to xxxx.
 <p>At this point, I had no choice but to connect the Pi to an external monitor. It didn&#39;t help. While I could see the bootloader start screen, the kernel seems broken, so machine did not start.</p>]]>
     </summary>
     <title>Lessons Learnt on Breaking and Reinstalling Arch Linux on Raspberry Pi</title>
-    <updated>2026-05-04T07:35:29.299Z</updated>
+    <updated>2026-05-04T08:25:39.116Z</updated>
   </entry>
   <entry>
     <author>
@@ -472,7 +472,7 @@ Web App-&gt;&gt;webview: Go to xxxx.
 <p>When a PR was merged and deployed into one of the test environments, the container would not start and went into a crash loop state. This obviously is not a good sign. The initial step was checking the logs emitted from within the container. This revealed the cause of the crash was an imported module (imported with non-relative path) can not be found in one of the JavaScript file.</p>]]>
     </summary>
     <title>JavaScript, TypeScript, Module Resolution and Module Alias</title>
-    <updated>2026-05-04T07:35:29.299Z</updated>
+    <updated>2026-05-04T08:25:39.116Z</updated>
   </entry>
   <entry>
     <author>
@@ -494,6 +494,6 @@ Web App-&gt;&gt;webview: Go to xxxx.
 <h3 id="What-is-Traefik"><a href="#What-is-Traefik" class="headerlink" title="What is Traefik?"></a>What is Traefik?</h3><p>By definition, Traefik is a reverse proxy and load balancer <span class="exturl" data-url="aHR0cHM6Ly90cmFlZmlrLmlvL3RyYWVmaWsv">^1<i class="fa fa-external-link-alt"></i></span>. It is a member of the CNCF (Cloud Native Computing Foundation) foundation, the community version of this application is written in Go, open-sourced under MIT license, and hosted on GitHub. <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3RyYWVmaWsvdHJhZWZpaw==">^2<i class="fa fa-external-link-alt"></i></span></p>]]>
     </summary>
     <title>Easy Self Hosting with Traefik proxy</title>
-    <updated>2026-05-04T07:35:29.298Z</updated>
+    <updated>2026-05-04T08:25:39.115Z</updated>
   </entry>
 </feed>
