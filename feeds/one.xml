@@ -7,9 +7,14 @@
     <description>Podcast from One 一个</description>
     <language>zh-cn</language>
     <item>
-      <title>愿你能谈谈笑笑，跑跑跳跳李荟莹</title>
-      <enclosure url="http://music.wufazhuce.com/llma17NHmVubnmJxd6xCYgJGR4HL" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/Fr4tGxQTx1D5e2JNpkIzDLjvqxWz?imageView2/1/w/475/h/304/q/95</itunes:image>
+      <title>晓橙的歌单马晓橙</title>
+      <enclosure url="http://music.wufazhuce.com/lsavXHt5En7PIUMU28GbmtCoSUP2" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/Fm0Dhmx-NqItaYmcUTP4wA9O6xp7?imageView2/1/w/475/h/304/q/95</itunes:image>
+    </item>
+    <item>
+      <title>长春桥-朗读者-马晓橙</title>
+      <enclosure url="http://music.wufazhuce.com/lnDgFKoOP4KQGrMCy3U_OvLlI-MY" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/Fs46GzgTEiPpy2QXgKFob70WkZwC</itunes:image>
     </item>
   </channel>
 </rss>
