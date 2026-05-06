@@ -7,14 +7,14 @@
     <description>Podcast from One 一个</description>
     <language>zh-cn</language>
     <item>
-      <title>晓橙的歌单马晓橙</title>
-      <enclosure url="http://music.wufazhuce.com/lsavXHt5En7PIUMU28GbmtCoSUP2" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/Fm0Dhmx-NqItaYmcUTP4wA9O6xp7?imageView2/1/w/475/h/304/q/95</itunes:image>
+      <title>能否将你比作夏天？李荟莹</title>
+      <enclosure url="http://music.wufazhuce.com/lhJ4URw38SNWuZ2yhPc4zrirtJUk" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FprHtff9-yivZypWQB5Qt8GWpaSg?imageView2/1/w/475/h/304/q/95</itunes:image>
     </item>
     <item>
-      <title>长春桥-朗读者-马晓橙</title>
-      <enclosure url="http://music.wufazhuce.com/lnDgFKoOP4KQGrMCy3U_OvLlI-MY" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/Fs46GzgTEiPpy2QXgKFob70WkZwC</itunes:image>
+      <title>爱情或乙女游戏-朗读者-李荟莹</title>
+      <enclosure url="http://music.wufazhuce.com/lsI9QIF04uWMQb3D0UVjA-ZuvbFw" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FgE3JLESpdshkt4tfxptexwHyPiA</itunes:image>
     </item>
   </channel>
 </rss>
