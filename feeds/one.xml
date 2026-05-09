@@ -7,9 +7,14 @@
     <description>Podcast from One 一个</description>
     <language>zh-cn</language>
     <item>
-      <title>最接近爱情的瞬间-朗读者-大卫</title>
-      <enclosure url="http://music.wufazhuce.com/ll-xVCFiONsL0qqlzOSuetW9DqP2" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FjsO12aABcwxnoQ59I5di83EC5-R</itunes:image>
+      <title>修补房子，也是在修补生活赟赟</title>
+      <enclosure url="http://music.wufazhuce.com/lsLSEpu8TZh_RKRJoXOyWXHGPTKw" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/Fv2KPuEYWKnTOErUOKTo9Micc-zJ?imageView2/1/w/475/h/304/q/95</itunes:image>
+    </item>
+    <item>
+      <title>发财-朗读者-马晓橙</title>
+      <enclosure url="http://music.wufazhuce.com/lkGd3eBGKNpVNtV6igR5iB1dtshe" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FloLOoD4q4c1xItNyy96goMArdyI</itunes:image>
     </item>
   </channel>
 </rss>
