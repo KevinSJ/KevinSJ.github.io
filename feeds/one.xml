@@ -7,14 +7,14 @@
     <description>Podcast from One 一个</description>
     <language>zh-cn</language>
     <item>
-      <title>你也曾走过的那条路李荟莹</title>
-      <enclosure url="http://music.wufazhuce.com/ljqIQVEWa-aqgVy2d4VSJG-Rp2iZ" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FurqMxgqnIgL4eDuO7oWSIotOevI?imageView2/1/w/475/h/304/q/95</itunes:image>
+      <title>到底聊点啥｜说不尽的陋习马晓橙、李荟莹</title>
+      <enclosure url="http://music.wufazhuce.com/ljfHrANNW-rUSWLnQC7ei_5A6m3S" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/Fl0feD6NOb7whAhfQE2jmRXLmhj1?imageView2/1/w/475/h/304/q/95</itunes:image>
     </item>
     <item>
-      <title>按摩-朗读者-马晓橙</title>
-      <enclosure url="http://music.wufazhuce.com/lkVAO9XS4CUEGRNvh1DQpUD_0Hdv" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/Fm2LlIG51NIEmJgU3qOv6QR4vAno</itunes:image>
+      <title>豆豆小屋-朗读者-大卫</title>
+      <enclosure url="http://music.wufazhuce.com/luIKNJchOfhZHk_4UvCxXk-X9vGh" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FtqFsFxi_6wUlQqWObZMgSL-GRYu</itunes:image>
     </item>
   </channel>
 </rss>
