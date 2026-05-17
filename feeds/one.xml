@@ -7,14 +7,19 @@
     <description>Podcast from One 一个</description>
     <language>zh-cn</language>
     <item>
-      <title>到底聊点啥｜说不尽的陋习马晓橙、李荟莹</title>
-      <enclosure url="http://music.wufazhuce.com/ljfHrANNW-rUSWLnQC7ei_5A6m3S" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/Fl0feD6NOb7whAhfQE2jmRXLmhj1?imageView2/1/w/475/h/304/q/95</itunes:image>
+      <title>无法相见的动心-朗读者-大卫</title>
+      <enclosure url="http://music.wufazhuce.com/li0BTi75B0LMj641Q4rMA0eyAKSP" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/Fo8tKNdPYRKrh2yfeb6IQRv7HhO8</itunes:image>
     </item>
     <item>
-      <title>豆豆小屋-朗读者-大卫</title>
-      <enclosure url="http://music.wufazhuce.com/luIKNJchOfhZHk_4UvCxXk-X9vGh" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FtqFsFxi_6wUlQqWObZMgSL-GRYu</itunes:image>
+      <title>念念不忘-朗读者-李荟莹</title>
+      <enclosure url="http://music.wufazhuce.com/ltOvdmNWN0sgFjqfkS5b6fwopRro" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FkZMdbqO3SHxWZ4nrRIDm8WHtHso</itunes:image>
+    </item>
+    <item>
+      <title>西柚成熟时-朗读者-大卫</title>
+      <enclosure url="http://music.wufazhuce.com/lkWl8hsChIGtMV7yPYEUxdIBvYof" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FknRYFICcF_D_qqaQzCObNafyGJ4</itunes:image>
     </item>
   </channel>
 </rss>
