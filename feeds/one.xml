@@ -7,14 +7,19 @@
     <description>Podcast from One 一个</description>
     <language>zh-cn</language>
     <item>
-      <title>到底聊点啥｜那些我羡慕的事儿马晓橙、李荟莹</title>
-      <enclosure url="http://music.wufazhuce.com/lj77Aa0t8uf4ffggJldihhgpKtOc" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FgiHIDSm3t-WFaKTyDxqVx3ijQ7Z?imageView2/1/w/475/h/304/q/95</itunes:image>
+      <title>一千块-朗读者-闯先生</title>
+      <enclosure url="http://music.wufazhuce.com/llUHymGDPeWr3_Yq1oPUFTqQ7KUA" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FgEa9c9aHJ8Sb2lqkBZ8e8KgJWyu</itunes:image>
     </item>
     <item>
-      <title>别让我伤心-朗读者-李荟莹</title>
-      <enclosure url="http://music.wufazhuce.com/lmhYC0270xcYSEStbCsLl032XKlD" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FiOxFVA2NZGLTSpq1-dJMCoEmx4t</itunes:image>
+      <title>天将明-朗读者-马晓橙</title>
+      <enclosure url="http://music.wufazhuce.com/lhn8oToIF3L_Nr9IZxdldU4CSZce" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FoRT0b4wnIeYS8KznvbJtW1RvvcS</itunes:image>
+    </item>
+    <item>
+      <title>深渊-朗读者-闯先生</title>
+      <enclosure url="http://music.wufazhuce.com/lukwhW1z5RSTVDyC_SltzZq6l4Rs" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FrYK4LtyybckT2M98L858d_u4B27</itunes:image>
     </item>
   </channel>
 </rss>
