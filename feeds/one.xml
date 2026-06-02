@@ -7,9 +7,14 @@
     <description>Podcast from One 一个</description>
     <language>zh-cn</language>
     <item>
-      <title>今天，没有比快乐更重要的事儿李荟莹</title>
-      <enclosure url="http://music.wufazhuce.com/luhv4GppuSId0xXt9Szb8xLiU6rk" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FqaB9kZ-3BkhIHS4n5MsAOSmf_d6?imageView2/1/w/475/h/304/q/95</itunes:image>
+      <title>好像买齐“道具”，就能演好生活马晓橙</title>
+      <enclosure url="http://music.wufazhuce.com/ltTizgUWGiwola45QwWk37JTES4d" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FvBm-MlQ4yaxGQJUKiddG9NFTCHo?imageView2/1/w/475/h/304/q/95</itunes:image>
+    </item>
+    <item>
+      <title>隐于山林之间-朗读者-闯先生</title>
+      <enclosure url="http://music.wufazhuce.com/lh3pIffQmmz-T4mfDLC8ZTJ5ATZ4" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/Flz4LZmCL6HKFA-3CXeYHVkgLmwz</itunes:image>
     </item>
   </channel>
 </rss>
