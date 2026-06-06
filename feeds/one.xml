@@ -7,9 +7,14 @@
     <description>Podcast from One 一个</description>
     <language>zh-cn</language>
     <item>
-      <title>陪读的那些日子李荟莹</title>
-      <enclosure url="http://music.wufazhuce.com/lr2yNGpo8L1LfDwiaVt2zUBRikni" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/Fh8RjDuRLowcJ9h3q65Sx_o4FPRT?imageView2/1/w/475/h/304/q/95</itunes:image>
+      <title>唱自己的歌赟赟</title>
+      <enclosure url="http://music.wufazhuce.com/lpT25N1HOE0mIlQs4nYgKgOGbqkR" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FoR4Yt_m4jvnGaWdrNXMOA3qtl_J?imageView2/1/w/475/h/304/q/95</itunes:image>
+    </item>
+    <item>
+      <title>镜中唇语-朗读者-马晓橙</title>
+      <enclosure url="http://music.wufazhuce.com/lpYmhi2hGVdSOHaUo6L5dwpibX3_" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/Fs9o1r8CQ1N2AEkMEszeCiB_VHCy</itunes:image>
     </item>
   </channel>
 </rss>
