@@ -7,9 +7,19 @@
     <description>Podcast from One 一个</description>
     <language>zh-cn</language>
     <item>
-      <title>到底聊点啥｜原来你也假装是大人马晓橙、李荟莹</title>
-      <enclosure url="http://music.wufazhuce.com/lr1rxUshHWkfL6fuNqhvgej2D5xT" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FvHM1pVNz0FVVetKCwy6m_BCDQtP?imageView2/1/w/475/h/304/q/95</itunes:image>
+      <title>风雪鸽子飞-朗读者-大卫</title>
+      <enclosure url="http://music.wufazhuce.com/lpoGr_YGZXrUEVQmsBHO0yCctzUw" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FnFHG12rzh0hSRJgYcv-luWqSJxL</itunes:image>
+    </item>
+    <item>
+      <title>液态猫-朗读者-马晓橙</title>
+      <enclosure url="http://music.wufazhuce.com/loHcndqIOY_NEN1ztFfuvnq3-_qc" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FimW37CAlgaxjwtsgOT12KizcksN</itunes:image>
+    </item>
+    <item>
+      <title>落大雪-朗读者-马晓橙</title>
+      <enclosure url="http://music.wufazhuce.com/ltiSwcG1WGscwWLyKDWh92N4-OQJ" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/Fp3-0MQ-atZw0o4PAe9rRMVqbid6</itunes:image>
     </item>
   </channel>
 </rss>
