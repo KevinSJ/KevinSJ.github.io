@@ -7,14 +7,9 @@
     <description>Podcast from One 一个</description>
     <language>zh-cn</language>
     <item>
-      <title>父亲，总是站在看台马晓橙</title>
-      <enclosure url="http://music.wufazhuce.com/lvbX7Jh0RPDgG1eHd_0HupwUxrHT" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FgQJWdh21zwpqtePUENrFomjCcX3?imageView2/1/w/475/h/304/q/95</itunes:image>
-    </item>
-    <item>
-      <title>就让我活在一个永远的茧中-朗读者-马晓橙</title>
-      <enclosure url="http://music.wufazhuce.com/lpm5_BDhpsWwbW_bUPFn8T8QxT5y" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FoZ_NsEx_LQ4kDsF3-eKop4MpxWc</itunes:image>
+      <title>还是学不会失恋李荟莹</title>
+      <enclosure url="http://music.wufazhuce.com/ltyYrhx3cll4i1_5FwhWdsX2UR9y" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/Fkn72R5-P9iCZsAL0tWZb6ugqSwF?imageView2/1/w/475/h/304/q/95</itunes:image>
     </item>
   </channel>
 </rss>
