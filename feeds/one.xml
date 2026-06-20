@@ -7,9 +7,14 @@
     <description>Podcast from One 一个</description>
     <language>zh-cn</language>
     <item>
-      <title>还是学不会失恋李荟莹</title>
-      <enclosure url="http://music.wufazhuce.com/ltyYrhx3cll4i1_5FwhWdsX2UR9y" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/Fkn72R5-P9iCZsAL0tWZb6ugqSwF?imageView2/1/w/475/h/304/q/95</itunes:image>
+      <title>我们在夏日里无所事事赟赟</title>
+      <enclosure url="http://music.wufazhuce.com/llWiMTbOCx47EGi6zL08FtOSGBDu" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FutACaja3oOKU6yDMzgTq5iCTB8-?imageView2/1/w/475/h/304/q/95</itunes:image>
+    </item>
+    <item>
+      <title>一朵花的盛开-朗读者-闯先生</title>
+      <enclosure url="http://music.wufazhuce.com/liaOqJH87t8T4KJ4CiHWkWN1HKBD" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FkOZ8CPlpKqE_t0gzJY6KM7NmqXB</itunes:image>
     </item>
   </channel>
 </rss>
