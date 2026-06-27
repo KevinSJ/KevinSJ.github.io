@@ -7,9 +7,14 @@
     <description>Podcast from One 一个</description>
     <language>zh-cn</language>
     <item>
-      <title>我的心是一间公寓李荟莹</title>
-      <enclosure url="http://music.wufazhuce.com/lpmZ8r3nQzIpyIkG2YiVuBwtNw5d" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FjtsR-myywTOLFMXcg28Ee7b9Ox-?imageView2/1/w/475/h/304/q/95</itunes:image>
+      <title>到底聊点啥｜我们都有“七宗罪”马晓橙、李荟莹</title>
+      <enclosure url="http://music.wufazhuce.com/li5xFjHxwmtWGI8mbrDKht-f6gT3" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FiybJLAEg-uIVsSD2a9mW9350ZpW?imageView2/1/w/475/h/304/q/95</itunes:image>
+    </item>
+    <item>
+      <title>不坏-朗读者-马晓橙</title>
+      <enclosure url="http://music.wufazhuce.com/lhzyCWCFKI9eGeCg8L-Mp49Ug9es" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/Fj2adVRB6AmcB3mnt9eJO4zZf8ci</itunes:image>
     </item>
   </channel>
 </rss>
