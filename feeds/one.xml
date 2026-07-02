@@ -7,9 +7,14 @@
     <description>Podcast from One 一个</description>
     <language>zh-cn</language>
     <item>
-      <title>静下来，听夏天的声音李荟莹</title>
-      <enclosure url="http://music.wufazhuce.com/lm0we4ge09gOB_mut5CM7LKfXqx9" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FsZYJysyzojA2VovEZT_-6IIj4hJ?imageView2/1/w/475/h/304/q/95</itunes:image>
+      <title>如果不是因为你，我早就辞职了马晓橙</title>
+      <enclosure url="http://music.wufazhuce.com/lu9Z_vr470uKhG8-Pcp1OAq6GZJV" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/Foowa4mmUuyDdUyoODuBMTeQlj27?imageView2/1/w/475/h/304/q/95</itunes:image>
+    </item>
+    <item>
+      <title>风飘絮-朗读者-马晓橙</title>
+      <enclosure url="http://music.wufazhuce.com/lgZy6pJ1LhgVa2vDp_ZpWr977yB0" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FouE8atiVRziU9qUgNCdkFjBAt5p</itunes:image>
     </item>
   </channel>
 </rss>
