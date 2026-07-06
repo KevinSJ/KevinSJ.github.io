@@ -7,9 +7,14 @@
     <description>Podcast from One 一个</description>
     <language>zh-cn</language>
     <item>
-      <title>不遇-朗读者-闯先生</title>
-      <enclosure url="http://music.wufazhuce.com/lmNLywtRHQ2iwNseEu72K90gCOjz" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FkT6YVW9Zrn22SPshFaoDbhPiP-g</itunes:image>
+      <title>不如再不相见李荟莹</title>
+      <enclosure url="http://music.wufazhuce.com/lkIlHvl4_fzWC2Gs6tAhS9gIczxx" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FgPx80dAub67AwYPlD6Wcf5KkWd6?imageView2/1/w/475/h/304/q/95</itunes:image>
+    </item>
+    <item>
+      <title>追风-朗读者-马晓橙</title>
+      <enclosure url="http://music.wufazhuce.com/luPlwa11rLA4uu84xPOGvlZ1U0gP" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FqjmXcRJS7betDNB7ILBa5Lixjdx</itunes:image>
     </item>
   </channel>
 </rss>
