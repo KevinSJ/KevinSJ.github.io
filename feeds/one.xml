@@ -7,19 +7,14 @@
     <description>Podcast from One 一个</description>
     <language>zh-cn</language>
     <item>
-      <title>怀念时常徒有虚名-朗读者-大卫</title>
-      <enclosure url="http://music.wufazhuce.com/llRVc4Isjfvz4fMF73I1zjb61IP4" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FsgXWBR_H644rVEswjgi5My9-TZW</itunes:image>
+      <title>如果可以，你想和谁互换生活？李荟莹</title>
+      <enclosure url="http://music.wufazhuce.com/lmKIG0YaDZtwTLb7rZAOOP9nG-3g" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/Fjijp2LJrMy7PhlB_sM4GwZvFKdv?imageView2/1/w/475/h/304/q/95</itunes:image>
     </item>
     <item>
-      <title>一起错过的节日-朗读者-大卫</title>
-      <enclosure url="http://music.wufazhuce.com/lpYh3zJszWC673VZIizdYwEtrPVQ" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/Fvx7J-9fukySvMoCaE2BQQJktOnc</itunes:image>
-    </item>
-    <item>
-      <title>梦的另一边-朗读者-闯先生</title>
-      <enclosure url="http://music.wufazhuce.com/li_zYRgCpntIUA6QzsRUxE4mhGS5" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FpXvQPuI7O8oh2rEsG3WLDfeY2OW</itunes:image>
+      <title>市场边缘钟楼-朗读者-闯先生</title>
+      <enclosure url="http://music.wufazhuce.com/ltWvQjK-cCqCGndy0SUo-YQeFWCY" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/Fjl3dbicZUf2CQD0Q9WnTZYTZz96</itunes:image>
     </item>
   </channel>
 </rss>
