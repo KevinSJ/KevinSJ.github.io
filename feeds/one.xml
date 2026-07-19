@@ -6,15 +6,5 @@
     <itunes:image>https://image.wufazhuce.com/radio_banner_1125_600.jpg</itunes:image>
     <description>Podcast from One 一个</description>
     <language>zh-cn</language>
-    <item>
-      <title>当生活调回“手动模式”赟赟</title>
-      <enclosure url="http://music.wufazhuce.com/lle1daaE117WMmhTaX4Cyo3_6Hfb" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/Fj_d5zNumZGGZg-OlzEQmp0zjR06?imageView2/1/w/475/h/304/q/95</itunes:image>
-    </item>
-    <item>
-      <title>灰烬乐园-朗读者-马晓橙</title>
-      <enclosure url="http://music.wufazhuce.com/ltpn4muZBL8XoICUza5znIJCiTBp" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FqSEMFvVzl96ZCeIuYaSZf3o1HzF</itunes:image>
-    </item>
   </channel>
 </rss>
