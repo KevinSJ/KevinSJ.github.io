@@ -7,9 +7,14 @@
     <description>Podcast from One 一个</description>
     <language>zh-cn</language>
     <item>
-      <title>晚上回家，先别开灯马晓橙</title>
-      <enclosure url="http://music.wufazhuce.com/lvQMN9vOLR-nnkxoAYeOzLyhtYSn" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/Fpa5grWLB6ie1dPdSfPWA8yGSy1w?imageView2/1/w/475/h/304/q/95</itunes:image>
+      <title>那些未付诸行动的疯狂念头李荟莹</title>
+      <enclosure url="http://music.wufazhuce.com/lpz3SH4Bx-CQr1Bqj-O8Flzvfkxs" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FnqCQfw-EfR3tIzu2N6PU4esqhA9?imageView2/1/w/475/h/304/q/95</itunes:image>
+    </item>
+    <item>
+      <title>荒人夜奔-朗读者-马晓橙</title>
+      <enclosure url="http://music.wufazhuce.com/ls30wNpRdqHEFZd7pBlEoHf4imZ_" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/Ftn7Q_K6YLbhYCgA3okeQNpM0jf3</itunes:image>
     </item>
   </channel>
 </rss>
