@@ -7,14 +7,9 @@
     <description>Podcast from One 一个</description>
     <language>zh-cn</language>
     <item>
-      <title>在墨西哥和100万人看世界杯马晓橙</title>
-      <enclosure url="http://music.wufazhuce.com/lqgpN3Sz_R5Hfn90XKELDqbfvMit" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FrryBNA_e-GNnFCYBL2G88VNp4pN?imageView2/1/w/475/h/304/q/95</itunes:image>
-    </item>
-    <item>
-      <title>叠地法-朗读者-马晓橙</title>
-      <enclosure url="http://music.wufazhuce.com/llzATx9OC4qnIznI0kTeYqdaiAfd" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FkhDEtKDTcxOGFz9oZj7WBW7Gopz</itunes:image>
+      <title>成年人的漫长暑假李荟莹</title>
+      <enclosure url="http://music.wufazhuce.com/lpyLi3j8TT21AhZG4P5QoAUIZSuh" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/Fk17g4y7HpcmAOE_VjVyvgKdSuwA?imageView2/1/w/475/h/304/q/95</itunes:image>
     </item>
   </channel>
 </rss>
