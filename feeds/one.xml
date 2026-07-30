@@ -7,14 +7,9 @@
     <description>Podcast from One 一个</description>
     <language>zh-cn</language>
     <item>
-      <title>收信快乐｜我们依然可以通信李荟莹</title>
-      <enclosure url="http://music.wufazhuce.com/ljsD8JOq3jeYNsJNOB_ZhNZzZQGd" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FoLhzlKXiHa8TTHO78ifbQ1v31ep?imageView2/1/w/475/h/304/q/95</itunes:image>
-    </item>
-    <item>
-      <title>牛奶青提-朗读者-闯先生</title>
-      <enclosure url="http://music.wufazhuce.com/lsF6uyNnNldMXHIXPfdW7zkWclIY" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FtSSnaB1v7GHiZNWXg6gn77--4gz</itunes:image>
+      <title>此地空余黄鹤楼马晓橙</title>
+      <enclosure url="http://music.wufazhuce.com/lha89c6QeSNqxmy6Qs0glJ7fpAIS" type="audio/mpeg" />
+      <itunes:image>http://image.wufazhuce.com/FuB0hQbrdyeK-UmnUZxs_icSiK6T?imageView2/1/w/475/h/304/q/95</itunes:image>
     </item>
   </channel>
 </rss>
