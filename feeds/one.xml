@@ -6,15 +6,5 @@
     <itunes:image>https://image.wufazhuce.com/radio_banner_1125_600.jpg</itunes:image>
     <description>Podcast from One 一个</description>
     <language>zh-cn</language>
-    <item>
-      <title>台风还会来，也会走李荟莹</title>
-      <enclosure url="http://music.wufazhuce.com/lj5kKraMeFYczaDgqLX1cdSfHdC_" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/Ft8cUWcwuChl8RDU6tMRACIXC55j?imageView2/1/w/475/h/304/q/95</itunes:image>
-    </item>
-    <item>
-      <title>她的一天-朗读者-李荟莹</title>
-      <enclosure url="http://music.wufazhuce.com/lsuNj_38WUKR9f0e4kPpsWe3g6Z1" type="audio/mpeg" />
-      <itunes:image>http://image.wufazhuce.com/FsZ0rdNnQ1lKrEQjmrGUXFDGFnXM</itunes:image>
-    </item>
   </channel>
 </rss>
