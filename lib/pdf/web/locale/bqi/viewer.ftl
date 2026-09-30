@@ -62,8 +62,8 @@ pdfjs-page-rotate-cw-button =
     .title = لر خردن ساعتگرد
 pdfjs-page-rotate-cw-button-label = لر خردن ساعتگرد
 pdfjs-page-rotate-ccw-button =
-    .title = لر خردن پاد ساعتگرد
-pdfjs-page-rotate-ccw-button-label = لر خردن پاد ساعتگرد
+    .title = لر خردن خلاف ساعتگرد
+pdfjs-page-rotate-ccw-button-label = لر خردن خلاف ساعتگرد
 pdfjs-cursor-text-select-tool-button =
     .title = فعال کردن ٱوزار پسند هؽل
 pdfjs-cursor-text-select-tool-button-label = ٱوزار پسند هؽل
@@ -141,28 +141,10 @@ pdfjs-print-progress-close-button = لقو
 
 ## Tooltips and alt text for side panel toolbar buttons
 
-pdfjs-toggle-sidebar-button =
-    .title = آلشت هالت نوار کلی
-pdfjs-toggle-sidebar-button-label = آلشت هالت نوار کلی
-pdfjs-document-outline-button-label = تئر سند
-pdfjs-attachments-button =
-    .title = نشووݩ داڌن پیوستا
-pdfjs-attachments-button-label = پیوستا
-pdfjs-layers-button-label = لایه یل
-pdfjs-thumbs-button =
-    .title = نشووݩ داڌن شؽواتا کۊچیر
-pdfjs-thumbs-button-label = شؽواتا کۊچیر
 pdfjs-findbar-button =
     .title = جوستن من سند
 pdfjs-findbar-button-label = جوستن
 pdfjs-additional-layers = لایه یل ازافه
-
-## Thumbnails panel item (tooltip and alt text for images)
-
-# Variables:
-#   $page (Number) - the page number
-pdfjs-thumb-page-title =
-    .title = بلگه { $page }
 
 ## Find panel button title and messages
 
