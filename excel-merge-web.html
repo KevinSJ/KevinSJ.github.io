@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.2">
+  <link rel="preload" href="/css/main.css" as="style">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="9g-E_K0GEppNWOItj0YYJV_1UbSLdVFrKOhHSPLkJcM">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" integrity="sha256-4Lad8m4ZWW1Lgb9+sMVLYEfnIh7BjV1NQMEe79Pviks=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"jiangsc.me","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.29.0","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="Excel 前四列匹配合并    :root{   --bg:#0e0c15; --panel:#181428; --panel2:#211b34; --line:#2f2748;   --txt:#e9e5f7; --dim:#9b91bb; --pink:#ff5c8a; --purple:#a97bff;   --ok:#4ade80; --warn:#fbbf24; --err:">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Kevin Jiang&#39;s Technical Blog">
+<meta property="og:url" content="https://jiangsc.me/excel-merge-web.html">
+<meta property="og:site_name" content="Kevin Jiang&#39;s Technical Blog">
+<meta property="og:description" content="Excel 前四列匹配合并    :root{   --bg:#0e0c15; --panel:#181428; --panel2:#211b34; --line:#2f2748;   --txt:#e9e5f7; --dim:#9b91bb; --pink:#ff5c8a; --purple:#a97bff;   --ok:#4ade80; --warn:#fbbf24; --err:">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-10-10T22:15:52.197Z">
+<meta property="article:modified_time" content="2026-10-10T22:15:52.197Z">
+<meta property="article:author" content="Kevin Jiang">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Programming">
+<meta property="article:tag" content="Tech">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://jiangsc.me/excel-merge-web">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":true,"permalink":"https://jiangsc.me/excel-merge-web.html","path":"excel-merge-web.html","title":""}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title> | Kevin Jiang's Technical Blog
+</title>
+  
+
+
+
+
+
+
+  <script async defer data-website-id="c4ed80eb-6e46-4603-a114-34b3a0f3eb10" src="https://u-a.jiangsc.me/script.js"></script>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.3.1/pdfobject.min.js","integrity":"sha256-jI72I8ZLVflVOisZIOaLvRew3tyvzeu6aZXFm7P7dEo="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js" defer></script>
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.10.1/mermaid.min.js","integrity":"sha256-BmQmdWDS8X2OTbrwELWK366LV6escyWhHHe0XCTU/Hk="}}</script>
+  <script src="/js/third-party/tags/mermaid.js" defer></script>
+
+
+
+
+
+  
+
+  <script class="next-config" data-name="firestore" type="application/json">{"collection":"blog_view","projectId":"blog-269be"}</script>
+  <script src="/js/third-party/statistics/firestore.js" defer></script>
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start --><script defer src="https://u-a.jiangsc.me/recorder.js" data-website-id="c4ed80eb-6e46-4603-a114-34b3a0f3eb10"></script><!-- hexo injector head_end end --><link rel="alternate" href="/atom.xml" title="Kevin Jiang's Technical Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-search popup-trigger" aria-label="Search" role="button">
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Kevin Jiang's Technical Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-toggle" aria-label="Toggle navigation bar" role="button">
+      <i class="fa fa-ellipsis fa-fw fa-lg"></i>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-favorites"><a href="/favorites/" rel="section"><i class="fa fa-star fa-fw"></i>Favorites</a></li><li class="menu-item menu-item-gallery"><a href="/gallery/" rel="section"><i class="fa fa-image fa-fw"></i>Gallery</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tools"><a href="/tools/" rel="section"><i class="fa fa-cogs fa-fw"></i>Tools</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">Excel 前四列匹配 · 后四列搬运</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Kevin Jiang</p>
+  <div class="site-description" itemprop="description">A blog about all things tech.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">53</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">133</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2tldmluc2o=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;kevinsj"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly93d3cubGlua2VkaW4uY29tL2luL2tldnNq" title="LinkedIn → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;kevsj"><i class="fab fa-linkedin fa-fw"></i>LinkedIn</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRsYWIuY29tL2tldmluc2o=" title="GitLab → https:&#x2F;&#x2F;gitlab.com&#x2F;kevinsj"><i class="fab fa-gitlab fa-fw"></i>GitLab</span>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></span>
+  </div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="Back to top">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner page posts-expand">
+
+
+    
+    
+    
+    <div class="post-block" lang="en"><header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">
+</h1>
+
+<div class="post-meta-container">
+</div>
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+          <!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Excel 前四列匹配合并</title>
+<script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/sql-wasm.js"></script>
+<style>
+:root{
+  --bg:#0e0c15; --panel:#181428; --panel2:#211b34; --line:#2f2748;
+  --txt:#e9e5f7; --dim:#9b91bb; --pink:#ff5c8a; --purple:#a97bff;
+  --ok:#4ade80; --warn:#fbbf24; --err:#f87171;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; color:var(--txt);
+  background:
+    radial-gradient(1100px 500px at 15% -15%,#2b1f47 0%,transparent 60%),
+    radial-gradient(900px 500px at 100% 0%,#3a1c33 0%,transparent 55%),
+    var(--bg);
+  font:14px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1200px;margin:0 auto;padding:26px 18px 90px}
+h1{margin:0 0 6px;font-size:21px;letter-spacing:.3px}
+h1 em{color:var(--pink);font-style:normal}
+.sub{margin:0 0 20px;color:var(--dim);font-size:13px}
+.badge{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:8px;
+  background:linear-gradient(135deg,var(--pink),var(--purple));color:#fff;font-weight:700;font-size:13px;flex:0 0 auto}
+.card{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line);
+  border-radius:14px;padding:16px;margin-bottom:14px;box-shadow:0 10px 28px rgba(0,0,0,.35)}
+.cardhd{display:flex;align-items:center;gap:9px;font-weight:600;margin-bottom:12px;font-size:14px}
+.cardhd .tip{color:var(--dim);font-weight:400;font-size:12px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:840px){.grid2{grid-template-columns:1fr}}
+.drop{display:block;border:1.5px dashed var(--line);border-radius:12px;padding:20px 12px;text-align:center;
+  cursor:pointer;color:var(--dim);transition:.18s;background:rgba(255,255,255,.015)}
+.drop:hover,.drop.over{border-color:var(--pink);color:var(--txt);background:rgba(255,92,138,.08)}
+.drop b{color:var(--pink)}
+.meta{font-size:12px;color:var(--dim);margin-top:9px;word-break:break-all}
+.row{display:flex;align-items:center;gap:8px;margin-top:10px}
+.row label{font-size:12px;color:var(--dim);white-space:nowrap}
+select,input[type=text]{background:#120f1e;border:1px solid var(--line);color:var(--txt);
+  border-radius:9px;padding:7px 10px;font:inherit;font-size:13px;outline:none;transition:.15s}
+select:focus,input[type=text]:focus{border-color:var(--pink)}
+input[type=text]{width:100%}
+.tblwrap{margin-top:11px;overflow:auto;max-height:190px;border:1px solid var(--line);border-radius:10px}
+table{border-collapse:collapse;font-size:12px;white-space:nowrap;min-width:100%}
+th,td{border-bottom:1px solid var(--line);border-right:1px solid var(--line);padding:5px 9px;text-align:left;max-width:220px;overflow:hidden;text-overflow:ellipsis}
+th{background:#151126;color:var(--dim);font-weight:600;position:sticky;top:0}
+tbody tr:hover td{background:rgba(169,123,255,.07)}
+td.hl{background:rgba(255,92,138,.11);color:#ffd6e3}
+.cfg{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:840px){.cfg{grid-template-columns:1fr 1fr}}
+.f label{display:block;font-size:12px;color:var(--dim);margin-bottom:5px}
+.checks{display:flex;flex-wrap:wrap;gap:16px;margin-top:14px;font-size:13px}
+.checks label{display:flex;align-items:center;gap:7px;cursor:pointer;color:var(--dim)}
+.checks input{accent-color:var(--pink);width:15px;height:15px;cursor:pointer}
+.btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}
+button{border:1px solid var(--line);background:#1d1830;color:var(--txt);border-radius:10px;
+  padding:9px 16px;font:inherit;font-size:13px;cursor:pointer;transition:.15s}
+button:hover{border-color:var(--purple);background:#251e3d}
+button.primary{background:linear-gradient(135deg,var(--pink),var(--purple));border:none;color:#fff;font-weight:600}
+button.primary:hover{filter:brightness(1.12)}
+button:disabled{opacity:.4;cursor:not-allowed}
+.log{margin-top:12px;background:#0b0912;border:1px solid var(--line);border-radius:10px;padding:11px 13px;
+  font:12px/1.75 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;max-height:210px;overflow:auto;white-space:pre-wrap;word-break:break-all}
+.log .ok{color:var(--ok)} .log .warn{color:var(--warn)} .log .err{color:var(--err)} .log .dim{color:var(--dim)}
+.eng{font-size:12px;padding:2px 8px;border-radius:999px;border:1px solid var(--line);color:var(--dim)}
+.eng.on{color:var(--ok);border-color:rgba(74,222,128,.4);background:rgba(74,222,128,.08)}
+.eng.fb{color:var(--warn);border-color:rgba(251,191,36,.4);background:rgba(251,191,36,.08)}
+.stat{display:flex;flex-wrap:wrap;gap:22px;margin-bottom:12px}
+.stat div{font-size:13px;color:var(--dim)}
+.stat b{display:block;font-size:19px;color:var(--txt);font-weight:600;margin-top:2px}
+.stat b.pink{color:var(--pink)}
+textarea{width:100%;height:130px;background:#0b0912;border:1px solid var(--line);border-radius:10px;
+  color:var(--txt);font:12px/1.6 ui-monospace,Menlo,Consolas,monospace;padding:10px;outline:none;resize:vertical}
+details{margin-top:12px}
+summary{cursor:pointer;color:var(--dim);font-size:12px}
+summary:hover{color:var(--pink)}
+.spin{display:inline-block;animation:sp 1s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>Excel 前四列匹配 <em>·</em> 后四列搬运</h1>
+  <p class="sub">
+    A 的前四列 == B 的前四列 → 把 B 的后四列刷进 A。全程在你浏览器里跑，文件不上传。
+    引擎：<span id="engine" class="eng">检测中…</span>
+  </p>
+
+  <div class="grid2">
+    <div class="card">
+      <div class="cardhd"><span class="badge">A</span><span>接收数据的表</span><span class="tip">（被覆盖的那个）</span></div>
+      <label class="drop" id="dropA"><input type="file" id="fileA" accept=".xlsx,.xls,.csv" hidden>
+        <span>拖进来 或 <b>点这里选文件</b></span></label>
+      <div class="meta" id="metaA">还没加载</div>
+      <div class="row"><label>工作表</label><select id="sheetA" style="flex:1"></select></div>
+      <div class="tblwrap"><table id="prevA"></table></div>
+    </div>
+
+    <div class="card">
+      <div class="cardhd"><span class="badge">B</span><span>提供数据的表</span><span class="tip">（数据来源）</span></div>
+      <label class="drop" id="dropB"><input type="file" id="fileB" accept=".xlsx,.xls,.csv" hidden>
+        <span>拖进来 或 <b>点这里选文件</b></span></label>
+      <div class="meta" id="metaB">还没加载</div>
+      <div class="row"><label>工作表</label><select id="sheetB" style="flex:1"></select></div>
+      <div class="tblwrap"><table id="prevB"></table></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="cardhd"><span class="badge">⚙</span><span>匹配规则</span><span class="tip">列号按你肉眼看 Excel 的顺序数，从 1 开始</span></div>
+    <div class="cfg">
+      <div class="f"><label>A 的匹配列</label><input type="text" id="keyA" value="1,2,3,4"></div>
+      <div class="f"><label>B 的匹配列</label><input type="text" id="keyB" value="1,2,3,4"></div>
+      <div class="f"><label>B 的取值列</label><input type="text" id="valB" value="5,6,7,8"></div>
+      <div class="f"><label>写进 A 的起始列</label><input type="text" id="tgtA" value="5"></div>
+    </div>
+    <div class="checks">
+      <label><input type="checkbox" id="useHeader" checked> 首行是表头</label>
+      <label><input type="checkbox" id="copyHeader" checked> 覆盖时连 B 的表头一起搬过来</label>
+      <label><input type="checkbox" id="skipEmptyKey" checked> 关键列为空的行不参与匹配</label>
+    </div>
+    <div class="btns" style="margin-top:16px">
+      <button class="primary" id="runBtn">开跑</button>
+      <button id="demoBtn">塞一份示例数据试试</button>
+      <button id="clearBtn">清空</button>
+    </div>
+    <div class="log" id="log"><span class="dim">等着呢。</span></div>
+  </div>
+
+  <div class="card" id="outCard" style="display:none">
+    <div class="cardhd"><span class="badge">✓</span><span>结果</span></div>
+    <div class="stat">
+      <div>匹配命中<b class="pink" id="stHit">0</b></div>
+      <div>总数据行<b id="stRows">0</b></div>
+      <div>没匹配上<b id="stMiss">0</b></div>
+      <div>B 里重复键<b id="stDup">0</b></div>
+    </div>
+    <div class="btns">
+      <button class="primary" id="dlBtn">下载 xlsx</button>
+      <button id="csvBtn">复制结果 CSV</button>
+    </div>
+    <p class="sub" id="dlNote" style="margin:12px 0 0"></p>
+    <div class="tblwrap" style="max-height:320px;margin-top:12px"><table id="prevOut"></table></div>
+    <details>
+      <summary>下载按钮没反应？点这儿，手动复制</summary>
+      <textarea id="csvBox" readonly spellcheck="false"></textarea>
+    </details>
+  </div>
+
+</div>
+
+<script>
+(function(){
+'use strict';
+
+/* ============ 小工具 ============ */
+var $ = function(id){ return document.getElementById(id); };
+var esc = function(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){
+  return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); };
+var colName = function(i){ // 0 -> A, 26 -> AA
+  var s=''; i=i+1;
+  while(i>0){ var m=(i-1)%26; s=String.fromCharCode(65+m)+s; i=Math.floor((i-1)/26); }
+  return s;
+};
+var fmt = function(n){ return Number(n).toLocaleString('zh-CN'); };
+
+var logBox = $('log');
+function log(kind, msg){
+  var t = new Date().toTimeString().slice(0,8);
+  var span = document.createElement('span');
+  span.className = kind || 'dim';
+  span.textContent = '[' + t + '] ' + msg + '\n';
+  if (logBox.dataset.fresh !== '1'){ logBox.innerHTML=''; logBox.dataset.fresh='1'; }
+  logBox.appendChild(span);
+  logBox.scrollTop = logBox.scrollHeight;
+}
+function clearLog(){ logBox.innerHTML=''; logBox.dataset.fresh='0'; }
+
+/* ============ 引擎探测 ============ */
+var SQL = null, ENGINE = 'none';
+(function initEngine(){
+  if (typeof initSqlJs !== 'function'){
+    ENGINE = 'js'; setEngineBadge();
+    log('warn','sql.js 没加载出来（CDN 被墙？），自动走纯 JS 模式，功能一样，别慌。');
+    return;
+  }
+  initSqlJs({ locateFile: function(f){ return 'https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/' + f; } })
+    .then(function(mod){ SQL = mod; ENGINE = 'wasm'; setEngineBadge(); })
+    .catch(function(e){
+      ENGINE = 'js'; setEngineBadge();
+      log('warn','WASM 没起来（' + (e && e.message ? e.message : e) + '），自动降级纯 JS 匹配。');
+    });
+})();
+function setEngineBadge(){
+  var el = $('engine');
+  if (ENGINE === 'wasm'){ el.className='eng on'; el.textContent='SQLite / WebAssembly'; }
+  else { el.className='eng fb'; el.textContent='纯 JS 哈希匹配（降级）'; }
+}
+
+/* ============ 状态 ============ */
+var S = { A:null, B:null, result:null };
+
+function slot(s){ return S[s]; }
+
+/* ============ 读文件 ============ */
+function bindDrop(slotName){
+  var input = $('file'+slotName), drop = $('drop'+slotName);
+  input.addEventListener('change', function(){ if(input.files[0]) readFile(slotName, input.files[0]); input.value=''; });
+  ['dragenter','dragover'].forEach(function(ev){
+    drop.addEventListener(ev, function(e){ e.preventDefault(); drop.classList.add('over'); });
+  });
+  ['dragleave','drop'].forEach(function(ev){
+    drop.addEventListener(ev, function(e){ e.preventDefault(); drop.classList.remove('over'); });
+  });
+  drop.addEventListener('drop', function(e){
+    var f = e.dataTransfer.files[0]; if (f) readFile(slotName, f);
+  });
+}
+bindDrop('A'); bindDrop('B');
+
+function readFile(slotName, file){
+  if (typeof XLSX === 'undefined'){ log('err','SheetJS 没加载出来，检查网络。'); return; }
+  var fr = new FileReader();
+  fr.onload = function(){
+    var wb;
+    try{
+      var isCsv = /\.csv$/i.test(file.name);
+      wb = isCsv
+        ? XLSX.read(new TextDecoder('utf-8').decode(fr.result), {type:'string'})
+        : XLSX.read(fr.result, {type:'array', cellDates:false});
+    }catch(err){ log('err','这个文件读不了：' + err.message); return; }
+
+    var names = wb.SheetNames;
+    if (!names.length){ log('err','文件里一个工作表都没有。'); return; }
+
+    S[slotName] = { name:file.name, wb:wb, names:names, sheet:names[0], rows:[], cols:0 };
+    var sel = $('sheet'+slotName);
+    sel.innerHTML = names.map(function(n){ return '<option>'+esc(n)+'</option>'; }).join('');
+    sel.onchange = function(){ readSheet(slotName, sel.value); };
+    readSheet(slotName, names[0]);
+  };
+  fr.onerror = function(){ log('err','文件读失败。'); };
+  fr.readAsArrayBuffer(file);
+}
+
+function readSheet(slotName, sheetName){
+  var st = S[slotName];
+  st.sheet = sheetName;
+  var ws = st.wb.Sheets[sheetName];
+  var rows = XLSX.utils.sheet_to_json(ws, {header:1, raw:false, defval:'', blankrows:false});
+  st.rows = rows;
+  var w = 0;
+  for (var i=0;i<rows.length;i++) if (rows[i].length > w) w = rows[i].length;
+  st.cols = w;
+
+  $('meta'+slotName).innerHTML =
+    esc(st.name) + ' · ' + esc(sheetName) + ' · <b style="color:var(--pink)">' +
+    fmt(rows.length) + '</b> 行 × <b style="color:var(--pink)">' + fmt(w) + '</b> 列';
+
+  renderPreview('prev'+slotName, rows, Math.min(w, 10), []);
+  log('ok', slotName + ' 已加载：' + st.name + ' / ' + sheetName + ' → ' + fmt(rows.length) + ' 行 × ' + fmt(w) + ' 列');
+}
+
+function renderPreview(tableId, rows, maxCols, hlCols){
+  var t = $(tableId);
+  if (!rows || !rows.length){ t.innerHTML=''; return; }
+  var w = 0;
+  for (var i=0;i<Math.min(rows.length,4);i++) w = Math.max(w, rows[i].length);
+  w = Math.min(w, maxCols);
+  var head = '<thead><tr><th style="color:var(--pink)">#</th>';
+  for (var c=0;c<w;c++){
+    var mark = hlCols.indexOf(c) >= 0 ? ' style="color:var(--pink)"' : '';
+    head += '<th'+mark+'>'+colName(c)+'</th>';
+  }
+  head += '</tr></thead>';
+  var body = '<tbody>';
+  for (var r=0;r<Math.min(rows.length,4);r++){
+    body += '<tr><td style="color:var(--dim)">'+(r+1)+'</td>';
+    for (var c2=0;c2<w;c2++){
+      var v = rows[r][c2]; v = (v==null?'':String(v));
+      var cls = hlCols.indexOf(c2)>=0 ? ' class="hl"' : '';
+      body += '<td'+cls+' title="'+esc(v)+'">'+esc(v)+'</td>';
+    }
+    body += '</tr>';
+  }
+  if (rows.length > 4) body += '<tr><td colspan="'+(w+1)+'" style="color:var(--dim);text-align:center">…下面还有 '+fmt(rows.length-4)+' 行</td></tr>';
+  body += '</tbody>';
+  t.innerHTML = head + body;
+}
+
+/* ============ 配置解析 ============ */
+function parseCols(str, label){
+  var parts = String(str).split(/[,\s，、;；]+/).filter(Boolean);
+  if (!parts.length) throw new Error(label + ' 没填');
+  return parts.map(function(s){
+    var n = parseInt(s, 10);
+    if (!isFinite(n) || n < 1) throw new Error(label + ' 里有看不懂的东西：「' + s + '」');
+    return n - 1;
+  });
+}
+
+function readCfg(){
+  var kA = parseCols($('keyA').value, 'A 的匹配列');
+  var kB = parseCols($('keyB').value, 'B 的匹配列');
+  var vB = parseCols($('valB').value, 'B 的取值列');
+  var tgt = parseCols($('tgtA').value, 'A 的起始列');
+  if (tgt.length !== 1) throw new Error('起始列只能填一个数字');
+  if (kA.length !== kB.length) throw new Error('A 的匹配列有 ' + kA.length + ' 个，B 有 ' + kB.length + ' 个，对不上');
+  return {
+    kA:kA, kB:kB, vB:vB, tgt:tgt[0],
+    targets: vB.map(function(_,j){ return tgt[0] + j; }),
+    useHeader: $('useHeader').checked,
+    copyHeader: $('copyHeader').checked,
+    skipEmptyKey: $('skipEmptyKey').checked
+  };
+}
+
+/* ============ 构造矩阵 ============ */
+function buildMatrix(st, cfg, side){
+  var rows = st.rows || [];
+  var header = null, data = rows;
+
+  if (cfg.useHeader){
+    header = (rows[0] || []).slice();
+    data = rows.slice(1);
+  }
+
+  var w;
+  if (side === 'A'){
+    w = Math.max(st.cols, Math.max.apply(null, cfg.kA) + 1, cfg.tgt + cfg.vB.length);
+  } else {
+    w = Math.max(st.cols, Math.max.apply(null, cfg.kB) + 1, Math.max.apply(null, cfg.vB) + 1);
+  }
+  if (w < 1) w = 1;
+
+  function norm(r){
+    var o = new Array(w);
+    for (var i=0;i<w;i++){ var v = r[i]; o[i] = (v==null) ? '' : String(v); }
+    return o;
+  }
+  data = data.map(norm);
+
+  if (header){
+    var h = new Array(w);
+    for (var i2=0;i2<w;i2++) h[i2] = (header[i2]==null) ? '' : String(header[i2]);
+    header = h;
+  }
+  return { header:header, data:data, w:w };
+}
+
+/* ============ 引擎①：SQLite / WASM ============ */
+function runWasm(A, B, cfg){
+  var db = new SQL.Database();
+  function cols(n){ var a=[]; for (var i=0;i<n;i++) a.push('c'+i+' TEXT'); return a.join(','); }
+  function qs(n){ var a=[]; for (var i=0;i<n;i++) a.push('?'); return a.join(','); }
+
+  db.run('CREATE TABLE a (' + cols(A.w) + ');');
+  db.run('CREATE TABLE b (' + cols(B.w) + ');');
+
+  function fill(tbl, mat, w){
+    var st = db.prepare('INSERT INTO ' + tbl + ' VALUES (' + qs(w) + ');');
+    db.run('BEGIN;');
+    for (var i=0;i<mat.length;i++) st.run(mat[i]);
+    db.run('COMMIT;');
+    st.free();
+  }
+  fill('a', A.data, A.w);
+  fill('b', B.data, B.w);
+
+  // B 的重复键统计
+  var grp = cfg.kB.map(function(i){ return 'c'+i; }).join(',');
+  var dup = 0;
+  try{
+    var r0 = db.exec('SELECT (SELECT COUNT(*) FROM b) - (SELECT COUNT(*) FROM (SELECT 1 FROM b GROUP BY ' + grp + '));');
+    dup = r0[0].values[0][0] || 0;
+  }catch(e){ dup = 0; }
+
+  // 去重映射表（每个键留第一条）
+  var bmapSel = cfg.kB.map(function(i,j){ return 'c'+i+' AS k'+j; }).join(',') + ', 1 AS __hit, ' +
+                cfg.vB.map(function(i,j){ return 'c'+i+' AS v'+j; }).join(',');
+  db.run('CREATE TABLE bmap AS SELECT ' + bmapSel + ' FROM b ' +
+         'WHERE rowid IN (SELECT MIN(rowid) FROM b GROUP BY ' + grp + ');');
+
+  // join 条件
+  var conds = cfg.kB.map(function(bi,j){ return 'a.c' + cfg.kA[j] + ' = m.k' + j; });
+  if (cfg.skipEmptyKey){
+    cfg.kA.forEach(function(i){ conds.push("a.c" + i + " <> ''"); });
+  }
+  var on = conds.join(' AND ');
+
+  // 命中数
+  var hit = 0;
+  try{
+    var r1 = db.exec('SELECT COUNT(*) FROM a JOIN bmap m ON ' + on + ';');
+    hit = r1[0].values[0][0] || 0;
+  }catch(e){ hit = 0; }
+
+  // 输出：目标列被 m.v* 覆盖，其余原样
+  var sel = [];
+  for (var i=0;i<A.w;i++){
+    var j = cfg.targets.indexOf(i);
+    if (j >= 0 && j < cfg.vB.length){
+      sel.push('CASE WHEN m.__hit = 1 THEN m.v' + j + ' ELSE a.c' + i + ' END AS c' + i);
+    } else {
+      sel.push('a.c' + i + ' AS c' + i);
+    }
+  }
+  db.run('CREATE TABLE out AS SELECT ' + sel.join(',') + ' FROM a LEFT JOIN bmap m ON ' + on + ';');
+
+  var res = db.exec('SELECT * FROM out;');
+  var outRows = res && res[0] ? res[0].values.map(function(r){
+    return r.map(function(v){ return v==null ? '' : String(v); });
+  }) : [];
+  db.close();
+  return { rows: outRows, hit: hit, dup: dup };
+}
+
+/* ============ 引擎②：纯 JS 哈希降级 ============ */
+function runJs(A, B, cfg){
+  var SEP = '\u0001';
+  var map = Object.create(null), dup = 0;
+
+  for (var i=0;i<B.data.length;i++){
+    var br = B.data[i];
+    if (cfg.skipEmptyKey){
+      var empty = false;
+      for (var q=0;q<cfg.kB.length;q++) if (br[cfg.kB[q]] === '') { empty = true; break; }
+      if (empty) continue;
+    }
+    var bk = '';
+    for (var q2=0;q2<cfg.kB.length;q2++) bk += (q2 ? SEP : '') + br[cfg.kB[q2]];
+    if (bk in map){ dup++; continue; }
+    map[bk] = cfg.vB.map(function(vi){ return br[vi]; });
+  }
+
+  var hit = 0;
+  var out = A.data.map(function(ar){
+    var skip = false;
+    if (cfg.skipEmptyKey){
+      for (var q=0;q<cfg.kA.length;q++) if (ar[cfg.kA[q]] === '') { skip = true; break; }
+    }
+    if (skip) return ar;
+    var ak = '';
+    for (var q2=0;q2<cfg.kA.length;q2++) ak += (q2 ? SEP : '') + ar[cfg.kA[q2]];
+    var v = map[ak];
+    if (!v) return ar;
+    hit++;
+    var nr = ar.slice();
+    for (var j=0;j<cfg.targets.length && j<v.length;j++) nr[cfg.targets[j]] = v[j];
+    return nr;
+  });
+  return { rows: out, hit: hit, dup: dup };
+}
+
+/* ============ 主流程 ============ */
+var lastFull = null;
+
+function run(){
+  clearLog();
+  try{
+    if (!S.A || !S.B) throw new Error('A、B 两个文件都得先加载');
+    if (typeof XLSX === 'undefined') throw new Error('SheetJS 没加载，没法读表');
+
+    var cfg = readCfg();
+    var A = buildMatrix(S.A, cfg, 'A');
+    var B = buildMatrix(S.B, cfg, 'B');
+
+    log('dim', 'A：' + fmt(A.data.length) + ' 行 × ' + A.w + ' 列｜B：' + fmt(B.data.length) + ' 行 × ' + B.w + ' 列');
+    log('dim', 'A 匹配列 ' + cfg.kA.map(function(i){return colName(i);}).join('+') +
+               '  ←→  B 匹配列 ' + cfg.kB.map(function(i){return colName(i);}).join('+'));
+    log('dim', 'B 取值列 ' + cfg.vB.map(function(i){return colName(i);}).join('+') +
+               '  →  写入 A 的 ' + cfg.targets.map(function(i){return colName(i);}).join('+'));
+
+    var t0 = performance.now();
+    var r;
+    if (ENGINE === 'wasm' && SQL){
+      log('dim','引擎：SQLite/WASM，开始建表灌数据…');
+      r = runWasm(A, B, cfg);
+    } else {
+      log('dim','引擎：纯 JS 哈希匹配…');
+      r = runJs(A, B, cfg);
+    }
+    var ms = Math.round(performance.now() - t0);
+
+    if (r.dup > 0) log('warn','B 里有 ' + fmt(r.dup) + ' 行前四列重复，每个键只取了第一条。');
+    if (r.hit === 0) log('warn','一行都没匹配上——八成是列号填错了，或者两边数据格式不一样（数字 vs 文本）。');
+    else log('ok','匹配命中 ' + fmt(r.hit) + ' / ' + fmt(A.data.length) + ' 行，耗时 ' + ms + ' ms');
+
+    // 表头
+    var header = A.header ? A.header.slice() : (function(){
+      var h=[]; for (var i=0;i<A.w;i++) h.push('列'+(i+1)); return h;
+    })();
+    if (cfg.useHeader && cfg.copyHeader && B.header){
+      cfg.targets.forEach(function(ti, j){
+        if (j < cfg.vB.length){
+          var nh = B.header[cfg.vB[j]];
+          if (nh !== undefined && nh !== '') header[ti] = nh;
+        }
+      });
+    }
+
+    var full = cfg.useHeader ? [header].concat(r.rows) : r.rows;
+    lastFull = full;
+
+    // 统计面板
+    $('outCard').style.display = 'block';
+    $('stHit').textContent = fmt(r.hit);
+    $('stRows').textContent = fmt(A.data.length);
+    $('stMiss').textContent = fmt(A.data.length - r.hit);
+    $('stDup').textContent = fmt(r.dup);
+    $('csvBox').value = '';
+
+    renderPreview('prevOut', full, Math.min(A.w, 14), cfg.targets);
+
+    log('ok','完事。点「下载 xlsx」拿走。原文件一个字节都没动。');
+    $('outCard').scrollIntoView({behavior:'smooth', block:'nearest'});
+  }catch(e){
+    log('err', e.message || String(e));
+    console.error(e);
+  }
+}
+
+/* ============ 导出 ============ */
+function downloadXlsx(){
+  if (!lastFull){ log('warn','还没结果呢，先点开跑。'); return; }
+  try{
+    var ws = XLSX.utils.aoa_to_sheet(lastFull);
+    var wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, '结果');
+    var buf = XLSX.write(wb, {type:'array', bookType:'xlsx'});
+    var blob = new Blob([buf], {type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url; a.download = '合并结果.xlsx';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function(){ URL.revokeObjectURL(url); }, 8000);
+    $('dlNote').textContent = '要是浏览器把下载拦了（沙箱环境常见），就点下面那个折叠框复制 CSV，一样能用。';
+  }catch(e){ log('err','导出炸了：' + e.message); }
+}
+
+function toCsv(rows){
+  function cell(v){
+    v = (v==null) ? '' : String(v);
+    return /[",\r\n]/.test(v) ? '"' + v.replace(/"/g,'""') + '"' : v;
+  }
+  var out = [];
+  for (var i=0;i<rows.length;i++) out.push(rows[i].map(cell).join(','));
+  return '\ufeff' + out.join('\r\n');
+}
+
+function copyCsv(){
+  if (!lastFull){ log('warn','还没结果呢。'); return; }
+  var csv = toCsv(lastFull);
+  $('csvBox').value = csv;
+  var done = function(){
+    log('ok','CSV 已复制到剪贴板（' + fmt(csv.length) + ' 个字符）。粘进 Excel 就行。');
+    $('dlNote').textContent = '已复制。Excel 里「数据 → 自文本/CSV」导入，或者直接粘贴。';
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(csv).then(done).catch(function(){
+      log('warn','剪贴板被拦了，下面折叠框里有全文，手动选中复制吧。');
+    });
+  } else {
+    log('warn','这浏览器不给剪贴板权限，下面折叠框里有全文。');
+  }
+}
+
+/* ============ 示例数据 ============ */
+function loadDemo(){
+  var A = [
+    ['姓名','学号','班级','科目','语文','数学','英语','总分'],
+    ['张三','001','一班','期末','','','',''],
+    ['李四','002','一班','期末','','','',''],
+    ['王五','003','二班','期末','','','',''],
+    ['赵六','004','二班','期末','','','',''],
+    ['钱七','005','三班','期末','','','',''],
+    ['孙八','006','三班','期末','','','','']
+  ];
+  var B = [
+    ['姓名','学号','班级','科目','语文','数学','英语','总分'],
+    ['张三','001','一班','期末','88','92','79','259'],
+    ['李四','002','一班','期末','75','81','90','246'],
+    ['王五','003','二班','期末','91','68','85','244'],
+    ['赵六','004','二班','期末','63','77','72','212'],
+    ['孙八','006','三班','期末','95','98','94','287']
+  ];
+  function mk(rows, name){
+    var wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(rows), name);
+    return { name:name + '.xlsx', wb:wb, names:[name], sheet:name, rows:[], cols:0 };
+  }
+  S.A = mk(A, 'A表'); S.B = mk(B, 'B表');
+  ['A','B'].forEach(function(s){
+    var st = S[s];
+    $('sheet'+s).innerHTML = '<option>'+esc(st.names[0])+'</option>';
+    $('sheet'+s).onchange = (function(sn){
+      return function(){ readSheet(sn, S[sn].names[0]); };
+    })(s);
+    readSheet(s, st.names[0]);
+  });
+  clearLog();
+  log('ok','示例塞好了：A 有 6 个学生待填，B 有 5 个成绩。钱七在 B 里没有 → 看他那行会不会被清空。');
+  log('dim','直接点「开跑」就行。');
+}
+
+/* ============ 绑事件 ============ */
+$('runBtn').addEventListener('click', function(){
+  var b = this;
+  b.disabled = true; b.innerHTML = '<span class="spin">◜</span> 跑着呢…';
+  setTimeout(function(){
+    try{ run(); } finally { b.disabled = false; b.textContent = '开跑'; }
+  }, 30);
+});
+$('dlBtn').addEventListener('click', downloadXlsx);
+$('csvBtn').addEventListener('click', copyCsv);
+$('demoBtn').addEventListener('click', loadDemo);
+$('clearBtn').addEventListener('click', function(){
+  S = { A:null, B:null, result:null }; lastFull = null;
+  ['A','B'].forEach(function(s){
+    $('meta'+s).textContent = '还没加载';
+    $('sheet'+s).innerHTML = '';
+    $('prev'+s).innerHTML = '';
+  });
+  $('outCard').style.display = 'none';
+  clearLog();
+  log('dim','清干净了。');
+});
+
+log('dim','先把 A、B 两个表拖进来。不确定什么效果就先点「塞一份示例数据试试」。');
+})();
+</script>
+</body>
+</html>
+      </div>
+      
+      
+      
+    </div>
+
+    
+    
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2017 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Kevin Jiang</span>
+  </div>
+  <div class="powered-by">Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL0tldmluU0o=" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+<script src="https://unpkg.com/live2d-widget@^3.1.3/lib/L2Dwidget.min.js"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false}});</script></body>
+</html>
