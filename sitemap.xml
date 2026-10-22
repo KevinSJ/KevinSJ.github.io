@@ -11,7 +11,7 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/notes/notes-for-2024-10-27.html</loc>
+    <loc>https://jiangsc.me/tools/index.html</loc>
     
     <lastmod>2026-10-22</lastmod>
     
@@ -29,7 +29,7 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/tools/index.html</loc>
+    <loc>https://jiangsc.me/notes/notes-for-2024-10-27.html</loc>
     
     <lastmod>2026-10-22</lastmod>
     
@@ -47,7 +47,7 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/gallery/index.html</loc>
+    <loc>https://jiangsc.me/favorites/index.html</loc>
     
     <lastmod>2026-10-22</lastmod>
     
@@ -56,7 +56,7 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/favorites/index.html</loc>
+    <loc>https://jiangsc.me/gallery/index.html</loc>
     
     <lastmod>2026-10-22</lastmod>
     
@@ -110,42 +110,6 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/2025/03/09/notes-2025-03-09/</loc>
-    
-    <lastmod>2026-10-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/2026/03/22/notes-upgrade-postgres-docker/</loc>
-    
-    <lastmod>2026-10-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/2020/09/14/pitfall-of-jsonencode-in-terraform/</loc>
-    
-    <lastmod>2026-10-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/2020/11/15/practice-with-vim-I/</loc>
-    
-    <lastmod>2026-10-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://jiangsc.me/2023/12/08/self-hosting-nebula-traefik/</loc>
     
     <lastmod>2026-10-22</lastmod>
@@ -174,6 +138,24 @@
   
   <url>
     <loc>https://jiangsc.me/2025/03/26/tales-of-the-brave-write-up/</loc>
+    
+    <lastmod>2026-10-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/2025/06/20/arch-linux-on-rock-4c-plus/</loc>
+    
+    <lastmod>2026-10-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/2023/10/08/arch-linux-on-rpi3/</loc>
     
     <lastmod>2026-10-22</lastmod>
     
@@ -326,6 +308,60 @@
   </url>
   
   <url>
+    <loc>https://jiangsc.me/2025/03/09/notes-2025-03-09/</loc>
+    
+    <lastmod>2026-10-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/2026/03/22/notes-upgrade-postgres-docker/</loc>
+    
+    <lastmod>2026-10-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/2020/09/14/pitfall-of-jsonencode-in-terraform/</loc>
+    
+    <lastmod>2026-10-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/2020/11/15/practice-with-vim-I/</loc>
+    
+    <lastmod>2026-10-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/2018/06/24/Automating-things-on-Android-with-Tasker/</loc>
+    
+    <lastmod>2026-10-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jiangsc.me/2018/03/24/AutomatingStuffWithGoogleAppScripts/</loc>
+    
+    <lastmod>2026-10-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://jiangsc.me/2023/02/08/Cli-tips-create-azure-devops-pr/</loc>
     
     <lastmod>2026-10-22</lastmod>
@@ -461,16 +497,7 @@
   </url>
   
   <url>
-    <loc>https://jiangsc.me/2025/06/20/arch-linux-on-rock-4c-plus/</loc>
-    
-    <lastmod>2026-10-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/2023/10/08/arch-linux-on-rpi3/</loc>
+    <loc>https://jiangsc.me/2017/06/11/06112017-Fun-With-GPG/</loc>
     
     <lastmod>2026-10-22</lastmod>
     
@@ -532,33 +559,6 @@
     <priority>0.6</priority>
   </url>
   
-  <url>
-    <loc>https://jiangsc.me/2018/06/24/Automating-things-on-Android-with-Tasker/</loc>
-    
-    <lastmod>2026-10-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/2018/03/24/AutomatingStuffWithGoogleAppScripts/</loc>
-    
-    <lastmod>2026-10-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/2017/06/11/06112017-Fun-With-GPG/</loc>
-    
-    <lastmod>2026-10-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
 
   <url>
     <loc>https://jiangsc.me/</loc>
@@ -567,6 +567,13 @@
     <priority>1.0</priority>
   </url>
 
+  
+  <url>
+    <loc>https://jiangsc.me/tags/Notes/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
   
   <url>
     <loc>https://jiangsc.me/tags/postmortem/</loc>
@@ -591,13 +598,6 @@
   
   <url>
     <loc>https://jiangsc.me/tags/JavaScript/</loc>
-    <lastmod>2026-10-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://jiangsc.me/tags/Notes/</loc>
     <lastmod>2026-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
