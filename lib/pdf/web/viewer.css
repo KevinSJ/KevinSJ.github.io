@@ -6365,6 +6365,9 @@ button.hasPopupMenu {
   border: var(--page-border);
   background-clip: content-box;
   background-color: var(--page-bg-color, rgb(255 255 255));
+  &:has(> .canvasWrapper > canvas[role="presentation"]) {
+    background-color: transparent;
+  }
 }
 
 .pdfViewer .dummyPage {
@@ -6851,6 +6854,7 @@ button.hasPopupMenu {
     color-mix(in srgb, currentColor 17%, transparent)
   );
   --toggled-btn-color: light-dark(rgb(0 0 0), rgb(255 255 255));
+  --toggled-btn-text-color: var(--toggled-btn-color);
   --toggled-btn-bg-color: rgb(0 0 0 / 0.3);
   --toggled-hover-active-btn-color: rgb(0 0 0 / 0.4);
   --toggled-hover-btn-outline: none;
@@ -6932,6 +6936,7 @@ button.hasPopupMenu {
     --toolbar-border-bottom: 1px solid var(--toolbar-border-color);
     --toolbar-box-shadow: none;
     --toggled-btn-color: HighlightText;
+    --toggled-btn-text-color: HighlightText;
     --toggled-btn-bg-color: LinkText;
     --doorhanger-hover-color: ButtonFace;
     --doorhanger-border-color-whcm: 1px solid ButtonText;
@@ -7313,12 +7318,12 @@ body {
   display: inline;
 
   &:has(> input:checked) {
-    color: var(--toggled-btn-color);
+    color: var(--toggled-btn-text-color);
     background-color: var(--toggled-btn-bg-color);
   }
 
   &:is(:hover, :has(> input:focus-visible)) {
-    color: var(--toggled-btn-color);
+    color: var(--toggled-btn-text-color);
     background-color: var(--button-hover-color);
   }
 
@@ -7551,7 +7556,7 @@ dialog :link {
 
   &.toggled {
     background-color: var(--toggled-btn-bg-color);
-    color: var(--toggled-btn-color);
+    color: var(--toggled-btn-text-color);
 
     &::before {
       background-color: var(--toggled-btn-color);
@@ -7635,8 +7640,8 @@ dialog :link {
   .menuContainer {
     height: auto;
     max-height: calc(
-      var(--viewer-container-height) - var(--toolbar-height) -
-        var(--doorhanger-height)
+      var(--viewer-container-height) + var(--pfn-bar-height, 0px) -
+        var(--toolbar-height) - var(--doorhanger-height)
     );
     display: flex;
     flex-direction: column;
@@ -7731,7 +7736,9 @@ dialog :link {
   z-index: 30000;
   cursor: default;
   min-height: 26px;
-  max-height: calc(var(--viewer-container-height) - 40px);
+  max-height: calc(
+    var(--viewer-container-height) + var(--pfn-bar-height, 0px) - 40px
+  );
 
   #secondaryToolbarButtonContainer {
     #secondaryOpenFile::before {
@@ -8108,7 +8115,7 @@ dialog :link {
 
     &:is(:hover, :focus-visible) {
       background-color: var(--button-hover-color);
-      color: var(--toggled-btn-color);
+      color: var(--toggled-btn-text-color);
     }
   }
 
@@ -8243,7 +8250,7 @@ dialog :link {
     display: none !important;
   }
   #outerContainer .visibleMediumView:not(.hidden, [hidden]) {
-    display: inline-block !important;
+    display: contents !important;
   }
 }
 
